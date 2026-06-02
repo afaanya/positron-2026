@@ -9,6 +9,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
+    <nav>
+        <a href="/">Home</a> 
+        <a href="/timeline">Timeline</a> 
+        <a href="/filosofi">Filosofi</a> 
+        <a href="/group">Group</a> 
+        <a href="/contact">Contact</a>
+    </nav>
     @yield('content')
 </body>
 </html>
