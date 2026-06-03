@@ -28,7 +28,7 @@
 
 <section id="departemen">
     <h2 class="font-primary">DEPARTEMEN TEKNIK ELEKTRO DAN INFORMATIKA</h2>
-    <img src="" alt="gedung B12">
+    <img src="LANDING PAGE.png" alt="gedung B12">
     <p class="font-secondary">
         Departemen Teknik Elektro dan Informatika adalah salah satu departemen...
     </p>
