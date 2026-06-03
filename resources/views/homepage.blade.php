@@ -7,7 +7,7 @@
         SELAMAT DATANG MAHASISWA BARU<br>
         DEPARTEMEN TEKNIK ELEKTRO DAN INFORMATIKA
     </h1>
-    <img src="" alt="logo positron">
+    <img src="landing-page.png" alt="logo positron">
     <p class="font-secondary">
         POSITRON 2026
     </p>
