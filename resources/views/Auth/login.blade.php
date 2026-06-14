@@ -33,7 +33,7 @@
         .bg-layer {
             position: fixed;
             inset: 0;
-            background-image: url('/images/login-page.png');
+            background-image: url('/images/login-bg.png');
             background-size: cover;
             background-position: center;
             width: 100vw;
