@@ -1,4 +1,3 @@
-
 <!doctype html>
 <!-- Made in Framer · framer.com ✨ -->
 <!-- Published Jun 16, 2026, 1:32 PM UTC -->
@@ -13,8 +12,8 @@
     <!-- End of headStart -->
 	<meta name="viewport" content="width=1440">
 	<meta name="generator" content="Framer 4ded5ed">
-	<title>My Framer Site</title>
-    <meta name="description" content="Made with Framer">
+	<title>POSITRON - Filosofi</title>
+    <meta name="description" content="Filosofi POSITRON 2026">
     <meta name="framer-search-index" content="https://framerusercontent.com/sites/2OlsEc6bTAzSITpQNhK9Mi/searchIndex-eDpFoOPGmpao.json">
     <meta name="framer-search-index-fallback" content="https://framerusercontent.com/sites/2OlsEc6bTAzSITpQNhK9Mi/searchIndex-BTljG94a8q9z.json">
     <link href="https://framerusercontent.com/sites/icons/default-favicon-light.v1.png" rel="icon" media="(prefers-color-scheme: light)">
@@ -22,11 +21,11 @@
     <link rel="apple-touch-icon" href="https://framerusercontent.com/sites/icons/default-touch-icon.v3.png">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="My Framer Site">
-    <meta property="og:description" content="Made with Framer">
+    <meta property="og:title" content="POSITRON - Filosofi">
+    <meta property="og:description" content="Filosofi POSITRON 2026">
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="My Framer Site">
+    <meta name="twitter:title" content="POSITRON - Filosofi">
     <meta name="twitter:description" content="Made with Framer">
 	<style data-framer-css-ssr>
 		html, body, #main {
