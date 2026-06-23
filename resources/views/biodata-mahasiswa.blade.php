@@ -4,30 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biodata</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css'])
 
     <style>
        body {
             margin: 0;
+            min-height:100vh;
+            background-image: url('{{ asset('images/login-bg.png') }}'); 
+            background-size: cover;
+            background-position: center;
+            font-family:'Times New Roman', serif;
         }
 
+        .wrapper {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
+
         .container {
-            padding: 20px;
+            max-width:700px;
+            width:100%;
         }
 
         .card {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 15px;
+            background: rgba(225,225,225,0.95);
+            border: 2px solid #b89a63;
+            padding: 20px 25px;
             border-radius: 10px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
         }
 
-        .title {
-            font-size: 22px;
+        .page-title {
+            font-size: 32px;
             font-weight: bold;
-            margin-bottom: 10px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-align: center;
         } 
+
+        .card-title {
+            background: rgba(225,225,225,0.95);
+            border: 2px solid #b89a63;
+            border-radius: 10px;
+            padding: 20px 25px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+        }
+
+        .row {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .wa-link {
+            color: green;
+            text-decoration: underline;
+            font-weight: bold;
+        }
     </style>
 
 </head>

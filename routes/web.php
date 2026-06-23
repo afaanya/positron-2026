@@ -3,12 +3,25 @@
 use Illuminate\Support\Facades\Route; 
 use App\Http\Controllers\Auth\LoginController;
 
+
+// mahasiswa punya
 // Redirect jika sudah login
 Route::get('/', function () {
     return auth()->check()
         ? redirect()->route('dashboard')
         : view('landing');
 })->name('home');
+
+// Home page
+Route::get('homepage', function(){
+    return view('mahasiswa.homepage');
+})->name('home');
+
+// Halaman about
+Route::get('/about', function () {
+    return view('about');
+});
+
 
 // Halaman profil mahasiswa
 Route::get('/profil-mahasiswa', function () {
@@ -58,3 +71,26 @@ Route::post('/logout', [LoginController::class, 'logout'])
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
+
+// Halaman Timeline
+Route::get('/timeline', function () {
+    return view('timeline');
+});
+
+
+// mentor punya
+Route::prefix('mentor')->group(function () {
+
+    Route::get('/kegiatan', function () {
+        return view('mentor.kegiatan');
+    })->name('mentor.prodi');
+
+    Route::get('/offering/{prodi}', function ($kegiatan) {
+        return view('mentor.offering', compact('kegiatan'));
+    })->name('mentor.offering');
+
+    Route::get('/mahasiswa', function () {
+        return view('mentor.mahasiswa');
+    })->name('mentor.mahasiswa');
+
+});
