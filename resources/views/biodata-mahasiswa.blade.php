@@ -1,95 +1,80 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodata</title>
-    @vite(['resources/css/app.css'])
+@extends('layouts.app')
+
+@section('content')
 
     <style>
-       body {
+        body {
             margin: 0;
-            min-height:100vh;
-            background-image: url('{{ asset('images/login-bg.png') }}'); 
-            background-size: cover;
-            background-position: center;
-            font-family:'Times New Roman', serif;
+            min-height: 100vh;
+            background-image: url('{{ asset('images/login-bg.png') }}') center/cover no-repeat !important;
+            font-family: 'Times New Roman', serif;
         }
 
-        .wrapper {
+        .overlay {
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 40px 20px;
-        }
-        
-
-        .container {
-            max-width:700px;
-            width:100%;
+            background: rgba(0,0,0,0.35);
         }
 
         .card {
-            background: rgba(225,225,225,0.95);
+            width: 100%;
+            max-width: 720px;
+            background: rgba(255, 255, 255, 0.92);
             border: 2px solid #b89a63;
-            padding: 20px 25px;
-            border-radius: 10px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+            border-radius: 14px;
+            padding: 28px;
         }
 
-        .page-title {
-            font-size: 32px;
+        .title {
+            text-align: center;
+            font-size: 34px;
             font-weight: bold;
             color: #d4af37;
-            margin-bottom: 20px;
-            text-align: center;
-        } 
-
-        .card-title {
-            background: rgba(225,225,225,0.95);
-            border: 2px solid #b89a63;
-            border-radius: 10px;
-            padding: 20px 25px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
         }
 
         .row {
-            margin-bottom: 10px;
-            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .label {
+            font-weight: bold;
         }
 
         .wa-link {
             color: green;
-            text-decoration: underline;
             font-weight: bold;
         }
     </style>
 
-</head>
-<body class="font-secondary bg-gray-100">
-    <div class="container">
-        <h2 class="font-primary text-3xl mb-4">
-            Biodata
-        </h2>
-        <div class="card">
-            <div class="title">Data Diri</div>
-            <p><b>Nama:</b> {{ $biodata->nama }}</p>
-            <p><b>NIM:</b> {{ $biodata->nim }}</p>
-            <p><b>Program Studi:</b> {{ $biodata->program_studi }}</p>
-            <p><b>Offering:</b> {{ $biodata->offering }}</p>
-            <p><b>Kakak Mentor:</b> {{ $biodata->kakak_mentor }}</p>
-            <p>
-                <b>Contact:</b>
-                <a href="https://wa.me/62{{ ltrim($biodata->contact, '0') }}"
-                    target="_blank"
-                    style="color:green; text-decoration:underline;">
-                    Chat WhatsApp
-                </a>
-            <p><b>Kelompok:</b> {{ $biodata->kelompok }}</p>
-            <p><b>Mentor Kelompok:</b> {{ $biodata->mentor_kelompok }}</p>
+<div class="overlay">
+    <div class="card">
+        <div class="title">BIODATA</div>
+
+        <div class="row"><div class="label">Nama</div>{{ $biodata->nama }}</div>
+        <div class="row"><div class="label">NIM</div>{{ $biodata->nim }}</div>
+        <div class="row"><div class="label">Program Studi</div>{{ $biodata->program_studi }}</div>
+        <div class="row"><div class="label">Offering</div>{{ $biodata->offering }}</div>
+        <div class="row"><div class="label">Kakak Mentor</div>{{ $biodata->kakak_mentor }}</div>
+
+        <div class="row">
+            <div class="label">Contact</div>
+            <a class="wa-link"
+               href="https://wa.me/62{{ ltrim($biodata->contact, '0') }}"
+               target="_blank">
+                Chat WhatsApp
+            </a>
         </div>
 
+        <div class="row"><div class="label">Kelompok</div>{{ $biodata->kelompok }}</div>
+        <div class="row"><div class="label">Mentor Kelompok</div>{{ $biodata->mentor_kelompok }}</div>
+
     </div>
-</body>
-</html>
+</div>
+
+@endsection
