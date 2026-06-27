@@ -11,9 +11,17 @@ Route::get('/', function () {
 })->name('landing');
 
 // Home page
+Route::get('/home', function () {
+    return view('home');
+});
 Route::get('homepage', function(){
     return view('homepage');
 })->name('homepage');
+
+// Rangkaian
+Route::get('rangkaian', function(){
+    return view('rangkaian');
+})->name('rangkaian');
 
 // Halaman about
 Route::get('/about', function () {
