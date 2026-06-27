@@ -5,23 +5,30 @@ use App\Http\Controllers\Auth\LoginController;
 
 
 // mahasiswa punya
-// Redirect jika sudah login
+// landing page
 Route::get('/', function () {
-    return auth()->check()
-        ? redirect()->route('dashboard')
-        : view('landing');
-})->name('home');
+    return view('landing');
+})->name('landing');
 
 // Home page
 Route::get('homepage', function(){
-    return view('mahasiswa.homepage');
-})->name('home');
+    return view('homepage');
+})->name('homepage');
 
 // Halaman about
 Route::get('/about', function () {
     return view('about');
-});
+})->name('about');
 
+// Halaman filosofi
+Route::get('/filosofi', function () {
+    return view('filosofi');
+})->name('filosofi');
+
+// Halaman timeline
+Route::get('/timeline', function () {
+    return view('timeline');
+})->name('timeline');
 
 // Halaman profil mahasiswa
 Route::get('/profil-mahasiswa', function () {
@@ -41,20 +48,15 @@ Route::get('/biodata', function () {
         'mentor_kelompok' => 'uvwxyz'
     ];
     return view('biodata-mahasiswa', compact('biodata'));
-});
+})->name('biodata');
 
 Route::get('/poin', function () {
     return view('poin-penilaian-mahasiswa');
-});
+})->name('poin');
 
 Route::get('/sertifikat', function () {
     return view('sertifikat-mahasiswa');
-});
-
-// Halaman filosofi
-Route::get('/filosofi', function () {
-    return view('filosofi');
-})->name('filosofi');
+})->name('sertifikat');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', function () {
@@ -72,18 +74,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
 
-// Halaman Timeline
-Route::get('/timeline', function () {
-    return view('timeline');
-});
 
-
-// mentor punya
+// mentor
 Route::prefix('mentor')->group(function () {
 
     Route::get('/kegiatan', function () {
         return view('mentor.kegiatan');
-    })->name('mentor.prodi');
+    })->name('mentor.kegiatan');
 
     Route::get('/offering/{prodi}', function ($kegiatan) {
         return view('mentor.offering', compact('kegiatan'));
@@ -92,5 +89,4 @@ Route::prefix('mentor')->group(function () {
     Route::get('/mahasiswa', function () {
         return view('mentor.mahasiswa');
     })->name('mentor.mahasiswa');
-
 });

@@ -2,6 +2,10 @@
 
 @section('content')
 
+<button class="close-btn" onclick="history.back()">
+    &times;
+</button>
+
     <style>
         body {
             margin: 0;
@@ -49,6 +53,26 @@
         .wa-link {
             color: green;
             font-weight: bold;
+        }
+
+        .close-btn{
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 9999;
+            line-height: 1;
+            text-shadow: 0 2px 8px rgba(0,0,0,.5);
+            transition: color .3s;
+        }
+
+        .close-btn:hover{
+            color: #d4af37
         }
     </style>
 

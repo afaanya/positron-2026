@@ -2,29 +2,29 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Website Maba</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSITRON 2026</title>
+
+    @vite(['resources/css/app.css'])
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body{
+            width: 100%;
+            overflow-x: hidden;
+            background: #081a12;
+        }
+    </style>
 </head>
 <body>
 
-@auth
-<nav>
-    <a href="/home">Home</a>
-    <a href="/about">About</a>
-    <a href="/filosofi">Filosofi</a>
-    <a href="/timeline">Timeline</a>
-    <a href="/contact">Contact</a>
-    <a href="/profil">Profil</a>
-
-    <form method="POST" action="{{ route('logout') }}" style="display:inline;">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
-</nav>
-@endauth
-
-<hr>
-
-@yield('content')
+    @yield('content')
 
 </body>
 </html>
