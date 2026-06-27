@@ -1,7 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
-
 <style>
     *{
         margin:0;
@@ -155,8 +151,6 @@
             <img src="{{ asset('images/selamat-datang.png') }}" class="selamat-datang">
         </a>
     </div>
-
-    <img src="{{ asset('images/footer.png') }}" class="footer">
 </div>
 
 <div id="profilePanel" class="profile-panel">
@@ -178,5 +172,3 @@ function toggleProfile(){
     document.getElementById("profilePanel").classList.toggle("active");
 }
 </script>
-
-@endsection

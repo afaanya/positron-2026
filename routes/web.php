@@ -11,6 +11,9 @@ Route::get('/', function () {
 })->name('landing');
 
 // Home page
+Route::get('/home', function () {
+    return view('home');
+});
 Route::get('homepage', function(){
     return view('homepage');
 })->name('homepage');
