@@ -20,11 +20,11 @@
 
         /* Menggunakan file background dari Anda */
         .royal-bg {
-            background-image: url("{{ asset('images/login-bg.jpg') }}");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+    background-image: url("{{ asset('images/login-bg.png') }}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
         /* --- LOGIK JARUM JAM INTERAKTIF --- */
         .clock-wrapper {
@@ -172,7 +172,10 @@
         }
     </style>
 </head>
-<body class="royal-bg min-h-screen flex flex-col justify-between antialiased text-white">
+<body class="min-h-screen flex flex-col justify-between antialiased text-white">
+    <img src="{{ asset('images/login-bg.png') }}" 
+         alt="Background" 
+         class="fixed inset-0 w-full h-full object-cover -z-10">
 
     <div class="header-container">
         <img src="{{ asset('images/header.png') }}" class="header">
@@ -191,24 +194,36 @@
             <h1 class="font-primary text-5xl md:text-7xl text-[#F8D794] tracking-wide drop-shadow-md">
                 Timeline Kegiatan
             </h1>
-            <p class="text-gray-400 text-xs md:text-sm font-secondary tracking-wider -mt-2">
-                POSITRON 2026 • Jangan Lewatkan Setiap Fasa Penting
-            </p>
         </div>
 
-        <div class="clock-wrapper max-w-[320px] sm:max-w-[400px] md:max-w-[430px] w-full rounded-full shadow-2xl border-4 border-[#7d613b]/30 overflow-hidden bg-[#121c17]">
+        <div class="clock-wrapper w-1/2 mx-auto" style="position: relative;">
             
-            <img src="{{ asset('images/timeline.jpg') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
+            <img src="{{ asset('images/timeline2.png') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
 
-            <div class="clock-center-pin"></div>
-            <div id="js-hour" class="clock-hand hand-hour"></div>
-            <div id="js-minute" class="clock-hand hand-minute"></div>
-            <div id="js-second" class="clock-hand hand-second"></div>
+            {{-- Overlay Kalender --}}
+    <div id="calendar-overlay" style="
+        position: absolute;
+        top: 53%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 35%;
+        text-align: center;
+        color: #c8a96e;
+        font-family: 'Libre Baskerville', serif;
+        pointer-events: none;
+    ">
+        <div id="cal-header" style="font-size: 0.6vw; letter-spacing: 1px; margin-bottom: 2px;"></div>
+        <table id="cal-table" style="width: 100%; border-collapse: collapse; font-size: 0.65vw;"></table>
+    </div>
 
-        </div>
+    <div class="clock-center-pin"></div>
+    <div id="js-hour" class="clock-hand hand-hour"></div>
+    <div id="js-minute" class="clock-hand hand-minute"></div>
+    <div id="js-second" class="clock-hand hand-second"></div>
+
+</div>
 
         <div class="text-center mt-6 font-secondary text-[11px] md:text-xs text-[#F8D794]/80 tracking-widest bg-black/40 px-4 py-1.5 rounded-full backdrop-blur-sm">
-            ⏳ WAKTU TERUS BERJALAN • BERSIAPLAH MAHASISWA BARU
         </div>
 
     </main>
@@ -255,6 +270,44 @@
         
         // Panggil di awal agar langsung render posisi pas halaman di-load
         updateClock();
+
+        function updateCalendar() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+
+    const monthNames = ["JANUARI","FEBRUARI","MARET","APRIL","MEI","JUNI",
+                        "JULI","AGUSTUS","SEPTEMBER","OKTOBER","NOVEMBER","DESEMBER"];
+    const dayNames = ["M","S","S","R","K","J","S"];
+
+    document.getElementById('cal-header').innerText = monthNames[month] + ' ' + year;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const startDay = (firstDay === 0) ? 6 : firstDay - 1;
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    let html = '<tr>';
+    dayNames.forEach(d => {
+        html += `<td style="padding:1px 3px; color:#c8a96e; font-weight:bold;">${d}</td>`;
+    });
+    html += '</tr><tr>';
+
+    let day = 1;
+    for (let i = 0; i < startDay; i++) html += '<td></td>';
+
+    for (let i = startDay; i < 42; i++) {
+        if (day > daysInMonth) break;
+        if (i % 7 === 0 && i !== startDay) html += '</tr><tr>';
+        const isToday = day === now.getDate();
+        html += `<td style="padding:1px 3px; ${isToday ? 'color:#fff; font-weight:bold;' : ''}">${day}</td>`;
+        day++;
+    }
+    html += '</tr>';
+
+    document.getElementById('cal-table').innerHTML = html;
+}
+
+updateCalendar();
     </script>
 </body>
 </html>
