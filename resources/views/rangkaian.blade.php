@@ -112,10 +112,9 @@
                 <div class="flip-card-front"><img src="{{ asset('images/kartu 2.png') }}" class="card-img"></div>
                 <div class="flip-card-back">
                     <img src="{{ asset('images/ldk.png') }}" class="card-img">
-                    <div class="card-text-overlay text-long">
-                        Latihan Dasar Kepemimpinan (LDK) adalah kegiatan pelatihan yang bertujuan untuk mengasah kepemimpinan serta keterampilan mahasiswa baru. <br><br>
-                        Dalam pelaksanaanya LDK memadukan pembelajaran melalui pendekatan teori, dimana mahasiswa baru dibekali dengan konsep dasar kepemimpinan, serta praktik langsung yang memberikan pengalaman nyata untuk melatih kemampuan berpikir kritis, kerja sama tim, komunikasi, dan manajemen konflik. <br><br>
-                        Dengan konsep yang interaktif, kegiatan ini menjadi wadah bagi mahasiswa baru untuk tidak hanya memahami apa itu kepemimpinan, tetapi juga mengaplikasikannya dalam situasi yang menyerupai tantangan di dunia nyata, dan membekali mahasiswa baru dengan kepercayaan diri serta tanggung jawab untuk menjadi pemimpin yang kompeten di masa depan.
+                    <div class="card-text-overlay text-normal">
+                        Latihan Dasar Kepemimpinan (LDK) adalah kegiatan pelatihan interaktif bagi mahasiswa baru yang mengintegrasikan teori dan praktik untuk mengasah keterampilan kepemimpinan. <br><br>
+                        Kegiatan ini bertujuan untuk membangun kepercayaan diri, kerja sama, dan kemampuan manajemen konflik untuk menciptakan pemimpin yang kompeten.
                     </div>
                 </div>
             </div>

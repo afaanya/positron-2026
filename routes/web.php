@@ -53,7 +53,7 @@ Route::get('/biodata', function () {
         'kakak_mentor' => 'klmnop',
         'contact' => 'https://wa.me/62' .ltrim($contact, '0'),
         'kelompok' => 'Kelompok 1',
-        'mentor_kelompok' => 'uvwxyz'
+        'mentor_kelompok' => 'https://wa.me/62' .ltrim('081234567890', '0')
     ];
     return view('biodata-mahasiswa', compact('biodata'));
 })->name('biodata');
