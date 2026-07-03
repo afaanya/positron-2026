@@ -11,9 +11,16 @@ Route::get('/', function () {
 })->name('landing');
 
 // Home page
+<<<<<<< HEAD
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
+});
+=======
 Route::get('/home', function () {
     return view('home');
 })->name('home');
+>>>>>>> f4fe6a9a1005b6e9dc7394714399a5f15e9d9368
 
 Route::get('homepage', function(){
     return view('homepage');
