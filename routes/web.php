@@ -11,14 +11,25 @@ Route::get('/', function () {
 })->name('landing');
 
 // Home page
+<<<<<<< HEAD
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
 });
+=======
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+>>>>>>> f4fe6a9a1005b6e9dc7394714399a5f15e9d9368
 
 Route::get('homepage', function(){
     return view('homepage');
 })->name('homepage');
+
+//Sambutan
+Route::get('sambutan', function(){
+    return view('sambutan');
+})->name('sambutan');
 
 // Rangkaian
 Route::get('rangkaian', function(){
@@ -41,7 +52,7 @@ Route::get('/timeline', function () {
 })->name('timeline');
 
 // Halaman profil mahasiswa
-Route::get('/profil-mahasiswa', function () {
+Route::get('/profil-mahasiswa', function() {
     return view('profil-mahasiswa');
 })->name('profil');
 
@@ -55,7 +66,7 @@ Route::get('/biodata', function () {
         'kakak_mentor' => 'klmnop',
         'contact' => 'https://wa.me/62' .ltrim($contact, '0'),
         'kelompok' => 'Kelompok 1',
-        'mentor_kelompok' => 'uvwxyz'
+        'mentor_kelompok' => 'https://wa.me/62' .ltrim('081234567890', '0')
     ];
     return view('biodata-mahasiswa', compact('biodata'));
 })->name('biodata');
