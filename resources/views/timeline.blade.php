@@ -54,7 +54,7 @@
             left: 50%;
             transform-origin: bottom center;
             z-index: 20;
-            border-radius: 4px 4px 0 0;
+            border-radius: 3px 4px 0 0;
             background: linear-gradient(to top, #7d613b, #f5dfbb);
             box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
@@ -62,21 +62,21 @@
         /* Jarum Jam (Pendek & Lebih Tebal) */
         .hand-hour {
             width: 4px;
-            height: 18%;
+            height: 12%;
             margin-left: -2px;
         }
 
         /* Jarum Menit (Panjang & Sedang) */
         .hand-minute {
             width: 3px;
-            height: 25%;
+            height: 18%;
             margin-left: -1.5px;
         }
 
         /* Jarum Detik (Tipis & Warna Emas/Kuning) */
         .hand-second {
             width: 1.5px;
-            height: 28%;
+            height: 20%;
             margin-left: -0.75px;
             background: #f1c40f;
             z-index: 25;
@@ -185,35 +185,51 @@
         <a href="{{ route('filosofi') }}" class="menu filosofi"></a>
         <a href="{{ url('/timeline') }}" class="menu timeline"></a>
 
-        <div class="menu profil" onclick="toggleProfile()"></div>
+        <a href="{{ route('profil') }}" class="menu profil"></a>
     </div>
 
     <main class="w-full max-w-4xl mx-auto flex flex-col justify-center items-center z-10 px-4 py-6 my-auto">
         
         <div class="text-center mb-6">
             <h1 class="font-primary text-5xl md:text-7xl text-[#F8D794] tracking-wide drop-shadow-md">
-                Timeline Kegiatan
             </h1>
         </div>
 
-        <div class="clock-wrapper w-1/2 mx-auto" style="position: relative;">
+        <div class="clock-wrapper w-[900px] mx-auto relative">
             
-            <img src="{{ asset('images/timeline2.png') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
+            <img src="{{ asset('images/timeline-1.png') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
 
             {{-- Overlay Kalender --}}
     <div id="calendar-overlay" style="
         position: absolute;
-        top: 53%;
+        top: 62%;
         left: 50%;
-        transform: translateX(-50%);
-        width: 35%;
+        transform: translate(-50%, -50%);
+        width: min(240px, 36%);
+        max-width: 260px;
+        margin: 0 auto;
         text-align: center;
         color: #c8a96e;
         font-family: 'Libre Baskerville', serif;
         pointer-events: none;
+        line-height: 1.4;
     ">
-        <div id="cal-header" style="font-size: 0.6vw; letter-spacing: 1px; margin-bottom: 2px;"></div>
-        <table id="cal-table" style="width: 100%; border-collapse: collapse; font-size: 0.65vw;"></table>
+    <div id="cal-header" style="
+        font-size: 11px;
+        font-weight: bold;
+        letter-spacing: 1.2px;
+        margin-bottom: 4px;
+    "></div>
+
+    <table id="cal-table" style="
+        width: auto;
+        margin: 0 auto;
+        border-collapse: separate;
+        border-spacing: 4px 1px;
+        font-size: 7px;
+        line-height: 1.4;
+        letter-spacing: 0.5px;
+    "></table>
     </div>
 
     <div class="clock-center-pin"></div>
@@ -288,18 +304,18 @@
 
     let html = '<tr>';
     dayNames.forEach(d => {
-        html += `<td style="padding:1px 3px; color:#c8a96e; font-weight:bold;">${d}</td>`;
+        html += `<td style="padding:0px 1px; color:#c8a96e; font-weight:bold;">${d}</td>`;
     });
     html += '</tr><tr>';
 
     let day = 1;
-    for (let i = 0; i < startDay; i++) html += '<td></td>';
+    for (let i = 0; i < startDay; i++) html += '<td style="padding:0 4px; height:12px; width:13px"></td>';
 
     for (let i = startDay; i < 42; i++) {
         if (day > daysInMonth) break;
         if (i % 7 === 0 && i !== startDay) html += '</tr><tr>';
         const isToday = day === now.getDate();
-        html += `<td style="padding:1px 3px; ${isToday ? 'color:#fff; font-weight:bold;' : ''}">${day}</td>`;
+        html += `<td style="padding:0 4px; height:12px; width:13px; ${isToday ? 'color:#fff; font-weight:bold;' : 'color:#c8a96e;'}">${day}</td>`;
         day++;
     }
     html += '</tr>';

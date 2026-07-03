@@ -36,33 +36,33 @@
         position:absolute;
         display:block;
         cursor:pointer;
-        z-index:9999; 
+        z-index:9999;
     }
 
     .home{ 
         top:22%;
-        left:22%;
+        left:60%;
         width:8%;
         height:35%;
     }
 
     .about{
         top:22%;
-        left:34%;
+        left:68%;
         width:8%;
         height:35%;
     }
 
     .filosofi{
         top:22%;
-        left:46%;
+        left:76%;
         width:9%;
         height:35%;
     }
 
     .timeline{
         top:22%;
-        left:59%;
+        left:84%;
         width:9%;
         height:35%;
     }
@@ -138,12 +138,12 @@
     <div class="header-container">
         <img src="{{ asset('images/header.png') }}" class="header">
 
-        <a href="{{ route('homepage') }}" class="menu home"></a>
-        <a href="{{ url('/about') }}" class="menu about"></a>
+        <a href="{{ route('home') }}" class="menu home"></a>
+        <a href="{{ route('about') }}" class="menu about"></a>
         <a href="{{ route('filosofi') }}" class="menu filosofi"></a>
-        <a href="{{ url('/timeline') }}" class="menu timeline"></a>
+        <a href="{{ route('timeline') }}" class="menu timeline"></a>
 
-        <div class="menu profil" onclick="toggleProfile()"></div>
+        <a href="javascript:void(0)" onclick="toggleProfile()" class="menu profil"></a>
     </div>
 
     <div class="hero">
