@@ -19,6 +19,11 @@ Route::get('homepage', function(){
     return view('homepage');
 })->name('homepage');
 
+//Sambutan
+Route::get('sambutan', function(){
+    return view('sambutan');
+})->name('sambutan');
+
 // Rangkaian
 Route::get('rangkaian', function(){
     return view('rangkaian');
