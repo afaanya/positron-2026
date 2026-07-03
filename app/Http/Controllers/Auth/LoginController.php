@@ -25,7 +25,7 @@ class LoginController extends Controller
     ]);
 
     $credentials = [
-        'id_user'  => $request->identifier,
+        'id'  => $request->identifier,
         'password' => $request->password,
     ];
 

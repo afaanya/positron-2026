@@ -11,9 +11,11 @@ Route::get('/', function () {
 })->name('landing');
 
 // Home page
-Route::get('/home', function () {
-    return view('home');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
 });
+
 Route::get('homepage', function(){
     return view('homepage');
 })->name('homepage');
