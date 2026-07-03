@@ -29,6 +29,26 @@ Route::get('rangkaian', function(){
     return view('rangkaian');
 })->name('rangkaian');
 
+// Penugasan
+Route::get('penugasan', function(){
+    return view('penugasan');
+})->name('penugasan');
+
+// Manual Book
+Route::get('/manualbook', function () {
+    return view('manualbook');
+})->name('manualbook');
+
+// ID Card
+Route::get('/idcard', function () {
+    return view('idcard');
+})->name('idcard');
+
+// Twibbon
+Route::get('/twibbon', function () {
+    return view('twibbon');
+})->name('twibbon');
+
 // Halaman about
 Route::get('/about', function () {
     return view('about');
