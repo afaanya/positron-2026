@@ -91,11 +91,23 @@
     }
 </style>
 
+<script>
+    function flipCard(selectedcard) {
+        const allCards = document.querySelectorAll('.flip-card');
+        allCards.forEach(card => {
+            if (card !== selectedcard) {
+                card.classList.remove('flipped');
+            }
+        });
+        selectedcard.classList.toggle('flipped');
+    }
+</script>
+
 <div class="rangkaian-section">
     <img src="{{ asset('images/logo-positron.png') }}" class="logo-top" alt="Logo">
     
     <div class="cards-container">
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card" onclick="flipCard(this)">
             <div class="flip-card-inner">
                 <div class="flip-card-front"><img src="{{ asset('images/kartu 1.png') }}" class="card-img"></div>
                 <div class="flip-card-back">
@@ -107,21 +119,20 @@
             </div>
         </div>
         
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card" onclick="flipCard(this)">
             <div class="flip-card-inner">
                 <div class="flip-card-front"><img src="{{ asset('images/kartu 2.png') }}" class="card-img"></div>
                 <div class="flip-card-back">
                     <img src="{{ asset('images/ldk.png') }}" class="card-img">
-                    <div class="card-text-overlay text-long">
-                        Latihan Dasar Kepemimpinan (LDK) adalah kegiatan pelatihan yang bertujuan untuk mengasah kepemimpinan serta keterampilan mahasiswa baru. <br><br>
-                        Dalam pelaksanaanya LDK memadukan pembelajaran melalui pendekatan teori, dimana mahasiswa baru dibekali dengan konsep dasar kepemimpinan, serta praktik langsung yang memberikan pengalaman nyata untuk melatih kemampuan berpikir kritis, kerja sama tim, komunikasi, dan manajemen konflik. <br><br>
-                        Dengan konsep yang interaktif, kegiatan ini menjadi wadah bagi mahasiswa baru untuk tidak hanya memahami apa itu kepemimpinan, tetapi juga mengaplikasikannya dalam situasi yang menyerupai tantangan di dunia nyata, dan membekali mahasiswa baru dengan kepercayaan diri serta tanggung jawab untuk menjadi pemimpin yang kompeten di masa depan.
+                    <div class="card-text-overlay text-normal">
+                        Latihan Dasar Kepemimpinan (LDK) adalah kegiatan pelatihan interaktif bagi mahasiswa baru yang mengintegrasikan teori dan praktik untuk mengasah keterampilan kepemimpinan. <br><br>
+                        Kegiatan ini bertujuan untuk membangun kepercayaan diri, kerja sama, dan kemampuan manajemen konflik untuk menciptakan pemimpin yang kompeten.
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card" onclick="flipCard(this)">
             <div class="flip-card-inner">
                 <div class="flip-card-front"><img src="{{ asset('images/kartu 3.png') }}" class="card-img"></div>
                 <div class="flip-card-back">
@@ -134,16 +145,14 @@
             </div>
         </div>
         
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card" onclick="flipCard(this)">
             <div class="flip-card-inner">
                 <div class="flip-card-front"><img src="{{ asset('images/kartu 4.png') }}" class="card-img"></div>
                 <div class="flip-card-back">
                     <img src="{{ asset('images/NAKO.png') }}" class="card-img">
-                    <div class="card-text-overlay text-long">
-                        NAKO merupakan acara peresmian mahasiswa baru sebagai mahasiswa resmi di Departemen Teknik Elektro dan Informatika. <br><br>
-                        Kegiatan ini menjadi penutup rangkaian ospek departemen yang dirancang untuk memberikan pengalaman akhir yang berkesan bagi mahasiswa baru. <br><br>
-                        Melalui NAKO, mahasiswa baru diberi ruang untuk mengembangkan keterampilan serta bakat yang dimiliki, sekaligus menumbuhkan semangat kerja sama dan mempererat hubungan antaranggota angkatan. <br><br>
-                        Dengan demikian, tercipta rasa kebersamaan, solidaritas, serta kekompakan yang kuat di antara mahasiswa baru, yang kemudian dikenal dengan sebutan UNITY.
+                    <div class="card-text-overlay text-normal">
+                        NAKO merupakan acara peresmian mahasiswa baru Departemen Teknik Elektro dan Informatika yang menjadi penutup dari serangkaian ospek departemen. <br><br>
+                        Kegiatan ini bertujuan untuk mengembangkan bakat dan juga tempat untuk mempererat hubungan dan kekompakan angkatan, yang kemudian dikenal dengan sebutan UNITY.
                     </div>
                 </div>
             </div>

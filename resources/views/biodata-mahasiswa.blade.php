@@ -96,7 +96,14 @@
         </div>
 
         <div class="row"><div class="label">Kelompok</div>{{ $biodata->kelompok }}</div>
-        <div class="row"><div class="label">Mentor Kelompok</div>{{ $biodata->mentor_kelompok }}</div>
+        <div class="row">
+            <div class="label">Mentor Kelompok</div>
+            <a class="wa-link"
+               href="https://wa.me/62{{ ltrim($biodata->mentor_kelompok, '0') }}"
+               target="_blank">
+                Chat WhatsApp
+            </a>
+        </div>
 
     </div>
 </div>
