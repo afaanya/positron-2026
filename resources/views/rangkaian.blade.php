@@ -149,7 +149,7 @@
             <div class="flip-card-inner">
                 <div class="flip-card-front"><img src="{{ asset('images/kartu 4.png') }}" class="card-img"></div>
                 <div class="flip-card-back">
-                    <img src="{{ asset('images/NAKO.png') }}" class="card-img">
+                    <img src="{{ asset('images/nako.png') }}" class="card-img">
                     <div class="card-text-overlay text-normal">
                         NAKO merupakan acara peresmian mahasiswa baru Departemen Teknik Elektro dan Informatika yang menjadi penutup dari serangkaian ospek departemen. <br><br>
                         Kegiatan ini bertujuan untuk mengembangkan bakat dan juga tempat untuk mempererat hubungan dan kekompakan angkatan, yang kemudian dikenal dengan sebutan UNITY.
