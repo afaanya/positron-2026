@@ -1,5 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Praise&display=swap');
+/*file css utama*/
+
 @import 'tailwindcss';
+
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Praise&display=swap');
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -7,18 +11,18 @@
 @theme {
     --font-primary: 'Praise';
     --font-secondary: 'Libre Baskerville';
-
-    --color-primary: #284139; /*warna utama untuk navbar dan button*/
-    --color-secondary: #809076; /*warna pendukung untuk teks subjudul dan icon-icon lainnya*/
-    --color-accent: #F8D794; /*warna untuk highlight, tombol, dan elemen penting lainnya*/
-    --color-warning: #BB6B30; /*warna untuk peringatan*/
-    --color-dark: #111A19; /*warna untuk teks gelap*/
+    --color-primary: #284139;
+    --color-secondary: #809076;
+    --color-accent: #F8D794;
+    --color-warning: #BB6B30;
+    --color-dark: #111A19;
 }
 
-.font-primary {
-    font-family: var(--font-primary);
-}
+@import './base/reset.css';
+@import './components/navbar.css';
+@import './components/button.css';
+@import './page/dashboard.css';
 
-.font-secondary {
-    font-family: var(--font-secondary);
-}  
+
+.font-primary { font-family: var(--font-primary); }
+.font-secondary { font-family: var(--font-secondary); }

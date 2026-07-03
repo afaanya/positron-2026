@@ -39,7 +39,7 @@ Route::get('/timeline', function () {
 })->name('timeline');
 
 // Halaman profil mahasiswa
-Route::get('/profil-mahasiswa', function () {
+Route::get('/profil-mahasiswa', function() {
     return view('profil-mahasiswa');
 })->name('profil');
 
