@@ -171,7 +171,7 @@
 
     .stats-row {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 18px;
         margin-bottom: 24px;
     }
@@ -468,6 +468,10 @@
                         <div class="progress-fill" id="progressFill"></div>
                     </div>
                 </div>
+                <div class="stat-card">
+                    <div class="stat-title">Total Keseluruhan Poin</div>
+                    <div class="stat-value" id="overallPoints">0</div>
+                </div>
             </div>
             <div class="task-list" id="taskList"></div>
         </div>
@@ -566,6 +570,7 @@
     const totalPointsEl = document.getElementById('totalPoints');
     const progressPercentEl = document.getElementById('progressPercent');
     const progressFill = document.getElementById('progressFill');
+    const overallPointsEl = document.getElementById('overallPoints');
     const taskList = document.getElementById('taskList');
     const buttons = document.querySelectorAll('.option-button');
     const sidebarToggle = document.getElementById('sidebarToggle');
@@ -596,6 +601,20 @@
         totalPointsEl.textContent = `${points}`;
         progressPercentEl.textContent = `${percent}%`;
         progressFill.style.width = `${percent}%`;
+        updateOverallPoints();
+    }
+
+    function updateOverallPoints() {
+        let total = 0;
+        Object.keys(assignmentData).forEach(key => {
+            const category = assignmentData[key];
+            const status = completedTasks[key] || [];
+            const points = category.tasks.reduce((sum, task, index) => {
+                return status[index] ? sum + parsePoints(task.points) : sum;
+            }, 0);
+            total += points;
+        });
+        overallPointsEl.textContent = `${total}`;
     }
 
     function renderTasks(categoryKey) {
@@ -649,6 +668,7 @@
         completedTasks[currentCategoryKey][index] = true;
         updateProgress(currentCategoryKey);
         renderTasks(currentCategoryKey);
+        updateOverallPoints();
     }
 
     buttons.forEach(button => {
@@ -673,6 +693,7 @@
 
     boardStatus.textContent = 'Pilih kategori di sisi kiri untuk mulai mengumpulkan poin.';
     totalPointsEl.textContent = '0';
+    overallPointsEl.textContent = '0';
     progressPercentEl.textContent = '0%';
     progressFill.style.width = '0%';
     taskList.innerHTML = '';
