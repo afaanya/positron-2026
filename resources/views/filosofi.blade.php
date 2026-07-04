@@ -10,28 +10,42 @@
     /* Masukkan sisa CSS Framer lainnya di sini */
 </style>
 
-<div id="main">
-    {{-- Salin semua konten elemen HTML dari Framer Anda di sini --}}
-</div>
+<div id="main"></div>
 
-{{-- Bundle Script Framer --}}
 <script type="module" async data-framer-bundle="main" fetchPriority="low" src="https://framerusercontent.com/sites/2OlsEc6bTAzSITpQNhK9Mi/script_main.TRnTmZmM.mjs"></script>
 
-{{-- Script Anti-Override untuk Judul --}}
 <script>
-    // 1. Set judul saat pertama kali dimuat
-    document.title = "POSITRON 2026";
+    document.title = "Filosofi | POSITRON 2026";
 
-    // 2. Observer untuk mencegah script Framer mengubah judul kembali
-    const targetNode = document.querySelector('title');
-    const observer = new MutationObserver((mutations) => {
-        if (document.title !== "POSITRON 2026") {
-            document.title = "POSITRON 2026";
+    const replacementContent = '<h2>The Symphony of the Ton dan Diverse in Origin, United in Vision:</h2>' +
+        '<p>Menggambarkan bahwa dunia kampus diisi oleh berbagai macam karakter, latar belakang, dan keahlian. Jika dipadukan dengan baik, perbedaan ini akan menciptakan harmoni yang indah (simfoni). Menegaskan bahwa meskipun mahasiswa baru berasal dari "keluarga" yang berbeda-beda, mereka kini berdiri di bawah satu nama almamater dan harus berkolaborasi untuk mencapai visi bersama.</p>';
+    const searchRegex = /A special invitation awaits you\.[\s\S]*?Discover smething extraordinary inside\./i;
+
+    function replaceFramerText() {
+        const allElements = document.querySelectorAll('body *');
+        for (const el of allElements) {
+            if (el.children.length === 0 && el.innerHTML && searchRegex.test(el.innerHTML)) {
+                el.innerHTML = replacementContent;
+            }
         }
-    });
+    }
 
-    if (targetNode) {
-        observer.observe(targetNode, { subtree: true, characterData: true, childList: true });
+    function observeFramer() {
+        const observer = new MutationObserver(() => {
+            replaceFramerText();
+        });
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            characterData: true
+        });
+        replaceFramerText();
+    }
+
+    if (document.readyState === 'complete') {
+        observeFramer();
+    } else {
+        window.addEventListener('load', observeFramer);
     }
 </script>
 
