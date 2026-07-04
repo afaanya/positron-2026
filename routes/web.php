@@ -2,7 +2,12 @@
 
 use Illuminate\Support\Facades\Route; 
 use App\Http\Controllers\Auth\LoginController;
+use Kreait\Laravel\Firebase\Facades\Firebase;
 
+Route::get('/firebase-test', function () {
+    $firestore = Firebase::firestore();
+    return "Firebase berhasil terhubung!";
+});
 
 // mahasiswa punya
 // landing page
