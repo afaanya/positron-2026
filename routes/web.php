@@ -14,6 +14,11 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
+// Simple Hello World route
+Route::get('/hello', function () {
+    return 'Hello World';
+})->name('hello');
+
 
 // ================= LOGIN =================
 
@@ -219,4 +224,8 @@ Route::post('/logout', [LoginController::class, 'logout'])
 
     Route::get('/sertifikat', function () {
         return view('sertifikat-mahasiswa');
+<<<<<<< HEAD
     })->name('sertifikat');
+=======
+    })->name('sertifikat');
+>>>>>>> 2ad4aeb5b85f69ecbef1512138a0df5de27525df

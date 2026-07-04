@@ -8,6 +8,16 @@
 <style data-framer-css-ssr>
     #main { margin: 0; padding: 0; box-sizing: border-box; }
     /* Masukkan sisa CSS Framer lainnya di sini */
+    #main .framer-19x1pli,
+    #main .framer-fvioy7,
+    #main .framer-pminup,
+    #main .framer-ja1rm5,
+    #main .framer-sndbxq,
+    #main .framer-1dc1xbn,
+    #main .framer-ibtkzf,
+    #main .framer-1uu9s9d {
+        display: none !important;
+    }
 </style>
 
 <div id="main"></div>

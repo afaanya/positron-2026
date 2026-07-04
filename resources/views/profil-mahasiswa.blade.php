@@ -131,7 +131,6 @@ body{
     </div>
 
     {{-- Footer --}}
-    <img src="{{ asset('images/footer.png') }}" class="footer">
 
 </div>
 
