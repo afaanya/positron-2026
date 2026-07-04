@@ -112,7 +112,7 @@ Route::post('/logout', [LoginController::class, 'logout'])
 
 // ================= HALAMAN SETELAH LOGIN =================
 
-Route::middleware('mentor.auth')->group(function () {
+Route::get('mentor.auth')->group(function () {
 
     Route::get('/home', function () {
         return view('home');
