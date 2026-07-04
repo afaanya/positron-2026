@@ -14,6 +14,7 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
+<<<<<<< HEAD
 // ================= LOGIN =================
 
 Route::middleware('guest')->group(function () {
@@ -23,6 +24,90 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/login', [LoginController::class, 'login']);
 });
+=======
+// Home page
+<<<<<<< HEAD
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+=======
+>>>>>>> dba0c1884f9df8ae0421f50d1eba829a6341d335
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
+});
+<<<<<<< HEAD
+=======
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+
+>>>>>>> dba0c1884f9df8ae0421f50d1eba829a6341d335
+
+Route::get('homepage', function(){
+    return view('homepage');
+})->name('homepage');
+
+//Sambutan
+Route::get('sambutan', function(){
+    return view('sambutan');
+})->name('sambutan');
+
+// Rangkaian
+Route::get('rangkaian', function(){
+    return view('rangkaian');
+})->name('rangkaian');
+
+// Manual Book
+Route::get('/manualbook', function () {
+    return view('manualbook');
+})->name('manualbook');
+
+// Halaman about
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+// Halaman filosofi
+Route::get('/filosofi', function () {
+    return view('filosofi');
+})->name('filosofi');
+
+// Halaman timeline
+Route::get('/timeline', function () {
+    return view('timeline');
+})->name('timeline');
+
+// Halaman profil mahasiswa
+Route::get('/profil-mahasiswa', function() {
+    return view('profil-mahasiswa');
+})->name('profil');
+
+Route::get('/biodata', function () {
+    $contact = '081234567890';
+    $biodata = (object) [
+        'nama' => 'abcdef',
+        'nim' => '123456789',
+        'program_studi' => 'Teknik Informatika',
+        'offering' => 'TI A',
+        'kakak_mentor' => 'klmnop',
+        'contact' => 'https://wa.me/62' .ltrim($contact, '0'),
+        'kelompok' => 'Kelompok 1',
+        'mentor_kelompok' => 'https://wa.me/62' .ltrim('081234567890', '0')
+    ];
+    return view('biodata-mahasiswa', compact('biodata'));
+})->name('biodata');
+
+Route::get('/poin', function () {
+    return view('poin-penilaian-mahasiswa');
+})->name('poin');
+
+Route::get('/sertifikat', function () {
+    return view('sertifikat-mahasiswa');
+})->name('sertifikat');
+>>>>>>> 23ca884a7e59fc275e6eb884bd5924b55881bd9c
 
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
