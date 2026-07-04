@@ -82,30 +82,48 @@
             z-index: 25;
         }
 
+        .header-container {
+            position: relative;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .header {
+            width: 100%;
+            display: block;
+        }
+
+        .menu {
+            position: absolute;
+            display: block;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
         .home{ 
         top:22%;
-        left:22%;
+        left:60%;
         width:8%;
         height:35%;
         }
 
         .about{
             top:22%;
-            left:34%;
+            left:68%;
             width:8%;
             height:35%;
         }
 
         .filosofi{
             top:22%;
-            left:46%;
+            left:76%;
             width:9%;
             height:35%;
         }
 
         .timeline{
             top:22%;
-            left:59%;
+            left:84%;
             width:9%;
             height:35%;
         }
@@ -133,10 +151,24 @@
         transition:0.3s ease;
         padding:20px;
         box-shadow:-10px 0 30px rgba(0,0,0,0.4);
+        display:flex;
+        flex-direction:column;
         }
 
         .profile-panel.active{
             right:0;
+        }
+
+        .profile-menu{
+            flex:1;
+            overflow-y:auto;
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+        }
+
+        .profile-menu-bottom{
+            margin-top:auto;
         }
 
         .profile-header{
@@ -180,12 +212,12 @@
     <div class="header-container">
         <img src="{{ asset('images/header.png') }}" class="header">
 
-        <a href="{{ route('homepage') }}" class="menu home"></a>
-        <a href="{{ url('/about') }}" class="menu about"></a>
+        <a href="{{ route('home') }}" class="menu home"></a>
+        <a href="{{ route('about') }}" class="menu about"></a>
         <a href="{{ route('filosofi') }}" class="menu filosofi"></a>
-        <a href="{{ url('/timeline') }}" class="menu timeline"></a>
+        <a href="{{ route('timeline') }}" class="menu timeline"></a>
 
-        <a href="{{ route('profil') }}" class="menu profil"></a>
+        <a href="javascript:void(0)" onclick="toggleProfile()" class="menu profil"></a>
     </div>
 
     <main class="w-full max-w-4xl mx-auto flex flex-col justify-center items-center z-10 px-4 py-6 my-auto">
@@ -195,9 +227,10 @@
             </h1>
         </div>
 
-        <div class="clock-wrapper w-[900px] mx-auto relative">
-            
-            <img src="{{ asset('images/timeline-1.png') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
+        <div style="display:flex; align-items:center; gap:40px;">
+            <div class="clock-wrapper w-[800px] relative" style="margin-left:-400px;">
+                
+                <img src="{{ asset('images/timeline-1.png') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
 
             {{-- Overlay Kalender --}}
     <div id="calendar-overlay" style="
@@ -237,7 +270,14 @@
     <div id="js-minute" class="clock-hand hand-minute"></div>
     <div id="js-second" class="clock-hand hand-second"></div>
 
-</div>
+            </div>
+
+            <div style="text-align:left; color:#F8D794; font-family:'Libre Baskerville', serif;">
+                <div id="countdownDisplay" style="font-size:16px; margin:0; line-height:1.8;">
+                    <strong>Menghitung...</strong>
+                </div>
+            </div>
+        </div>
 
         <div class="text-center mt-6 font-secondary text-[11px] md:text-xs text-[#F8D794]/80 tracking-widest bg-black/40 px-4 py-1.5 rounded-full backdrop-blur-sm">
         </div>
@@ -254,6 +294,14 @@
             <button onclick="window.location.href='{{ route('biodata') }}'">Biodata</button>
             <button onclick="window.location.href='{{ route('poin') }}'">Poin</button>
             <button onclick="window.location.href='{{ route('sertifikat') }}'">Sertifikat</button>
+            
+            <div class="profile-menu-bottom">
+                <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSfmCmaEVXqK1s1E3H0XGTLKYiFSYI0ciSAoy1iGQyDEYdWjBQ/viewform?usp=dialog', '_blank')" style="background:#1c2f25;">Kritik dan Saran</button>
+                <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display:none;">
+                    @csrf
+                </form>
+                <button onclick="document.getElementById('logoutForm').submit()" style="background:#c5453d;">Logout</button>
+            </div>
         </div>
 
     </div>
@@ -283,6 +331,10 @@
         // Panggil di awal agar langsung render posisi pas halaman di-load
         updateClock();
 
+        function toggleProfile(){
+            document.getElementById("profilePanel").classList.toggle("active");
+        }
+
         function updateCalendar() {
     const now = new Date();
     const year = now.getFullYear();
@@ -295,12 +347,13 @@
     document.getElementById('cal-header').innerText = monthNames[month] + ' ' + year;
 
     const firstDay = new Date(year, month, 1).getDay();
-    const startDay = (firstDay === 0) ? 6 : firstDay - 1;
+    const startDay = firstDay;
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     let html = '<tr>';
-    dayNames.forEach(d => {
-        html += `<td style="padding:0px 1px; color:#c8a96e; font-weight:bold;">${d}</td>`;
+    dayNames.forEach((d, idx) => {
+        const color = idx === 0 ? '#ff4444' : '#c8a96e';
+        html += `<td style="padding:0px 1px; color:${color}; font-weight:bold;">${d}</td>`;
     });
     html += '</tr><tr>';
 
@@ -311,13 +364,51 @@
         if (day > daysInMonth) break;
         if (i % 7 === 0 && i !== startDay) html += '</tr><tr>';
         const isToday = day === now.getDate();
-        html += `<td style="padding:0 4px; height:12px; width:13px; ${isToday ? 'color:#fff; font-weight:bold;' : 'color:#c8a96e;'}">${day}</td>`;
+        const isSunday = i % 7 === 0;
+        const isTargetDate = day === 21; // Tanggal 21 Juli
+        const textColor = isSunday ? '#ff4444' : (isToday ? '#fff' : '#c8a96e');
+        const fontWeight = isToday || isSunday ? 'bold' : 'normal';
+        const borderStyle = isTargetDate ? 'border:2px solid #F8D794; border-radius:50%; padding:2px;' : '';
+        html += `<td style="padding:0 4px; height:12px; width:13px; color:${textColor}; font-weight:${fontWeight}; ${borderStyle}">${day}</td>`;
         day++;
     }
     html += '</tr>';
 
     document.getElementById('cal-table').innerHTML = html;
 }
+
+function updateCountdown() {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const birthdayDate = new Date(currentYear, 6, 21); // Juli adalah bulan ke-6 (0-indexed)
+    
+    // Jika ulang tahun sudah lewat tahun ini, hitung untuk tahun depan
+    if (now > birthdayDate) {
+        birthdayDate.setFullYear(currentYear + 1);
+    }
+    
+    const diff = birthdayDate - now;
+    
+    // Jika sudah hari H
+    if (diff < 0 || (now.getDate() === 21 && now.getMonth() === 6)) {
+        document.getElementById('countdownDisplay').innerHTML = '<strong style="font-size:20px;">Hari-H Ulang Tahun Arsyad 🎉</strong>';
+        return;
+    }
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    
+    document.getElementById('countdownDisplay').innerHTML = `
+        <span style="font-size:20px;">
+            ${days} hari | ${hours} jam | ${minutes} menit
+        </span><br>
+        <strong style="font-size:22px;">Menuju Ulang Tahun Arsyad</strong><br> 
+    `;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
 updateCalendar();
     </script>

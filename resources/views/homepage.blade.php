@@ -94,10 +94,24 @@
         transition:0.3s ease;
         padding:20px;
         box-shadow:-10px 0 30px rgba(0,0,0,0.4);
+        display:flex;
+        flex-direction:column;
     }
 
     .profile-panel.active{
         right:0;
+    }
+
+    .profile-menu{
+        flex:1;
+        overflow-y:auto;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .profile-menu-bottom{
+        margin-top:auto;
     }
 
     .profile-header{
@@ -163,6 +177,14 @@
         <button onclick="window.location.href='{{ route('biodata') }}'">Biodata</button>
         <button onclick="window.location.href='{{ route('poin') }}'">Poin</button>
         <button onclick="window.location.href='{{ route('sertifikat') }}'">Sertifikat</button>
+        
+        <div class="profile-menu-bottom">
+            <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSfmCmaEVXqK1s1E3H0XGTLKYiFSYI0ciSAoy1iGQyDEYdWjBQ/viewform?usp=dialog', '_blank')" style="background:#1c2f25;">Kritik dan Saran</button>
+            <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display:none;">
+                @csrf
+            </form>
+            <button onclick="document.getElementById('logoutForm').submit()" style="background:#c5453d;">Logout</button>
+        </div>
     </div>
 
 </div>
