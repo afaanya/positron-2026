@@ -209,10 +209,6 @@ Route::post('/logout', [LoginController::class, 'logout'])
         return view('profil-mahasiswa');
     })->name('profil');
 
-    Route::get('/biodata', function () {
-        return view('biodata-mahasiswa');
-    })->name('biodata');
-
     Route::get('/poin', function () {
         return view('poin-penilaian-mahasiswa');
     })->name('poin');
