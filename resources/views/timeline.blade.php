@@ -244,10 +244,6 @@
 
     </main>
 
-    <footer class="w-full z-20 mt-auto">
-        <img src="{{ asset('images/footer.png') }}" alt="Footer" class="w-full h-auto object-cover block">
-    </footer>
-
     <div id="profilePanel" class="profile-panel">
         <div class="profile-header">
             <h3>Mahasiswa</h3>

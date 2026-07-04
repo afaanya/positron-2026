@@ -1,13 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route; 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-use Kreait\Laravel\Firebase\Facades\Firebase;
-
-Route::get('/firebase-test', function () {
-    $firestore = Firebase::firestore();
-    return "Firebase berhasil terhubung!";
-});
 
 // mahasiswa punya
 // landing page
@@ -16,25 +10,14 @@ Route::get('/', function () {
 })->name('landing');
 
 // Home page
-<<<<<<< HEAD
 Route::get('/home', function () {
     return view('home');
 })->name('home');
-=======
->>>>>>> dba0c1884f9df8ae0421f50d1eba829a6341d335
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
 });
-<<<<<<< HEAD
-=======
-
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
-
->>>>>>> dba0c1884f9df8ae0421f50d1eba829a6341d335
 
 Route::get('homepage', function(){
     return view('homepage');
