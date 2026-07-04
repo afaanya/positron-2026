@@ -14,7 +14,7 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
-<<<<<<< HEAD
+
 // ================= LOGIN =================
 
 Route::middleware('guest')->group(function () {
@@ -24,27 +24,25 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/login', [LoginController::class, 'login']);
 });
-=======
+
 // Home page
-<<<<<<< HEAD
+
 Route::get('/home', function () {
     return view('home');
 })->name('home');
-=======
->>>>>>> dba0c1884f9df8ae0421f50d1eba829a6341d335
+
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
 });
-<<<<<<< HEAD
-=======
+
 
 Route::get('/home', function () {
     return view('home');
 })->name('home');
 
->>>>>>> dba0c1884f9df8ae0421f50d1eba829a6341d335
+
 
 Route::get('homepage', function(){
     return view('homepage');
@@ -107,7 +105,7 @@ Route::get('/poin', function () {
 Route::get('/sertifikat', function () {
     return view('sertifikat-mahasiswa');
 })->name('sertifikat');
->>>>>>> 23ca884a7e59fc275e6eb884bd5924b55881bd9c
+
 
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
