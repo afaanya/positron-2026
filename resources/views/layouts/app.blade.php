@@ -41,6 +41,9 @@
             .main-nav{ display:none; }
         }
     </style>
+
+    {{-- KUNCI UTAMA: Tempat untuk menyuntikkan CSS spesifik dari halaman manualbook --}}
+    @yield('styles')
 </head>
 <body>
 
