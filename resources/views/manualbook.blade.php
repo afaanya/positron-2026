@@ -86,9 +86,21 @@
     }
 
     /* Warna Tulisan Khusus Buku Tengah (Warna Terang) */
+    .book-main {
+        display: grid;
+        place-items: center;
+        left: 39.0%;
+        top: 55.0%; /* Fine-tuned untuk presisi di tengah */
+        width: 13.5%;
+        height: 12.0%;
+    }
+
     .book-main .book-title {
         color: #422b11;
         text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6);
+        display: block;
+        margin: 0;
+        padding: 0;
     }
 
     /* Warna Tulisan Khusus Buku Cokelat */
@@ -99,6 +111,8 @@
 
     /* KORRDINAT PRESET BARU AGAR PAS DI TENGAH COVBER BUKU */
     .book-left {
+        display: grid;
+        place-items: center;
         left: 12.0%;
         top: 55.5%; /* Diturunkan agar pas di tengah */
         width: 18.0%;
@@ -106,22 +120,19 @@
         transform: rotate(-14deg);
     }
 
-    .book-main {
-        left: 38.5%;
-        top: 55.0%; /* Diturunkan agar pas di tengah */
-        width: 13.5%;
-        height: 12.0%;
-    }
-
     .book-right {
-        left: 65.0%;
-        top: 56.5%; /* Diturunkan agar pas di tengah */
+        display: grid;
+        place-items: center;
+        left: 64.8%;
+        top: 55.8%; /* Fine-tuned untuk presisi di tengah */
         width: 18.0%;
         height: 12.0%;
         transform: rotate(14deg);
     }
 
    .book-brown {
+        display: grid;
+        place-items: center;
         left: 23.5%;
         top: 77.0%; /* Diturunkan agar pas di tengah */
         width: 18.0%;
@@ -130,8 +141,10 @@
     }
 
     .book-bottom {
-        left: 52.0%;
-        top: 77.5%; /* Diturunkan agar pas di tengah */
+        display: grid;
+        place-items: center;
+        left: 51.8%;
+        top: 77.8%; /* Fine-tuned untuk presisi di tengah */
         width: 16.0%;
         height: 12.0%;
         transform: rotate(-6deg);
@@ -168,10 +181,10 @@
 @section('content')
     @php
         $books = [
-            ['class' => 'book-left', 'title' => 'POSITRON'],
-            ['class' => 'book-main', 'title' => 'FORUM MABA'],
-            ['class' => 'book-right', 'title' => 'LATIHAN DASAR KEPEMIMPINAN'],
-            ['class' => 'book-brown', 'title' => 'INTRODUCTION of HIMPUNAN'],
+            ['class' => 'book-left', 'title' => 'FORUM MABA'],
+            ['class' => 'book-main', 'title' => 'POSITRON'],
+            ['class' => 'book-right', 'title' => 'LDK'],
+            ['class' => 'book-brown', 'title' => 'IoH'],
             ['class' => 'book-bottom', 'title' => 'NAKO 10.0'],
         ];
     @endphp
