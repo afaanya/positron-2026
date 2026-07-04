@@ -8,6 +8,11 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
+// Simple Hello World route
+Route::get('/hello', function () {
+    return 'Hello World';
+})->name('hello');
+
 
 // ================= LOGIN =================
 
