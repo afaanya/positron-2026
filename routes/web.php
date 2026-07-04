@@ -11,16 +11,16 @@ Route::get('/', function () {
 })->name('landing');
 
 // Home page
-<<<<<<< HEAD
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
 });
-=======
+
 Route::get('/home', function () {
     return view('home');
 })->name('home');
->>>>>>> f4fe6a9a1005b6e9dc7394714399a5f15e9d9368
+
 
 Route::get('homepage', function(){
     return view('homepage');
@@ -36,25 +36,10 @@ Route::get('rangkaian', function(){
     return view('rangkaian');
 })->name('rangkaian');
 
-// Penugasan
-Route::get('penugasan', function(){
-    return view('penugasan');
-})->name('penugasan');
-
 // Manual Book
 Route::get('/manualbook', function () {
     return view('manualbook');
 })->name('manualbook');
-
-// ID Card
-Route::get('/idcard', function () {
-    return view('idcard');
-})->name('idcard');
-
-// Twibbon
-Route::get('/twibbon', function () {
-    return view('twibbon');
-})->name('twibbon');
 
 // Halaman about
 Route::get('/about', function () {
