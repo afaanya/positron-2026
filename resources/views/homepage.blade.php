@@ -27,6 +27,7 @@
         width:100%;
         display:block;
     }
+    
 
     .hero{
         width:100%;
@@ -146,19 +147,6 @@
         font-size:14px;
     }
 </style>
-
-<div class="homepage">
-
-    <div class="header-container">
-        <img src="{{ asset('images/header.png') }}" class="header">
-
-        <a href="{{ route('home') }}" class="menu home"></a>
-        <a href="{{ route('about') }}" class="menu about"></a>
-        <a href="{{ route('filosofi') }}" class="menu filosofi"></a>
-        <a href="{{ route('timeline') }}" class="menu timeline"></a>
-
-        <a href="javascript:void(0)" onclick="toggleProfile()" class="menu profil"></a>
-    </div>
 
     <div class="hero">
         <a href="{{ route('profil') }}">
