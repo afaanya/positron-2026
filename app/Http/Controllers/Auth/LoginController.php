@@ -31,7 +31,7 @@ public function login(Request $request)
         $request->session()->put('mentor_user', $mentor->user);
         $request->session()->regenerate();
 
-        return redirect()->route('home');
+        return redirect()->route('mentor.home');
     }
 
     // Cek mahasiswa

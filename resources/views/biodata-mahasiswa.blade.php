@@ -81,7 +81,7 @@
         <div class="title">BIODATA</div>
 
         <div class="row"><div class="label">Nama</div>{{ $biodata->nama }}</div>
-        <div class="row"><div class="label">Jenis Kelamin</div>{{ $biodata->password}}</div>
+        <div class="row"><div class="label">Jenis Kelamin</div>{{ $biodata->jenis_kelamin}}</div>
         <div class="row"><div class="label">NIM</div>{{ $biodata->id}}</div>
         <div class="row"><div class="label">Program Studi</div>{{ $biodata->program_studi }}</div>
         <div class="row"><div class="label">Offering</div>{{ $biodata->offering }}</div>

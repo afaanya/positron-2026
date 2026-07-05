@@ -217,3 +217,30 @@ Route::post('/logout', [LoginController::class, 'logout'])
     Route::get('/sertifikat', function () {
         return view('sertifikat-mahasiswa');
     })->name('sertifikat');
+
+    Route::get('/mentor', function () {
+        return view('mentor');
+    })->name('mentor');
+
+    Route::get('/kegiatan', function () {
+        return view('kegiatan');
+    })->name('kegiatan');
+
+    Route::middleware('mentor.auth')->prefix('mentor')->group(function () {
+
+        Route::get('/home', function () {
+            return view('mentor.home');
+        })->name('mentor.home');
+
+        Route::get('/kegiatan', function () {
+            return view('mentor.kegiatan');
+        })->name('mentor.kegiatan');
+
+        Route::get('/mahasiswa', function () {
+            return view('mentor.mahasiswa');
+        })->name('mentor.mahasiswa');
+
+        Route::get('/offering', function () {
+            return view('mentor.offering');
+        })->name('mentor.offering');
+    });
