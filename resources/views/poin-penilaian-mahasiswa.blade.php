@@ -5,6 +5,16 @@
 @section('content')
 
 <style>
+    /* Backmost page background */
+    html, body {
+        min-height: 100%;
+        margin: 0;
+        background:
+            linear-gradient(180deg, rgba(2, 8, 6, 0.12), rgba(2, 8, 6, 0.28)),
+            url('{{ asset('images/login-bg.png') }}') center/cover no-repeat fixed;
+        background-color: #041a18;
+    }
+
     .poin-page {
         display: grid;
         grid-template-columns: 72px 1fr;
@@ -12,8 +22,7 @@
         padding: 44px 20px;
         min-height: calc(100vh - 48px);
         color: #f7f4e9;
-        background: radial-gradient(circle at top left, rgba(255, 211, 117, 0.14), transparent 28%),
-                    linear-gradient(180deg, #081a12 0%, #0a291d 100%);
+        background: transparent;
     }
 
     .sidebar {
@@ -153,7 +162,7 @@
     .board-title {
         font-size: 1.9rem;
         font-weight: 700;
-        color: #ffe7a1;
+        color: #ffb38a;
         letter-spacing: 0.02em;
     }
 
@@ -209,114 +218,215 @@
     .progress-fill {
         height: 100%;
         width: 0%;
-        background: linear-gradient(90deg, rgba(255, 215, 115, 0.9), rgba(255, 183, 80, 0.95));
-        box-shadow: 0 0 20px rgba(255, 215, 115, 0.22);
+        background: linear-gradient(90deg, rgba(0,190,180,0.95), rgba(255,123,92,0.95));
+        box-shadow: 0 0 20px rgba(0,190,180,0.12);
         transition: width 0.4s ease;
     }
 
     .task-list {
         display: grid;
-        gap: 16px;
+        gap: 18px;
     }
 
     .task-card {
         position: relative;
-        padding: 24px 24px 24px 28px;
-        border-radius: 26px;
-        background: rgba(10, 22, 16, 0.94);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 22px 40px rgba(0, 0, 0, 0.16);
         overflow: hidden;
-        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(6, 24, 26, 0.96), rgba(10, 34, 36, 0.98));
+        border: 1px solid rgba(255,123,92,0.10);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255,255,255,0.02);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .total-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 140px;
+        padding: 36px;
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(2,8,6,0.48), rgba(2,8,6,0.66)), url('{{ asset('images/login-bg.png') }}') center/cover no-repeat;
+        background-size: cover;
+        background-position: center;
+        border: 1px solid rgba(255,215,115,0.08);
+        box-shadow: inset 0 2px 24px rgba(0,0,0,0.45);
+        text-align: center;
     }
 
     .task-card:hover {
-        transform: translateY(-2px);
+        transform: translateY(-6px);
+        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.44), 0 6px 40px rgba(0,190,180,0.06);
     }
 
     .task-card.completed {
-        border-color: rgba(83, 188, 110, 0.45);
-        background: rgba(16, 36, 22, 0.95);
+        border-color: rgba(83, 188, 110, 0.55);
+        background: linear-gradient(180deg, rgba(14, 34, 18, 0.98), rgba(18, 46, 24, 0.98));
+    }
+
+    .task-card-inner {
+        position: relative;
+        width: 100%;
+        display: block;
     }
 
     .task-number {
-        position: absolute;
-        top: 18px;
-        right: 18px;
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        background: rgba(255, 215, 115, 0.15);
-        border: 1px solid rgba(255, 215, 115, 0.25);
-        display: grid;
-        place-items: center;
-        color: #ffd77d;
-        font-weight: 700;
+          position: absolute;
+          top: 18px;
+          left: 18px;
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          background: rgba(255, 215, 115, 0.16);
+          border: 1px solid rgba(255, 215, 115, 0.25);
+          display: grid;
+          place-items: center;
+          color: #ffd77d;
+          font-weight: 700;
+          font-size: 0.95rem;
+    }
+
+    .task-card-front,
+    .task-card-back {
+        width: 100%;
+        min-height: 220px;
+        /* add extra top padding so the number badge doesn't overlap title */
+        padding: 48px 28px 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 18px;
+        background: linear-gradient(180deg, rgba(2,8,6,0.55), rgba(2,8,6,0.72)), url('{{ asset('images/login-bg.png') }}') center/cover no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .task-card-back {
+        display: none;
+    }
+
+    .task-card.flipped .task-card-front {
+        display: none;
+    }
+
+    .task-card.flipped .task-card-back {
+        display: flex;
     }
 
     .task-title {
-        margin: 0;
+        margin: 0 0 6px 56px; /* push right so badge doesn't overlap */
         font-size: 1.15rem;
         font-weight: 700;
-        color: #ffd77d;
+        color: #e6fff8;
+        letter-spacing: 0.01em;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
     }
 
     .task-desc {
-        margin-top: 10px;
-        color: #d9d2b3;
+        margin: 0 0 0 56px; /* align under title */
+        color: #cfeee8;
         line-height: 1.7;
+        font-size: 0.95rem;
     }
 
     .task-meta {
-        margin-top: 18px;
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        gap: 16px;
         flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
     }
 
     .task-badge,
-    .complete-step {
-        padding: 10px 16px;
-        border-radius: 16px;
-        font-size: 0.95rem;
-        border: 1px solid rgba(255, 215, 115, 0.16);
-        background: rgba(255, 255, 255, 0.06);
-        color: #f7f4e9;
-        transition: transform 0.2s ease, background 0.2s ease;
+    .view-score {
+          padding: 12px 18px;
+          border-radius: 18px;
+          font-size: 0.95rem;
+          border: 1px solid rgba(255, 123, 92, 0.18);
+          color: #f7f4e9;
+          transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .complete-step {
-        cursor: pointer;
-        background: rgba(255, 215, 115, 0.12);
+    .task-badge {
+        background: rgba(255, 255, 255, 0.05);
     }
 
-    .complete-step:hover {
-        transform: translateX(2px);
-        background: rgba(255, 215, 115, 0.22);
+    .view-score {
+          cursor: pointer;
+          background: linear-gradient(135deg, rgba(0,190,180,0.12), rgba(255,99,71,0.14));
+          box-shadow: 0 10px 18px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.02);
     }
 
-    .complete-step.completed {
-        background: rgba(83, 188, 110, 0.18);
-        border-color: rgba(83, 188, 110, 0.35);
-        color: #b6f3b5;
-        cursor: default;
+    .view-score:hover {
+        transform: translateY(-1px);
+        background: linear-gradient(135deg, rgba(255, 179, 80, 0.22), rgba(255, 215, 115, 0.28));
     }
 
-    .task-card.completed .task-badge {
-        background: rgba(83, 188, 110, 0.16);
-        color: #b6f3b5;
+    .task-card-back .task-title {
+        color: #ffe7a6;
+    }
+
+    .task-card-back .task-desc {
+        color: #f7f4e2;
+    }
+
+    .task-card-back .task-badge {
+        background: rgba(255, 215, 115, 0.18);
+        border-color: rgba(255, 215, 115, 0.30);
+        color: #111;
     }
 
     .task-card .badge-label {
         white-space: nowrap;
     }
 
+    /* Kingdom-themed animations */
+    .horse-anim {
+        position: absolute;
+        top: 12px;
+        right: -120px;
+        width: 140px;
+        height: 56px;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateX(0) scale(0.95);
+        z-index: 60;
+    }
+
+    .horse-anim.run {
+        animation: horseRun 1.1s cubic-bezier(.2,.9,.2,1) forwards;
+        opacity: 1;
+    }
+
+    @keyframes horseRun {
+        0% { right: -180px; opacity: 0; transform: translateX(0) scale(0.9); }
+        20% { opacity: 1; transform: translateX(-8px) scale(1); }
+        60% { right: 50%; transform: translateX(-50%) scale(1.02); }
+        100% { right: 110%; opacity: 0; transform: translateX(-120%) scale(0.95); }
+    }
+
+    .score-value {
+        font-size: 2.6rem;
+        font-weight: 900;
+        color: #ffe8d8;
+        text-shadow: 0 6px 28px rgba(0,0,0,0.5);
+        display: inline-block;
+        transform-origin: center bottom;
+    }
+
+    .task-card.flipped .score-value {
+        animation: parchmentPop 0.9s cubic-bezier(.16,.9,.2,1) both;
+    }
+
+    @keyframes parchmentPop {
+        0% { transform: translateY(8px) scale(0.86) rotateX(10deg); opacity: 0; }
+        60% { transform: translateY(-6px) scale(1.06) rotateX(0deg); opacity: 1; }
+        100% { transform: translateY(0) scale(1) rotateX(0deg); opacity: 1; }
+    }
+
     @media (max-width: 960px) {
         .poin-page {
             grid-template-columns: 1fr;
-            padding: 32px 18px;
+            padding: 24px 16px;
         }
 
         .sidebar {
@@ -329,112 +439,43 @@
 
         .category-list {
             left: 0;
-            transform: translate(0, 0);
-            top: 60px;
+            transform: translate(0, -50%);
+            top: 70px;
+            width: 220px;
         }
-    }
 
-    @keyframes boardDrift {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(6px); }
-    }
+        .points-panel {
+            padding: 22px;
+        }
 
-    @keyframes shimmer {
-        0%, 100% { text-shadow: 0 0 0 rgba(255, 255, 255, 0); }
-        50% { text-shadow: 0 0 24px rgba(255, 215, 115, 0.55); }
-    }
+        .board-title {
+            font-size: 1.6rem;
+        }
 
-    @keyframes statusPulse {
-        0%, 100% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.02); opacity: 0.92; }
-    }
-
-    @keyframes pathOrb {
-        0%, 100% { top: 36px; }
-        50% { top: calc(100% - 36px); }
-    }
-
-    @keyframes markerPulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
-
-    @keyframes markerGlow {
-        0%, 100% { box-shadow: 0 0 0 rgba(255, 215, 115, 0.3); }
-        50% { box-shadow: 0 0 18px rgba(255, 215, 115, 0.55); }
-    }
-
-    @keyframes floatCrown {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-4px); }
-    }
-
-    @keyframes pointHover {
-        0%, 100% { transform: translateX(0); }
-        50% { transform: translateX(4px); }
-    }
-
-    .option-button {
-        opacity: 0.95;
-        transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .option-button:hover {
-        opacity: 1;
-        transform: translateX(4px);
-    }
-        display: grid;
-        gap: 18px;
-    }
-
-    .task-card {
-        border-radius: 24px;
-        padding: 22px 26px;
-        background: rgba(10, 26, 19, 0.92);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.22);
-    }
-
-    .task-card h3 {
-        margin-bottom: 10px;
-        font-size: 1.15rem;
-        color: #ffd77d;
-    }
-
-    .task-card p {
-        margin: 0;
-        font-size: 0.98rem;
-        line-height: 1.75;
-        color: #e5e0cb;
-    }
-
-    .task-meta {
-        margin-top: 16px;
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-    }
-
-    .task-meta span {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 14px;
-        border-radius: 14px;
-        background: rgba(255, 255, 255, 0.05);
-        color: #f7f4e9;
-        font-size: 0.95rem;
-    }
-
-    @media (max-width: 960px) {
-        .poin-page {
+        .stats-row {
             grid-template-columns: 1fr;
-            padding: 32px 18px;
         }
 
-        .sidebar {
-            padding: 22px 18px;
+        .stat-card {
+            min-height: 130px;
+        }
+
+        .task-card-front,
+        .task-card-back {
+            padding: 20px 22px 20px;
+            min-height: 200px;
+        }
+
+        .task-title,
+        .task-desc {
+            margin-left: 44px;
+        }
+
+        .task-number {
+            top: 14px;
+            left: 14px;
+            width: 34px;
+            height: 34px;
         }
     }
 </style>
@@ -443,10 +484,9 @@
     <aside class="sidebar">
         <button class="sidebar-toggle" id="sidebarToggle" aria-label="Buka kategori">›</button>
         <div class="category-list" id="categoryList">
-            <button class="option-button" data-key="forum-maba">Forum Maba</button>
-            <button class="option-button" data-key="ldk">LDK</button>
-            <button class="option-button" data-key="ioh">IoH</button>
-            <button class="option-button" data-key="nako">Nako</button>
+            <button class="option-button" data-key="penugasan">PENUGASAN</button>
+            <button class="option-button" data-key="pelanggaran">PELANGGARAN</button>
+            <button class="option-button" data-key="total-poin">TOTAL POIN</button>
         </div>
     </aside>
 
@@ -461,17 +501,25 @@
                     <div class="stat-title">Total Poin</div>
                     <div class="stat-value" id="totalPoints">0</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" id="progressCard">
                     <div class="stat-title">Progress</div>
                     <div class="stat-value"><span id="progressPercent">0%</span></div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill"></div>
                     </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-title">Total Keseluruhan Poin</div>
-                    <div class="stat-value" id="overallPoints">0</div>
-                </div>
+                <!-- Removed duplicate overall stat; main Total Poin now shows aggregated total -->
+            </div>
+            <!-- Decorative kingdom horse animation (appears on reveal) -->
+            <div id="horseAnim" class="horse-anim" aria-hidden="true">
+                <!-- simple stylized horse silhouette -->
+                <svg viewBox="0 0 280 110" preserveAspectRatio="xMinYMid meet" width="100%" height="100%">
+                    <g fill="#ffd7b8" stroke="#ff8b6b" stroke-width="2" transform="scale(0.7)">
+                        <path d="M40 60 C40 40, 80 30, 110 36 C130 40, 140 54, 160 56 C170 57, 185 50, 200 44 C210 40, 230 38, 250 42 L260 44 L256 60 L242 62 L238 70 L220 78 L200 80 L190 76 L176 82 L160 84 L140 80 L120 72 L100 66 L82 64 L64 62 Z"/>
+                        <circle cx="68" cy="46" r="6" fill="#2b3b3a" />
+                        <path d="M96 38 C88 30, 80 28, 70 30" stroke="#2b3b3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </g>
+                </svg>
             </div>
             <div class="task-list" id="taskList"></div>
         </div>
@@ -480,87 +528,105 @@
 
 <script>
     const assignmentData = {
-        'forum-maba': {
-            title: 'Forum Maba',
-            description: 'Kumpulan tugas untuk Forum Mahasiswa Baru yang menilai partisipasi, kesiapan, dan kolaborasi kelompok.',
+        'penugasan': {
+            title: 'Penugasan',
+            description: 'Daftar penugasan mahasiswa baru yang wajib dipenuhi.',
             tasks: [
                 {
-                    title: 'Pengisian Formulir Kegiatan',
-                    details: 'Isi semua data diri dan preferensi kegiatan dengan lengkap dan tepat waktu.',
+                    title: 'Forum Maba',
+                    details: 'Ikuti forum dan berkontribusi aktif dalam diskusi.',
+                    points: '20 poin'
+                },
+                {
+                    title: 'LDK',
+                    details: 'Hadiri dan jalankan kegiatan LDK dengan penuh tanggung jawab.',
+                    points: '20 poin'
+                },
+                {
+                    title: 'Nako',
+                    details: 'Ambil bagian dalam kegiatan Nako dan tunjukkan kontribusi nyata.',
+                    points: '20 poin'
+                },
+                {
+                    title: 'Coffee Offering',
+                    details: 'Hadiri Coffee Offering dan ikut mendukung suasana kegiatan.',
                     points: '15 poin'
                 },
                 {
-                    title: 'Diskusi Kelompok',
-                    details: 'Ikuti sesi diskusi dengan aktif dan berikan gagasan konstruktif untuk tim.',
+                    title: 'Peserta TET',
+                    details: 'Jadilah peserta TET dengan partisipasi aktif dan disiplin.',
+                    points: '15 poin'
+                },
+                {
+                    title: 'Arak-arakan',
+                    details: 'Ikuti arak-arakan sesuai aturan dan tunjukkan semangat kebersamaan.',
                     points: '20 poin'
                 },
                 {
-                    title: 'Presentasi Ide Kelompok',
-                    details: 'Presentasikan hasil diskusi secara jelas dan dukung tim dengan komunikasi yang baik.',
-                    points: '25 poin'
-                }
-            ]
-        },
-        'ldk': {
-            title: 'LDK',
-            description: 'Penugasan dalam Latihan Dasar Kepemimpinan yang menilai kepemimpinan, kerjasama, dan refleksi diri.',
-            tasks: [
+                    title: 'Admin IG Offering',
+                    details: 'Bantu administrasi dan dokumentasi IG Offering dengan baik.',
+                    points: '15 poin'
+                },
                 {
-                    title: 'Materi Kepemimpinan',
-                    details: 'Pelajari dan hadir dalam sesi materi kepemimpinan, lalu berikan ringkasan singkat.',
+                    title: 'Dewan Komunal',
+                    details: 'Berperan aktif dalam Dewan Komunal selama kegiatan berlangsung.',
                     points: '18 poin'
                 },
                 {
-                    title: 'Simulasi Teamwork',
-                    details: 'Kerjakan simulasi tugas kelompok secara efektif dengan peran yang jelas.',
-                    points: '22 poin'
-                },
-                {
-                    title: 'Refleksi Pribadi',
-                    details: 'Tuliskan pengalaman dan pembelajaran dari kegiatan kepemimpinan.',
-                    points: '20 poin'
-                }
-            ]
-        },
-        'ioh': {
-            title: 'IoH',
-            description: 'Seri tugas IoH untuk menguji observasi, wawancara, dan penyajian hasil dalam bentuk dokumentasi.',
-            tasks: [
-                {
-                    title: 'Observasi Kampus',
-                    details: 'Lakukan observasi area kampus dan catat temuan penting untuk kelompok.',
-                    points: '16 poin'
-                },
-                {
-                    title: 'Interview Dosen',
-                    details: 'Wawancarai dosen atau pembimbing dan ringkas hasil percakapan secara profesional.',
-                    points: '24 poin'
-                },
-                {
-                    title: 'Laporan Hasil',
-                    details: 'Susun laporan ringkas berdasarkan observasi dan wawancara yang telah dilakukan.',
-                    points: '20 poin'
-                }
-            ]
-        },
-        'nako': {
-            title: 'Nako',
-            description: 'Seri tugas Nako yang menilai inisiatif, kreativitas, dan kemampuan mewujudkan ide inovatif.',
-            tasks: [
-                {
-                    title: 'Ide Kreatif Baru',
-                    details: 'Usulkan ide kegiatan atau proyek yang dapat memperkuat rasa kebersamaan kampus.',
+                    title: 'Staff Muda',
+                    details: 'Tunjukkan kerja sama dan tanggung jawab sebagai Staff Muda.',
                     points: '18 poin'
+                }
+            ]
+        },
+        'pelanggaran': {
+            title: 'Pelanggaran',
+            description: 'Pelanggaran yang dilakukan akan dikurangi dari total poin.',
+            tasks: [
+                {
+                    title: 'Tidak hadir pada Forum Maba',
+                    details: 'Pelanggaran karena tidak hadir atau tidak mengikuti forum.',
+                    points: '-10 poin'
                 },
                 {
-                    title: 'Rencana Implementasi',
-                    details: 'Susun langkah implementasi yang jelas agar ide dapat dieksekusi secara terstruktur.',
-                    points: '22 poin'
+                    title: 'Tidak hadir LDK',
+                    details: 'Pelanggaran karena tidak mengikuti kegiatan LDK.',
+                    points: '-12 poin'
                 },
                 {
-                    title: 'Presentasi Nako',
-                    details: 'Presentasikan ide dan dampak yang diharapkan dengan visualisasi sederhana.',
-                    points: '20 poin'
+                    title: 'Tidak hadir Nako',
+                    details: 'Pelanggaran karena tidak mengikuti kegiatan Nako.',
+                    points: '-10 poin'
+                },
+                {
+                    title: 'Tidak hadir Coffee Offering',
+                    details: 'Pelanggaran karena tidak mengikuti Coffee Offering.',
+                    points: '-8 poin'
+                },
+                {
+                    title: 'Tidak hadir TET',
+                    details: 'Pelanggaran karena tidak mengikuti kegiatan TET.',
+                    points: '-10 poin'
+                },
+                {
+                    title: 'Tidak mengikuti Arak-arakan',
+                    details: 'Pelanggaran karena tidak mengikuti arak-arakan.',
+                    points: '-12 poin'
+                },
+                {
+                    title: 'Tidak menjalankan tugas Admin IG Offering',
+                    details: 'Pelanggaran karena tidak menjalankan tanggung jawab administrasi.',
+                    points: '-8 poin'
+                },
+                {
+                    title: 'Tidak hadir Dewan Komunal',
+                    details: 'Pelanggaran karena tidak menghadiri Dewan Komunal.',
+                    points: '-10 poin'
+                },
+                {
+                    title: 'Tidak menjalankan tugas Staff Muda',
+                    details: 'Pelanggaran karena tidak menjalankan tanggung jawab staff muda.',
+                    points: '-10 poin'
                 }
             ]
         }
@@ -570,35 +636,31 @@
     const totalPointsEl = document.getElementById('totalPoints');
     const progressPercentEl = document.getElementById('progressPercent');
     const progressFill = document.getElementById('progressFill');
-    const overallPointsEl = document.getElementById('overallPoints');
     const taskList = document.getElementById('taskList');
     const buttons = document.querySelectorAll('.option-button');
     const sidebarToggle = document.getElementById('sidebarToggle');
     const categoryList = document.getElementById('categoryList');
 
     let currentCategoryKey = null;
-    const completedTasks = {
-        'forum-maba': [false, false, false],
-        'ldk': [false, false, false],
-        'ioh': [false, false, false],
-        'nako': [false, false, false]
+    const revealedTasks = {
+        'penugasan': [false, false, false, false, false, false, false, false, false],
+        'pelanggaran': [false, false, false, false, false, false, false, false, false]
     };
 
     function parsePoints(value) {
-        return Number(value.replace(/[^0-9]/g, '')) || 0;
+        const match = String(value).match(/-?\d+/);
+        return match ? Number(match[0]) : 0;
     }
 
     function updateProgress(categoryKey) {
         const category = assignmentData[categoryKey];
-        const completed = completedTasks[categoryKey].filter(Boolean).length;
+        const revealed = revealedTasks[categoryKey].filter(Boolean).length;
         const total = category.tasks.length;
-        const percent = Math.round((completed / total) * 100);
-
+        const percent = Math.round((revealed / total) * 100);
+        // per-category points are not shown on the main stat; only progress updates here
         const points = category.tasks.reduce((sum, task, index) => {
-            return completedTasks[categoryKey][index] ? sum + parsePoints(task.points) : sum;
+            return revealedTasks[categoryKey][index] ? sum + parsePoints(task.points) : sum;
         }, 0);
-
-        totalPointsEl.textContent = `${points}`;
         progressPercentEl.textContent = `${percent}%`;
         progressFill.style.width = `${percent}%`;
         updateOverallPoints();
@@ -608,45 +670,92 @@
         let total = 0;
         Object.keys(assignmentData).forEach(key => {
             const category = assignmentData[key];
-            const status = completedTasks[key] || [];
+            const status = revealedTasks[key] || [];
             const points = category.tasks.reduce((sum, task, index) => {
                 return status[index] ? sum + parsePoints(task.points) : sum;
             }, 0);
             total += points;
         });
-        overallPointsEl.textContent = `${total}`;
+        totalPointsEl.textContent = `${total}`;
     }
 
     function renderTasks(categoryKey) {
         const category = assignmentData[categoryKey];
         const tasks = category.tasks;
-        const status = completedTasks[categoryKey];
+        const status = revealedTasks[categoryKey];
         taskList.innerHTML = tasks.map((task, index) => {
-            const completed = status[index];
+            const revealed = status[index];
             return `
-                <div class="task-card ${completed ? 'completed' : ''}" data-index="${index}">
-                    <div class="task-number">${index + 1}</div>
-                    <h3 class="task-title">${task.title}</h3>
-                    <p class="task-desc">${task.details}</p>
-                    <div class="task-meta">
-                        <div class="task-badge badge-label">${task.points}</div>
-                        <button class="complete-step ${completed ? 'completed' : ''}" data-index="${index}" ${completed ? 'disabled' : ''}>
-                            ${completed ? 'Selesai' : 'Tandai Selesai'}
-                        </button>
+                <div class="task-card ${revealed ? 'flipped' : ''}" data-index="${index}">
+                    <div class="task-card-inner">
+                        <div class="task-card-front">
+                            <div class="task-number">${index + 1}</div>
+                            <h3 class="task-title">${task.title}</h3>
+                            <p class="task-desc">${task.details}</p>
+                            <div class="task-meta">
+                                <button class="view-score" data-index="${index}">${revealed ? 'Tutup' : 'Lihat Skor'}</button>
+                            </div>
+                        </div>
+                        <div class="task-card-back">
+                            <div class="task-number">${index + 1}</div>
+                            <h3 class="task-title">Skor Tugas</h3>
+                            <p class="task-desc">Point yang diperoleh setelah dikerjakan.</p>
+                            <div style="display:flex;align-items:center;gap:18px;justify-content:flex-end;flex-wrap:wrap">
+                                <div style="text-align:right">
+                                    <div class="score-value">${parsePoints(task.points)}</div>
+                                    <div style="font-size:0.85rem;color:rgba(255,255,255,0.7)">poin</div>
+                                </div>
+                            </div>
+                            <div class="task-meta" style="margin-top:12px;">
+                                <button class="view-score" data-index="${index}">Tutup</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `;
         }).join('');
 
-        const doneCount = status.filter(Boolean).length;
-        if (doneCount === tasks.length) {
-            boardStatus.textContent = `Semua tugas ${category.title} selesai! Total poin: ${totalPointsEl.textContent}`;
+        const revealedCount = status.filter(Boolean).length;
+        if (revealedCount === tasks.length) {
+            boardStatus.textContent = `Semua tugas ${category.title} sudah bisa dilihat skor poinnya.`;
         } else {
-            boardStatus.textContent = `Kerjakan tugas berikutnya untuk dapat poin. ${doneCount}/${tasks.length} selesai.`;
+            boardStatus.textContent = `Klik Lihat Skor untuk melihat poin setiap tugas setelah Anda mengerjakannya.`;
         }
     }
 
+    function triggerHorseAnimation() {
+        const el = document.getElementById('horseAnim');
+        if (!el) return;
+        el.classList.remove('run');
+        // reflow to restart animation
+        void el.offsetWidth;
+        el.classList.add('run');
+        // auto-remove class after animation duration
+        setTimeout(() => el.classList.remove('run'), 1200);
+    }
+
     function renderCategory(key) {
+        // Special view: show aggregated total when selected
+        if (key === 'total-poin') {
+            currentCategoryKey = 'total-poin';
+            updateOverallPoints();
+            boardStatus.textContent = 'Ringkasan: Total akumulasi poin dari semua penugasan dan pelanggaran.';
+            taskList.innerHTML = `
+                <div class="task-card total-card">
+                    <div>
+                        <div class="score-value">${totalPointsEl.textContent}</div>
+                        <div style="font-size:0.95rem;color:rgba(255,255,255,0.85);margin-top:6px">Total Akumulasi Poin</div>
+                    </div>
+                </div>
+            `;
+            // hide progress when viewing totals
+            const progressCard = document.getElementById('progressCard');
+            if (progressCard) progressCard.style.display = 'none';
+            categoryList.classList.remove('show');
+            sidebarToggle.textContent = '›';
+            return;
+        }
+
         const category = assignmentData[key];
         if (!category) {
             boardStatus.textContent = 'Kategori tidak ditemukan.';
@@ -656,19 +765,23 @@
             progressFill.style.width = '0%';
             return;
         }
+
         currentCategoryKey = key;
+        // Hide progress when viewing pelanggaran; show otherwise
+        const progressCard = document.getElementById('progressCard');
+        if (progressCard) progressCard.style.display = (key === 'pelanggaran') ? 'none' : '';
+
         updateProgress(key);
         renderTasks(key);
         categoryList.classList.remove('show');
         sidebarToggle.textContent = '›';
     }
 
-    function completeTask(index) {
+    function toggleScoreView(index) {
         if (!currentCategoryKey) return;
-        completedTasks[currentCategoryKey][index] = true;
+        revealedTasks[currentCategoryKey][index] = !revealedTasks[currentCategoryKey][index];
         updateProgress(currentCategoryKey);
         renderTasks(currentCategoryKey);
-        updateOverallPoints();
     }
 
     buttons.forEach(button => {
@@ -680,10 +793,10 @@
     });
 
     taskList.addEventListener('click', event => {
-        const button = event.target.closest('.complete-step');
+        const button = event.target.closest('.view-score');
         if (!button) return;
         const index = Number(button.dataset.index);
-        completeTask(index);
+        toggleScoreView(index);
     });
 
     sidebarToggle.addEventListener('click', () => {
@@ -693,10 +806,13 @@
 
     boardStatus.textContent = 'Pilih kategori di sisi kiri untuk mulai mengumpulkan poin.';
     totalPointsEl.textContent = '0';
-    overallPointsEl.textContent = '0';
     progressPercentEl.textContent = '0%';
     progressFill.style.width = '0%';
     taskList.innerHTML = '';
+    document.querySelector('.option-button[data-key="penugasan"]').classList.add('active');
+    renderCategory('penugasan');
+    // ensure aggregated total is computed on load
+    updateOverallPoints();
 </script>
 
 @endsection
