@@ -353,11 +353,7 @@
     let html = '<tr>';
     dayNames.forEach((d, idx) => {
         const color = idx === 0 ? '#ff4444' : '#c8a96e';
-<<<<<<< HEAD
-        html += <td style="padding:0px 1px; color:${color}; font-weight:bold;">${d}</td>;
-=======
         html += `<td style="padding:0px 1px; color:${color}; font-weight:bold;">${d}</td>`;
->>>>>>> b7c90692dd0e26e48346bc02c6bab145d9d52e52
     });
     html += '</tr><tr>';
 
@@ -373,11 +369,7 @@
         const textColor = isSunday ? '#ff4444' : (isToday ? '#fff' : '#c8a96e');
         const fontWeight = isToday || isSunday ? 'bold' : 'normal';
         const borderStyle = isTargetDate ? 'border:2px solid #F8D794; border-radius:50%; padding:2px;' : '';
-<<<<<<< HEAD
-        html += <td style="padding:0 4px; height:12px; width:13px; color:${textColor}; font-weight:${fontWeight}; ${borderStyle}">${day}</td>;
-=======
         html += `<td style="padding:0 4px; height:12px; width:13px; color:${textColor}; font-weight:${fontWeight}; ${borderStyle}">${day}</td>`;
->>>>>>> b7c90692dd0e26e48346bc02c6bab145d9d52e52
         day++;
     }
     html += '</tr>';
