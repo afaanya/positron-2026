@@ -107,6 +107,10 @@ Route::get('/poin', function () {
     return view('poin-penilaian-mahasiswa');
 })->name('poin');
 
+Route::get('/kartu-kendali', function () {
+    return view('kartu-kendali');
+})->name('kartu-kendali');
+
 Route::get('/sertifikat', function () {
     return view('sertifikat-mahasiswa');
 })->name('sertifikat');
