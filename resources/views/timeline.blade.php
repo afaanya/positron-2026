@@ -320,9 +320,9 @@
             const hoursDegrees = (hours / 12) * 360 + (minutes / 60) * 30;
 
             // Terapkan style transform rotasi ke elemen DOM
-            document.getElementById('js-second').style.transform = `rotate(${secondsDegrees}deg)`;
-            document.getElementById('js-minute').style.transform = `rotate(${minutesDegrees}deg)`;
-            document.getElementById('js-hour').style.transform = `rotate(${hoursDegrees}deg)`;
+            document.getElementById('js-second').style.transform = rotate(${secondsDegrees}deg);
+            document.getElementById('js-minute').style.transform = rotate(${minutesDegrees}deg);
+            document.getElementById('js-hour').style.transform = rotate(${hoursDegrees}deg);
         }
 
         // Jalankan fungsi setiap 1 detik sekali

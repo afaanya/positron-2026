@@ -41,9 +41,10 @@ public function login(Request $request)
 
     if ($mahasiswa && $mahasiswa->password == $request->password) {
 
+        $request->session()->regenerate();
+
         $request->session()->put('mahasiswa_login', true);
         $request->session()->put('mahasiswa_id', $mahasiswa->id);
-        $request->session()->regenerate();
 
         return redirect()->route('home');
     }
