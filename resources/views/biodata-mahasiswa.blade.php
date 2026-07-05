@@ -81,10 +81,11 @@
         <div class="title">BIODATA</div>
 
         <div class="row"><div class="label">Nama</div>{{ $biodata->nama }}</div>
-        <div class="row"><div class="label">NIM</div>{{ $biodata->nim }}</div>
+        <div class="row"><div class="label">Jenis Kelamin</div>{{ $biodata->password}}</div>
+        <div class="row"><div class="label">NIM</div>{{ $biodata->id}}</div>
         <div class="row"><div class="label">Program Studi</div>{{ $biodata->program_studi }}</div>
         <div class="row"><div class="label">Offering</div>{{ $biodata->offering }}</div>
-        <div class="row"><div class="label">Kakak Mentor</div>{{ $biodata->kakak_mentor }}</div>
+        <div class="row"><div class="label">Kakak Mentor</div>{{ $biodata->mentor_offering}}</div>
 
         <div class="row">
             <div class="label">Contact</div>
