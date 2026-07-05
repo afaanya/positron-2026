@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth\LoginController;
 use Kreait\Laravel\Firebase\Facades\Firebase;
 
@@ -80,22 +81,22 @@ Route::get('/timeline', function () {
 
 // Halaman profil mahasiswa
 Route::get('/profil-mahasiswa', function() {
-    return view('profil-mahasiswa');
-})->name('profil');
+
+    $biodata = DB::table('mahasiswa')
+        ->where('id', session('mahasiswa_id'))
+        ->first();
+
+    return view('profil-mahasiswa', compact('biodata'));
+    
+})->middleware('mahasiswa.auth');
 
 Route::get('/biodata', function () {
-    $contact = '081234567890';
-    $biodata = (object) [
-        'nama' => 'abcdef',
-        'nim' => '123456789',
-        'program_studi' => 'Teknik Informatika',
-        'offering' => 'TI A',
-        'kakak_mentor' => 'klmnop',
-        'contact' => 'https://wa.me/62' .ltrim($contact, '0'),
-        'kelompok' => 'Kelompok 1',
-        'mentor_kelompok' => 'https://wa.me/62' .ltrim('081234567890', '0')
-    ];
-    return view('biodata-mahasiswa', compact('biodata'));
+
+    $biodata = DB::table('mahasiswa')
+        ->where('id', session('mahasiswa_id'))
+        ->first();
+
+     return view('biodata-mahasiswa', compact('biodata'));
 })->name('biodata');
 
 Route::get('/poin', function () {
