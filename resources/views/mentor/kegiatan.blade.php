@@ -124,9 +124,4 @@ font-family:'Times New Roman', serif;">
     </div>
 
 </body>
-
-<footer class="mt-auto">
-    <img src="{{ asset('images/footer.png') }}" class="w-full block">
-</footer>
-
 </html>
