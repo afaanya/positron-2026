@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth\LoginController;
 use Kreait\Laravel\Firebase\Facades\Firebase;
 
@@ -13,11 +14,6 @@ Route::get('/firebase-test', function () {
 Route::get('/', function () {
     return view('landing');
 })->name('landing');
-
-// Simple Hello World route
-Route::get('/hello', function () {
-    return 'Hello World';
-})->name('hello');
 
 
 // ================= LOGIN =================
@@ -85,22 +81,22 @@ Route::get('/timeline', function () {
 
 // Halaman profil mahasiswa
 Route::get('/profil-mahasiswa', function() {
-    return view('profil-mahasiswa');
-})->name('profil');
+
+    $biodata = DB::table('mahasiswa')
+        ->where('id', session('mahasiswa_id'))
+        ->first();
+
+    return view('profil-mahasiswa', compact('biodata'));
+    
+})->middleware('mahasiswa.auth');
 
 Route::get('/biodata', function () {
-    $contact = '081234567890';
-    $biodata = (object) [
-        'nama' => 'abcdef',
-        'nim' => '123456789',
-        'program_studi' => 'Teknik Informatika',
-        'offering' => 'TI A',
-        'kakak_mentor' => 'klmnop',
-        'contact' => 'https://wa.me/62' .ltrim($contact, '0'),
-        'kelompok' => 'Kelompok 1',
-        'mentor_kelompok' => 'https://wa.me/62' .ltrim('081234567890', '0')
-    ];
-    return view('biodata-mahasiswa', compact('biodata'));
+
+    $biodata = DB::table('mahasiswa')
+        ->where('id', session('mahasiswa_id'))
+        ->first();
+
+     return view('biodata-mahasiswa', compact('biodata'));
 })->name('biodata');
 
 Route::get('/poin', function () {
@@ -119,64 +115,9 @@ Route::get('/sertifikat', function () {
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
 
-
 // ================= HALAMAN SETELAH LOGIN =================
 
-// Route::middleware('mentor.auth')->group(function () {
-
-//     Route::get('/home', function () {
-//         return view('home');
-//     })->name('home');
-
-//     Route::get('/homepage', function () {
-//         return view('homepage');
-//     })->name('homepage');
-
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-
-//     Route::get('/sambutan', function () {
-//         return view('sambutan');
-//     })->name('sambutan');
-
-//     Route::get('/rangkaian', function () {
-//         return view('rangkaian');
-//     })->name('rangkaian');
-
-//     Route::get('/manualbook', function () {
-//         return view('manualbook');
-//     })->name('manualbook');
-
-//     Route::get('/about', function () {
-//         return view('about');
-//     })->name('about');
-
-//     Route::get('/filosofi', function () {
-//         return view('filosofi');
-//     })->name('filosofi');
-
-//     Route::get('/timeline', function () {
-//         return view('timeline');
-//     })->name('timeline');
-
-//     Route::get('/profil-mahasiswa', function () {
-//         return view('profil-mahasiswa');
-//     })->name('profil');
-
-//     Route::get('/biodata', function () {
-//         return view('biodata-mahasiswa');
-//     })->name('biodata');
-
-//     Route::get('/poin', function () {
-//         return view('poin-penilaian-mahasiswa');
-//     })->name('poin');
-
-//     Route::get('/sertifikat', function () {
-//         return view('sertifikat-mahasiswa');
-//     })->name('sertifikat');
-
-// });
+Route::middleware('mentor.auth')->group(function () {
 
     Route::get('/home', function () {
         return view('home');
@@ -229,3 +170,5 @@ Route::post('/logout', [LoginController::class, 'logout'])
     Route::get('/sertifikat', function () {
         return view('sertifikat-mahasiswa');
     })->name('sertifikat');
+
+});
