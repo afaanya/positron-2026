@@ -80,6 +80,7 @@ Route::get('/timeline', function () {
 })->name('timeline');
 
 // Halaman profil mahasiswa
+/*
 Route::get('/profil-mahasiswa', function() {
 
     $biodata = DB::table('mahasiswa')
@@ -89,7 +90,7 @@ Route::get('/profil-mahasiswa', function() {
     return view('profil-mahasiswa', compact('biodata'));
     
 })->middleware('mahasiswa.auth');
-
+*/
 Route::get('/biodata', function () {
 
     $biodata = DB::table('mahasiswa')

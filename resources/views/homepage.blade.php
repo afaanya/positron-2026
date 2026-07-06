@@ -149,8 +149,7 @@
 </style>
 
     <div class="hero">
-        <a href="{{ route('profil') }}">
-            <img src="{{ asset('images/selamat-datang.png') }}" class="selamat-datang">
+        <img src="{{ asset('images/selamat-datang.png') }}" class="selamat-datang">
         </a>
     </div>
 </div>
