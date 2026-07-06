@@ -41,10 +41,9 @@ public function login(Request $request)
 
     if ($mahasiswa && $mahasiswa->password == $request->password) {
 
-        $request->session()->regenerate();
-
         $request->session()->put('mahasiswa_login', true);
         $request->session()->put('mahasiswa_id', $mahasiswa->id);
+        $request->session()->regenerate();
 
         return redirect()->route('home');
     }
@@ -59,6 +58,8 @@ public function login(Request $request)
         $request->session()->forget([
             'mentor_login',
             'mentor_user',
+            'mahasiswa_login',
+            'mahasiswa_id',
         ]);
 
         $request->session()->invalidate();
