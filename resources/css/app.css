@@ -1,0 +1,28 @@
+/*file css utama*/
+
+@import 'tailwindcss';
+
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Praise&display=swap');
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-primary: 'Praise';
+    --font-secondary: 'Libre Baskerville';
+    --color-primary: #284139;
+    --color-secondary: #809076;
+    --color-accent: #F8D794;
+    --color-warning: #BB6B30;
+    --color-dark: #111A19;
+}
+
+@import './base/reset.css';
+@import './components/navbar.css';
+@import './components/button.css';
+@import './page/dashboard.css';
+
+
+.font-primary { font-family: var(--font-primary); }
+.font-secondary { font-family: var(--font-secondary); }
