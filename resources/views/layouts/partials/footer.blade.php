@@ -62,5 +62,3 @@
         }
     </style>
 </footer>
-
-/* test */

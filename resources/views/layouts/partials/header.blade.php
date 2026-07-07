@@ -151,5 +151,3 @@ document.addEventListener('click', function(e) {
     }
 });
 </script>
-
-/* test */

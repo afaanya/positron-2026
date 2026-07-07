@@ -422,6 +422,7 @@
   </style>
 </head>
 <body>
+    @include('layouts.partials.header')
  
 <div class="desk">
   <div class="decor decor-books"></div>
@@ -750,6 +751,8 @@
     init();
   })();
 </script>
+
+@include('layouts.partials.footer')
  
 </body>
 </html>
