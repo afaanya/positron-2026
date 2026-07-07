@@ -8,7 +8,7 @@
     "require": {
         "php": "^8.2",
         "foxy/foxy": "*",
-        "google/cloud-firestore": "*",
+
         "kreait/laravel-firebase": "*",
         "laravel/framework": "^11.0",
         "laravel/pulse": "*",
