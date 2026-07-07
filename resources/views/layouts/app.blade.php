@@ -166,6 +166,8 @@
         @yield('content')
     </main>
 
+    @include('layouts.partials.footer')
+
     <script>
         (function(){
             const userPill = document.getElementById('userPill');

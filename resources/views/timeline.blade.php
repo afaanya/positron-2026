@@ -412,5 +412,6 @@ setInterval(updateCountdown, 1000);
 
 updateCalendar();
     </script>
+@include('layouts.partials.footer')
 </body>
 </html>

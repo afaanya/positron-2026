@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function ($middleware) {
         $middleware->alias([
             'mentor.auth' => \App\Http\Middleware\MentorAuth::class,
+            'mahasiswa.auth' => \App\Http\Middleware\MahasiswaAuth::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -161,5 +161,7 @@
             });
         });
     </script>
+
+    @include('layouts.partials.footer')
 </body>
 </html>
