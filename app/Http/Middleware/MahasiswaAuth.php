@@ -6,21 +6,14 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MentorAuth
+class MahasiswaAuth
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-
-    
     public function handle(Request $request, Closure $next): Response
     {
-        if (!session()->has('mentor_login')) {
+        if (!session()->has('mahasiswa_login')) {
             return redirect()->route('login');
         }
-        
+
         return $next($request);
     }
 }
