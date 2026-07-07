@@ -80,6 +80,7 @@
     </style>
 </head>
 <body class="min-h-screen antialiased text-white bg-black">
+    @include('layouts.partials.header')
 
      <div class="relative w-full max-w-[1230px] mx-auto">
 
@@ -161,5 +162,7 @@
             });
         });
     </script>
+
+    @include('layouts.partials.footer')
 </body>
 </html>
