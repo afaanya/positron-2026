@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-+-
-=======
 <?php
 
 namespace App\Http\Middleware;
@@ -20,4 +17,3 @@ class MahasiswaAuth
         return $next($request);
     }
 }
->>>>>>> 70b3aa30748642085e349296768092501cbead91
