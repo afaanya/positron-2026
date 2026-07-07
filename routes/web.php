@@ -79,18 +79,6 @@ Route::get('/timeline', function () {
     return view('timeline');
 })->name('timeline');
 
-// Halaman profil mahasiswa
-/*
-Route::get('/profil-mahasiswa', function() {
-
-    $biodata = DB::table('mahasiswa')
-        ->where('id', session('mahasiswa_id'))
-        ->first();
-
-    return view('profil-mahasiswa', compact('biodata'));
-    
-})->middleware('mahasiswa.auth');
-*/
 Route::get('/biodata', function () {
 
     $biodata = DB::table('mahasiswa')
