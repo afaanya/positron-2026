@@ -57,6 +57,8 @@
             border-radius: 3px 4px 0 0;
             background: linear-gradient(to top, #7d613b, #f5dfbb);
             box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            transition: transform 0.2s linear;
+            pointer-events: none;
         }
 
         /* Jarum Jam (Pendek & Lebih Tebal) */
@@ -219,7 +221,7 @@
         </div>
 
         <div style="display:flex; align-items:center; gap:40px;">
-            <div class="clock-wrapper w-[800px] relative" style="margin-left:-400px;">
+            <div class="clock-wrapper w-[900px] relative" style="margin-left:-400px;">
                 
                 <img src="{{ asset('images/timeline-1.png') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
 
@@ -235,15 +237,18 @@
         text-align: center;
         color: #c8a96e;
         font-family: 'Libre Baskerville', serif;
-        pointer-events: none;
+        pointer-events: auto;
         line-height: 1.4;
     ">
-    <div id="cal-header" style="
-        font-size: 11px;
-        font-weight: bold;
-        letter-spacing: 1.2px;
-        margin-bottom: 4px;
-    "></div>
+    <div style="display:flex; justify-content:center; align-items:center; gap:6px; margin-bottom:6px;">
+        <button type="button" id="prevMonthBtn" style="border:none; background:rgba(248,215,148,0.15); color:#f8d794; border-radius:50%; width:18px; height:18px; cursor:pointer; font-size:11px; line-height:1;">‹</button>
+        <div id="cal-header" style="
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: 1.2px;
+        "></div>
+        <button type="button" id="nextMonthBtn" style="border:none; background:rgba(248,215,148,0.15); color:#f8d794; border-radius:50%; width:18px; height:18px; cursor:pointer; font-size:11px; line-height:1;">›</button>
+    </div>
 
     <table id="cal-table" style="
         width: auto;
@@ -300,36 +305,39 @@
     <script>
         function updateClock() {
             const now = new Date();
-            
             const seconds = now.getSeconds();
             const minutes = now.getMinutes();
-            const hours = now.getHours();
+            const hours = now.getHours() % 12;
 
-            // Hitung derajat rotasi masing-masing jarum
             const secondsDegrees = (seconds / 60) * 360;
             const minutesDegrees = (minutes / 60) * 360 + (seconds / 60) * 6;
             const hoursDegrees = (hours / 12) * 360 + (minutes / 60) * 30;
 
-            // Terapkan style transform rotasi ke elemen DOM
-            document.getElementById('js-second').style.transform = rotate(${secondsDegrees}deg);
-            document.getElementById('js-minute').style.transform = rotate(${minutesDegrees}deg);
-            document.getElementById('js-hour').style.transform = rotate(${hoursDegrees}deg);
+            const setHand = (id, degrees) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.style.transform = `rotate(${degrees}deg)`;
+                }
+            };
+
+            setHand('js-second', secondsDegrees);
+            setHand('js-minute', minutesDegrees);
+            setHand('js-hour', hoursDegrees);
         }
 
-        // Jalankan fungsi setiap 1 detik sekali
         setInterval(updateClock, 1000);
-        
-        // Panggil di awal agar langsung render posisi pas halaman di-load
         updateClock();
 
         function toggleProfile(){
             document.getElementById("profilePanel").classList.toggle("active");
         }
 
+        let currentCalendarDate = new Date();
+
         function updateCalendar() {
     const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth();
+    const year = currentCalendarDate.getFullYear();
+    const month = currentCalendarDate.getMonth();
 
     const monthNames = ["JANUARI","FEBRUARI","MARET","APRIL","MEI","JUNI",
                         "JULI","AGUSTUS","SEPTEMBER","OKTOBER","NOVEMBER","DESEMBER"];
@@ -351,15 +359,23 @@
     let day = 1;
     for (let i = 0; i < startDay; i++) html += '<td style="padding:0 4px; height:12px; width:13px"></td>';
 
+    const eventDates = [
+        { day: 19, month: 7, year: 2026 },
+        { day: 20, month: 7, year: 2026 },
+        { day: 11, month: 9, year: 2026 },
+        { day: 24, month: 9, year: 2026 },
+        { day: 20, month: 10, year: 2026 }
+    ];
+
     for (let i = startDay; i < 42; i++) {
         if (day > daysInMonth) break;
         if (i % 7 === 0 && i !== startDay) html += '</tr><tr>';
-        const isToday = day === now.getDate();
+        const isToday = day === now.getDate() && month === now.getMonth() && year === now.getFullYear();
         const isSunday = i % 7 === 0;
-        const isTargetDate = day === 21; // Tanggal 21 Juli
+        const isEventDate = eventDates.some(event => event.day === day && event.month === month && event.year === year);
         const textColor = isSunday ? '#ff4444' : (isToday ? '#fff' : '#c8a96e');
         const fontWeight = isToday || isSunday ? 'bold' : 'normal';
-        const borderStyle = isTargetDate ? 'border:2px solid #F8D794; border-radius:50%; padding:2px;' : '';
+        const borderStyle = isEventDate ? 'border:2px solid #F8D794; border-radius:50%; padding:2px; display:inline-block; min-width:13px; text-align:center;' : '';
         html += `<td style="padding:0 4px; height:12px; width:13px; color:${textColor}; font-weight:${fontWeight}; ${borderStyle}">${day}</td>`;
         day++;
     }
@@ -370,38 +386,63 @@
 
 function updateCountdown() {
     const now = new Date();
-    const currentYear = now.getFullYear();
-    const birthdayDate = new Date(currentYear, 6, 21); // Juli adalah bulan ke-6 (0-indexed)
-    
-    // Jika ulang tahun sudah lewat tahun ini, hitung untuk tahun depan
-    if (now > birthdayDate) {
-        birthdayDate.setFullYear(currentYear + 1);
-    }
-    
-    const diff = birthdayDate - now;
-    
-    // Jika sudah hari H
-    if (diff < 0 || (now.getDate() === 21 && now.getMonth() === 6)) {
-        document.getElementById('countdownDisplay').innerHTML = '<strong style="font-size:20px;">Hari-H Ulang Tahun Arsyad 🎉</strong>';
-        return;
-    }
-    
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    
-    document.getElementById('countdownDisplay').innerHTML = `
-        <span style="font-size:20px;">
-            ${days} hari | ${hours} jam | ${minutes} menit
-        </span><br>
-        <strong style="font-size:22px;">Menuju Ulang Tahun Arsyad</strong><br> 
-    `;
+    const currentYear = currentCalendarDate.getFullYear();
+    const currentMonth = currentCalendarDate.getMonth();
+
+    const events = [
+        { name: 'FORUM MABA 2026', day: 19, month: 7, year: 2026 },
+        { name: 'LDK 2026', day: 11, month: 9, year: 2026 },
+        { name: 'IOH 2026', day: 24, month: 9, year: 2026 },
+        { name: 'NAKO 2026', day: 20, month: 10, year: 2026 }
+    ];
+
+    const monthEvents = events.filter(event => event.year === currentYear && event.month === currentMonth);
+
+    if (monthEvents.length === 0) {
+    document.getElementById('countdownDisplay').innerHTML = 
+    '<strong style="font-size:18px; line-height:1.6; display:block; text-align:center;">TIDAK ADA<br>ACARA<br>PADA BULAN INI</strong>';
+    return;
+}
+
+    const buildCountdown = (event) => {
+        const targetDate = new Date(currentYear, event.month, event.day);
+        const diff = targetDate - now;
+        const isToday = now.getDate() === event.day && now.getMonth() === event.month && now.getFullYear() === event.year;
+
+        if (diff < 0 || isToday) {
+            return `<div style="margin-bottom:10px;"><strong style="font-size:18px;">${event.name} sedang berlangsung 🎉</strong></div>`;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+        return `
+            <div style="margin-bottom:10px;">
+                <span style="font-size:16px;">${days} hari | ${hours} jam | ${minutes} menit</span><br>
+                <strong style="font-size:18px;">${event.name}</strong>
+            </div>`;
+    };
+
+    document.getElementById('countdownDisplay').innerHTML = monthEvents.map(buildCountdown).join('');
 }
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
 updateCalendar();
+
+document.getElementById('prevMonthBtn').addEventListener('click', function() {
+    currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
+    updateCalendar();
+    updateCountdown();
+});
+
+document.getElementById('nextMonthBtn').addEventListener('click', function() {
+    currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1);
+    updateCalendar();
+    updateCountdown();
+});
     </script>
 @include('layouts.partials.footer')
 </body>
