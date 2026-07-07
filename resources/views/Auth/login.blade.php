@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>POSITRON 2026 — Login</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
@@ -354,6 +354,20 @@
                 eyeHide.style.display = 'none';
             }
         }
+
+        // Blokir Ctrl + scroll mouse
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Blokir Ctrl + / Ctrl - / Ctrl 0 (keyboard zoom)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '0' || e.key === '=')) {
+                e.preventDefault();
+            }
+        }, false);
     </script>
 
 </body>
