@@ -132,35 +132,7 @@
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="container header-inner">
-            <div class="site-logo">
-                <a href="{{ route('homepage') }}"><img src="{{ asset('images/logo-positron.png') }}" alt="POSITRON 2026"></a>
-            </div>
-            <div class="header-right" style="display:flex;align-items:center;gap:18px;">
-                <nav class="main-nav" aria-label="Main navigation">
-                    <a href="{{ route('homepage') }}">HOME</a>
-                    <a href="{{ route('timeline') }}">TIMELINE</a>
-                    <a href="{{ route('filosofi') }}">FILOSOFI</a>
-                </nav>
-                <button id="userPill" class="user-pill" aria-haspopup="true" aria-expanded="false">
-                    <span class="icon">👤</span>
-                </button>
-                <div class="user-menu" id="userMenu" role="menu" aria-hidden="true">
-                    <button id="userMenuClose" class="close-btn" aria-label="Tutup">&times;</button>
-                    <h4>Mahasiswa</h4>
-                    <a class="menu-item" href="{{ route('biodata') }}">Biodata</a>
-                    <a class="menu-item" href="{{ route('poin') }}">Poin</a>
-                    <a class="menu-item" href="{{ route('sertifikat') }}">Sertifikat</a>
-                    <a class="menu-item secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSfmCmaEVXqK1s1E3H0XGTLKYiFSYI0ciSAoy1iGQyDEYdWjBQ/viewform?usp=dialog" target="_blank" rel="noopener">Kritik dan Saran</a>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="logout-btn">Logout</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </header>
+    @include('layouts.partials.header')
 
     <main>
         @yield('content')

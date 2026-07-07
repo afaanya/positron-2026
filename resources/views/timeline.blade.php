@@ -209,16 +209,7 @@
          alt="Background" 
          class="fixed inset-0 w-full h-full object-cover -z-10">
 
-    <div class="header-container">
-        <img src="{{ asset('images/header.png') }}" class="header">
-
-        <a href="{{ route('home') }}" class="menu home"></a>
-        <a href="{{ route('about') }}" class="menu about"></a>
-        <a href="{{ route('filosofi') }}" class="menu filosofi"></a>
-        <a href="{{ route('timeline') }}" class="menu timeline"></a>
-
-        <a href="javascript:void(0)" onclick="toggleProfile()" class="menu profil"></a>
-    </div>
+    @include('layouts.partials.header')
 
     <main class="w-full max-w-4xl mx-auto flex flex-col justify-center items-center z-10 px-4 py-6 my-auto">
         
