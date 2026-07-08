@@ -368,9 +368,30 @@
             link: 'https://contoh-manualbook-forummaba.com'
         },
         {
+            name: 'FORUM MABA 2026',
+            day: 20,
+            month: 7,
+            year: 2026,
+            link: 'https://contoh-manualbook-forummaba.com'
+        },
+        {
+            name: '🎂 ULANG TAHUN FINA',
+            day: 10,
+            month: 6,
+            year: 2026,
+            link: 'https://www.instagram.com/fina.jma'
+        },
+        {
+            name: '🎂 ULANG TAHUN SHAFA',
+            day: 19,
+            month: 6,
+            year: 2026,
+            link: 'https://www.instagram.com//ffafayyah'
+        },
+        {
             name: '🎂 ULANG TAHUN ARSYAD',
             day: 21,
-            month: 7,
+            month: 6,
             year: 2026,
             link: 'https://www.instagram.com/arsyaddha'
         },
@@ -424,11 +445,14 @@ function updateCountdown() {
     const currentMonth = currentCalendarDate.getMonth();
 
     const events = [
-        { name: 'FORUM MABA 2026', day: 19, month: 7, year: 2026 },
-        { name: '🎂 ULANG TAHUN ARSYAD', day: 21, month: 6, year: 2026 },
-        { name: 'LDK 2026', day: 11, month: 9, year: 2026 },
-        { name: 'IOH 2026', day: 24, month: 9, year: 2026 },
-        { name: 'NAKO 2026', day: 20, month: 10, year: 2026 }
+        { name: 'FORUM MABA 2026', day: 19, month: 7, year: 2026, link: 'https://contoh-manualbook-forummaba.com' },
+        { name: 'FORUM MABA 2026', day: 20, month: 7, year: 2026, link: 'https://contoh-manualbook-forummaba.com' },
+        { name: '🎂 ULANG TAHUN FINA', day: 10, month: 6, year: 2026, link: 'https://www.instagram.com/fina.jma' },
+        { name: '🎂 ULANG TAHUN SHAFA', day: 19, month: 6, year: 2026, link: 'https://www.instagram.com//ffafayyah' },
+        { name: '🎂 ULANG TAHUN ARSYAD', day: 21, month: 6, year: 2026, link: 'https://www.instagram.com/arsyaddha' },
+        { name: 'LDK 2026', day: 11, month: 9, year: 2026, link: 'https://contoh-manualbook-ldk.com' },
+        { name: 'IOH 2026', day: 24, month: 9, year: 2026, link: 'https://contoh-manualbook-ioh.com' },
+        { name: 'NAKO 2026', day: 20, month: 10, year: 2026, link: 'https://contoh-manualbook-nako.com' }
     ];
 
     const monthEvents = events.filter(event => event.year === currentYear && event.month === currentMonth);
@@ -459,14 +483,13 @@ function updateCountdown() {
 
             <br>
 
-            <a href="${event.link}"
-            target="_blank"
-            style="
+            <span style="
                     font-size:12px;
                     color:#d6c28b;
-                    text-decoration:underline;">
+                    text-decoration:none;
+                    cursor:default;">
                 Klik kegiatan untuk melihat Manual Book
-            </a>
+            </span>
         </div>`;
         }
 
@@ -492,15 +515,13 @@ function updateCountdown() {
 
             <br>
 
-            <a href="${event.link}"
-            target="_blank"
-            style="
+            <span style="
                     font-size:12px;
                     color:#d6c28b;
-                    text-decoration:underline;
-                    cursor:pointer;">
+                    text-decoration:none;
+                    cursor:default;">
                 Klik kegiatan untuk melihat Manual Book
-            </a>
+            </span>
         </div>`;
     };
 
