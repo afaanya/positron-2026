@@ -90,10 +90,25 @@
     }
 
     .profile-panel{
-        width:90%;
-        max-width: 340px;
+        position: fixed;
+        top: 0;
         right: -100%;
+        width: 90%;
+        max-width: 340px;
+        height: 100vh;
+        background: #0f1f17;
+        color: white;
+        z-index: 999999;
+        transition: right .3s ease;
+        padding: 20px;
+        box-shadow: -10px 0 30px rgba(0,0,0,.4);
+        display: flex;
+        flex-direction: column;
     }
+
+.profile-panel.active{
+    right:0;
+}
 
     .profile-panel.active{
         right:0;
@@ -143,8 +158,8 @@
         font-size:clamp(14px,2vw,16px);    }
 
     @media (max-width: 768px) {
+
         .profile-panel {
-            width: 100%;
             max-width: 300px;
         }
 
@@ -161,9 +176,7 @@
 
     <div class="hero">
         <img src="{{ asset('images/selamat-datang.png') }}" class="selamat-datang">
-        </a>
     </div>
-</div>
 
 <div id="profilePanel" class="profile-panel">
     <div class="profile-header">

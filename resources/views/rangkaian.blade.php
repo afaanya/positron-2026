@@ -16,9 +16,9 @@
     }
 
     .logo-top {
-        width: min(90vw, 700px);
+        width: 700px;
         position: absolute;
-        top: clamp(30px, 5vw, 100px);
+        top: 100px; 
         filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
         animation: floatAnimation 4s ease-in-out infinite;
     }
@@ -27,19 +27,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 30px;
         flex-wrap: wrap;
-        gap:clamp(15px,2vw,30px);
-        margin-top:clamp(120px,18vw,220px);
-        width:100%;
+        margin-top: 150px;
     }
 
     /* FLIP CARD STYLES */
     .flip-card {
-        width:clamp(160px,22vw,220px);
-        aspect-ratio:2/3;
-        height:auto;
-        perspective:1000px;
-        cursor:pointer;
+        background-color: transparent;
+        width: 200px;
+        height: 350px;
+        perspective: 1000px;
+        cursor: pointer;
     }
 
     .flip-card-inner {
@@ -74,14 +73,15 @@
     /* Styling Teks di dalam kartu */
     .card-text-overlay {
         position: absolute;
-        padding:clamp(10px,2vw,20px);        text-align: justify;
+        padding: 20px;
+        text-align: justify;
         color: #000000;
         line-height: 1.3;
         z-index: 2;
     }
 
-    .text-normal { font-size: clamp(10px,1vw,13px); }
-    .text-long { font-size: clamp(8px,8vw,11px); }
+    .text-normal { font-size: 11px; }
+    .text-long { font-size: 8px; }
 
     .card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
     
@@ -89,28 +89,6 @@
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-10px); }
     }
-
-    @media (max-width:480px){
-
-    .cards-container{
-
-        display:grid;
-
-        grid-template-columns:repeat(2,1fr);
-
-        gap:15px;
-
-        justify-items:center;
-
-    }
-
-    .flip-card{
-
-        width:140px;
-
-    }
-
-}
 </style>
 
 <script>
