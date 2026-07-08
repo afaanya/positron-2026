@@ -359,12 +359,42 @@
     let day = 1;
     for (let i = 0; i < startDay; i++) html += '<td style="padding:0 4px; height:12px; width:13px"></td>';
 
-    const eventDates = [
-        { day: 19, month: 7, year: 2026 },
-        { day: 20, month: 7, year: 2026 },
-        { day: 11, month: 9, year: 2026 },
-        { day: 24, month: 9, year: 2026 },
-        { day: 20, month: 10, year: 2026 }
+    const events = [
+        {
+            name: 'FORUM MABA 2026',
+            day: 19,
+            month: 7,
+            year: 2026,
+            link: 'https://contoh-manualbook-forummaba.com'
+        },
+        {
+            name: '🎂 ULANG TAHUN ARSYAD',
+            day: 21,
+            month: 7,
+            year: 2026,
+            link: 'https://www.instagram.com/arsyaddha'
+        },
+        {
+            name: 'LDK 2026',
+            day: 11,
+            month: 9,
+            year: 2026,
+            link: 'https://contoh-manualbook-ldk.com'
+        },
+        {
+            name: 'IOH 2026',
+            day: 24,
+            month: 9,
+            year: 2026,
+            link: 'https://contoh-manualbook-ioh.com'
+        },
+        {
+            name: 'NAKO 2026',
+            day: 20,
+            month: 10,
+            year: 2026,
+            link: 'https://contoh-manualbook-nako.com'
+        }
     ];
 
     for (let i = startDay; i < 42; i++) {
@@ -372,7 +402,11 @@
         if (i % 7 === 0 && i !== startDay) html += '</tr><tr>';
         const isToday = day === now.getDate() && month === now.getMonth() && year === now.getFullYear();
         const isSunday = i % 7 === 0;
-        const isEventDate = eventDates.some(event => event.day === day && event.month === month && event.year === year);
+        const isEventDate = events.some(event =>
+            event.day === day &&
+            event.month === month &&
+            event.year === year
+        );
         const textColor = isSunday ? '#ff4444' : (isToday ? '#fff' : '#c8a96e');
         const fontWeight = isToday || isSunday ? 'bold' : 'normal';
         const borderStyle = isEventDate ? 'border:2px solid #F8D794; border-radius:50%; padding:2px; display:inline-block; min-width:13px; text-align:center;' : '';
@@ -391,6 +425,7 @@ function updateCountdown() {
 
     const events = [
         { name: 'FORUM MABA 2026', day: 19, month: 7, year: 2026 },
+        { name: '🎂 ULANG TAHUN ARSYAD', day: 21, month: 6, year: 2026 },
         { name: 'LDK 2026', day: 11, month: 9, year: 2026 },
         { name: 'IOH 2026', day: 24, month: 9, year: 2026 },
         { name: 'NAKO 2026', day: 20, month: 10, year: 2026 }
@@ -410,7 +445,29 @@ function updateCountdown() {
         const isToday = now.getDate() === event.day && now.getMonth() === event.month && now.getFullYear() === event.year;
 
         if (diff < 0 || isToday) {
-            return `<div style="margin-bottom:10px;"><strong style="font-size:18px;">${event.name} sedang berlangsung 🎉</strong></div>`;
+        return `
+        <div style="margin-bottom:18px;">
+            <a href="${event.link}"
+            target="_blank"
+            style="
+                    font-size:18px;
+                    font-weight:bold;
+                    color:#F8D794;
+                    text-decoration:none;">
+                ${event.name} sedang berlangsung 🎉
+            </a>
+
+            <br>
+
+            <a href="${event.link}"
+            target="_blank"
+            style="
+                    font-size:12px;
+                    color:#d6c28b;
+                    text-decoration:underline;">
+                Klik kegiatan untuk melihat Manual Book
+            </a>
+        </div>`;
         }
 
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -418,10 +475,33 @@ function updateCountdown() {
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
         return `
-            <div style="margin-bottom:10px;">
-                <span style="font-size:16px;">${days} hari | ${hours} jam | ${minutes} menit</span><br>
-                <strong style="font-size:18px;">${event.name}</strong>
-            </div>`;
+        <div style="margin-bottom:18px;">
+            <span style="font-size:16px;">
+                ${days} hari | ${hours} jam | ${minutes} menit
+            </span><br>
+
+            <a href="${event.link}"
+            target="_blank"
+            style="
+                    font-size:18px;
+                    font-weight:bold;
+                    color:#F8D794;
+                    text-decoration:none;">
+                ${event.name}
+            </a>
+
+            <br>
+
+            <a href="${event.link}"
+            target="_blank"
+            style="
+                    font-size:12px;
+                    color:#d6c28b;
+                    text-decoration:underline;
+                    cursor:pointer;">
+                Klik kegiatan untuk melihat Manual Book
+            </a>
+        </div>`;
     };
 
     document.getElementById('countdownDisplay').innerHTML = monthEvents.map(buildCountdown).join('');

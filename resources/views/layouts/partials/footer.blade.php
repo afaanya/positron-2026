@@ -12,14 +12,29 @@
         <!-- Right Side: Social Media Icons -->
         <div class="footer-right" style="display: flex; gap: 20px; align-items: center;">
 
-            <!-- Instagram (outline) -->
-            <a href="https://www.instagram.com/hmdteiftum"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Instagram"
-            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(248, 215, 148, 0.1); border: 1px solid rgba(248, 215, 148, 0.3); border-radius: 8px; transition: all 0.3s ease; text-decoration: none; color: #f8d794; font-size: 20px;">
-                <i class="bi bi-instagram"></i>
-            </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/hmdteiftum"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Instagram"
+        style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:rgba(248,215,148,.1);border:1px solid rgba(248,215,148,.3);border-radius:8px;transition:all .3s ease;">
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#f8d794"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8
+                        4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+
+        </a>
 
             <!-- TikTok (outline) -->
             <a href="https://www.tiktok.com/@hmdteiftum"
