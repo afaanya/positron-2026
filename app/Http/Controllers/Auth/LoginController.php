@@ -20,6 +20,30 @@ public function login(Request $request)
         'password' => 'required',
     ]);
 
+    $request->session()->forget([
+        'admin_login',
+        'admin_user',
+        'mentor_login',
+        'mentor_user',
+        'mahasiswa_login',
+        'mahasiswa_id',
+    ]);
+
+    // Cek Admin
+    $admin = DB::table('admin')
+        ->where('username', $request->identifier)
+        ->first();
+
+    if ($admin && $admin->password == $request->password) {
+
+        $request->session()->put('admin_login', true);
+        $request->session()->put('admin_user', $admin->username);
+        $request->session()->regenerate();
+
+        return redirect()->route('admin.home');
+        dd(session()->all());
+    }
+
     // Cek mentor
     $mentor = DB::table('mentor')
         ->where('user', $request->identifier)
@@ -55,16 +79,11 @@ public function login(Request $request)
 
     public function logout(Request $request)
     {
-        $request->session()->forget([
-            'mentor_login',
-            'mentor_user',
-            'mahasiswa_login',
-            'mahasiswa_id',
-        ]);
+        $request->session()->flush();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+    return redirect()->route('login');
     }
 }

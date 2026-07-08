@@ -70,6 +70,16 @@
                 👤
                 Profil Mentor
 
+                @if(session()->has('admin_login'))
+
+                    <a href="{{ route('home') }}"
+                        class="flex items-center gap-3 mx-5 mt-3 rounded-xl px-5 py-3 bg-[#D6A74F] text-[#163B2E] font-semibold hover:opacity-90">
+
+                        🎓
+                        Halaman Mahasiswa
+                    </a>
+                @endif
+
             </a>
 
         </nav>

@@ -33,6 +33,21 @@
                     FILOSOFI
                     <span style="position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #f8d794; transition: width 0.3s ease;"></span>
                 </a>
+
+                @if(session()->has('admin_login'))
+                <a href="{{ route('mentor.home') }}" 
+                   style="color: #c8a96e; text-decoration: none; font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.3s ease; position: relative;">
+                    MENTOR
+                    <span style="position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #f8d794; transition: width 0.3s ease;"></span>
+                </a>
+                @endif
+
+                @if(session()->has('admin_login') && request()->routeIs('mentor.*'))
+                <a href="{{ route('home') }}"
+                   style="color: #c8a96e; text-decoration: none; font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.3s ease; position: relative;">
+                    <- Kebali ke home mahasiswa
+                </a>
+                @endif
             </nav>
 
             <!-- User Profile Button -->

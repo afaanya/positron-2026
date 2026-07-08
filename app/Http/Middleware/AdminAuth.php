@@ -6,14 +6,11 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MahasiswaAuth
+class AdminAuth
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (
-            !session()->has('mahasiswa_login') &&
-            !session()->has('admin_login')
-        ) {
+        if (!session()->has('admin_login')) {
             return redirect()->route('login');
         }
 

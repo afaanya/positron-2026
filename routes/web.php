@@ -106,7 +106,7 @@ Route::post('/logout', [LoginController::class, 'logout'])
 
 // ================= HALAMAN SETELAH LOGIN =================
 
-Route::middleware('mahasiswa.auth')->group(function () {
+Route::middleware('mahasiswa.auth')->group (function () {
 
     Route::get('/home', function () {
         return view('home');
@@ -183,5 +183,30 @@ Route::middleware('mahasiswa.auth')->group(function () {
             return view('mentor.offering');
         })->name('mentor.offering');
     });
+});
+
+
+// ================= HALAMAN ADMIN =================
+
+    Route::middleware([ 'admin.auth'])
+        ->prefix('admin')
+        ->name('admin.')
+        ->group(function () {
+
+        Route::get('/home', function () {
+            return view('admin.home');
+        })->name('home');
+
+        Route::get('/mahasiswa', function () {
+            return view('admin.mahasiswa');
+        })->name('mahasiswa');
+
+        Route::get('/mentor', function () {
+            return view('admin.mentor');
+        })->name('mentor');
+
+        Route::get('/offering', function () {
+            return view('admin.offering');
+        })->name('offering');
 
 });

@@ -17,9 +17,10 @@ class MentorAuth
     
     public function handle(Request $request, Closure $next): Response
     {
-        dd(session()->all());
-        
-        if (!session()->has('mentor_login')) {
+        if (
+            !session()->has('mentor_login')&&
+            !session()->has('admin_login')
+        ) {
             return redirect()->route('login');
         }
         
