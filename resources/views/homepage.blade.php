@@ -7,8 +7,9 @@
 
     html, body{
         width:100%;
-        overflow-x:hidden;
-        background:#081A12;
+        min-height: 100vh;
+        overflow-x: hidden;
+        background-color: #081a12;
     }
 
     .homepage{
@@ -31,6 +32,8 @@
 
     .hero{
         width:100%;
+        display: flex;
+        justify-content: center;
     }
 
     .menu{
@@ -80,23 +83,16 @@
     }
 
     .selamat-datang{
-        cursor:pointer;
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
     }
 
     .profile-panel{
-        position:fixed;
-        top:0;
-        right:-340px;
-        width:340px;
-        height:100vh;
-        background:#0f1f17;
-        color:white;
-        z-index:999999;
-        transition:0.3s ease;
-        padding:20px;
-        box-shadow:-10px 0 30px rgba(0,0,0,0.4);
-        display:flex;
-        flex-direction:column;
+        width:90%;
+        max-width: 340px;
+        right: -100%;
     }
 
     .profile-panel.active{
@@ -144,7 +140,22 @@
 
     .profile-content{
         margin-top:20px;
-        font-size:14px;
+        font-size:clamp(14px,2vw,16px);    }
+
+    @media (max-width: 768px) {
+        .profile-panel {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .profile-header h3{
+        font-size:20px;
+        }
+
+        .profile-menu button{
+            padding:14px;
+            font-size:15px;
+        }
     }
 </style>
 
