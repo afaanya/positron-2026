@@ -51,9 +51,17 @@
             </nav>
 
             <!-- User Profile Button -->
-            <button id="userPill" class="user-pill" aria-haspopup="true" aria-expanded="false" 
-                    style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(248, 215, 148, 0.1); border: 1px solid rgba(248, 215, 148, 0.3); border-radius: 50%; cursor: pointer; transition: all 0.3s ease; font-size: 18px; color: #f8d794;">
-                <span class="icon">👤</span>
+            <button id="userPill" class="user-pill" aria-haspopup="true" aria-expanded="false"
+                style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; background:rgba(248,215,148,.1); border:1px solid rgba(248,215,148,.3); border-radius:50%; cursor:pointer; transition:all .3s ease;">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="#f8d794">
+                    <path d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/>
+                </svg>
+
             </button>
 
             <!-- User Menu Dropdown -->
@@ -67,24 +75,26 @@
 
                 <h4 style="color: #f8d794; font-family: 'Libre Baskerville', serif; font-size: 16px; margin-bottom: 15px; margin-top: 5px;">Mahasiswa</h4>
 
-                <a class="menu-item" href="{{ route('biodata') }}" 
-                   style="display: block; color: #c8a96e; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(248, 215, 148, 0.1); transition: color 0.3s ease; font-size: 14px;">
+                <a class="menu-item" href="{{ route('biodata') }}"
+                style="display: block; color: #c8a96e; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(248, 215, 148, 0.1); transition: color 0.3s ease; font-size: 14px; font-family: 'Libre Baskerville', serif;">
                     Biodata
                 </a>
-                <a class="menu-item" href="{{ route('poin') }}" 
-                   style="display: block; color: #c8a96e; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(248, 215, 148, 0.1); transition: color 0.3s ease; font-size: 14px;">
+
+                <a class="menu-item" href="{{ route('poin') }}"
+                style="display: block; color: #c8a96e; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(248, 215, 148, 0.1); transition: color 0.3s ease; font-size: 14px; font-family: 'Libre Baskerville', serif;">
                     Poin
                 </a>
-                <a class="menu-item" href="{{ route('sertifikat') }}" 
-                   style="display: block; color: #c8a96e; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(248, 215, 148, 0.1); transition: color 0.3s ease; font-size: 14px;">
+
+                <a class="menu-item" href="{{ route('sertifikat') }}"
+                style="display: block; color: #c8a96e; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(248, 215, 148, 0.1); transition: color 0.3s ease; font-size: 14px; font-family: 'Libre Baskerville', serif;">
                     Sertifikat
                 </a>
 
                 <a class="menu-item secondary"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfmCmaEVXqK1s1E3H0XGTLKYiFSYI0ciSAoy1iGQyDEYdWjBQ/viewform?usp=dialog"
-                    target="_blank"
-                    rel="noopener"
-                    style="display: block; color: #c8a96e; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(248, 215, 148, 0.1); transition: color 0.3s ease; font-size: 14px;">
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfmCmaEVXqK1s1E3H0XGTLKYiFSYI0ciSAoy1iGQyDEYdWjBQ/viewform?usp=dialog"
+                target="_blank"
+                rel="noopener"
+                style="display: block; color: #c8a96e; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(248, 215, 148, 0.1); transition: color 0.3s ease; font-size: 14px; font-family: 'Libre Baskerville', serif;">
                     Kritik dan Saran
                 </a>
 
