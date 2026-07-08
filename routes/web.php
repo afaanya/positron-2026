@@ -164,25 +164,28 @@ Route::middleware('mahasiswa.auth')->group (function () {
     Route::get('/kegiatan', function () {
         return view('kegiatan');
     })->name('kegiatan');
+});
 
-    Route::middleware('mentor.auth')->prefix('mentor')->group(function () {
+// ================= HALAMAN MENTOR =================
+Route::middleware('mentor.auth')->prefix('mentor')->group(function () {
 
-        Route::get('/home', function () {
-            return view('mentor.home');
-        })->name('mentor.home');
+    Route::get('/home', [\App\Http\Controllers\MentorController::class, 'home'])
+        ->name('mentor.home');
 
-        Route::get('/kegiatan', function () {
-            return view('mentor.kegiatan');
-        })->name('mentor.kegiatan');
+    Route::post('/penilaian', [\App\Http\Controllers\MentorController::class, 'savePenilaian'])
+        ->name('mentor.penilaian.save');
 
-        Route::get('/mahasiswa', function () {
-            return view('mentor.mahasiswa');
-        })->name('mentor.mahasiswa');
+    Route::get('/kegiatan', function () {
+        return view('mentor.kegiatan');
+    })->name('mentor.kegiatan');
 
-        Route::get('/offering', function () {
-            return view('mentor.offering');
-        })->name('mentor.offering');
-    });
+    Route::get('/mahasiswa', function () {
+        return view('mentor.mahasiswa');
+    })->name('mentor.mahasiswa');
+
+    Route::get('/offering', function () {
+        return view('mentor.offering');
+    })->name('mentor.offering');
 });
 
 

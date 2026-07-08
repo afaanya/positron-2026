@@ -96,6 +96,13 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => env('DB_SSLMODE', 'prefer'),
+            // Supabase's transaction pooler (port 6543) reuses backend
+            // connections and does not support server-side prepared statements.
+            // Emulating prepares client-side avoids intermittent
+            // "prepared statement ... does not exist" errors.
+            'options' => extension_loaded('pdo_pgsql') ? [
+                PDO::ATTR_EMULATE_PREPARES => true,
+            ] : [],
         ],
 
         'sqlsrv' => [
