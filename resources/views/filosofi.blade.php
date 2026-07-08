@@ -104,10 +104,10 @@
         <div class="filosofi-bawah-item absolute" style="top: 265px; left: 415px; width: 700px; z-index: 5;">
             <div class="overlay-text overlay-atas" style="left: auto; right: 100px; transform: none;">Diverse in Origin, United in Vision: Menegaskan bahwa meskipun mahasiswa baru berasal dari "keluarga" yang berbeda-beda, mereka kini berdiri di bawah satu nama almamater dan harus berkolaborasi untuk mencapai visi bersama.
 </div>
-            <img src="{{ asset('images/filosofi.item.bawah.png') }}"
+            <img src="{{ asset('images/filosofi.bawah.item.png') }}"
                  alt="Filosofi Bawah Item"
                  class="petir-glow"
-                 data-black-src="{{ asset('images/filosofi.item.bawah.png') }}"
+                 data-black-src="{{ asset('images/filosofi.bawah.item.png') }}"
                  data-yellow-src="{{ asset('images/filosofi.bawah.kuning.png') }}"
                  style="width: 260px; height: auto; display: block;">
         </div>
