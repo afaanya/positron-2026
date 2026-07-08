@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sertifikat Mahasiswa</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +17,7 @@
 
         body {
             min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Libre Baskerville', serif;
             background: url('{{ asset('images/login-bg.png') }}') center/cover no-repeat;
             color: #f8eed0;
         }
@@ -53,7 +57,7 @@
         .title {
             font-size: clamp(22px, 3.2vw, 36px);
             line-height: 1.4;
-            font-weight: 800;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             color: #fff3c5;
@@ -62,7 +66,7 @@
         .subtext {
             margin-top: 16px;
             font-size: 16px;
-            line-height: 1.7;
+            line-height: 1.8;
             color: #e5dcc1;
         }
 
@@ -85,8 +89,12 @@
     <div class="overlay">
         <div class="card">
             <div class="badge">Positron 2026</div>
-            <div class="title">SERTIFIKAT ANDA DAPAT DIUNDUH SETELAH SERANGKAIAN POSITRON SELESAI</div>
-            <p class="subtext">Sertifikat akan tersedia setelah seluruh rangkaian kegiatan selesai dan dapat diakses pada halaman ini.</p>
+            <div class="title">
+                SERTIFIKAT ANDA DAPAT DIUNDUH SETELAH SERANGKAIAN POSITRON SELESAI
+            </div>
+            <p class="subtext">
+                Sertifikat akan tersedia setelah seluruh rangkaian kegiatan selesai dan dapat diakses pada halaman ini.
+            </p>
         </div>
     </div>
 </body>

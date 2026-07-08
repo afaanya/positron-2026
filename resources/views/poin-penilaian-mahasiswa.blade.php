@@ -4,16 +4,28 @@
 
 @section('content')
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
     /* Backmost page background */
-    html, body {
-        min-height: 100%;
-        margin: 0;
-        background:
-            linear-gradient(180deg, rgba(2, 8, 6, 0.12), rgba(2, 8, 6, 0.28)),
-            url('{{ asset('images/login-bg.png') }}') center/cover no-repeat fixed;
-        background-color: #041a18;
-    }
+    html,
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Libre Baskerville', serif;}
+
+    body {
+    min-height: 100vh;
+    background: url('{{ asset('images/login-bg.png') }}') center/cover no-repeat;
+    color: #f8eed0;}   body {
+    min-height: 100vh;
+    font-family: 'Libre Baskerville', serif;
+    background: url('{{ asset('images/login-bg.png') }}') center/cover no-repeat;
+    color: #f8eed0;
+    }   
 
     .poin-page {
         display: grid;
