@@ -2,24 +2,23 @@
     <div class="relative w-full h-full">
         <!-- Background Image (Sambutan) -->
         <img src="{{ asset('images/sambutan.png') }}" class="w-full h-full object-cover">
-go
+
         <!-- Video YouTube Overlay di Papan Tulis -->
                 <div class="absolute" style="top: 56%; left: 59%; width: 35%; aspect-ratio: 16/9; transform: translate(-50%, -50%); overflow: hidden; border-radius: 0.375rem;">
-    <iframe 
-        id="videoSambutan"
-        style="position: absolute; top: -60px; left: -20px; width: calc(100% + 40px); height: calc(100% + 120px); pointer-events: none;"
-        class="rounded shadow-2xl"
-        src="https://www.youtube.com/embed/FA1XSHrE22Y?autoplay=1&mute=1&loop=1&playlist=FA1XSHrE22Y&controls=0&modestbranding=1&rel=0&disablekb=1&iv_load_policy=3&showinfo=0&enablejsapi=1"
-        title="Sambutan" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
-
-    <button id="btnMuteSambutan" style="position: absolute; bottom: 10px; right: 10px; z-index: 999; background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 18px;">
-        🔇
-    </button>
-</div>
+                    <iframe 
+                        id="videoSambutan"
+                        style="position: absolute; top: -60px; left: -20px; width: calc(100% + 40px); height: calc(100% + 120px); pointer-events: none;"
+                        class="rounded shadow-2xl"
+                        src="https://www.youtube.com/embed/Td3xP_6tVM0?si=OKQV1HMeXuYuWWai&autoplay=1&mute=1&loop=1&playlist=Td3xP_6tVM0&controls=0&modestbranding=1&rel=0&disablekb=1&iv_load_policy=3&showinfo=0&enablejsapi=1"
+                        title="Sambutan" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    <button id="btnMuteSambutan" style="position: absolute; bottom: 10px; right: 10px; z-index: 999; background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 18px;">
+                        🔇
+                    </button>
+                </div>
 
 <script>
 let playerSambutan;
