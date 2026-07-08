@@ -10,32 +10,25 @@
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
  
-    body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #0a0e0a;
-      font-family: 'Playfair Display', serif;
-      overflow: hidden;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: none;
+    body{
+        margin:0;
+        background:#0a0e0a;
+        font-family:'Playfair Display', serif;
+        overflow-x:hidden;
+        overflow-y:auto;
     }
  
-    .desk {
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(ellipse at 50% 40%, #2c3d27, #080d08 85%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      box-shadow: inset 0 0 200px rgba(0,0,0,0.95);
-      border: 22px solid #0c130e;
-      padding: 20px;
+    .desk{
+        width:100%;
+        min-height:calc(100vh - 80px);
+        margin-top:80px;
+        padding:40px 0;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        position:relative;
     }
+
     .desk::before {
       content: '';
       position: absolute;

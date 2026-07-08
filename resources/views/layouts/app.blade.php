@@ -7,6 +7,7 @@
     <title>@yield('title', 'POSITRON 2026')</title>
 
     @vite(['resources/css/app.css'])
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
         *{ margin: 0; padding: 0; box-sizing: border-box; }

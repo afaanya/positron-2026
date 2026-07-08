@@ -12,27 +12,39 @@
         <!-- Right Side: Social Media Icons -->
         <div class="footer-right" style="display: flex; gap: 20px; align-items: center;">
 
-            <!-- Instagram -->
+            <!-- Instagram (outline) -->
             <a href="https://www.instagram.com/hmdteiftum"
             target="_blank"
             rel="noopener noreferrer"
             title="Instagram"
-            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(248, 215, 148, 0.1); border: 1px solid rgba(248, 215, 148, 0.3); border-radius: 8px; transition: all 0.3s ease; text-decoration: none;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
-                    alt="Instagram"
-                    style="width: 20px; height: 20px;">
+            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(248, 215, 148, 0.1); border: 1px solid rgba(248, 215, 148, 0.3); border-radius: 8px; transition: all 0.3s ease; text-decoration: none; color: #f8d794; font-size: 20px;">
+                <i class="bi bi-instagram"></i>
             </a>
 
-            <!-- TikTok -->
+            <!-- TikTok (outline) -->
             <a href="https://www.tiktok.com/@hmdteiftum"
             target="_blank"
             rel="noopener noreferrer"
             title="TikTok"
-            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(248, 215, 148, 0.1); border: 1px solid rgba(248, 215, 148, 0.3); border-radius: 8px; transition: all 0.3s ease; text-decoration: none;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/TikTok_logo.svg"
-                    alt="TikTok"
-                    style="width: 20px; height: 20px;">
+            style="display:inline-flex;
+                    align-items:center;
+                    justify-content:center;
+                    width:40px;
+                    height:40px;
+                    background:rgba(248,215,148,.1);
+                    border:1px solid rgba(248,215,148,.3);
+                    border-radius:8px;">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    fill="#f8d794"
+                    viewBox="0 0 24 24">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.68h-3.29v13.19a2.8 2.8 0 1 1-2.8-2.8c.31 0 .61.05.89.14V9.18a6.1 6.1 0 0 0-.89-.07A6.09 6.09 0 1 0 15.82 15V8.3a8.08 8.08 0 0 0 4.71 1.5V6.69h-.94z"/>
+                </svg>
+
             </a>
+
 
         </div>
     </div>
