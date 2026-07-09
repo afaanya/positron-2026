@@ -19,7 +19,6 @@ export default defineConfig({
                 'resources/js/about.js',
                 'resources/css/timeline.css',
                 'resources/js/timeline.js',
-                'resources/css/manualbook.css',
                 'resources/css/homepage.css',
                 'resources/css/kartu-kendali.css',
                 'resources/css/profil-mahasiswa.css',

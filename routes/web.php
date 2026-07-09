@@ -44,10 +44,6 @@ Route::middleware('auth.any')->group(function () {
         return view('page', ['inner' => 'rangkaian', 'title' => 'Rangkaian - POSITRON 2026']);
     })->name('rangkaian');
 
-    Route::get('/manualbook', function () {
-        return view('manualbook');
-    })->name('manualbook');
-
     Route::get('/about', function () {
         return view('about');
     })->name('about');

@@ -87,7 +87,7 @@
     <li><a href="{{ route('filosofi') }}" class="{{ request()->routeIs('filosofi') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>FILOSOFI<span class="dot bl"></span><span class="dot br"></span></a></li>
     <li><a href="{{ route('timeline') }}" class="{{ request()->routeIs('timeline') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>TIMELINE<span class="dot bl"></span><span class="dot br"></span></a></li>
     <li><a href="{{ route('rangkaian') }}" class="{{ request()->routeIs('rangkaian') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>GROUP<span class="dot bl"></span><span class="dot br"></span></a></li>
-    <li><a href="{{ route('manualbook') }}" class="{{ request()->routeIs('manualbook') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>CONTACT<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('home') }}"><span class="dot tl"></span><span class="dot tr"></span>CONTACT<span class="dot bl"></span><span class="dot br"></span></a></li>
   </ul>
   <div class="nav-right">
     <div class="nav-user-wrap">
