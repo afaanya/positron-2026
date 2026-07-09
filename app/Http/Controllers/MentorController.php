@@ -20,18 +20,13 @@ class MentorController extends Controller
         $mentorUser = session('mentor_user');            // e.g. "TI-A"
         $isAdmin    = session()->has('admin_login') && ! $mentorUser;
 
-        $all = DB::table('mahasiswa')->orderBy('nama')->get();
-
-        // Mentors see only their offering; admins see everyone.
-        // Prefer the explicit offering_code column; fall back to a derived
-        // code for rows that predate the column.
-        $rows = $all->filter(function ($m) use ($mentorUser, $isAdmin) {
-            if ($isAdmin || ! $mentorUser) {
-                return true;
-            }
-            $code = $m->offering_code ?? $this->offeringCode($m);
-            return strtoupper((string) $code) === strtoupper($mentorUser);
-        })->values();
+        // Filter at DB level for performance (no in-memory filtering).
+        // Admins see all; mentors see only their offering.
+        $query = DB::table('mahasiswa')->orderBy('nama');
+        if (! $isAdmin && $mentorUser) {
+            $query->where('offering_code', $mentorUser);
+        }
+        $rows = $query->get();
 
         // Saved scores (table may not exist yet — degrade gracefully).
         $savedByNim = [];

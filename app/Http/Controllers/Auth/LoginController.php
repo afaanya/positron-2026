@@ -41,7 +41,6 @@ public function login(Request $request)
         $request->session()->regenerate();
 
         return redirect()->route('admin.home');
-        dd(session()->all());
     }
 
     // Cek mentor

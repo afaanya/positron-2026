@@ -1,0 +1,110 @@
+        .kartu-kendali-page {
+            min-height: 100vh;
+            background: #08150f;
+            padding: 24px 12px;
+            display: grid;
+            place-items: center;
+        }
+
+        .kartu-card {
+            position: relative;
+            width: min(1080px, 100%);
+            overflow: hidden;
+        }
+
+        .kartu-bg {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .kartu-content {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .field-value {
+            position: absolute;
+            left: 68%;
+            width: 26%;
+            color: #000000;
+            font-weight: 700;
+            text-align: right;
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+            font-size: clamp(14px, 1.1vw, 18px);
+        }
+
+        .field-name { top: 31.0%; }
+        .field-nim { top: 36.0%; }
+        .field-prodi { top: 41.0%; }
+        .field-offering { top: 46.0%; }
+        .field-kelompok { top: 51.0%; }
+
+        .stamp {
+            position: absolute;
+            width: 62px;
+            height: 62px;
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        .stamp-forum { top: 65.0%; left: 23.0%; }
+        .stamp-ldk { top: 65.0%; left: 39.0%; }
+        .stamp-ioh { top: 65.0%; left: 56.0%; }
+        .stamp-nako { top: 65.0%; left: 72.0%; }
+        .stamp-coffee { top: 75.0%; left: 23.0%; }
+        .stamp-peserta { top: 75.0%; left: 39.0%; }
+        .stamp-arak { top: 75.0%; left: 56.0%; }
+        .stamp-adminangkatan { top: 75.0%; left: 72.0%; }
+        .stamp-adminoffering { top: 84.8%; left: 33.0%; }
+        .stamp-dewan { top: 84.8%; left: 50.0%; }
+        .stamp-staff { top: 84.8%; left: 67.0%; }
+
+        .points-value {
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #f5e8b5;
+            font-size: clamp(20px, 2vw, 26px);
+            font-weight: 700;
+            letter-spacing: 0.12em;
+        }
+
+        @media (max-width: 900px) {
+            .field-value { right: 12%; width: 36%; font-size: clamp(13px, 1.2vw, 16px); }
+            .stamp { width: 42px; height: 42px; }
+        }
+
+        @media (max-width: 720px) {
+            .field-value { right: 10%; width: 42%; }
+            .stamp-forum { left: 24%; }
+            .stamp-ldk { left: 38%; }
+            .stamp-ioh { left: 52%; }
+            .stamp-nako { left: 68%; }
+            .stamp-coffee { left: 24%; }
+            .stamp-peserta { left: 38%; }
+            .stamp-arak { left: 52%; }
+            .stamp-adminangkatan { left: 68%; }
+            .stamp-adminoffering { left: 32%; }
+            .stamp-dewan { left: 48%; }
+            .stamp-staff { left: 64%; }
+        }
+
+        @media (max-width: 520px) {
+            .field-value { right: 8%; width: 48%; font-size: 14px; }
+            .stamp { width: 36px; height: 36px; }
+            .stamp-forum { left: 22%; }
+            .stamp-ldk { left: 34%; }
+            .stamp-ioh { left: 46%; }
+            .stamp-nako { left: 60%; }
+            .stamp-coffee { left: 22%; }
+            .stamp-peserta { left: 34%; }
+            .stamp-arak { left: 46%; }
+            .stamp-adminangkatan { left: 60%; }
+            .stamp-adminoffering { left: 30%; }
+            .stamp-dewan { left: 44%; }
+            .stamp-staff { left: 58%; }
+        }

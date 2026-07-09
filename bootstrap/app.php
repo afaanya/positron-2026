@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin.auth' => \App\Http\Middleware\AdminAuth::class,
             'mentor.auth' => \App\Http\Middleware\MentorAuth::class,
             'mahasiswa.auth' => \App\Http\Middleware\MahasiswaAuth::class,
+            'auth.any' => \App\Http\Middleware\AnyAuth::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

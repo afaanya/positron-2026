@@ -14,7 +14,7 @@
         body {
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('{{ asset('images/login-bg.png') }}') center/cover no-repeat;
+            background: url('{{ asset('images/page-bg.jpg') }}') center/cover no-repeat;
             color: #f8eed0;
         }
 
@@ -82,6 +82,7 @@
     </style>
 </head>
 <body>
+    @include('layouts.partials.header')
     <div class="overlay">
         <div class="card">
             <div class="badge">Positron 2026</div>
@@ -89,5 +90,6 @@
             <p class="subtext">Sertifikat akan tersedia setelah seluruh rangkaian kegiatan selesai dan dapat diakses pada halaman ini.</p>
         </div>
     </div>
+    @include('layouts.partials.footer')
 </body>
 </html>

@@ -1,0 +1,197 @@
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Praise&display=swap');
+
+        :root {
+            --font-primary: 'Praise', cursive;
+            --font-secondary: 'Libre Baskerville', serif;
+            --color-accent: #F8D794;
+        }
+
+        .font-primary { font-family: var(--font-primary); }
+        .font-secondary { font-family: var(--font-secondary); }
+
+        /* Menggunakan file background dari Anda */
+        .royal-bg {
+    background-image: url("/images/page-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+        /* --- LOGIK JARUM JAM INTERAKTIF --- */
+        .clock-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Titik poros tengah untuk menutupi jarum asli bawaan gambar */
+        .clock-center-pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 14px;
+            height: 14px;
+            background: #c5a880;
+            border: 2px solid #54432b;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 30;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Base style untuk jarum jam baru */
+        .clock-hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            z-index: 20;
+            border-radius: 3px 4px 0 0;
+            background: linear-gradient(to top, #7d613b, #f5dfbb);
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            transition: transform 0.2s linear;
+            pointer-events: none;
+        }
+
+        /* Jarum Jam (Pendek & Lebih Tebal) */
+        .hand-hour {
+            width: 4px;
+            height: 12%;
+            margin-left: -2px;
+        }
+
+        /* Jarum Menit (Panjang & Sedang) */
+        .hand-minute {
+            width: 3px;
+            height: 18%;
+            margin-left: -1.5px;
+        }
+
+        /* Jarum Detik (Tipis & Warna Emas/Kuning) */
+        .hand-second {
+            width: 1.5px;
+            height: 20%;
+            margin-left: -0.75px;
+            background: #f1c40f;
+            z-index: 25;
+        }
+
+        .header-container {
+            position: relative;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .header {
+            width: 100%;
+            display: block;
+        }
+
+        .menu {
+            position: absolute;
+            display: block;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .home{ 
+        top:22%;
+        left:60%;
+        width:8%;
+        height:35%;
+        }
+
+        .about{
+            top:22%;
+            left:68%;
+            width:8%;
+            height:35%;
+        }
+
+        .filosofi{
+            top:22%;
+            left:76%;
+            width:9%;
+            height:35%;
+        }
+
+        .timeline{
+            top:22%;
+            left:84%;
+            width:9%;
+            height:35%;
+        }
+
+        .profil{
+            top:12%;
+            right:2.5%;
+            width:4%;
+            height:60%;
+            border-radius:50%;
+            z-index:99999;
+            cursor:pointer;
+            display:block;
+        }
+
+        .profile-panel{
+        position:fixed;
+        top:0;
+        right:-340px;
+        width:340px;
+        height:100vh;
+        background:#0f1f17;
+        color:white;
+        z-index:999999;
+        transition:0.3s ease;
+        padding:20px;
+        box-shadow:-10px 0 30px rgba(0,0,0,0.4);
+        display:flex;
+        flex-direction:column;
+        }
+
+        .profile-panel.active{
+            right:0;
+        }
+
+        .profile-menu{
+            flex:1;
+            overflow-y:auto;
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+        }
+
+        .profile-menu-bottom{
+            margin-top:auto;
+        }
+
+        .profile-header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:20px;
+        }
+
+        .profile-header span{
+            cursor:pointer;
+            font-size:20px;
+        }
+
+        .profile-menu button{
+            width:100%;
+            margin-bottom:10px;
+            padding:10px;
+            background:#1c2f25;
+            border:none;
+            color:white;
+            cursor:pointer;
+            border-radius:6px;
+        }
+
+        .profile-menu button:hover{
+            background:#2a4a38;
+        }
+
+        .profile-content{
+            margin-top:20px;
+            font-size:14px;
+        }

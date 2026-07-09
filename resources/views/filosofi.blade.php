@@ -5,81 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Filosofi - POSITRON 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Praise&display=swap');
-
-        :root {
-            --font-primary: 'Praise', cursive;
-            --font-secondary: 'Libre Baskerville', serif;
-            --color-accent: #F8D794;
-        }
-
-        .font-primary { font-family: var(--font-primary); }
-        .font-secondary { font-family: var(--font-secondary); }
-
-        .filosofi-atas-item,
-        .filosofi-bawah-item {
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        .overlay-text {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 14px;
-            background: transparent;
-            border: 1px solid rgba(255, 215, 0, 0.6);
-            border-radius: 8px;
-            color: #f8d794;
-            font-family: var(--font-secondary);
-            font-size: 0.9rem;
-            text-align: center;
-            max-width: 300px;
-            width: auto;
-            white-space: normal;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-        }
-
-        .overlay-bawah {
-            top: calc(100% - 17px);
-        }
-
-        .overlay-atas {
-            bottom: calc(100% + 10px);
-            left: auto;
-            right: 100px;
-            transform: none;
-        }
-
-        .overlay-text.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .filosofi-atas-item .petir-glow,
-        .filosofi-bawah-item .petir-glow {
-            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
-            transition: filter 0.3s ease, transform 0.3s ease;
-        }
-
-        .filosofi-atas-item:hover .petir-glow,
-        .filosofi-bawah-item:hover .petir-glow {
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
-            transform: scale(1.05);
-        }
-
-        .filosofi-atas-item.active .petir-glow,
-        .filosofi-bawah-item.active .petir-glow {
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9)) !important;
-            transform: scale(1.05) !important;
-        }
-    </style>
+    @vite('resources/css/filosofi.css')
 </head>
-<body class="min-h-screen antialiased text-white bg-black">
+<body class="min-h-screen antialiased text-white" style="background:#0a1a10 url('{{ asset('images/page-bg.jpg') }}') center top / cover fixed no-repeat;">
     @include('layouts.partials.header')
 
      <div class="relative w-full max-w-[1230px] mx-auto">
@@ -118,51 +46,8 @@
         {{-- konten filosofi nanti masuk sini --}}
     </main>
 
-    <script>
-        document.querySelectorAll('.filosofi-atas-item, .filosofi-bawah-item').forEach(function(item) {
-            var img = item.querySelector('img.petir-glow');
-            var overlay = item.querySelector('.overlay-text');
-            var blackSrc = img.getAttribute('data-black-src');
-            var yellowSrc = img.getAttribute('data-yellow-src');
-
-            function showOverlay() {
-                if (overlay) {
-                    overlay.classList.add('visible');
-                }
-            }
-
-            function hideOverlay() {
-                if (overlay && !item.classList.contains('active')) {
-                    overlay.classList.remove('visible');
-                }
-            }
-
-            item.addEventListener('mouseenter', function() {
-                if (!item.classList.contains('active')) {
-                    img.src = yellowSrc;
-                }
-                showOverlay();
-            });
-
-            item.addEventListener('mouseleave', function() {
-                if (!item.classList.contains('active')) {
-                    img.src = blackSrc;
-                }
-                hideOverlay();
-            });
-
-            item.addEventListener('click', function() {
-                item.classList.toggle('active');
-                img.src = item.classList.contains('active') ? yellowSrc : blackSrc;
-                if (item.classList.contains('active')) {
-                    showOverlay();
-                } else {
-                    hideOverlay();
-                }
-            });
-        });
-    </script>
 
     @include('layouts.partials.footer')
+    @vite('resources/js/filosofi.js')
 </body>
 </html>

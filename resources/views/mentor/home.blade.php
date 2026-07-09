@@ -25,7 +25,7 @@
             @include('mentor.partials.dashboard')
             @include('mentor.partials.penilaian')
         </div>
-        @include('mentor.partials.footer')
+        @include('layouts.partials.footer')
     </div>
 
 @endsection

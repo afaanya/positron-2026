@@ -3,12 +3,12 @@
     <img src="{{ asset('images/portal-logo.png') }}" alt="POSITRON 2026" style="mix-blend-mode:screen;filter:brightness(1.15)">
   </a>
   <ul class="nav-links" role="list">
-    <li><a href="#" class="active" onclick="return false;"><span class="dot tl"></span><span class="dot tr"></span>HOME<span class="dot bl"></span><span class="dot br"></span></a></li>
-    <li><a href="#" onclick="return false;"><span class="dot tl"></span><span class="dot tr"></span>ABOUT<span class="dot bl"></span><span class="dot br"></span></a></li>
-    <li><a href="#" onclick="return false;"><span class="dot tl"></span><span class="dot tr"></span>FILOSOFI<span class="dot bl"></span><span class="dot br"></span></a></li>
-    <li><a href="#" onclick="return false;"><span class="dot tl"></span><span class="dot tr"></span>TIMELINE<span class="dot bl"></span><span class="dot br"></span></a></li>
-    <li><a href="#" onclick="return false;"><span class="dot tl"></span><span class="dot tr"></span>GROUP<span class="dot bl"></span><span class="dot br"></span></a></li>
-    <li><a href="#" onclick="return false;"><span class="dot tl"></span><span class="dot tr"></span>CONTACT<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('home') }}"><span class="dot tl"></span><span class="dot tr"></span>HOME<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('about') }}"><span class="dot tl"></span><span class="dot tr"></span>ABOUT<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('filosofi') }}"><span class="dot tl"></span><span class="dot tr"></span>FILOSOFI<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('timeline') }}"><span class="dot tl"></span><span class="dot tr"></span>TIMELINE<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('rangkaian') }}"><span class="dot tl"></span><span class="dot tr"></span>GROUP<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('manualbook') }}"><span class="dot tl"></span><span class="dot tr"></span>CONTACT<span class="dot bl"></span><span class="dot br"></span></a></li>
   </ul>
   <div class="nav-right">
     {{-- Sidebar toggle — shown only on penilaian page --}}

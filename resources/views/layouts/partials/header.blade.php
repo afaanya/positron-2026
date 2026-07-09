@@ -1,168 +1,141 @@
-<header class="site-header" style="background: linear-gradient(90deg, #0a0e0d 0%, #0f1a12 50%, #0a0e0d 100%); border-bottom: 1px solid rgba(248, 215, 148, 0.1); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);">
-    <div class="container header-inner" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 70px;">
-        
-        <!-- Logo -->
-        <div class="site-logo" style="flex-shrink: 0;">
-            <a href="{{ route('home') }}" style="display: flex; align-items: center; transition: opacity 0.3s ease; text-decoration: none;">
-                <img src="{{ asset('images/logo-positron.png') }}" alt="POSITRON 2026" style="height: 45px; width: auto;">
-            </a>
-        </div>
+{{-- ============================================================
+     GLOBAL NAVBAR — replica of the mentor portal navbar.
+     Self-contained (own fonts / CSS / JS) so it works on every
+     page regardless of that page's asset pipeline.
+     ============================================================ --}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        <!-- Navigation & User Menu -->
-        <div class="header-right" style="display: flex; align-items: center; gap: 30px; flex: 1; justify-content: flex-end;">
-            
-            <!-- Main Navigation -->
-            <nav class="main-nav" aria-label="Main navigation" style="display: flex; gap: 30px;">
-                <a href="{{ route('home') }}" 
-                   style="color: #f8d794; text-decoration: none; font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.3s ease; position: relative;">
-                    HOME
-                    <span style="position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #f8d794; transition: width 0.3s ease;"></span>
-                </a>
-                <a href="{{ route('timeline') }}" 
-                   style="color: #c8a96e; text-decoration: none; font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.3s ease; position: relative;">
-                    TIMELINE
-                    <span style="position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #f8d794; transition: width 0.3s ease;"></span>
-                </a>
-                <a href="{{ route('about') }}" 
-                   style="color: #c8a96e; text-decoration: none; font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.3s ease; position: relative;">
-                    ABOUT
-                    <span style="position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #f8d794; transition: width 0.3s ease;"></span>
-                </a>
-                <a href="{{ route('filosofi') }}" 
-                   style="color: #c8a96e; text-decoration: none; font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.3s ease; position: relative;">
-                    FILOSOFI
-                    <span style="position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #f8d794; transition: width 0.3s ease;"></span>
-                </a>
+<style>
+  .gnavbar{
+    position:sticky;top:0;height:58px;
+    background:rgba(6,15,9,.93);backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 28px;z-index:1000;border-bottom:1px solid rgba(160,120,20,.22);
+    font-family:'Inter',sans-serif;
+  }
+  .gnavbar .nav-logo{cursor:pointer;text-decoration:none;display:flex;align-items:center}
+  .gnavbar .nav-logo img{height:30px;width:auto;display:block;mix-blend-mode:screen;filter:brightness(1.1)}
+  .gnavbar .nav-links{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
+  .gnavbar .nav-links a{
+    font-family:'Playfair Display',serif;font-size:.67rem;font-weight:700;
+    color:#c8a030;text-decoration:none;text-transform:uppercase;letter-spacing:.13em;
+    padding:6px 11px;position:relative;transition:color .2s;
+  }
+  .gnavbar .nav-links a::before,.gnavbar .nav-links a::after{content:'';position:absolute;left:5px;right:5px;border-color:transparent;border-style:solid;transition:border-color .2s}
+  .gnavbar .nav-links a::before{top:1px;border-width:1px 1px 0 1px}
+  .gnavbar .nav-links a::after{bottom:1px;border-width:0 1px 1px 1px}
+  .gnavbar .nav-links a:hover,.gnavbar .nav-links a.active{color:#e0c050}
+  .gnavbar .nav-links a:hover::before,.gnavbar .nav-links a.active::before,
+  .gnavbar .nav-links a:hover::after,.gnavbar .nav-links a.active::after{border-color:#b88c28}
+  .gnavbar .nav-links a .dot{position:absolute;width:3px;height:3px;background:#b88c28;border-radius:50%;opacity:0;transition:opacity .2s}
+  .gnavbar .nav-links a:hover .dot,.gnavbar .nav-links a.active .dot{opacity:1}
+  .gnavbar .nav-links a .dot.tl{top:0;left:5px}.gnavbar .nav-links a .dot.tr{top:0;right:5px}
+  .gnavbar .nav-links a .dot.bl{bottom:0;left:5px}.gnavbar .nav-links a .dot.br{bottom:0;right:5px}
+  .gnavbar .nav-right{display:flex;align-items:center;gap:10px}
+  .gnavbar .nav-user-wrap{position:relative}
+  .gnavbar .nav-user{
+    width:32px;height:32px;border:1.5px solid #a08020;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    background:transparent;transition:border-color .2s,background .2s;
+  }
+  .gnavbar .nav-user:hover{background:rgba(160,120,20,.15);border-color:#c8a030}
+  .gnavbar .nav-user svg{width:16px;height:16px;pointer-events:none}
+  .gnav-dropdown{
+    position:absolute;top:calc(100% + 8px);right:0;
+    background:linear-gradient(160deg,#d8bc6a,#b09030);
+    border:1.5px solid rgba(180,135,25,.55);border-radius:10px;
+    box-shadow:0 8px 28px rgba(0,0,0,.55);min-width:210px;
+    overflow:hidden;display:none;z-index:2000;
+  }
+  .gnav-dropdown.open{display:block}
+  .gnav-dropdown .pd-header{padding:14px 16px 12px;border-bottom:1px solid rgba(80,50,10,.25)}
+  .gnav-dropdown .pd-name{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:800;color:#1a0e00}
+  .gnav-dropdown .pd-role{font-size:.68rem;color:#3a2200;margin-top:2px;opacity:.75}
+  .gnav-dropdown .pd-item{
+    display:flex;align-items:center;gap:9px;padding:10px 16px;width:100%;
+    font-family:'Inter',sans-serif;font-size:.75rem;font-weight:600;
+    color:#1a0e00;cursor:pointer;transition:background .15s;text-decoration:none;
+    border:none;background:transparent;text-align:left;
+    border-bottom:1px solid rgba(80,50,10,.15);
+  }
+  .gnav-dropdown .pd-item:last-child{border-bottom:none}
+  .gnav-dropdown .pd-item:hover{background:rgba(255,255,255,.2)}
+  .gnav-dropdown .pd-item.danger{color:#7a1010}
+  @media(max-width:820px){.gnavbar .nav-links{gap:0}.gnavbar .nav-links a{padding:5px 7px;font-size:.6rem}}
+  @media(max-width:560px){.gnavbar .nav-links{display:none}}
+</style>
 
-                @if(session()->has('admin_login'))
-                <a href="{{ route('mentor.home') }}" 
-                   style="color: #c8a96e; text-decoration: none; font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.3s ease; position: relative;">
-                    MENTOR
-                    <span style="position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #f8d794; transition: width 0.3s ease;"></span>
-                </a>
-                @endif
+@php
+    $isAdmin = session()->has('admin_login');
+    $isMentor = session()->has('mentor_login');
+    $isMahasiswa = session()->has('mahasiswa_login');
+    if ($isAdmin)        { $gName = session('admin_user', 'Admin');  $gRole = 'Administrator'; }
+    elseif ($isMentor)   { $gName = session('mentor_user', 'Mentor'); $gRole = 'Kakak Mentor'; }
+    elseif ($isMahasiswa){ $gName = 'Mahasiswa';                      $gRole = 'Peserta MABA'; }
+    else                 { $gName = 'Tamu';                           $gRole = 'Belum masuk'; }
+@endphp
 
-                @if(session()->has('admin_login') && request()->routeIs('mentor.*'))
-                <a href="{{ route('home') }}"
-                   style="color: #c8a96e; text-decoration: none; font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.3s ease; position: relative;">
-                    <- Kebali ke home mahasiswa
-                </a>
-                @endif
-            </nav>
+<nav class="gnavbar" aria-label="Navigasi utama">
+  <a class="nav-logo" href="{{ route('home') }}" aria-label="POSITRON 2026">
+    <img src="{{ asset('images/portal-logo.png') }}" alt="POSITRON 2026">
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>HOME<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>ABOUT<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('filosofi') }}" class="{{ request()->routeIs('filosofi') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>FILOSOFI<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('timeline') }}" class="{{ request()->routeIs('timeline') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>TIMELINE<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('rangkaian') }}" class="{{ request()->routeIs('rangkaian') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>GROUP<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('manualbook') }}" class="{{ request()->routeIs('manualbook') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>CONTACT<span class="dot bl"></span><span class="dot br"></span></a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-user-wrap">
+      <button class="nav-user" id="gUserBtn" onclick="gToggleProfile(event)" aria-label="Menu profil" aria-haspopup="true" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c8a030" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </button>
+      <div class="gnav-dropdown" id="gProfileDrop" role="menu">
+        <div class="pd-header"><div class="pd-name">{{ $gName }}</div><div class="pd-role">{{ $gRole }}</div></div>
 
-            <!-- User Profile Button -->
-            <button id="userPill" class="user-pill" aria-haspopup="true" aria-expanded="false" 
-                    style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(248, 215, 148, 0.1); border: 1px solid rgba(248, 215, 148, 0.3); border-radius: 50%; cursor: pointer; transition: all 0.3s ease; font-size: 18px; color: #f8d794;">
-                <span class="icon">👤</span>
-            </button>
+        @if ($isMahasiswa)
+          <a class="pd-item" href="{{ route('biodata') }}">Biodata</a>
+          <a class="pd-item" href="{{ route('poin') }}">Poin Penilaian</a>
+          <a class="pd-item" href="{{ route('sertifikat') }}">Sertifikat</a>
+        @endif
+        @if ($isMentor || $isAdmin)
+          <a class="pd-item" href="{{ route('mentor.home') }}">Halaman Mentor</a>
+        @endif
+        @if ($isAdmin)
+          <a class="pd-item" href="{{ route('admin.home') }}">Halaman Admin</a>
+        @endif
 
-            <!-- User Menu Dropdown -->
-            <div class="user-menu" id="userMenu" role="menu" aria-hidden="true" 
-                 style="position: absolute; top: 70px; right: 20px; width: 280px; background: #0f1a12; border: 1px solid rgba(248, 215, 148, 0.2); border-radius: 10px; padding: 20px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 2000;">
-                
-                <button id="userMenuClose" class="close-btn" aria-label="Tutup" 
-                        style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #c8a96e; font-size: 24px; cursor: pointer; transition: color 0.3s ease;">
-                    &times;
-                </button>
+        <a class="pd-item" href="https://docs.google.com/forms/d/e/1FAIpQLSfmCmaEVXqK1s1E3H0XGTLKYiFSYI0ciSAoy1iGQyDEYdWjBQ/viewform?usp=dialog" target="_blank" rel="noopener">Kritik &amp; Saran</a>
 
-                <h4 style="color: #f8d794; font-family: 'Libre Baskerville', serif; font-size: 16px; margin-bottom: 15px; margin-top: 5px;">Mahasiswa</h4>
-
-                <a class="menu-item" href="{{ route('biodata') }}" 
-                   style="display: block; color: #c8a96e; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(248, 215, 148, 0.1); transition: color 0.3s ease; font-size: 14px;">
-                    Biodata
-                </a>
-                <a class="menu-item" href="{{ route('poin') }}" 
-                   style="display: block; color: #c8a96e; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(248, 215, 148, 0.1); transition: color 0.3s ease; font-size: 14px;">
-                    Poin
-                </a>
-                <a class="menu-item" href="{{ route('sertifikat') }}" 
-                   style="display: block; color: #c8a96e; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(248, 215, 148, 0.1); transition: color 0.3s ease; font-size: 14px;">
-                    Sertifikat
-                </a>
-
-                <a class="menu-item secondary"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfmCmaEVXqK1s1E3H0XGTLKYiFSYI0ciSAoy1iGQyDEYdWjBQ/viewform?usp=dialog"
-                    target="_blank"
-                    rel="noopener"
-                    style="display: block; color: #c8a96e; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(248, 215, 148, 0.1); transition: color 0.3s ease; font-size: 14px;">
-                    Kritik dan Saran
-                </a>
-
-                <form method="POST" action="{{ route('logout') }}" style="margin-top: 15px;">
-                    @csrf
-                    <button type="submit" class="logout-btn" 
-                            style="width: 100%; padding: 10px; background: rgba(197, 69, 61, 0.2); border: 1px solid #c5453d; color: #ff6b5b; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-family: 'Libre Baskerville', serif; font-size: 14px;">
-                        Logout
-                    </button>
-                </form>
-
-            </div>
-        </div>
+        @if ($isAdmin || $isMentor || $isMahasiswa)
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="pd-item danger">Keluar</button>
+          </form>
+        @else
+          <a class="pd-item" href="{{ route('login') }}">Masuk</a>
+        @endif
+      </div>
     </div>
-
-    <style>
-        .main-nav a:hover {
-            color: #f8d794 !important;
-        }
-
-        .main-nav a:hover span {
-            width: 100% !important;
-        }
-
-        #userPill:hover {
-            background: rgba(248, 215, 148, 0.2) !important;
-            border-color: rgba(248, 215, 148, 0.6) !important;
-            transform: scale(1.05);
-        }
-
-        .user-menu.active {
-            opacity: 1 !important;
-            visibility: visible !important;
-            transform: translateY(0) !important;
-        }
-
-        .menu-item:hover {
-            color: #f8d794 !important;
-            padding-left: 8px !important;
-        }
-
-        .logout-btn:hover {
-            background: rgba(197, 69, 61, 0.4) !important;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .main-nav {
-                gap: 15px !important;
-                font-size: 12px !important;
-            }
-
-            .main-nav a {
-                font-size: 12px !important;
-            }
-        }
-    </style>
-</header>
+  </div>
+</nav>
 
 <script>
-document.getElementById('userPill')?.addEventListener('click', function() {
-    const menu = document.getElementById('userMenu');
-    menu.classList.toggle('active');
-    this.setAttribute('aria-expanded', menu.classList.contains('active'));
-});
-
-document.getElementById('userMenuClose')?.addEventListener('click', function() {
-    const menu = document.getElementById('userMenu');
-    menu.classList.remove('active');
-    document.getElementById('userPill').setAttribute('aria-expanded', 'false');
-});
-
-document.addEventListener('click', function(e) {
-    const menu = document.getElementById('userMenu');
-    const pill = document.getElementById('userPill');
-    if (menu && pill && !menu.contains(e.target) && !pill.contains(e.target)) {
-        menu.classList.remove('active');
-        pill.setAttribute('aria-expanded', 'false');
+  function gToggleProfile(e){
+    if(e) e.stopPropagation();
+    var dd=document.getElementById('gProfileDrop');
+    var btn=document.getElementById('gUserBtn');
+    var open=dd.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('#gProfileDrop') && !e.target.closest('#gUserBtn')){
+      var dd=document.getElementById('gProfileDrop');
+      if(dd) dd.classList.remove('open');
     }
-});
+  });
 </script>

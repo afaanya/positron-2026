@@ -1,0 +1,70 @@
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Praise&display=swap');
+
+        :root {
+            --font-primary: 'Praise', cursive;
+            --font-secondary: 'Libre Baskerville', serif;
+            --color-accent: #F8D794;
+        }
+
+        .font-primary { font-family: var(--font-primary); }
+        .font-secondary { font-family: var(--font-secondary); }
+
+        .filosofi-atas-item,
+        .filosofi-bawah-item {
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .overlay-text {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 14px;
+            background: transparent;
+            border: 1px solid rgba(255, 215, 0, 0.6);
+            border-radius: 8px;
+            color: #f8d794;
+            font-family: var(--font-secondary);
+            font-size: 0.9rem;
+            text-align: center;
+            max-width: 300px;
+            width: auto;
+            white-space: normal;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .overlay-bawah {
+            top: calc(100% - 17px);
+        }
+
+        .overlay-atas {
+            bottom: calc(100% + 10px);
+            left: auto;
+            right: 100px;
+            transform: none;
+        }
+
+        .overlay-text.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .filosofi-atas-item .petir-glow,
+        .filosofi-bawah-item .petir-glow {
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .filosofi-atas-item:hover .petir-glow,
+        .filosofi-bawah-item:hover .petir-glow {
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
+            transform: scale(1.05);
+        }
+
+        .filosofi-atas-item.active .petir-glow,
+        .filosofi-bawah-item.active .petir-glow {
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9)) !important;
+            transform: scale(1.05) !important;
+        }

@@ -16,11 +16,11 @@
         body {
             min-height: 100vh;
             width: 100vw;
-            overflow: hidden;
+            overflow-x: hidden;
             margin: 0;
             padding: 0;
             font-family: 'Georgia', serif;
-            background: #000000 ;
+            background: #000000 url('/images/page-bg.jpg') center top / cover fixed no-repeat;
         }
 
         .bg-layer {
@@ -44,15 +44,19 @@
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<body class="min-h-screen">
+    @include('layouts.partials.header')
     <div class="bg-layer"></div>
 
-<div class="bg-white rounded-xl shadow p-8 w-full max-w-md text-center">
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit">Keluar</button>
-    </form>
-</div>
+    <div style="min-height:calc(100vh - 58px - 90px);display:flex;align-items:center;justify-content:center;">
+        <div class="bg-white rounded-xl shadow p-8 w-full max-w-md text-center">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit">Keluar</button>
+            </form>
+        </div>
+    </div>
 
+    @include('layouts.partials.footer')
 </body>
 </html>

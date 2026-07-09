@@ -10,7 +10,7 @@
         body{
             margin:0;
             min-height:100vh;
-            background-image: url('{{ asset('images/login-bg.png') }}'); 
+            background-image: url('{{ asset('images/page-bg.jpg') }}');
             background-size: cover;
             background-position: center;
             font-family:'Times New Roman', serif;
@@ -76,19 +76,10 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col m-0"
-style="background-image: url('{{ asset('images/login-bg.png') }}');
-background-sezi: cover; background-position: center;
+style="background: #0a1a10 url('{{ asset('images/page-bg.jpg') }}') center / cover fixed no-repeat;
 font-family:'Times New Roman', serif;">
 
-        <div class="navbar">
-        <span>POSITRON 2026</span>
-        <span>HOME</span>
-        <span>ABOUT</span>
-        <span>FILOSOFI</span>
-        <span>TIMELINE</span>
-        <span>GROUP</span>
-        <span>CONTACT</span>
-    </div>
+    @include('layouts.partials.header')
 
     <div class="container flex-1 flex items-center justify-center">
         <div class="grid-prodi">
@@ -123,5 +114,6 @@ font-family:'Times New Roman', serif;">
 
     </div>
 
+    @include('layouts.partials.footer')
 </body>
 </html>
