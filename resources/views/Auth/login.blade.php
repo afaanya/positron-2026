@@ -9,7 +9,9 @@
 <body>
 
     {{-- Layer 1: Background --}}
-    <div class="bg-layer"></div>
+    <div class="bg-layer">
+        <img src="/images/login-bg.png" alt="Latar belakang POSITRON">
+    </div>
 
     {{-- Border --}}
     <div class="border-layer"></div>

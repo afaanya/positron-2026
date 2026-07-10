@@ -5,7 +5,7 @@
      ============================================================ --}}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
   .gnavbar{
@@ -13,13 +13,13 @@
     background:rgba(6,15,9,.93);backdrop-filter:blur(8px);
     display:flex;align-items:center;justify-content:space-between;
     padding:0 28px;z-index:1000;border-bottom:1px solid rgba(160,120,20,.22);
-    font-family:'Inter',sans-serif;
+    font-family:'Libre Baskerville',serif;
   }
   .gnavbar .nav-logo{cursor:pointer;text-decoration:none;display:flex;align-items:center}
   .gnavbar .nav-logo img{height:30px;width:auto;display:block;mix-blend-mode:screen;filter:brightness(1.1)}
   .gnavbar .nav-links{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
   .gnavbar .nav-links a{
-    font-family:'Playfair Display',serif;font-size:.67rem;font-weight:700;
+    font-family:'Libre Baskerville',serif;font-size:.67rem;font-weight:700;
     color:#c8a030;text-decoration:none;text-transform:uppercase;letter-spacing:.13em;
     padding:6px 11px;position:relative;transition:color .2s;
   }
@@ -51,11 +51,11 @@
   }
   .gnav-dropdown.open{display:block}
   .gnav-dropdown .pd-header{padding:14px 16px 12px;border-bottom:1px solid rgba(80,50,10,.25)}
-  .gnav-dropdown .pd-name{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:800;color:#1a0e00}
+  .gnav-dropdown .pd-name{font-family:'Libre Baskerville',serif;font-size:.85rem;font-weight:700;color:#1a0e00}
   .gnav-dropdown .pd-role{font-size:.68rem;color:#3a2200;margin-top:2px;opacity:.75}
   .gnav-dropdown .pd-item{
     display:flex;align-items:center;gap:9px;padding:10px 16px;width:100%;
-    font-family:'Inter',sans-serif;font-size:.75rem;font-weight:600;
+    font-family:'Libre Baskerville',serif;font-size:.75rem;font-weight:700;
     color:#1a0e00;cursor:pointer;transition:background .15s;text-decoration:none;
     border:none;background:transparent;text-align:left;
     border-bottom:1px solid rgba(80,50,10,.15);
@@ -86,8 +86,6 @@
     <li><a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>ABOUT<span class="dot bl"></span><span class="dot br"></span></a></li>
     <li><a href="{{ route('filosofi') }}" class="{{ request()->routeIs('filosofi') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>FILOSOFI<span class="dot bl"></span><span class="dot br"></span></a></li>
     <li><a href="{{ route('timeline') }}" class="{{ request()->routeIs('timeline') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>TIMELINE<span class="dot bl"></span><span class="dot br"></span></a></li>
-    <li><a href="{{ route('rangkaian') }}" class="{{ request()->routeIs('rangkaian') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>GROUP<span class="dot bl"></span><span class="dot br"></span></a></li>
-    <li><a href="{{ route('home') }}"><span class="dot tl"></span><span class="dot tr"></span>CONTACT<span class="dot bl"></span><span class="dot br"></span></a></li>
   </ul>
   <div class="nav-right">
     <div class="nav-user-wrap">
