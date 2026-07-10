@@ -58,6 +58,7 @@ class MentorController extends Controller
                 'nim'     => (string) $m->nim,
                 'jurusan' => ($m->program_studi ?: '—') . '/' . $letter,
                 'status'  => $status,
+                'no_wa'   => $m->no_wa,
             ];
             if ($saved) {
                 $assessments[$id] = $saved;

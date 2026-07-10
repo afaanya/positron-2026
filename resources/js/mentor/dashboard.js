@@ -97,11 +97,33 @@ export function setPill(k){
 export function lihat(id){
   const s=S.students.find(x=>x.id===id);
   if(!s)return;
-  const a=S.assessments[id];
-  let totalAll=0;
-  if(a) Object.values(a).forEach(sec=>totalAll+=Object.values(sec).reduce((x,y)=>x+y,0));
-  const [,bl]=BADGE_MAP[s.status]||BADGE_MAP.belum;
-  showToast(`${s.nama} · ${s.nim} · Status: ${bl} · Total Poin: ${a?totalAll:'–'}`,'');
+  const modal = document.getElementById('mentorBiodata');
+
+    modal.style.display = 'flex';
+
+    document.getElementById('bioNama').textContent = s.nama;
+    document.getElementById('bioNim').textContent = s.nim;
+
+    const wa = document.getElementById('bioWa');
+
+    if(s.no_wa){
+      wa.href = 'https://wa.me/62' + s.no_wa.replace(/^0/,'');
+
+        wa.textContent = "Chat WhatsApp";
+
+    }else{
+
+        wa.removeAttribute('href');
+
+        wa.textContent = "Belum ada nomor WA";
+    }
+
+}
+
+export function tutupBiodata(){
+
+    document.getElementById('mentorBiodata').style.display='none';
+
 }
 
 export function toggleEditDd(e,id){

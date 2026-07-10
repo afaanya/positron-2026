@@ -340,3 +340,85 @@ table.atbl td.max-hint{font-size:.68rem;color:var(--txt-mid);opacity:.6;padding-
   .sidebar-inner{width:100%;flex-direction:row;flex-wrap:wrap;padding-right:0;gap:8px}
   .sb-card{width:calc(50% - 4px);min-height:70px}
 }
+.bio-modal{
+    position:fixed;
+    inset:0;
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(6px);
+
+    z-index:9999;
+}
+
+.bio-card{
+
+    width:430px;
+    max-width:90%;
+
+    background:#d8b44b;
+    border-radius:20px;
+
+    padding:30px;
+
+    position:relative;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+
+.bio-card h2{
+
+    text-align:center;
+    margin-bottom:25px;
+
+    color:#2b1703;
+}
+
+.bio-close{
+
+    position:absolute;
+
+    right:18px;
+    top:14px;
+
+    border:none;
+    background:none;
+
+    font-size:24px;
+    cursor:pointer;
+}
+
+.bio-table{
+
+    width:100%;
+    border-collapse:collapse;
+
+    margin-bottom:25px;
+}
+
+.bio-table td{
+
+    padding:14px 0;
+    border-bottom:1px solid rgba(0,0,0,.15);
+}
+
+.bio-table td:first-child{
+
+    width:110px;
+    font-weight:bold;
+}
+
+.bio-table a{
+
+    color:#009933;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.bio-table a:hover{
+
+    text-decoration:underline;
+}

@@ -19,6 +19,40 @@
     <div class="toast-box" id="toastBox" aria-live="polite"></div>
 
     @include('mentor.partials.profile-modal')
+    <div id="mentorBiodata" class="bio-modal">
+        <div class="bio-card">
+
+            <button class="bio-close" onclick="tutupBiodata()">
+                ✕
+            </button>
+
+            <h2>Biodata Mahasiswa</h2>
+
+            <table class="bio-table">
+                <tr>
+                    <td>Nama</td>
+                    <td id="bioNama"></td>
+                </tr>
+
+                <tr>
+                    <td>NIM</td>
+                    <td id="bioNim"></td>
+                </tr>
+
+                <tr>
+                    <td>No WA</td>
+                    <td>
+                        <a id="bioWa" target="_blank"></a>
+                    </td>
+                </tr>
+            </table>
+
+            <button class="btn-brn" onclick="tutupBiodata()">
+                Tutup
+            </button>
+
+        </div>
+    </div>
 
     <div class="page-wrap">
         <div class="page-body">
