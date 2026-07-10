@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sertifikat Mahasiswa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +16,7 @@
 
         body {
             min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Libre Baskerville', serif;
             background: url('{{ asset('images/page-bg.jpg') }}') center/cover no-repeat;
             color: #f8eed0;
         }
@@ -53,7 +56,7 @@
         .title {
             font-size: clamp(22px, 3.2vw, 36px);
             line-height: 1.4;
-            font-weight: 800;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             color: #fff3c5;

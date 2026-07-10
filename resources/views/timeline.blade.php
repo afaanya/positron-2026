@@ -445,8 +445,14 @@ requestAnimationFrame(updateClock);
         const isEventDate = eventDates.some(event => event.day === day && event.month === month && event.year === year);
         const textColor = isSunday ? '#ff4444' : (isToday ? '#fff' : '#c8a96e');
         const fontWeight = isToday || isSunday ? 'bold' : 'normal';
-       const borderStyle = isEventDate ? 'border:2px solid rgba(248, 215, 148, 0.3); border-radius:50%; padding:2px; display:inline-block; min-width:13px; text-align:center;' : '';
-        html += `<td style="padding:0 4px; height:12px; width:13px; color:${textColor}; font-weight:${fontWeight}; ${borderStyle}">${day}</td>`;
+
+        // Lingkaran event date dipindah ke <span> di DALAM <td>,
+        // supaya <td> tetap murni table-cell dan tidak merusak struktur baris/kolom tabel.
+        const dayContent = isEventDate
+            ? `<span style="display:inline-block; border:2px solid rgba(248,215,148,0.3); border-radius:50%; padding:2px; min-width:13px; text-align:center;">${day}</span>`
+            : `${day}`;
+
+        html += `<td style="padding:0 4px; height:12px; width:13px; color:${textColor}; font-weight:${fontWeight}; text-align:center;">${dayContent}</td>`;
         day++;
     }
     html += '</tr>';
@@ -460,10 +466,18 @@ function updateCountdown() {
     const currentMonth = currentCalendarDate.getMonth();
 
     const events = [
-        { name: 'FORUM MABA 2026', day: 19, month: 7, year: 2026 },
-        { name: 'LDK 2026', day: 11, month: 9, year: 2026 },
-        { name: 'IOH 2026', day: 24, month: 9, year: 2026 },
-        { name: 'NAKO 2026', day: 20, month: 10, year: 2026 }
+        { name: 'FORUM MABA 2026', day: 19, month: 7, year: 2026,
+          link: 'https://link-manual-book-forum-maba.com',
+          docLink: 'https://link-dokumentasi-forum-maba.com' },
+        { name: 'LDK 2026', day: 11, month: 9, year: 2026,
+          link: 'https://link-manual-book-ldk.com',
+          docLink: 'https://link-dokumentasi-ldk.com' },
+        { name: 'IOH 2026', day: 24, month: 9, year: 2026,
+          link: 'https://link-manual-book-ioh.com',
+          docLink: 'https://link-dokumentasi-ioh.com' },
+        { name: 'NAKO 2026', day: 20, month: 10, year: 2026,
+          link: 'https://link-manual-book-nako.com',
+          docLink: 'https://link-dokumentasi-nako.com' }
     ];
 
     const monthEvents = events.filter(event => event.year === currentYear && event.month === currentMonth);
@@ -479,8 +493,20 @@ function updateCountdown() {
         const diff = targetDate - now;
         const isToday = now.getDate() === event.day && now.getMonth() === event.month && now.getFullYear() === event.year;
 
+        const linkCaption = event.link
+            ? `<div onclick="window.open('${event.link}', '_blank')" style="margin-top:4px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat manual book</div>`
+            : '';
+
+        const docCaption = event.docLink
+            ? `<div onclick="window.open('${event.docLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat dokumentasi</div>`
+            : '';
+
         if (diff < 0 || isToday) {
-            return `<div style="margin-bottom:10px;"><strong style="font-size:18px;">${event.name} sedang berlangsung 🎉</strong></div>`;
+            return `<div style="margin-bottom:10px;">
+                        <strong style="font-size:18px;">${event.name} sedang berlangsung 🎉</strong>
+                        ${linkCaption}
+                        ${docCaption}
+                    </div>`;
         }
 
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -491,6 +517,8 @@ function updateCountdown() {
             <div style="margin-bottom:10px;">
                 <span style="font-size:16px;">${days} hari | ${hours} jam | ${minutes} menit</span><br>
                 <strong style="font-size:18px;">${event.name}</strong>
+                ${linkCaption}
+                ${docCaption}
             </div>`;
     };
 
