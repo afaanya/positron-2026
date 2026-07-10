@@ -17,7 +17,7 @@
           <p>Departemen Teknik Elektro dan Informatika di Universitas Negeri Malang menggabungkan ilmu teknik elektro dan informatika dalam pendekatan komprehensif. Kurikulum berfokus pada pemecahan masalah, pengembangan kreatif, dan penerapan teknologi modern. Dosen berkualitas, fasilitas laboratorium lengkap, serta program pengabdian masyarakat terintegrasi membuat departemen ini ideal bagi pendidikan teknik elektro dan informatika. Lulusan siap berkompetisi di dunia profesional yang terus berkembang.</p>`
       },
       {
-        title: 'VISI',
+        title: 'HIMPUNAN MAHASISWA DEPARTEMEN TEKNIK ELEKTRO DAN INFORMATIKA',
         num: 'III',
         html: `
           <p class="quote-style">
@@ -26,20 +26,28 @@
         `
       },
       {
-        title: 'MISI',
+        title: 'VISI',
         num: 'IV',
         html: `
+          <p class="quote-style">
+            "Menjadi Himpunan Mahasiswa Departemen Teknik Elketro dan Informatika yang profesional dan kolaboratif dalam mendukung pengembangan potensi serta daya saing mahasiswa."
+          </p>
+        `
+      },
+      {
+        title: 'MISI',
+        num: 'V',
+        html: `
           <ol class="misi-list">
-            <li>Menyelenggarakan pendidikan dan pembelajaran yang berkualitas tinggi untuk mengembangkan potensi dan kepribadian mahasiswa yang unggul secara nasional dan regional.</li>
-            <li>Menyelenggarakan penelitian untuk memajukan ilmu pengetahuan dan teknologi elektro dan informatika, meningkatkan kesejahteraan masyarakat, dan mendapatkan pengakuan nasional dan internasional.</li>
-            <li>Menyelenggarakan pengabdian kepada masyarakat sebagai pengamalan dan pembudayaan ilmu pengetahuan dan teknologi khususnya pada bidang elektro dan informatika untuk memajukan kesejahteraan masyarakat dan mencerdaskan kehidupan bangsa. </li>
-            <li>Menyelenggarakan tata pamong departemen yang tangguh, akuntabel, dan transparan dan memperkuat kemitraan dalam rangka meningkatkan kualitas berkelanjutan. </li>
+            <li>Meningkatkan kualitas tata kelola organisai yang solid, komunikasi, dan adaptif melalui pembinaan internal yang konsisten.</li>
+            <li>Menyelenggarakan program yang relevan dengan kebutuhan dan perkembangan mahasiswa untuk mendukung penguatan potensi akademik, sosial, dan keterampila mahasiswa.</li>
+            <li>Mengembangkan kolaborasi dan kemitraan strategis dengan pihak eksternal guna meningkatkan kualitas dan daya saing organisasi serta mahasiswa.</li>
           </ol>
         `
       },
       {
         title: 'PRODI KEPENDIDIKAN (S.Pd)',
-        num: 'V',
+        num: 'VI',
         html: `
           <p><b>S1 Pendidikan Teknik Elektro (PTE)</b></p>
           <p>Fokus: Mempelajari ilmu ketenagalistrikan, sistem energi, otomasi industri, sekaligus dibekali ilmu pedagogi (cara mengajar).</p>
@@ -49,7 +57,7 @@
       },
       {
         title: 'PRODI TEKNIK MURNI (S.T)', 
-        num: 'VI',
+        num: 'VII',
         html: `
           <p><b>S1 Teknik Elektro (TE)</b></p>
           <p>Fokus: Mempelajari sistem tenaga listrik (pembangkitan, transmisi, distribusi), elektronika, sistem kendali (control system), robotika, dan sistem tertanam (embedded system).</p>
@@ -59,7 +67,7 @@
       },
       {
         title: 'PROGRAM PASCASARJANA',
-        num: 'VII',
+        num: 'VIII',
         html: `
           <ol class="pascasarjana-list">
             <li>S2 Teknik Elektro</li>

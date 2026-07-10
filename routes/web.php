@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +69,12 @@ Route::middleware('mahasiswa.auth')->group(function () {
 
         return view('biodata-mahasiswa', compact('biodata'));
     })->name('biodata');
+
+    Route::get('/biodata/edit', [MahasiswaController::class, 'edit'])
+        ->name('biodata.edit');
+
+    Route::post('/biodata/update', [MahasiswaController::class, 'update'])
+        ->name('biodata.update');
 
     Route::get('/profil-mahasiswa', function () {
         return view('profil-mahasiswa');
