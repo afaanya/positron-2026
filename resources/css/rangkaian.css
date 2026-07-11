@@ -2,7 +2,7 @@
     .rangkaian-section {
         width: 100%;
         min-height: 100vh;
-        background-image: url('/images/bg card.png');
+        background-image: url('/images/login-bg.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -17,7 +17,7 @@
     .logo-top {
         width: 700px;
         position: absolute;
-        top: 100px; 
+        top: 100px;
         filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
         animation: floatAnimation 4s ease-in-out infinite;
     }
@@ -52,7 +52,8 @@
         transform: rotateY(180deg);
     }
 
-    .flip-card-front, .flip-card-back {
+    .flip-card-front,
+    .flip-card-back {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -79,12 +80,29 @@
         z-index: 2;
     }
 
-    .text-normal { font-size: 11px; }
-    .text-long { font-size: 8px; }
+    .text-normal {
+        font-size: 11px;
+    }
 
-    .card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    
+    .text-long {
+        font-size: 8px;
+    }
+
+    .card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
     @keyframes floatAnimation {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
     }
