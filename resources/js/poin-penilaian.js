@@ -114,8 +114,8 @@
 
     let currentCategoryKey = null;
     const revealedTasks = {
-        'penugasan': [false, false, false, false, false, false, false, false, false],
-        'pelanggaran': [false, false, false, false, false, false, false, false, false]
+        'penugasan': [true, true, true, true, true, true, true, true, true],
+        'pelanggaran': [true, true, true, true, true, true, true, true, true]
     };
 
     function parsePoints(value) {
@@ -153,44 +153,28 @@
     function renderTasks(categoryKey) {
         const category = assignmentData[categoryKey];
         const tasks = category.tasks;
-        const status = revealedTasks[categoryKey];
         taskList.innerHTML = tasks.map((task, index) => {
-            const revealed = status[index];
             return `
-                <div class="task-card ${revealed ? 'flipped' : ''}" data-index="${index}">
-                    <div class="task-card-inner">
-                        <div class="task-card-front">
-                            <div class="task-number">${index + 1}</div>
-                            <h3 class="task-title">${task.title}</h3>
-                            <p class="task-desc">${task.details}</p>
-                            <div class="task-meta">
-                                <button class="view-score" data-index="${index}">${revealed ? 'Tutup' : 'Lihat Skor'}</button>
-                            </div>
-                        </div>
-                        <div class="task-card-back">
-                            <div class="task-number">${index + 1}</div>
-                            <h3 class="task-title">Skor Tugas</h3>
-                            <p class="task-desc">Point yang diperoleh setelah dikerjakan.</p>
-                            <div style="display:flex;align-items:center;gap:18px;justify-content:flex-end;flex-wrap:wrap">
-                                <div style="text-align:right">
-                                    <div class="score-value">${parsePoints(task.points)}</div>
-                                    <div style="font-size:0.85rem;color:rgba(255,255,255,0.7)">poin</div>
-                                </div>
-                            </div>
-                            <div class="task-meta" style="margin-top:12px;">
-                                <button class="view-score" data-index="${index}">Tutup</button>
-                            </div>
+                <div class="task-card" data-index="${index}">
+                    <div class="task-card-front" style="min-height: auto; padding: 24px 28px 24px;">
+                        <div class="task-number">${index + 1}</div>
+                        <h3 class="task-title">${task.title}</h3>
+                        <p class="task-desc">${task.details}</p>
+                        <div class="task-meta" style="margin-left: 56px; margin-top: 12px; display: flex; align-items: baseline; gap: 6px;">
+                            <span class="score-value" style="font-size: 1.8rem; line-height: 1;">${parsePoints(task.points)}</span>
+                            <span style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.75);">poin</span>
                         </div>
                     </div>
                 </div>
             `;
         }).join('');
 
-        const revealedCount = status.filter(Boolean).length;
-        if (revealedCount === tasks.length) {
-            boardStatus.textContent = `Semua tugas ${category.title} sudah bisa dilihat skor poinnya.`;
+        if (categoryKey === 'penugasan') {
+            boardStatus.textContent = 'Daftar penugasan mahasiswa baru beserta poin yang diperoleh.';
+        } else if (categoryKey === 'pelanggaran') {
+            boardStatus.textContent = 'Daftar pelanggaran mahasiswa baru beserta pengurangan poin.';
         } else {
-            boardStatus.textContent = `Klik Lihat Skor untuk melihat poin setiap tugas setelah Anda mengerjakannya.`;
+            boardStatus.textContent = `Daftar skor untuk kategori ${category.title}.`;
         }
     }
 

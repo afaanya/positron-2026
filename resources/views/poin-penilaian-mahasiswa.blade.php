@@ -11,9 +11,8 @@
     <aside class="sidebar">
         <button class="sidebar-toggle" id="sidebarToggle" aria-label="Buka kategori">›</button>
         <div class="category-list" id="categoryList">
-            <button class="option-button" data-key="penugasan">PENUGASAN</button>
-            <button class="option-button" data-key="pelanggaran">PELANGGARAN</button>
-            <button class="option-button" data-key="total-poin">TOTAL POIN</button>
+            <button class="option-button" data-key="penugasan">LIHAT POIN</button>
+            <button class="option-button" data-key="pelanggaran">LIHAT PELANGGARAN</button>
         </div>
     </aside>
 
