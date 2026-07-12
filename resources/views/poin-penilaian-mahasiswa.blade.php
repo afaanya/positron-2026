@@ -52,5 +52,10 @@
     </main>
 </div>
 
+<script>
+    window.nilaiMahasiswa = @json($nilai);
+    window.totalPoin = {{ $total }};
+</script>
+
 @vite('resources/js/poin-penilaian.js')
 @endsection

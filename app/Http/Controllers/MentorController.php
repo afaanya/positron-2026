@@ -29,21 +29,21 @@ class MentorController extends Controller
         $rows = $query->get();
 
         // Saved scores (table may not exist yet — degrade gracefully).
-        $savedByNim = [];
+        $savedByMahasiswa = [];
         if (Schema::hasTable('penilaian') && $rows->count()) {
             $saved = DB::table('penilaian')
-                ->whereIn('nim', $rows->pluck('nim')->all())
+                ->whereIn('mahasiswa_id', $rows->pluck('id')->all())
                 ->get();
+
             foreach ($saved as $p) {
-                $savedByNim[$p->nim][$p->section] = json_decode($p->scores, true) ?: [];
+                $savedByMahasiswa[$p->mahasiswa_id][$p->kegiatan] = $p->poin;
             }
         }
 
         $students    = [];
         $assessments = [];
-        $id = 1;
         foreach ($rows as $m) {
-            $saved = $savedByNim[$m->nim] ?? [];
+            $saved = $savedByMahasiswa[$m->id] ?? [];
             $done  = count($saved);
             $status = $done === 0
                 ? 'belum'
@@ -53,7 +53,7 @@ class MentorController extends Controller
             $letter = str_contains($code, '-') ? substr(strrchr($code, '-'), 1) : $code;
 
             $students[] = [
-                'id'      => $id,
+                'id'      => $m->id,
                 'nama'    => $m->nama,
                 'nim'     => (string) $m->nim,
                 'jurusan' => ($m->program_studi ?: '—') . '/' . $letter,
@@ -61,9 +61,8 @@ class MentorController extends Controller
                 'no_wa'   => $m->no_wa,
             ];
             if ($saved) {
-                $assessments[$id] = $saved;
+                $assessments[$m->id] = $saved;
             }
-            $id++;
         }
 
         $mentorProfile = [
@@ -99,10 +98,9 @@ class MentorController extends Controller
     public function savePenilaian(Request $request)
     {
         $data = $request->validate([
-            'nim'     => 'required|string',
-            'section' => 'required|string',
-            'scores'  => 'required|array',
-            'total'   => 'required|integer|min:0',
+            'mahasiswa_id'  => 'required|integer',
+            'kegiatan'      => 'required|string',
+            'poin'          => 'required|integer|min:0',
         ]);
 
         if (! Schema::hasTable('penilaian')) {
@@ -113,13 +111,14 @@ class MentorController extends Controller
         }
 
         DB::table('penilaian')->updateOrInsert(
-            ['nim' => $data['nim'], 'section' => $data['section']],
             [
-                'scores'     => json_encode($data['scores']),
-                'total'      => $data['total'],
-                'mentor'     => session('mentor_user'),
-                'updated_at' => now(),
-                'created_at' => now(),
+                'mahasiswa_id'  => $data['mahasiswa_id'],
+                'kegiatan'      => $data['kegiatan'],
+            ],
+            [
+                'poin'          => $data['poin'],
+                'created_at'    => now(),
+                'updated_at'    => now(),
             ]
         );
 

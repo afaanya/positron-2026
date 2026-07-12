@@ -147,7 +147,7 @@ export function simpan(){
     method:'POST',
     headers:{'Content-Type':'application/json','X-CSRF-TOKEN':window.__CSRF__,'Accept':'application/json'},
     credentials:'same-origin',
-    body:JSON.stringify({nim:stu.nim,section:key,scores:secScores,total:Math.round(secTotal)})
+    body:JSON.stringify({mahasiswa_id:stu.id,kegiatan:key,poin:Math.round(secTotal)})
   }).then(r=>r.json().catch(()=>({}))).then(res=>{
     if(res&&res.ok){
       const lbl=SECTIONS[key]?SECTIONS[key].label:key;
