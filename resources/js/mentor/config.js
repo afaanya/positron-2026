@@ -46,6 +46,61 @@ export const SECTIONS = {
     ],
     noteMax: 100,
   },
+  tet: {
+      label: 'PESERTA TET',
+      aspects: [
+        { name:'Kehadiran', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Kedisiplinan', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Keaktifan', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Kerjasama', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Sikap', max:20, guide:'Maksimum 20 poin.' },
+      ],
+      noteMax:100,
+  },
+  arak: {
+      label: 'ARAK-ARAKAN',
+      aspects: [
+        { name:'Kehadiran', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Kreativitas', max:25, guide:'Maksimum 25 poin.' },
+        { name:'Kekompakan', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Semangat', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Atribut', max:15, guide:'Maksimum 15 poin.' },
+      ],
+      noteMax:100,
+  },
+  adminig: {
+      label: 'ADMIN IG OFF',
+      aspects: [
+        { name:'Konten', max:30, guide:'Maksimum 30 poin.' },
+        { name:'Kreativitas', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Konsistensi', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Keaktifan', max:15, guide:'Maksimum 15 poin.' },
+        { name:'Ketepatan', max:15, guide:'Maksimum 15 poin.' },
+      ],
+      noteMax:100,
+  },
+  dewan: {
+      label:'DEWAN KOMUNAL',
+      aspects:[
+        { name:'Kehadiran', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Partisipasi', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Komunikasi', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Kerjasama', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Etika', max:20, guide:'Maksimum 20 poin.' },
+      ],
+      noteMax:100,
+  },
+  staff: {
+      label:'STAFF MUDA',
+      aspects:[
+        { name:'Kehadiran', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Inisiatif', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Tanggung Jawab', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Kerjasama', max:20, guide:'Maksimum 20 poin.' },
+        { name:'Etika', max:20, guide:'Maksimum 20 poin.' },
+      ],
+      noteMax:100,
+  },
 };
 
 export const BADGE_MAP = {
