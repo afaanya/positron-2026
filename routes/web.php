@@ -92,11 +92,6 @@ Route::middleware('mahasiswa.auth')->group(function () {
         return view('sertifikat-mahasiswa');
     })->name('sertifikat');
 
-     Route::get('/ubah-password', [MahasiswaController::class, 'editPassword'])
-        ->name('password.edit');
-
-    Route::post('/ubah-password', [MahasiswaController::class, 'updatePassword'])
-        ->name('password.update');
 });
 
 // ================= HALAMAN MENTOR =================

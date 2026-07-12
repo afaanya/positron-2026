@@ -16,47 +16,40 @@ class MahasiswaController extends Controller
         return view('biodata-edit', compact('biodata'));
     }
     public function update(Request $request)
-        {
-            $request->validate([
-                'no_wa' => 'required|max:20',
-            ]);
+    {
+        $request->validate([
+            'no_wa' => 'required|max:20',
+        ]);
 
-            DB::table('mahasiswa')
-                ->where('id', session('mahasiswa_id'))
-                ->update([
-                    'no_wa' => $request->no_wa,
-                ]);
+        $data = [
+            'no_wa' => $request->no_wa,
+        ];
 
-            return redirect()->route('biodata')
-                ->with('success', 'Nomor WhatsApp berhasil diperbarui.');
-        }
-
-        public function editPassword()
-        {
-            return view('mahasiswa.edit-password');
-        }
-
-        public function updatePassword(Request $request)
-        {
+        if (
+            $request->filled('password_lama') ||
+            $request->filled('password_baru') ||
+            $request->filled('password_baru_confirmation')
+        ) {
             $request->validate([
                 'password_lama' => 'required',
                 'password_baru' => 'required|min:8|confirmed',
             ]);
-
             $mahasiswa = DB::table('mahasiswa')
                 ->where('id', session('mahasiswa_id'))
                 ->first();
-
-            if ($mahasiswa->password !== $request->password_lama) {
-                return back()->with('error', 'Password lama tidak sesuai.');
-            }
-
-            DB::table('mahasiswa')
-                ->where('id', session('mahasiswa_id'))
-                ->update([
-                    'password' => $request->password_baru,
+            if ($mahasiswa->password != $request->password_lama) {
+                return back()->withErrors([
+                    'password_lama' => 'Password lama tidak sesuai.'
                 ]);
-
-            return back()->with('success', 'Password berhasil diperbarui.');
+            }
+            $data['password'] = $request->password_baru;
         }
+
+        DB::table('mahasiswa')
+            ->where('id', session('mahasiswa_id'))
+            ->update($data);
+
+        return redirect()->route('biodata')
+            ->with('success', 'Biodata berhasil diperbarui.');
     }
+}
