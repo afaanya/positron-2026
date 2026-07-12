@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Filosofi - POSITRON 2026</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    @vite('resources/css/filosofi.css')
-</head>
-<body class="min-h-screen antialiased text-white" style="background:#0a1a10 url('{{ asset('images/page-bg.jpg') }}') center top / cover fixed no-repeat;">
-    @include('layouts.partials.header')
+@extends('layouts.app')
+
+@section('title', 'Filosofi - POSITRON 2026')
+
+@section('styles')
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script src="https://cdn.tailwindcss.com"></script>
+  @vite('resources/css/filosofi.css')
+@endsection
+
+@section('content')
+<div class="min-h-screen antialiased text-white" style="background:#0a1a10 url('{{ asset('images/page-bg.jpg') }}') center top / cover fixed no-repeat;">
 
      <div class="relative w-full max-w-[1230px] mx-auto">
 
@@ -46,8 +47,7 @@
         {{-- konten filosofi nanti masuk sini --}}
     </main>
 
+</div>
 
-    @include('layouts.partials.footer')
-    @vite('resources/js/filosofi.js')
-</body>
-</html>
+@vite('resources/js/filosofi.js')
+@endsection

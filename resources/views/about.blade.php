@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
+@extends('layouts.app')
+
+@section('title', 'About - POSITRON 2026')
+
+@section('styles')
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>POSITRON · Jurnal Klasik</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   @vite('resources/css/about.css')
-</head>
-<body>
-    @include('layouts.partials.header')
- 
+@endsection
+
+@section('content')
 <div class="desk">
   <div class="decor decor-books"></div>
   <div class="decor decor-candle"></div>
@@ -52,10 +51,6 @@
     <button id="nextBtn" onclick="turnToNextPage()">SELANJUTNYA ▶</button>
   </div>
 </div>
- 
-
-@include('layouts.partials.footer')
 
 @vite('resources/js/about.js')
-</body>
-</html>
+@endsection
