@@ -56,3 +56,6 @@
         </div>
     </div>
 </div>
+
+
+<!-- <img src="{{ asset('images/login-bg.png') }}"> -->

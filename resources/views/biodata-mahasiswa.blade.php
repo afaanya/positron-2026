@@ -74,6 +74,9 @@
                     font-weight:bold;">
                 Edit Biodata
             </a>
+            <a href="{{ route('password.edit') }}" class="btn">
+                Ubah Password
+            </a>
         </div>
     </div>
 </div>

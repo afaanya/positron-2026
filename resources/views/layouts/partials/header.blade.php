@@ -9,7 +9,7 @@
 
 <style>
   .gnavbar{
-    position:sticky;top:0;height:58px;
+    position:fixed;top:0;left:0;right:0;height:58px;
     background:rgba(6,15,9,.93);backdrop-filter:blur(8px);
     display:flex;align-items:center;justify-content:space-between;
     padding:0 28px;z-index:1000;border-bottom:1px solid rgba(160,120,20,.22);

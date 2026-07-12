@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>POSITRON 2026 — Login</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/login.css'])
 </head>
 <body>

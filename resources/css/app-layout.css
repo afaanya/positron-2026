@@ -6,4 +6,4 @@ html, body {
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 18px; }
-main { position: relative; z-index: 1; }
+main { position: relative; z-index: 1; margin-top: 58px; }
