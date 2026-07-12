@@ -9,8 +9,15 @@
 
 <div class="overlay">
     <div class="card">
+        <div class="corner tl">❦</div>
+        <div class="corner tr">❦</div>
+        <div class="corner bl">❦</div>
+        <div class="corner br">❦</div>
 
         <div class="title">EDIT BIODATA</div>
+        <p class="subtitle">
+            Perbarui Nomor WhatsApp
+        </p>
 
         @if ($errors->any())
             <div style="color:red; margin-bottom:15px;">
@@ -47,6 +54,61 @@
                     ">
             </div>
 
+            <hr class="royal-divider">
+
+            <div class="section-title">
+                🛡️ Verifikasi Keamanan 
+            </div>
+
+            <div class="row">
+                <div class="label">Password Lama</div>
+
+                <input
+                    type="password"
+                    name="password_lama"
+                    placeholder="Masukkan password lama"
+                    style="
+                        width:220px;
+                        padding:8px;
+                        border:1px solid #ccc;
+                        border-radius:6px;
+                    ">
+            </div>
+
+            <div class="row">
+                <div class="label">Password Baru</div>
+
+                <input
+                    type="password"
+                    name="password_baru"
+                    placeholder="Minimal 8 karakter"
+                    style="
+                        width:220px;
+                        padding:8px;
+                        border:1px solid #ccc;
+                        border-radius:6px;
+                    ">
+            </div>
+
+            <div class="row">
+                <div class="label">Konfirmasi Password</div>
+
+                <input
+                    type="password"
+                    name="password_baru_confirmation"
+                    placeholder="Ulangi password baru"
+                    style="
+                        width:220px;
+                        padding:8px;
+                        border:1px solid #ccc;
+                        border-radius:6px;
+                    ">
+            </div>
+
+            <p class="password-note">
+                👑 Kosongkan bagian password jika tidak ingin mengubah password
+            </p>
+
             <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:30px;">
 
                 <a href="{{ route('biodata') }}"
@@ -68,7 +130,7 @@
                         border:none;
                         border-radius:8px;
                         cursor:pointer;">
-                    Simpan
+                    Simpan Perubahan
                 </button>
 
             </div>
