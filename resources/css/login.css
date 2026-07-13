@@ -21,35 +21,20 @@ body {
     background: #000000 ;
 }
 
-<<<<<<< HEAD
 /* ── Background layer ── */
 .bg-layer {
     position: fixed;
     inset: 0;
-    background-image: url('/images/page-bg.jpg');
+    background-image: url('/images/login-bg.png');
     background-size: cover;
-    background-position: center;
+    background-position: center top;
+    background-repeat: no-repeat;
     width: 100vw;
     height: 100dvh;
     opacity: 0;
     animation: fadeIn 1.0s ease forwards;
+    z-index: 0;
 }
-=======
-        /* ── Background layer ── */
-        .bg-layer {
-            position: fixed;
-            inset: 0;
-            background-image: url('/images/login-bg.png');
-            background-size: cover;
-            background-position: center top;
-            background-repeat: no-repeat;
-            width: 100vw;
-            height: 100dvh;
-            opacity: 0;
-            animation: fadeIn 1.0s ease forwards;
-            z-index: 0;
-        }
->>>>>>> c13b251e2e7f72fa672ea6ecda8d33c8403fcd8f
 
 /* ── Border ── */
 .border-layer {
@@ -67,68 +52,37 @@ body {
     z-index: 0;
 }
 
-<<<<<<< HEAD
 /* ── Amplop (kanan) ── */
 .envelope-layer {
     position: fixed;
-    right: -220px;
-    top: 60%;
-    width: 150%;
-    max-width: 1440px;
+    right: -10%;
+    bottom: 0;
+    width: 70%;
+    height: 80vh;
+    max-width: 900px;
+    background-image: url('/images/envelope.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right bottom;
     opacity: 0;
     animation: fadeInSlideLeft 1.4s ease 0.4s forwards;
-}
-.envelope-layer img {
-    width: 100%;
-    height: auto;
-    display: block;
+    pointer-events: none;
+    z-index: 1;
 }
 
-/* ── Logo POSITRON 2026 (kanan atas) ── */
+/* ── Logo POSITRON 2026 (kanan atas di desktop) ── */
 .logo-layer {
     position: fixed;
     top: 52px;
     right: 55px;
     opacity: 0;
     animation: fadeIn 1s ease 0.8s forwards;
+    z-index: 20;
 }
 .logo-layer img {
     height: 34px;
     width: auto;
 }
-=======
-        /* ── Amplop (kanan) ── */
-        .envelope-layer {
-            position: fixed;
-            right: -10%;
-            bottom: 0;
-            width: 70%;
-            height: 80vh;
-            max-width: 900px;
-            background-image: url('/images/envelope.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: right bottom;
-            opacity: 0;
-            animation: fadeInSlideLeft 1.4s ease 0.4s forwards;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* ── Logo POSITRON 2026 (kanan atas di desktop) ── */
-        .logo-layer {
-            position: fixed;
-            top: 52px;
-            right: 55px;
-            opacity: 0;
-            animation: fadeIn 1s ease 0.8s forwards;
-            z-index: 20;
-        }
-        .logo-layer img {
-            height: 34px;
-            width: auto;
-        }
->>>>>>> c13b251e2e7f72fa672ea6ecda8d33c8403fcd8f
 
 /* ── Panel form (kiri) ── */
 .form-panel {
@@ -274,15 +228,14 @@ body {
 .btn-login:active { transform: scale(0.98); }
 .btn-login .chevron { font-size: 18px; }
 
-<<<<<<< HEAD
 /* ── Animations ── */
 @keyframes fadeIn {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
 @keyframes fadeInSlideLeft {
-    from { opacity: 0; transform: translateY(-50%) translateX(40px); }
-    to   { opacity: 1; transform: translateY(-50%) translateX(0); }
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 @keyframes fadeInSlideRight {
     from { opacity: 0; transform: translateX(-30px); }
@@ -293,159 +246,87 @@ body {
     RESPONSIF — MOBILE  (≤ 768px)
     ══════════════════════════════ */
 @media (max-width: 768px) {
+    /* Body jadi flex column agar form bisa tengah secara vertikal */
+    html {
+        height: 100% !important;
+        overflow: hidden !important;
+    }
+    body {
+        overflow: auto !important;
+        min-height: 100dvh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
     /* Sembunyikan gambar amplop dekoratif besar */
     .envelope-layer { display: none; }
 
-    /* Perkecil gambar border agar tidak menimpa form */
-    .border-layer { opacity: .4; }
+    /* Perkecil border agar tidak menimpa form */
+    .border-layer { opacity: .25; }
 
-    /* Logo pindah ke tengah atas */
+    /* Logo: relative di dalam form, tengah, di atas ornament */
     .logo-layer {
-        top: 18px;
-        right: 50%;
-        transform: translateX(50%);
+        position: relative;
+        top: auto;
+        right: auto;
+        left: auto;
+        transform: none;
+        text-align: center;
+        margin-bottom: 1rem;
+        animation: none;
+        opacity: 1;
+        z-index: auto;
+    }
+    .logo-layer img {
+        height: 28px;
     }
 
-    /* Panel form memenuhi lebar layar, terpusat */
+    /* Panel form: mengalir di tengah layar */
     .form-panel {
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 92%;
-        max-width: 420px;
+        position: relative;
+        left: auto;
+        top: auto;
         bottom: auto;
-        padding: 2rem 1.75rem;
+        width: 88%;
+        max-width: 360px;
+        margin: 0 auto;
+        padding: 1.6rem 1.5rem;
+        background: rgba(10, 15, 9, 0.88);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(180, 140, 40, 0.25);
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+        animation: none;
+        opacity: 1;
     }
 
     /* Input lebih pas untuk jari */
     .field input {
-        font-size: 18px;
-        padding: 13px 40px 13px 13px;
+        font-size: 16px;
+        padding: 12px 40px 12px 12px;
     }
 
     /* Ornamen di atas form lebih kecil */
     .ornament-line {
-        margin-bottom: 3rem;
+        margin-bottom: 1.5rem;
     }
 
     /* Tombol login tetap nyaman ditekan */
     .btn-login {
-        font-size: 16px;
-        padding: 13px 16px;
+        font-size: 15px;
+        padding: 12px 16px;
     }
 }
 
 /* Layar sangat sempit (≤ 390px) */
 @media (max-width: 390px) {
     .form-panel {
-        width: 96%;
-        padding: 1.5rem 1.25rem;
+        width: 92%;
+        padding: 1.4rem 1.2rem;
     }
-    .field input { font-size: 15px; }
-    .ornament-line { margin-bottom: 2rem; }
+    .field input { font-size: 14px; }
+    .ornament-line { margin-bottom: 1.2rem; }
 }
-=======
-        /* ── Animations ── */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
-        @keyframes fadeInSlideLeft {
-            from { opacity: 0; transform: translateX(40px); }
-            to   { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes fadeInSlideRight {
-            from { opacity: 0; transform: translateX(-30px); }
-            to   { opacity: 1; transform: translateX(0); }
-        }
-
-        /* ══════════════════════════════
-           RESPONSIF — MOBILE  (≤ 768px)
-           ══════════════════════════════ */
-        @media (max-width: 768px) {
-            /* Body jadi flex column agar form bisa tengah secara vertikal */
-            html {
-                height: 100% !important;
-                overflow: hidden !important;
-            }
-            body {
-                overflow: auto !important;
-                min-height: 100dvh !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-            }
-
-            /* Sembunyikan gambar amplop dekoratif besar */
-            .envelope-layer { display: none; }
-
-            /* Perkecil border agar tidak menimpa form */
-            .border-layer { opacity: .25; }
-
-            /* Logo: relative di dalam form, tengah, di atas ornament */
-            .logo-layer {
-                position: relative;
-                top: auto;
-                right: auto;
-                left: auto;
-                transform: none;
-                text-align: center;
-                margin-bottom: 1rem;
-                animation: none;
-                opacity: 1;
-                z-index: auto;
-            }
-            .logo-layer img {
-                height: 28px;
-            }
-
-            /* Panel form: mengalir di tengah layar */
-            .form-panel {
-                position: relative;
-                left: auto;
-                top: auto;
-                bottom: auto;
-                width: 88%;
-                max-width: 360px;
-                margin: 0 auto;
-                padding: 1.6rem 1.5rem;
-                background: rgba(10, 15, 9, 0.88);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-                border: 1px solid rgba(180, 140, 40, 0.25);
-                border-radius: 12px;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
-                animation: none;
-                opacity: 1;
-            }
-
-            /* Input lebih pas untuk jari */
-            .field input {
-                font-size: 16px;
-                padding: 12px 40px 12px 12px;
-            }
-
-            /* Ornamen di atas form lebih kecil */
-            .ornament-line {
-                margin-bottom: 1.5rem;
-            }
-
-            /* Tombol login tetap nyaman ditekan */
-            .btn-login {
-                font-size: 15px;
-                padding: 12px 16px;
-            }
-        }
-
-        /* Layar sangat sempit (≤ 390px) */
-        @media (max-width: 390px) {
-            .form-panel {
-                width: 92%;
-                padding: 1.4rem 1.2rem;
-            }
-            .field input { font-size: 14px; }
-            .ornament-line { margin-bottom: 1.2rem; }
-        }
->>>>>>> c13b251e2e7f72fa672ea6ecda8d33c8403fcd8f
