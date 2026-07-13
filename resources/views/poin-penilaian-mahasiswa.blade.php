@@ -25,7 +25,9 @@
             <div class="stats-row">
                 <div class="stat-card">
                     <div class="stat-title">Total Poin</div>
-                    <div class="stat-value" id="totalPoints">0</div>
+                    <div class="stat-value">
+                        <span id="totalPoints">0</span>/<span id="maxPoints">815</span>
+                    </div>
                 </div>
                 <div class="stat-card" id="progressCard">
                     <div class="stat-title">Progress</div>

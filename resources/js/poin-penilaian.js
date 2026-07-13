@@ -1,54 +1,138 @@
 const nilai = window.nilaiMahasiswa || {};   
     const assignmentData = {
-        'penugasan': {
-            title: 'Penugasan',
-            description: 'Daftar penugasan mahasiswa baru yang wajib dipenuhi.',
+        forum: {
+            title: 'Forum Maba',
             tasks: [
                 {
                     title: 'Forum Maba',
                     details: 'Ikuti forum dan berkontribusi aktif dalam diskusi.',
                     points: nilai.forum || 0,
-                },
+                }
+            ]
+        },
+        ldk: {
+            title: 'LDK',
+            tasks: [
                 {
                     title: 'LDK',
                     details: 'Hadiri dan jalankan kegiatan LDK dengan penuh tanggung jawab.',
                     points: nilai.ldk || 0,
-                },
+                }
+            ]
+        },
+        ioh: {
+            title: 'IoH',
+            tasks: [
+                {
+                    title: 'IoH',
+                    details: 'Hadiri dan ikuti kegiatan IoH dengan penuh tanggung jawab.',
+                    points: nilai.ioh || 0,
+                }
+            ]
+        },
+        nako: {
+            title: 'Nako',
+            tasks: [
                 {
                     title: 'Nako',
                     details: 'Ambil bagian dalam kegiatan Nako dan tunjukkan kontribusi nyata.',
                     points: nilai.nako || 0
+                }
+            ]
+        },
+        buku: {
+            title: 'Buku Angkatan',
+            tasks: [
+                {
+                    title: 'CV',
+                    details: '',
+                    points: nilai.cv || 0
                 },
                 {
-                    title: 'Coffee Offering',
-                    details: 'Hadiri Coffee Offering dan ikut mendukung suasana kegiatan.',
-                    points: nilai.coffee || 0,
+                    title: 'Mind Map',
+                    details: '',
+                    points: nilai.mindmap || 0
                 },
                 {
-                    title: 'Peserta TET',
-                    details: 'Jadilah peserta TET dengan partisipasi aktif dan disiplin.',
-                    points: nilai.tet || 0,
+                    title: 'Struktur Organisasi',
+                    details: '',
+                    points: nilai.struktur || 0
                 },
                 {
-                    title: 'Arak-arakan',
-                    details: 'Ikuti arak-arakan sesuai aturan dan tunjukkan semangat kebersamaan.',
-                    points: nilai.arak || 0,
+                    title: 'Dosen DTEI',
+                    details: '',
+                    points: nilai.dosen || 0
                 },
                 {
-                    title: 'Admin IG Offering',
-                    details: 'Bantu administrasi dan dokumentasi IG Offering dengan baik.',
-                    points: nilai.admin || 0,
+                    title: 'Denah',
+                    details: '',
+                    points: nilai.denah || 0
                 },
+                {
+                    title: 'TTD Offering',
+                    details: '',
+                    points: nilai.ttdoff || 0
+                },
+                {
+                    title: 'TTD Kelompok',
+                    details: '',
+                    points: nilai.ttdkel || 0
+                },
+                {
+                    title: 'TTD Pengurus HMD',
+                    details: '',
+                    points: nilai.ttdhmd || 0
+                },
+            ]
+        },
+        partisipasi: {
+            title: 'Partisipasi',
+            tasks: [
                 {
                     title: 'Dewan Komunal',
-                    details: 'Berperan aktif dalam Dewan Komunal selama kegiatan berlangsung.',
-                    points: nilai.dewan || 0,
+                    details: '',
+                    points: nilai.dewan || 0
+                },
+                {
+                    title: 'Seven Segment',
+                    details: '',
+                    points: nilai.seven || 0
+                },
+                {
+                    title: 'Coffe Offering',
+                    details: '',
+                    points: nilai.coffe || 0
+                },
+                {
+                    title: 'Techno Extro Time',
+                    details: '',
+                    points: nilai.tet || 0
                 },
                 {
                     title: 'Staff Muda',
-                    details: 'Tunjukkan kerja sama dan tanggung jawab sebagai Staff Muda.',
-                    points: nilai.staff || 0,
-                }
+                    details: '',
+                    points: nilai.staff || 0
+                },
+                {
+                    title: 'Arak-Arakan',
+                    details: '',
+                    points: nilai.arak || 0
+                },
+                {
+                    title: 'Elektro Cup',
+                    details: '',
+                    points: nilai.ecup || 0
+                },
+                {
+                    title: 'Arus',
+                    details: '',
+                    points: nilai.arus || 0
+                },
+                {
+                    title: 'Admin IG Angkatan',
+                    details: '',
+                    points: nilai.adminig || 0
+                },
             ]
         },
     };
@@ -64,8 +148,12 @@ const nilai = window.nilaiMahasiswa || {};
 
     let currentCategoryKey = null;
     const revealedTasks = {
-        'penugasan': [true, true, true, true, true, true, true, true, true],
-        'pelanggaran': [true, true, true, true, true, true, true, true, true]
+        forum: [],
+        ldk: [],
+        ioh: [],
+        nako: [],
+        buku: [],
+        partisipasi: []
     };
 
     function parsePoints(value) {
@@ -119,12 +207,32 @@ const nilai = window.nilaiMahasiswa || {};
             `;
         }).join('');
 
-        if (categoryKey === 'penugasan') {
-            boardStatus.textContent = 'Daftar penugasan mahasiswa baru beserta poin yang diperoleh.';
-        } else if (categoryKey === 'pelanggaran') {
-            boardStatus.textContent = 'Daftar pelanggaran mahasiswa baru beserta pengurangan poin.';
-        } else {
-            boardStatus.textContent = `Daftar skor untuk kategori ${category.title}.`;
+        switch (categoryKey) {
+            case 'forum':
+                boardStatus.textContent = 'Poin yang diperoleh mahasiswa pada kegiatan Forum Maba.';
+                break;
+
+            case 'ldk':
+                boardStatus.textContent = 'Poin yang diperoleh mahasiswa pada kegiatan LDK.';
+                break;
+
+            case 'ioh':
+                boardStatus.textContent = 'Poin yang diperoleh mahasiswa pada kegiatan IoH.';
+                break;
+
+            case 'nako':
+                boardStatus.textContent = 'Poin yang diperoleh mahasiswa pada kegiatan NAKO 10.0.';
+                break;
+
+            case 'buku':
+                boardStatus.textContent = 'Daftar penugasan Buku Angkatan beserta poin yang diperoleh.';
+                break;
+            case 'partisipasi':
+                boardStatus.textContent = 'Daftar kegiatan partisipasi beserta poin yang diperoleh.';
+                break;
+            default:
+                boardStatus.textContent = 'Daftar poin mahasiswa.';
+                break;   
         }
     }
 
@@ -213,7 +321,6 @@ const nilai = window.nilaiMahasiswa || {};
     totalPointsEl.textContent = window.totalPoin || 0;    progressPercentEl.textContent = '0%';
     progressFill.style.width = '0%';
     taskList.innerHTML = '';
-    document.querySelector('.option-button[data-key="penugasan"]').classList.add('active');
-    renderCategory('penugasan');
+    document.querySelector('.option-button[data-key="forum"]')?.classList.add('active');    renderCategory('forum');
     // ensure aggregated total is computed on load
     updateOverallPoints();
