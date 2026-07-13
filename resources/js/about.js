@@ -93,10 +93,14 @@
   const indicatorContainer = document.getElementById('pageIndicator');
   let dots = [];
 
-  let currentPage = 0;
-  const totalSpreads = Math.ceil(allPages.length / 2);
+  let activePageIndex = 0;
+  const totalPages = allPages.length;
+  const totalSpreads = Math.ceil(totalPages / 2);
   let isAnimating = false;
-  const DURATION = 1150;
+
+  function isMobileLayout() {
+    return window.innerWidth <= 768;
+  }
 
   function getPage(pageIndex) {
     return allPages[pageIndex] || null;
@@ -168,85 +172,167 @@
     setStatic(rightContent, rightNumber, spreadRight(spread));
   }
 
+  function renderMobilePage(index) {
+    setStatic(leftContent, leftNumber, index);
+  }
+
+  function render() {
+    if (isMobileLayout()) {
+      renderMobilePage(activePageIndex);
+    } else {
+      const currentSpread = Math.floor(activePageIndex / 2);
+      renderSpread(currentSpread);
+    }
+  }
+
   function renderPageIndicators() {
-    dots = [];
     indicatorContainer.innerHTML = '';
-    for (let i = 0; i < totalSpreads; i++) {
+    dots = [];
+    const count = isMobileLayout() ? totalPages : totalSpreads;
+    const activeIndex = isMobileLayout() ? activePageIndex : Math.floor(activePageIndex / 2);
+
+    for (let i = 0; i < count; i++) {
       const dot = document.createElement('span');
-      if (i === currentPage) dot.classList.add('active');
+      if (i === activeIndex) dot.classList.add('active');
       indicatorContainer.appendChild(dot);
       dots.push(dot);
     }
   }
 
   function updateUI() {
-    prevBtn.disabled = currentPage <= 0 || isAnimating;
-    nextBtn.disabled = currentPage >= totalSpreads - 1 || isAnimating;
-    dots.forEach(function (dot, i) { dot.classList.toggle('active', i === currentPage); });
+    if (isMobileLayout()) {
+      prevBtn.disabled = activePageIndex <= 0 || isAnimating;
+      nextBtn.disabled = activePageIndex >= totalPages - 1 || isAnimating;
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('active', i === activePageIndex);
+      });
+    } else {
+      const currentSpread = Math.floor(activePageIndex / 2);
+      prevBtn.disabled = currentSpread <= 0 || isAnimating;
+      nextBtn.disabled = currentSpread >= totalSpreads - 1 || isAnimating;
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('active', i === currentSpread);
+      });
+    }
   }
 
   function init() {
     leaf.classList.remove('flipped', 'flipping', 'anim-forward', 'anim-backward');
-    currentPage = 0;
     isAnimating = false;
-    primeLeaf(currentPage);
-    leaf.classList.remove('flipped');
-    setStatic(leftContent, leftNumber, currentPage);
-    setStatic(rightContent, rightNumber, currentPage + 1);
+
+    if (!isMobileLayout()) {
+      const currentSpread = Math.floor(activePageIndex / 2);
+      primeLeaf(currentSpread);
+      leaf.classList.remove('flipped');
+    }
+
+    render();
     renderPageIndicators();
     updateUI();
   }
 
   window.turnToNextPage = function () {
-    if (currentPage >= totalSpreads - 1 || isAnimating) return;
-    isAnimating = true;
-    updateUI();
-
-    const nextPage = currentPage + 1;
-    primeLeaf(currentPage);
-    leaf.classList.remove('flipped');
-    leaf.style.zIndex = 100;
-    leaf.classList.add('flipping', 'anim-forward');
-
-    leaf.addEventListener('animationend', function handler(e) {
-      if (e.animationName !== 'leafFlipForward') return;
-
-      leaf.classList.remove('anim-forward', 'flipping');
-      leaf.classList.add('flipped');
-      leaf.style.zIndex = 6;
-
-      currentPage = nextPage;
-      renderSpread(currentPage);
-      isAnimating = false;
+    if (isMobileLayout()) {
+      if (activePageIndex >= totalPages - 1 || isAnimating) return;
+      isAnimating = true;
       updateUI();
-    }, { once: true });
+
+      leftContent.classList.add('fade-out');
+      leftNumber.classList.add('fade-out');
+
+      setTimeout(function () {
+        activePageIndex += 1;
+        renderMobilePage(activePageIndex);
+        leftContent.classList.remove('fade-out');
+        leftNumber.classList.remove('fade-out');
+        isAnimating = false;
+        updateUI();
+      }, 200);
+    } else {
+      const currentSpread = Math.floor(activePageIndex / 2);
+      if (currentSpread >= totalSpreads - 1 || isAnimating) return;
+      isAnimating = true;
+      updateUI();
+
+      const nextSpread = currentSpread + 1;
+      primeLeaf(currentSpread);
+      leaf.classList.remove('flipped');
+      leaf.style.zIndex = 100;
+      leaf.classList.add('flipping', 'anim-forward');
+
+      leaf.addEventListener('animationend', function handler(e) {
+        if (e.animationName !== 'leafFlipForward') return;
+
+        leaf.classList.remove('anim-forward', 'flipping');
+        leaf.classList.add('flipped');
+        leaf.style.zIndex = 6;
+
+        activePageIndex = nextSpread * 2;
+        renderSpread(nextSpread);
+        isAnimating = false;
+        updateUI();
+      }, { once: true });
+    }
   };
 
   window.turnToPrevPage = function () {
-    if (currentPage <= 0 || isAnimating) return;
-
-    isAnimating = true;
-    updateUI();
-
-    const prevPage = currentPage - 1;
-    primeLeaf(prevPage);
-    leaf.classList.add('flipped');
-    leaf.style.zIndex = 100;
-    leaf.classList.add('flipping', 'anim-backward');
-
-    leaf.addEventListener('animationend', function handler(e) {
-      if (e.animationName !== 'leafFlipBackward') return;
-
-      leaf.classList.remove('anim-backward', 'flipping');
-      leaf.classList.remove('flipped');
-      leaf.style.zIndex = 10;
-
-      currentPage = prevPage;
-      renderSpread(currentPage);
-      isAnimating = false;
+    if (isMobileLayout()) {
+      if (activePageIndex <= 0 || isAnimating) return;
+      isAnimating = true;
       updateUI();
-    }, { once: true });
+
+      leftContent.classList.add('fade-out');
+      leftNumber.classList.add('fade-out');
+
+      setTimeout(function () {
+        activePageIndex -= 1;
+        renderMobilePage(activePageIndex);
+        leftContent.classList.remove('fade-out');
+        leftNumber.classList.remove('fade-out');
+        isAnimating = false;
+        updateUI();
+      }, 200);
+    } else {
+      const currentSpread = Math.floor(activePageIndex / 2);
+      if (currentSpread <= 0 || isAnimating) return;
+
+      isAnimating = true;
+      updateUI();
+
+      const prevSpread = currentSpread - 1;
+      primeLeaf(prevSpread);
+      leaf.classList.add('flipped');
+      leaf.style.zIndex = 100;
+      leaf.classList.add('flipping', 'anim-backward');
+
+      leaf.addEventListener('animationend', function handler(e) {
+        if (e.animationName !== 'leafFlipBackward') return;
+
+        leaf.classList.remove('anim-backward', 'flipping');
+        leaf.classList.remove('flipped');
+        leaf.style.zIndex = 10;
+
+        activePageIndex = prevSpread * 2;
+        renderSpread(prevSpread);
+        isAnimating = false;
+        updateUI();
+      }, { once: true });
+    }
   };
+
+  let resizeTimeout;
+  let lastIsMobile = isMobileLayout();
+
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function () {
+      const currentIsMobile = isMobileLayout();
+      if (currentIsMobile !== lastIsMobile) {
+        lastIsMobile = currentIsMobile;
+        init();
+      }
+    }, 150);
+  });
 
   let startX = 0, startY = 0, isDragging = false;
   const flipbook = document.getElementById('flipbook');
