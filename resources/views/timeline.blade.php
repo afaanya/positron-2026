@@ -206,7 +206,7 @@
     }
 
     .countdown-box{
-        width:320px;
+        width: 320px;
         min-height:170px;
         display:flex;
         justify-content:center;
@@ -219,6 +219,43 @@
         color:#F8D794;
         font-family:'Libre Baskerville', serif;
         backdrop-filter:blur(5px);
+        flex-shrink: 0;
+    }
+
+    /* ═══ Responsive timeline layout ═══ */
+    .timeline-main-wrap {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .timeline-clock-wrap {
+        width: 100%;
+        max-width: 700px;
+    }
+
+    @media (max-width: 900px) {
+        .timeline-main-wrap {
+            flex-direction: column;
+            gap: 24px;
+        }
+        .timeline-clock-wrap {
+            max-width: 100%;
+            width: 100%;
+        }
+        .countdown-box {
+            width: 100%;
+            max-width: 420px;
+        }
+    }
+
+    @media (max-width: 560px) {
+        .countdown-box {
+            width: 100%;
+        }
     }
 
     #countdownDisplay{
@@ -247,8 +284,9 @@
             </h1>
         </div>
 
-        <div style="display:flex; align-items:center; gap:40px;">
-            <div class="clock-wrapper w-[900px] relative" style="margin-left:-400px;">
+        {{-- Responsive container: kolom di mobile, baris di desktop --}}
+        <div class="timeline-main-wrap">
+            <div class="clock-wrapper relative timeline-clock-wrap">
                 
                 <img src="{{ asset('images/timeline-1.png') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
 
