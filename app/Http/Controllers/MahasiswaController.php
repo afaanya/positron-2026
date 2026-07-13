@@ -52,4 +52,25 @@ class MahasiswaController extends Controller
         return redirect()->route('biodata')
             ->with('success', 'Biodata berhasil diperbarui.');
     }
+    public function poin()
+    {
+        $penilaian = DB::table('penilaian')
+            ->where('mahasiswa_id', session('mahasiswa_id'))
+            ->get();
+
+        // Ubah menjadi array: forum => 90, ioh => 85, dst.
+        $nilai = [];
+        foreach ($penilaian as $item) {
+            $nilai[$item->kegiatan] = $item->poin;
+        }
+
+        $total = $penilaian->sum('poin');
+
+        return view('poin-penilaian-mahasiswa', [
+            'nilai' => $nilai,
+            'total' => $total,
+            'maksimal' => 815,
+            'lulus' => $total >= 575,
+        ]);
+    }
 }

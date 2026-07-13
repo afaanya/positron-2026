@@ -80,9 +80,8 @@ Route::middleware('mahasiswa.auth')->group(function () {
         return view('profil-mahasiswa');
     })->name('profil');
 
-    Route::get('/poin', function () {
-        return view('poin-penilaian-mahasiswa');
-    })->name('poin');
+    Route::get('/poin', [MahasiswaController::class, 'poin'])
+        ->name('poin');
 
     Route::get('/kartu-kendali', function () {
         return view('kartu-kendali');
@@ -91,7 +90,6 @@ Route::middleware('mahasiswa.auth')->group(function () {
     Route::get('/sertifikat', function () {
         return view('sertifikat-mahasiswa');
     })->name('sertifikat');
-
 });
 
 // ================= HALAMAN MENTOR =================

@@ -1,3 +1,4 @@
+const nilai = window.nilaiMahasiswa || {};   
     const assignmentData = {
         'penugasan': {
             title: 'Penugasan',
@@ -6,101 +7,50 @@
                 {
                     title: 'Forum Maba',
                     details: 'Ikuti forum dan berkontribusi aktif dalam diskusi.',
-                    points: '20 poin'
+                    points: nilai.forum || 0,
                 },
                 {
                     title: 'LDK',
                     details: 'Hadiri dan jalankan kegiatan LDK dengan penuh tanggung jawab.',
-                    points: '20 poin'
+                    points: nilai.ldk || 0,
                 },
                 {
                     title: 'Nako',
                     details: 'Ambil bagian dalam kegiatan Nako dan tunjukkan kontribusi nyata.',
-                    points: '20 poin'
+                    points: nilai.nako || 0
                 },
                 {
                     title: 'Coffee Offering',
                     details: 'Hadiri Coffee Offering dan ikut mendukung suasana kegiatan.',
-                    points: '15 poin'
+                    points: nilai.coffee || 0,
                 },
                 {
                     title: 'Peserta TET',
                     details: 'Jadilah peserta TET dengan partisipasi aktif dan disiplin.',
-                    points: '15 poin'
+                    points: nilai.tet || 0,
                 },
                 {
                     title: 'Arak-arakan',
                     details: 'Ikuti arak-arakan sesuai aturan dan tunjukkan semangat kebersamaan.',
-                    points: '20 poin'
+                    points: nilai.arak || 0,
                 },
                 {
                     title: 'Admin IG Offering',
                     details: 'Bantu administrasi dan dokumentasi IG Offering dengan baik.',
-                    points: '15 poin'
+                    points: nilai.admin || 0,
                 },
                 {
                     title: 'Dewan Komunal',
                     details: 'Berperan aktif dalam Dewan Komunal selama kegiatan berlangsung.',
-                    points: '18 poin'
+                    points: nilai.dewan || 0,
                 },
                 {
                     title: 'Staff Muda',
                     details: 'Tunjukkan kerja sama dan tanggung jawab sebagai Staff Muda.',
-                    points: '18 poin'
+                    points: nilai.staff || 0,
                 }
             ]
         },
-        'pelanggaran': {
-            title: 'Pelanggaran',
-            description: 'Pelanggaran yang dilakukan akan dikurangi dari total poin.',
-            tasks: [
-                {
-                    title: 'Tidak hadir pada Forum Maba',
-                    details: 'Pelanggaran karena tidak hadir atau tidak mengikuti forum.',
-                    points: '-10 poin'
-                },
-                {
-                    title: 'Tidak hadir LDK',
-                    details: 'Pelanggaran karena tidak mengikuti kegiatan LDK.',
-                    points: '-12 poin'
-                },
-                {
-                    title: 'Tidak hadir Nako',
-                    details: 'Pelanggaran karena tidak mengikuti kegiatan Nako.',
-                    points: '-10 poin'
-                },
-                {
-                    title: 'Tidak hadir Coffee Offering',
-                    details: 'Pelanggaran karena tidak mengikuti Coffee Offering.',
-                    points: '-8 poin'
-                },
-                {
-                    title: 'Tidak hadir TET',
-                    details: 'Pelanggaran karena tidak mengikuti kegiatan TET.',
-                    points: '-10 poin'
-                },
-                {
-                    title: 'Tidak mengikuti Arak-arakan',
-                    details: 'Pelanggaran karena tidak mengikuti arak-arakan.',
-                    points: '-12 poin'
-                },
-                {
-                    title: 'Tidak menjalankan tugas Admin IG Offering',
-                    details: 'Pelanggaran karena tidak menjalankan tanggung jawab administrasi.',
-                    points: '-8 poin'
-                },
-                {
-                    title: 'Tidak hadir Dewan Komunal',
-                    details: 'Pelanggaran karena tidak menghadiri Dewan Komunal.',
-                    points: '-10 poin'
-                },
-                {
-                    title: 'Tidak menjalankan tugas Staff Muda',
-                    details: 'Pelanggaran karena tidak menjalankan tanggung jawab staff muda.',
-                    points: '-10 poin'
-                }
-            ]
-        }
     };
 
     const boardStatus = document.getElementById('boardStatus');
@@ -260,8 +210,7 @@
     });
 
     boardStatus.textContent = 'Pilih kategori di sisi kiri untuk mulai mengumpulkan poin.';
-    totalPointsEl.textContent = '0';
-    progressPercentEl.textContent = '0%';
+    totalPointsEl.textContent = window.totalPoin || 0;    progressPercentEl.textContent = '0%';
     progressFill.style.width = '0%';
     taskList.innerHTML = '';
     document.querySelector('.option-button[data-key="penugasan"]').classList.add('active');
