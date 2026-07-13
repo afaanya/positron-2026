@@ -236,3 +236,60 @@
             from { opacity: 0; transform: translateX(-30px); }
             to   { opacity: 1; transform: translateX(0); }
         }
+
+        /* ══════════════════════════════
+           RESPONSIF — MOBILE  (≤ 768px)
+           ══════════════════════════════ */
+        @media (max-width: 768px) {
+            /* Sembunyikan gambar amplop dekoratif besar */
+            .envelope-layer { display: none; }
+
+            /* Perkecil gambar border agar tidak menimpa form */
+            .border-layer { opacity: .4; }
+
+            /* Logo pindah ke tengah atas */
+            .logo-layer {
+                top: 18px;
+                right: 50%;
+                transform: translateX(50%);
+            }
+
+            /* Panel form memenuhi lebar layar, terpusat */
+            .form-panel {
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 92%;
+                max-width: 420px;
+                bottom: auto;
+                padding: 2rem 1.75rem;
+            }
+
+            /* Input lebih pas untuk jari */
+            .field input {
+                font-size: 18px;
+                padding: 13px 40px 13px 13px;
+            }
+
+            /* Ornamen di atas form lebih kecil */
+            .ornament-line {
+                margin-bottom: 3rem;
+            }
+
+            /* Tombol login tetap nyaman ditekan */
+            .btn-login {
+                font-size: 16px;
+                padding: 13px 16px;
+            }
+        }
+
+        /* Layar sangat sempit (≤ 390px) */
+        @media (max-width: 390px) {
+            .form-panel {
+                width: 96%;
+                padding: 1.5rem 1.25rem;
+            }
+            .field input { font-size: 15px; }
+            .ornament-line { margin-bottom: 2rem; }
+        }
