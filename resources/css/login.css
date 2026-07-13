@@ -60,7 +60,7 @@
             width: 70%;
             height: 80vh;
             max-width: 900px;
-            background-image: url('/images/envelope.png');
+            background-image: url('/public/images/envelope.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: right bottom;
