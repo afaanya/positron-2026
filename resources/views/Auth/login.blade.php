@@ -10,29 +10,26 @@
 <body>
 
     {{-- Layer 1: Background --}}
-    <div class="bg-layer">
-        <img src="/images/login-bg.png" alt="Latar belakang POSITRON">
-    </div>
+    <div class="bg-layer"></div>
 
     {{-- Border --}}
     <div class="border-layer"></div>
 
     {{-- Layer 2: Amplop --}}
-    <div class="envelope-layer">
-        <img src="/images/envelope.png" alt="Amplop POSITRON">
-    </div>
+    <div class="envelope-layer"></div>
 
     {{-- Layer 3: Logo POSITRON 2026 --}}
-    <div class="logo-layer">
-        <img src="/images/logo-positron.png" alt="POSITRON 2026">
-    </div>
+    {{-- Desktop-only: logo dipindahkan ke dalam form-panel di bawah --}}
 
     {{-- Layer 4: Form login --}}
     <div class="form-panel">
 
-        <div class="ornament-line">
-            <img src="/images/ornament.png" alt="Ornament">
+        {{-- Logo POSITRON 2026 (mobile: di dalam form, desktop: fixed kanan atas) --}}
+        <div class="logo-layer">
+            <img src="/images/logo-positron.png" alt="POSITRON 2026">
         </div>
+
+        <div class="ornament-line"></div>
 
         {{-- Error global --}}
         @if ($errors->any())
