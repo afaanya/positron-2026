@@ -10,23 +10,36 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/css/app-layout.css',
                 'resources/js/app.js',
+
                 'resources/css/mentor-portal.css',
                 'resources/js/mentor-portal.js',
+
                 'resources/css/login.css',
+
                 'resources/css/poin-penilaian.css',
                 'resources/js/poin-penilaian.js',
+
                 'resources/css/about.css',
                 'resources/js/about.js',
+
                 'resources/css/timeline.css',
                 'resources/js/timeline.js',
+
                 'resources/css/homepage.css',
+
+                // Tambahkan ini
+                'resources/css/sambutan.css',
+                'resources/js/sambutan.js',
+
                 'resources/css/kartu-kendali.css',
+
                 'resources/css/biodata-mahasiswa.css',
+
                 'resources/css/rangkaian.css',
                 'resources/js/rangkaian.js',
+
                 'resources/css/filosofi.css',
                 'resources/js/filosofi.js',
-                'resources/css/biodata-mahasiswa.css',
             ],
             refresh: true,
             fonts: [
