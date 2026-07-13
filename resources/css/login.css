@@ -21,20 +21,20 @@ body {
     background: #000000 ;
 }
 
-/* ── Background layer ── */
-.bg-layer {
-    position: fixed;
-    inset: 0;
-    background-image: url('/images/login-bg.png');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    width: 100vw;
-    height: 100dvh;
-    opacity: 0;
-    animation: fadeIn 1.0s ease forwards;
-    z-index: 0;
-}
+        /* ── Background layer ── */
+        .bg-layer {
+            position: fixed;
+            inset: 0;
+            background-image: url('/public/images/login-bg.png');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            width: 100vw;
+            height: 100dvh;
+            opacity: 0;
+            animation: fadeIn 1.0s ease forwards;
+            z-index: 0;
+        }
 
 /* ── Border ── */
 .border-layer {
