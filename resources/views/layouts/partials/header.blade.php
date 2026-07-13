@@ -64,7 +64,80 @@
   .gnav-dropdown .pd-item:hover{background:rgba(255,255,255,.2)}
   .gnav-dropdown .pd-item.danger{color:#7a1010}
   @media(max-width:820px){.gnavbar .nav-links{gap:0}.gnavbar .nav-links a{padding:5px 7px;font-size:.6rem}}
-  @media(max-width:560px){.gnavbar .nav-links{display:none}}
+  @media(max-width:768px){.gnavbar .nav-links{display:none}}
+
+  /* ── Hamburger button ── */
+  .gnav-hamburger{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    width:34px;
+    height:34px;
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    padding:4px;
+    margin-right:4px;
+  }
+  .gnav-hamburger span{
+    display:block;
+    width:22px;
+    height:2px;
+    background:#c8a030;
+    border-radius:2px;
+    transition:transform .3s, opacity .3s;
+  }
+  @media(max-width:768px){
+    .gnav-hamburger{display:flex;}
+  }
+
+  /* ── Mobile full-screen nav overlay ── */
+  .gnav-mobile-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:9000;
+    background:rgba(4,10,6,.97);
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:0;
+  }
+  .gnav-mobile-overlay.open{display:flex;}
+  .gnav-mobile-overlay a{
+    display:block;
+    font-family:'Libre Baskerville',serif;
+    font-size:1.25rem;
+    font-weight:700;
+    color:#c8a030;
+    text-decoration:none;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    padding:18px 32px;
+    width:100%;
+    text-align:center;
+    border-bottom:1px solid rgba(180,135,25,.15);
+    transition:color .2s,background .2s;
+  }
+  .gnav-mobile-overlay a:hover{
+    color:#e0c050;
+    background:rgba(180,135,25,.08);
+  }
+  .gnav-mobile-close{
+    position:absolute;
+    top:18px;
+    right:20px;
+    background:transparent;
+    border:none;
+    color:#c8a030;
+    font-size:2rem;
+    cursor:pointer;
+    line-height:1;
+    padding:4px 10px;
+  }
+  .gnav-mobile-close:hover{color:#fff;}
 </style>
 
 @php
@@ -88,6 +161,10 @@
     <li><a href="{{ route('timeline') }}" class="{{ request()->routeIs('timeline') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>TIMELINE<span class="dot bl"></span><span class="dot br"></span></a></li>
   </ul>
   <div class="nav-right">
+    {{-- Hamburger — hanya muncul di mobile --}}
+    <button class="gnav-hamburger" id="gHamburgerBtn" onclick="gToggleMobileMenu()" aria-label="Buka menu navigasi">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-user-wrap">
       <button class="nav-user" id="gUserBtn" onclick="gToggleProfile(event)" aria-label="Menu profil" aria-haspopup="true" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="#c8a030" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
@@ -122,6 +199,18 @@
   </div>
 </nav>
 
+{{-- Mobile full-screen overlay menu --}}
+<div class="gnav-mobile-overlay" id="gMobileOverlay" role="dialog" aria-modal="true" aria-label="Navigasi mobile">
+  <button class="gnav-mobile-close" onclick="gToggleMobileMenu()" aria-label="Tutup menu">✕</button>
+  <a href="{{ route('home') }}"   onclick="gToggleMobileMenu()">HOME</a>
+  <a href="{{ route('about') }}"  onclick="gToggleMobileMenu()">ABOUT</a>
+  <a href="{{ route('filosofi') }}" onclick="gToggleMobileMenu()">FILOSOFI</a>
+  <a href="{{ route('timeline') }}" onclick="gToggleMobileMenu()">TIMELINE</a>
+  @if ($isMahasiswa || $isMentor || $isAdmin)
+    <a href="{{ route('rangkaian') }}" onclick="gToggleMobileMenu()">RANGKAIAN</a>
+  @endif
+</div>
+
 <script>
   function gToggleProfile(e){
     if(e) e.stopPropagation();
@@ -136,4 +225,9 @@
       if(dd) dd.classList.remove('open');
     }
   });
+
+  function gToggleMobileMenu(){
+    var overlay = document.getElementById('gMobileOverlay');
+    if(overlay) overlay.classList.toggle('open');
+  }
 </script>

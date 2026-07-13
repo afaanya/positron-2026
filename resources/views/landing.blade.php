@@ -24,10 +24,16 @@
             align-items: center;
         }
 
+        /*
+         * Container 16:9 yang memaksimalkan ruang layar tanpa memotong gambar.
+         * Lebar  max = 100vw  → tinggi max = 56.25vw  (16:9)
+         * Tinggi max = 100vh  → lebar max = 177.78vh (16:9)
+         * CSS min() memilih nilai terkecil sehingga gambar selalu muat penuh.
+         */
         .landing {
             position: relative;
-            width: 100vw;
-            height: 100vh;
+            width:  min(100vw, 177.78vh);
+            height: min(100vh, 56.25vw);
             background: #081A12;
         }
 
@@ -35,14 +41,15 @@
             width: 100%;
             height: 100%;
             display: block;
-            object-fit: cover;
+            object-fit: fill; /* gambar mengisi penuh container 16:9 tanpa crop */
         }
 
+        /* Tombol invisible — posisi % relatif terhadap container 16:9 */
         .open-invitation {
             position: absolute;
-            left: 8%;
+            left:   8%;
             bottom: 17%;
-            width: 25%;
+            width:  25%;
             height: 10%;
             z-index: 10;
             cursor: pointer;

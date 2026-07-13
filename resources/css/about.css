@@ -3,6 +3,11 @@
       padding: 0;
       box-sizing: border-box;
     }
+ 
+    html {
+      height: 100vh;
+      overflow: hidden;
+    }
 
     body {
       min-height: 100dvh;
@@ -17,6 +22,12 @@
       touch-action: manipulation;
     }
 
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
     .desk {
       width: 100%;
       flex: 1;

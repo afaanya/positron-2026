@@ -68,3 +68,20 @@
             filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9)) !important;
             transform: scale(1.05) !important;
         }
+
+        /* ══ Mobile layout helpers ══ */
+        /* Teks pada mobile stack layout */
+        .filosofi-mobile-text {
+            color: #f8d794;
+            font-family: var(--font-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        /* Glow pada gambar di mobile */
+        .petir-glow {
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
