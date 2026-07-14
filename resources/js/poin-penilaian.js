@@ -7,6 +7,7 @@ const nilai = window.nilaiMahasiswa || {};
                     title: 'Forum Maba',
                     details: 'Ikuti forum dan berkontribusi aktif dalam diskusi.',
                     points: nilai.forum || 0,
+                    maxPoints: 200
                 }
             ]
         },
@@ -17,6 +18,7 @@ const nilai = window.nilaiMahasiswa || {};
                     title: 'LDK',
                     details: 'Hadiri dan jalankan kegiatan LDK dengan penuh tanggung jawab.',
                     points: nilai.ldk || 0,
+                    maxPoints: 100
                 }
             ]
         },
@@ -27,6 +29,7 @@ const nilai = window.nilaiMahasiswa || {};
                     title: 'IoH',
                     details: 'Hadiri dan ikuti kegiatan IoH dengan penuh tanggung jawab.',
                     points: nilai.ioh || 0,
+                    maxPoints: 100
                 }
             ]
         },
@@ -36,7 +39,8 @@ const nilai = window.nilaiMahasiswa || {};
                 {
                     title: 'Nako',
                     details: 'Ambil bagian dalam kegiatan Nako dan tunjukkan kontribusi nyata.',
-                    points: nilai.nako || 0
+                    points: nilai.nako || 0,
+                    maxPoints: 100
                 }
             ]
         },
@@ -46,42 +50,50 @@ const nilai = window.nilaiMahasiswa || {};
                 {
                     title: 'CV',
                     details: '',
-                    points: nilai.cv || 0
+                    points: nilai.cv || 0,
+                    maxPoints: 15
                 },
                 {
                     title: 'Mind Map',
                     details: '',
-                    points: nilai.mindmap || 0
+                    points: nilai.mindmap || 0,
+                    maxPoints: 10
                 },
                 {
                     title: 'Struktur Organisasi',
                     details: '',
-                    points: nilai.struktur || 0
+                    points: nilai.struktur || 0,
+                    maxPoints: 5
                 },
                 {
                     title: 'Dosen DTEI',
                     details: '',
-                    points: nilai.dosen || 0
+                    points: nilai.dosen || 0,
+                    maxPoints: 25
                 },
                 {
                     title: 'Denah',
                     details: '',
-                    points: nilai.denah || 0
+                    points: nilai.denah || 0,
+                    maxPoints: 10
                 },
                 {
                     title: 'TTD Offering',
                     details: '',
-                    points: nilai.ttdoff || 0
+                    points: nilai.ttdoff || 0,
+                    maxPoints: 10
                 },
                 {
                     title: 'TTD Kelompok',
                     details: '',
-                    points: nilai.ttdkel || 0
+                    points: nilai.ttdkel || 0,
+                    maxPoints: 10
                 },
                 {
                     title: 'TTD Pengurus HMD',
                     details: '',
-                    points: nilai.ttdhmd || 0
+                    points: nilai.ttdhmd || 0,
+                    maxPoints: 15
                 },
             ]
         },
@@ -91,47 +103,56 @@ const nilai = window.nilaiMahasiswa || {};
                 {
                     title: 'Dewan Komunal',
                     details: '',
-                    points: nilai.dewan || 0
+                    points: nilai.dewan || 0,
+                    maxPoints: 30
                 },
                 {
                     title: 'Seven Segment',
                     details: '',
-                    points: nilai.seven || 0
+                    points: nilai.seven || 0,
+                    maxPoints: 50
                 },
                 {
                     title: 'Coffe Offering',
                     details: '',
-                    points: nilai.coffe || 0
+                    points: nilai.coffe || 0,
+                    maxPoints: 15
                 },
                 {
                     title: 'Techno Extro Time',
                     details: '',
-                    points: nilai.tet || 0
+                    points: nilai.tet || 0,
+                    maxPoints: 25
                 },
                 {
                     title: 'Staff Muda',
                     details: '',
-                    points: nilai.staff || 0
+                    points: nilai.staff || 0,
+                    maxPoints: 25
                 },
                 {
                     title: 'Arak-Arakan',
                     details: '',
-                    points: nilai.arak || 0
+                    points: nilai.arak || 0,
+                    maxPoints: 10
                 },
                 {
                     title: 'Elektro Cup',
                     details: '',
-                    points: nilai.ecup || 0
+                    points: nilai.ecup || 0,
+                    maxPoints: 10
                 },
                 {
                     title: 'Arus',
                     details: '',
-                    points: nilai.arus || 0
+                    points: nilai.arus || 0,
+                    maxPoints: 25
                 },
                 {
                     title: 'Admin IG Angkatan',
                     details: '',
-                    points: nilai.adminig || 0
+                    points: nilai.adminig || 0,
+                    maxPoints: 25
                 },
             ]
         },
@@ -203,7 +224,7 @@ const nilai = window.nilaiMahasiswa || {};
                             style="margin-left:56px;margin-top:12px;display:flex;align-items:baseline;gap:6px;">
 
                             <span class="score-value" style="font-size:1.8rem;line-height:1;">
-                                ${parsePoints(task.points)}
+                                ${parsePoints(task.points)} / ${task.maxPoints}
                             </span>
 
                             <span style="font-size:.9rem;color:rgba(255,255,255,.75)">
@@ -240,8 +261,6 @@ const nilai = window.nilaiMahasiswa || {};
         setTimeout(() => el.classList.remove('run'), 1200);
     }
 
-    boardStatus.textContent =
-        'Berikut adalah seluruh poin yang telah diperoleh mahasiswa selama kegiatan POSITRON.';
     updateOverallPoints();
     updateProgress();
     renderAllCategories();
