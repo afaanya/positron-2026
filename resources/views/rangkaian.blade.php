@@ -1,7 +1,11 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
 @vite(['resources/css/rangkaian.css', 'resources/js/rangkaian.js'])
 
-<div class="rangkaian-section">
-    <img src="{{ asset('images/logo-positron.png') }}" class="logo-top" alt="Logo">
+<div class="rangkaian-section" style="font-family: 'Libre Baskerville', serif;">
+    <img src="{{ asset('images/logo-positron.png') }}" class="logo-top" alt="Logo"> 
     
     <div class="cards-container">
         <div class="flip-card" onclick="flipCard(this)">
@@ -56,6 +60,3 @@
         </div>
     </div>
 </div>
-
-
-<!-- <img src="{{ asset('images/login-bg.png') }}"> -->
