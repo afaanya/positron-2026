@@ -52,6 +52,7 @@ body {
     z-index: 0;
 }
 
+<<<<<<< HEAD
 /* ── Amplop (kanan) ── */
 .envelope-layer {
     position: fixed;
@@ -69,6 +70,25 @@ body {
     pointer-events: none;
     z-index: 1;
 }
+=======
+        /* ── Amplop (kanan) ── */
+        .envelope-layer {
+            position: fixed;
+            right: -10%;
+            bottom: 0;
+            width: 70%;
+            height: 80vh;
+            max-width: 900px;
+            background-image: url('/public/images/envelope.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right bottom;
+            opacity: 0;
+            animation: fadeInSlideLeft 1.4s ease 0.4s forwards;
+            pointer-events: none;
+            z-index: 1;
+        }
+>>>>>>> 92c40f429dd54966a41b1ecb9f3c03973dd859de
 
 /* ── Logo POSITRON 2026 (kanan atas di desktop) ── */
 .logo-layer {
