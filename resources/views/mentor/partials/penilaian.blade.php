@@ -5,29 +5,20 @@
       <div class="sb-card active" id="sb-forum" onclick="switchSection('forum')" role="button" tabindex="0" aria-label="Forum Maba" style="background-image:url('{{ asset('images/portal-forum.png') }}')">
         <span class="sb-main">FORUM<br>MABA</span>
       </div>
-      <div class="sb-card" id="sb-ioh"   onclick="switchSection('ioh')"   role="button" tabindex="0" aria-label="IoH"   style="background-image:url('{{ asset('images/portal-ioh.png') }}')">
-        <span class="sb-main">IoH</span><span class="sb-sub">Introduction of<br>Himpunan</span>
-      </div>
       <div class="sb-card" id="sb-ldk"   onclick="switchSection('ldk')"   role="button" tabindex="0" aria-label="LDK"   style="background-image:url('{{ asset('images/portal-ldk.png') }}')">
         <span class="sb-main">LDK</span><span class="sb-sub">Latihan Dasar<br>Kepemimpinan</span>
+      </div>
+      <div class="sb-card" id="sb-ioh"   onclick="switchSection('ioh')"   role="button" tabindex="0" aria-label="IoH"   style="background-image:url('{{ asset('images/portal-ioh.png') }}')">
+        <span class="sb-main">IoH</span><span class="sb-sub">Introduction of<br>Himpunan</span>
       </div>
       <div class="sb-card" id="sb-nako"  onclick="switchSection('nako')"  role="button" tabindex="0" aria-label="NAKO 10.0" style="background-image:url('{{ asset('images/portal-nako.png') }}')">
         <span class="sb-main">NAKO 10.0</span>
       </div>
-      <div class="sb-card" id="sb-tet"  onclick="switchSection('tet')"  role="button" tabindex="0" aria-label="PESERTA TET" style="background-image:url('{{ asset('images/portal-nako.png') }}')">
-        <span class="sb-main">PESERTA<br>TET</span>
+      <div class="sb-card" id="sb-buku"   onclick="switchSection('buku')"   role="button" tabindex="0" aria-label="BUKU ANGKATAN"   style="background-image:url('{{ asset('images/portal-ioh.png') }}')">
+        <span class="sb-main">BUKU<br>ANGKATAN</span>
       </div>
-      <div class="sb-card" id="sb-arak"  onclick="switchSection('arak')"  role="button" tabindex="0" aria-label="ARAK ARAKAN" style="background-image:url('{{ asset('images/portal-nako.png') }}')">
-        <span class="sb-main">ARAK<br>ARAKAN</span>
-      </div>
-      <div class="sb-card" id="sb-adminig"  onclick="switchSection('adminig')"  role="button" tabindex="0" aria-label="ADMIN IG OFF" style="background-image:url('{{ asset('images/portal-nako.png') }}')">
-        <span class="sb-main">ADMIN<br> IG OFF</span>
-      </div>
-      <div class="sb-card" id="sb-dewan"  onclick="switchSection('dewan')"  role="button" tabindex="0" aria-label="DEWAN KOMUNAL" style="background-image:url('{{ asset('images/portal-nako.png') }}')">
-        <span class="sb-main">DEWAN<br>KOMUNAL</span>
-      </div>
-      <div class="sb-card" id="sb-staff"  onclick="switchSection('staff')"  role="button" tabindex="0" aria-label="STAFF MUDA" style="background-image:url('{{ asset('images/portal-nako.png') }}')">
-        <span class="sb-main">STAFF<br>MUDA</span>
+      <div class="sb-card" id="sb-partisipasi"   onclick="switchSection('partisipasi')"   role="button" tabindex="0" aria-label="PARTISIPASI"   style="background-image:url('{{ asset('images/portal-ioh.png') }}')">
+        <span class="sb-main">PARTISIPASI</span>
       </div>
     </div>
   </aside>
