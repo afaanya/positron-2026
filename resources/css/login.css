@@ -25,7 +25,7 @@
         .bg-layer {
             position: fixed;
             inset: 0;
-            background-image: url('/public/images/login-bg.png');
+            background-image: url('/public/images/frame-landing.png');
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
@@ -42,7 +42,7 @@
             inset: 0;
             width: 100vw;
             height: 100dvh;
-            background-image: url('/images/border-layer.png');
+            background-image: url('/public/images/lo');
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center;
@@ -60,7 +60,7 @@
             width: 70%;
             height: 80vh;
             max-width: 900px;
-            background-image: url('/public/images/envelope.png');
+            background-image: url('/public/images/amplop-landing.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: right bottom;
