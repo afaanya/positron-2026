@@ -14,47 +14,50 @@
     <div class="relative w-full max-w-[1230px] mx-auto px-4 py-10 lg:py-0">
 
         <!-- Desktop Wrapper -->
-        <div class="hidden lg:block relative w-full">
+        <div class="hidden lg:block relative w-full filosofi-board">
             <img src="{{ asset('images/bg card.png') }}" alt="Background" class="w-full h-auto block">
 
             <img src="{{ asset('images/filosofi.text.png') }}" 
                  alt="Filosofi Text"
-                 class="absolute top-20 left-20 h-auto"
-                 style="width: 420px; height: auto; max-width: 100%;">
+                 class="filosofi-title-img">
 
-            <div class="filosofi-atas-item absolute" style="top: 230px; left: 50%; transform: translateX(-50%); z-index: 10;">
+            <div class="filosofi-atas-item absolute">
                 <img src="{{ asset('images/filosofi.atas.item.png') }}"
                      alt="Filosofi Atas Item"
                      class="petir-glow"
                      data-black-src="{{ asset('images/filosofi.atas.item.png') }}"
-                     data-yellow-src="{{ asset('images/filosofi.atas.kuning.png') }}"
-                     style="width: 260px; height: 241px; display: block;">
-                <div class="overlay-text overlay-bawah" style="left: -350px; right: auto; transform: none;">The Symphony of the Ton: Menggambarkan bahwa dunia kampus diisi oleh berbagai macam karakter, latar belakang, dan keahlian. Jika dipadukan dengan baik, perbedaan ini akan menciptakan harmoni yang indah (simfoni).</div>
+                     data-yellow-src="{{ asset('images/filosofi.atas.kuning.png') }}">
+                <div class="overlay-text overlay-bawah">The Symphony of the Ton: Menggambarkan bahwa dunia kampus diisi oleh berbagai macam karakter, latar belakang, dan keahlian. Jika dipadukan dengan baik, perbedaan ini akan menciptakan harmoni yang indah (simfoni).</div>
             </div>
 
-            <div class="filosofi-bawah-item absolute" style="top: 265px; left: 415px; width: 700px; z-index: 5;">
-                <div class="overlay-text overlay-atas" style="left: auto; right: 100px; transform: none;">Diverse in Origin, United in Vision: Menegaskan bahwa meskipun mahasiswa baru berasal dari "keluarga" yang berbeda-beda, mereka kini berdiri di bawah satu nama almamater dan harus berkolaborasi untuk mencapai visi bersama.</div>
+            <div class="filosofi-bawah-item absolute">
+                <div class="overlay-text overlay-atas">Diverse in Origin, United in Vision: Menegaskan bahwa meskipun mahasiswa baru berasal dari "keluarga" yang berbeda-beda, mereka kini berdiri di bawah satu nama almamater dan harus berkolaborasi untuk mencapai visi bersama.</div>
                 <img src="{{ asset('images/filosofi.bawah.item.png') }}"
                      alt="Filosofi Bawah Item"
                      class="petir-glow"
                      data-black-src="{{ asset('images/filosofi.bawah.item.png') }}"
-                     data-yellow-src="{{ asset('images/filosofi.bawah.kuning.png') }}"
-                     style="width: 260px; height: auto; display: block;">
+                     data-yellow-src="{{ asset('images/filosofi.bawah.kuning.png') }}">
             </div>
         </div>
 
         <!-- Mobile Stacked Layout -->
-        <div class="lg:hidden flex flex-col items-center gap-10">
-            <img src="{{ asset('images/filosofi.text.png') }}" alt="Filosofi Text" class="w-full max-w-[300px]">
+        <div class="lg:hidden flex flex-col items-center gap-12 w-full">
+            <img src="{{ asset('images/filosofi.text.png') }}" alt="Filosofi Text" class="w-full max-w-[280px]">
             
-            <div class="flex flex-col items-center text-center gap-4">
-                <img src="{{ asset('images/filosofi.atas.item.png') }}" class="w-48 petir-glow">
-                <p class="text-sm px-4">The Symphony of the Ton: Menggambarkan bahwa dunia kampus diisi oleh berbagai macam karakter, latar belakang, dan keahlian. Jika dipadukan dengan baik, perbedaan ini akan menciptakan harmoni yang indah (simfoni).</p>
+            <div class="flex flex-col items-center text-center gap-4 w-full max-w-md px-2">
+                <img src="{{ asset('images/filosofi.atas.kuning.png') }}" class="w-44 petir-glow filter drop-shadow-[0_0_12px_rgba(248,215,148,0.5)]">
+                <div class="p-5 rounded-xl border border-[rgba(248,215,148,0.25)] bg-[rgba(6,20,12,0.8)] backdrop-blur-md">
+                    <h3 class="text-[#f8d794] font-secondary font-bold text-base mb-2">The Symphony of the Ton</h3>
+                    <p class="text-sm font-secondary text-[#f0e2c6] leading-relaxed">Menggambarkan bahwa dunia kampus diisi oleh berbagai macam karakter, latar belakang, dan keahlian. Jika dipadukan dengan baik, perbedaan ini akan menciptakan harmoni yang indah (simfoni).</p>
+                </div>
             </div>
 
-            <div class="flex flex-col items-center text-center gap-4">
-                <img src="{{ asset('images/filosofi.bawah.item.png') }}" class="w-48 petir-glow">
-                <p class="text-sm px-4">Diverse in Origin, United in Vision: Menegaskan bahwa meskipun mahasiswa baru berasal dari "keluarga" yang berbeda-beda, mereka kini berdiri di bawah satu nama almamater dan harus berkolaborasi untuk mencapai visi bersama.</p>
+            <div class="flex flex-col items-center text-center gap-4 w-full max-w-md px-2">
+                <img src="{{ asset('images/filosofi.bawah.kuning.png') }}" class="w-44 petir-glow filter drop-shadow-[0_0_12px_rgba(248,215,148,0.5)]">
+                <div class="p-5 rounded-xl border border-[rgba(248,215,148,0.25)] bg-[rgba(6,20,12,0.8)] backdrop-blur-md">
+                    <h3 class="text-[#f8d794] font-secondary font-bold text-base mb-2">Diverse in Origin, United in Vision</h3>
+                    <p class="text-sm font-secondary text-[#f0e2c6] leading-relaxed">Menegaskan bahwa meskipun mahasiswa baru berasal dari "keluarga" yang berbeda-beda, mereka kini berdiri di bawah satu nama almamater dan harus berkolaborasi untuk mencapai visi bersama.</p>
+                </div>
             </div>
         </div>
 
