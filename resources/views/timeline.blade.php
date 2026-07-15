@@ -288,7 +288,7 @@
         <div class="timeline-main-wrap">
             <div class="clock-wrapper relative timeline-clock-wrap">
                 
-                <img src="{{ asset('images/timeline-1.png') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
+                <img src="{{ asset('images/timeline-1.webp') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
 
             {{-- Overlay Kalender --}}
     <div id="calendar-overlay" style="

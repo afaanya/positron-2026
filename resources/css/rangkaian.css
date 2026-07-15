@@ -301,13 +301,8 @@
         transform: translateX(-50%) translateY(0);
     }
 
-<<<<<<< HEAD
-    50%{
-        transform:translateX(-50%) translateY(-10px);
-=======
     50% {
         transform: translateX(-50%) translateY(-10px);
->>>>>>> 266bcdab83626a6d2e3e0ca159e7e368970c495b
     }
 
 }
@@ -318,13 +313,8 @@
 
 @media (min-width:1600px) {
 
-<<<<<<< HEAD
-    .cards-container{
-        gap:40px;
-=======
     .cards-container {
         gap: 40px;
->>>>>>> 266bcdab83626a6d2e3e0ca159e7e368970c495b
     }
 
     .flip-card {
@@ -385,15 +375,9 @@
         margin-bottom: 25px;
     }
 
-<<<<<<< HEAD
-    .cards-container{
-        margin-top:0;
-        gap:18px;
-=======
     .cards-container {
         margin-top: 0;
         gap: 18px;
->>>>>>> 266bcdab83626a6d2e3e0ca159e7e368970c495b
     }
 
     .flip-card {
@@ -408,18 +392,8 @@
 
 @media (max-width:576px) {
 
-<<<<<<< HEAD
-    .logo-top{
-        width:82%;
-    }
-
-    .cards-container{
-        gap:14px;
-        padding-inline:10px;
-=======
     .logo-top {
         width: 82%;
->>>>>>> 266bcdab83626a6d2e3e0ca159e7e368970c495b
     }
 
     .cards-container {
@@ -432,7 +406,7 @@
     }
 
 }
-
+    
 /*=========================================================
     HP KECIL
 =========================================================*/
