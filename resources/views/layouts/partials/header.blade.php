@@ -184,7 +184,7 @@
           <a class="pd-item" href="{{ route('admin.home') }}">Halaman Admin</a>
         @endif
 
-        <a class="pd-item" href="https://docs.google.com/forms/d/e/1FAIpQLSfmCmaEVXqK1s1E3H0XGTLKYiFSYI0ciSAoy1iGQyDEYdWjBQ/viewform?usp=dialog" target="_blank" rel="noopener">Kritik &amp; Saran</a>
+        <a class="pd-item" href="https://forms.gle/Zn5ZR7WWp7P87vGw9" target="_blank" rel="noopener">Kritik &amp; Saran</a>
 
         @if ($isAdmin || $isMentor || $isMahasiswa)
           <form method="POST" action="{{ route('logout') }}">
