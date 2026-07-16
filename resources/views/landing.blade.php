@@ -58,7 +58,7 @@
 </head>
 <body>
     <div class="landing">
-        <img src="{{ asset('images/landing.png') }}" alt="Landing Page" class="landing-image">
+        <img src="{{ asset('images/landing2.png') }}" alt="Landing Page" class="landing-image">
         <a href="{{ route('login') }}" class="open-invitation" aria-label="Open Invitation"></a>
     </div>
 </body>
