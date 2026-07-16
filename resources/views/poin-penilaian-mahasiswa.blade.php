@@ -1,14 +1,18 @@
 @extends('layouts.app')
 
 @section('title', 'Poin Penilaian Mahasiswa')
+@section('main-class', 'full-width')
+
+@section('styles')
+    @vite('resources/css/poin-penilaian.css')
+@endsection
+
+@section('main-class', 'main-full')
 
 @section('content')
 
-@vite('resources/css/poin-penilaian.css')
-
-
 <div class="poin-page">
-    <main class="content full-content">
+    <div class="content">
         <div class="points-panel">
 
             <div class="board-header">
@@ -49,22 +53,19 @@
             </div>
 
             <section class="category-section">
-                <h2 class="category-title">📌 Kegiatan Pokok</h2>
                 <div class="task-list" id="pokokList"></div>
             </section>
 
             <section class="category-section">
-                <h2 class="category-title">📖 Buku Angkatan</h2>
                 <div class="task-list" id="bukuList"></div>
             </section>
 
             <section class="category-section">
-                <h2 class="category-title">🎯 Partisipasi</h2>
                 <div class="task-list" id="partisipasiList"></div>
             </section>
 
         </div>
-    </main>
+    </div>
 </div>
 
 <script>
@@ -72,5 +73,8 @@
     window.totalPoin = {{ $total }};
 </script>
 
-@vite('resources/js/poin-penilaian.js')
+@endsection
+
+@section('scripts')
+    @vite('resources/js/poin-penilaian.js')
 @endsection

@@ -9,8 +9,8 @@ html, body {
 }
 
 .poin-page {
-    display: grid;
-    grid-template-columns: 72px 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 24px;
     padding: 44px 20px;
     min-height: calc(100vh - 48px);
@@ -18,36 +18,7 @@ html, body {
     background: transparent;
 }
 
-.sidebar {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 72px;
-    min-height: calc(100vh - 48px);
-    background: transparent;
-    border: none;
-    padding: 0;
-    box-shadow: none;
-    backdrop-filter: none;
-}
 
-.sidebar-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    color: #ffd77d;
-    font-size: 2.2rem;
-    line-height: 1;
-    cursor: pointer;
-    transition: transform 0.2s ease, color 0.2s ease;
-}
 
 .sidebar-toggle:hover {
     transform: translateX(2px);
@@ -59,42 +30,9 @@ html, body {
     display: block;
 }
 
-.category-list {
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    transform: translate(12px, -50%);
-    width: 240px;
-    display: none;
-    flex-direction: column;
-    gap: 14px;
-    padding: 16px;
-    border-radius: 22px;
-    background: rgba(8, 18, 12, 0.98);
-    border: 1px solid rgba(255, 215, 115, 0.14);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(16px);
-    z-index: 10;
-}
 
 .category-list.show {
     display: flex;
-}
-
-.option-button {
-    display: block;
-    width: 100%;
-    text-align: left;
-    font-size: 1rem;
-    padding: 16px 18px;
-    margin-bottom: 14px;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(8, 22, 14, 0.8);
-    color: #f7f4e9;
-    cursor: pointer;
-    position: relative;
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .option-button::before {
@@ -123,12 +61,12 @@ html, body {
     transform: translateX(3px);
 }
 
-    .option-button.active {
-        padding-left: 32px;
-    }
+.option-button.active {
+    padding-left: 32px;
+}
 
-<<<<<<< HEAD
 .content {
+    width: 100%;
     position: relative;
     overflow: hidden;
 }
@@ -173,13 +111,15 @@ html, body {
 }
 
 .stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 18px;
     margin-bottom: 24px;
 }
 
 .stat-card {
+    flex: 1;
+    min-width: 200px;
     padding: 18px 20px;
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.05);
@@ -419,66 +359,11 @@ html, body {
 
 @media (max-width: 960px) {
     .poin-page {
-        grid-template-columns: 1fr;
-        padding: 24px 16px;
-    }
-
-    .sidebar {
-        position: absolute;
-        left: 16px;
-        top: 20px;
-        width: auto;
-        min-height: auto;
-    }
-
-    .category-list {
-        left: 0;
-        transform: translate(0, -50%);
-        top: 70px;
-        width: 220px;
-=======
-    .poin-page {
-        width: 100%;
-        padding: 44px 20px;
-        color: #f7f4e9;
-    }
-
-    .category-list {
-        position: absolute;
-        top: 50%;
-        left: 100%;
-        transform: translate(12px, -50%);
-        width: 240px;
-        display: none;
-        flex-direction: column;
-        gap: 14px;
-        padding: 16px;
-        border-radius: 22px;
-        background: rgba(8, 18, 12, 0.98);
-        border: 1px solid rgba(255, 215, 115, 0.14);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
-        backdrop-filter: blur(16px);
-        z-index: 10;
-    }
+        display: block;
+        padding: 24px 16px;    }
 
     .category-list.show {
         display: flex;
-    }
-
-    .option-button {
-        display: block;
-        width: 100%;
-        text-align: left;
-        font-size: 1rem;
-        padding: 16px 18px;
-        margin-bottom: 14px;
-        border-radius: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        background: rgba(8, 22, 14, 0.8);
-        color: #f7f4e9;
-        cursor: pointer;
-        position: relative;
-        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
 
     .option-button::before {
@@ -507,16 +392,12 @@ html, body {
         transform: translateX(3px);
     }
 
-        .option-button.active {
-            padding-left: 32px;
-        }
-
-    .content {
-        width: 100%;
->>>>>>> 345c17b2b7f1aa947c1f4e389166f6471882a859
+    .option-button.active {
+        padding-left: 32px;
     }
 
     .points-panel {
+        width: 100%;
         padding: 22px;
     }
 
@@ -549,8 +430,5 @@ html, body {
         width: 34px;
         height: 34px;
     }
-<<<<<<< HEAD
+
 }
-=======
-    
->>>>>>> 345c17b2b7f1aa947c1f4e389166f6471882a859

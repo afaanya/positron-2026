@@ -7,20 +7,27 @@
 
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
 
-    @vite(['resources/css/app.css', 'resources/css/app-layout.css'])
+    {{-- CSS Global --}}
+    @vite([
+        'resources/css/app.css',
+        'resources/css/app-layout.css'
+    ])
 
-    {{-- KUNCI UTAMA: Tempat untuk menyuntikkan CSS spesifik dari halaman manualbook --}}
+    {{-- CSS khusus setiap halaman --}}
     @yield('styles')
 </head>
 <body>
 
     @include('layouts.partials.header')
 
-    <main>
+    <main class="@yield('main-class', '')">
         @yield('content')
     </main>
 
     @include('layouts.partials.footer')
 
-</body>z
+    {{-- JS khusus setiap halaman --}}
+    @yield('scripts')
+
+</body>
 </html>

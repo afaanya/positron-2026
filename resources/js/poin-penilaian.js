@@ -206,15 +206,17 @@ const nilai = window.nilaiMahasiswa || {};
         totalPointsEl.textContent = total;
     }
 
+    let nomorTask = 1;
+
     function renderTasks(categoryKey, container) {
         const category = assignmentData[categoryKey];
         const tasks = category.tasks;
 
-        container.innerHTML += tasks.map((task, index) => {
+        container.innerHTML += tasks.map(task => {
             return `
                 <div class="task-card">
                     <div class="task-card-front" style="min-height:auto;padding:24px 28px;">
-                        <div class="task-number">${index + 1}</div>
+                        <div class="task-number">${nomorTask++}</div>
 
                         <h3 class="task-title">${task.title}</h3>
 
@@ -239,9 +241,12 @@ const nilai = window.nilaiMahasiswa || {};
     }
 
    function renderAllCategories () {
+        nomorTask = 1;
+
         pokokList.innerHTML = '';
         bukuList.innerHTML = '';
         partisipasiList.innerHTML = '';
+
         renderTasks('forum', pokokList);
         renderTasks('ldk', pokokList);
         renderTasks('ioh', pokokList);

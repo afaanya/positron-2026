@@ -167,7 +167,6 @@
         font-size: 9px;
     }
 }
-=======
 /*=========================================================
     RANGKAIAN SECTION
 =========================================================*/
@@ -301,24 +300,12 @@
         transform: translateX(-50%) translateY(0);
     }
 
-<<<<<<< HEAD
-    .cards-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-        flex-wrap: wrap;
-        margin-top: 150px;
-    50%{
-        transform:translateX(-50%) translateY(-10px);
-=======
     50% {
         transform: translateX(-50%) translateY(-10px);
->>>>>>> 37433b49522882fd124f264ff8dc6d1fb833f049
     }
 }
 
-}
+
 
 /*=========================================================
     DESKTOP BESAR
@@ -326,13 +313,8 @@
 
 @media (min-width:1600px) {
 
-<<<<<<< HEAD
-    .cards-container{
-        gap:40px;
-=======
     .cards-container {
         gap: 40px;
->>>>>>> 37433b49522882fd124f264ff8dc6d1fb833f049
     }
 
     .flip-card {
@@ -374,18 +356,7 @@
         width: 180px;
     }
 
-<<<<<<< HEAD
-    /* Styling Teks di dalam kartu */
-    .card-text-overlay {
-        position: absolute;
-        top: 62px;
-        /* turun agar tidak menabrak judul */
-        left: 18px;
-        right: 18px;
-        bottom: 34px;
-=======
 }
->>>>>>> 37433b49522882fd124f264ff8dc6d1fb833f049
 
 /*=========================================================
     TABLET KECIL
@@ -459,91 +430,7 @@
     }
 
     .text-long {
-<<<<<<< HEAD
-        font-size: 6px;
-    }
-}
-
-/*=========================================================
-    TABLET KECIL
-=========================================================*/
-
-@media (max-width:768px){
-
-    .rangkaian-section{
-        padding:30px 15px 40px;
-    }
-
-    .logo-top{
-        position:relative;
-        top:0;
-        width:70%;
-        margin-bottom:25px;
-    }
-
-    .cards-container{
-        margin-top:0;
-        gap:18px;
-    }
-
-    .flip-card{
-        width:165px;
-    }
-
-}
-
-/*=========================================================
-    HP BESAR
-=========================================================*/
-
-@media (max-width:576px){
-
-    .logo-top{
-        width:82%;
-    }
-
-    .cards-container{
-        gap:14px;
-        padding-inline:10px;
-    }
-
-    .flip-card{
-        width:150px;
-    }
-
-}
-
-/*=========================================================
-    HP KECIL
-=========================================================*/
-
-@media (max-width:420px){
-
-    .logo-top{
-        width:90%;
-    }
-
-    .cards-container{
-        gap:12px;
-    }
-
-    .flip-card{
-        width:135px;
-    }
-
-    .text-normal{
-        font-size:9px;
-    }
-
-    .text-long{
-        font-size:7px;
-    }
-
-}
-
-=======
         font-size: 7px;
     }
 
 }
->>>>>>> 37433b49522882fd124f264ff8dc6d1fb833f049
