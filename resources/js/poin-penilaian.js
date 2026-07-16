@@ -242,16 +242,17 @@ const nilai = window.nilaiMahasiswa || {};
 
    function renderAllCategories () {
         nomorTask = 1;
-
         pokokList.innerHTML = '';
         bukuList.innerHTML = '';
-        partisipasiList.innerHTML = '';
-
+        
         renderTasks('forum', pokokList);
         renderTasks('ldk', pokokList);
         renderTasks('ioh', pokokList);
         renderTasks('nako', pokokList);
         renderTasks('buku', bukuList);
+
+        nomorTask = 1;
+        partisipasiList.innerHTML = '';
         renderTasks('partisipasi', partisipasiList);
     }
 
@@ -265,6 +266,30 @@ const nilai = window.nilaiMahasiswa || {};
         // auto-remove class after animation duration
         setTimeout(() => el.classList.remove('run'), 1200);
     }
+
+    // Tambahkan fungsi switcher tab ini di file JS kamu
+    window.switchTaskTab = function(tabId) {
+        // 1. Sembunyikan semua konten tab tugas
+        document.querySelectorAll('.task-tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+
+        // 2. Nonaktifkan status class 'active' di tombol navigasi
+        document.querySelectorAll('.tab-button-link').forEach(button => {
+            button.classList.remove('active');
+        });
+
+        // 3. Tampilkan tab konten yang diklik
+        const activeContent = document.getElementById('tasks-' + tabId);
+        if (activeContent) {
+            activeContent.classList.add('active');
+        }
+
+        // 4. Set tombol yang sedang diklik menjadi aktif
+        if (event && event.currentTarget) {
+            event.currentTarget.classList.add('active');
+        }
+    };
 
     updateOverallPoints();
     updateProgress();

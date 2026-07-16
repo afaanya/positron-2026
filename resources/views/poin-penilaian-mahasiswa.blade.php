@@ -52,18 +52,33 @@
                 </svg>
             </div>
 
-            <section class="category-section">
-                <div class="task-list" id="pokokList"></div>
-            </section>
+            <div class="tab-wrapper">
+                <button class="tab-button-link active" onclick="switchTaskTab('formal')">
+                    📜 Poin Formal 
+                </button>
 
-            <section class="category-section">
-                <div class="task-list" id="bukuList"></div>
-            </section>
+                <span class="tab-separator">|</span>
 
-            <section class="category-section">
-                <div class="task-list" id="partisipasiList"></div>
-            </section>
+                <button class="tab-button-link" onclick="switchTaskTab('lainnya')">
+                    ✨ Poin Lainnya
+                </button>
+            </div>
 
+            <div class="task-tabs-container">
+                
+                <div id="tasks-formal" class="task-tab-content active">
+                    <section class="category-section">
+                        <div class="task-list" id="pokokList"></div>
+                        <div class="task-list" id="bukuList"></div>
+                    </section>
+                </div>
+
+                <div id="tasks-lainnya" class="task-tab-content">
+                    <section class="category-section">
+                        <div class="task-list" id="partisipasiList"></div>
+                    </section>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -71,6 +86,20 @@
 <script>
     window.nilaiMahasiswa = @json($nilai);
     window.totalPoin = {{ $total }};
+
+    // Fungsi switcher tab dinamis tanpa reload halaman
+    function switchTaskTab(tabId) {
+        document.querySelectorAll('.task-tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+
+        document.querySelectorAll('.tab-button-link').forEach(button => {
+            button.classList.remove('active');
+        });
+
+        document.getElementById('tasks-' + tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
 </script>
 
 @endsection
