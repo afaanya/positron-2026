@@ -8,7 +8,7 @@
     <img src="{{ asset('images/logo-positron.png') }}" class="logo-top" alt="Logo"> 
     
     <div class="cards-container">
-        <div class="flip-card" onclick="flipCard(this)">
+        <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front"><img src="{{ asset('images/kartu 1.png') }}" class="card-img"></div>
                 <div class="flip-card-back">
@@ -20,7 +20,7 @@
             </div>
         </div>
         
-        <div class="flip-card" onclick="flipCard(this)">
+        <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front"><img src="{{ asset('images/kartu 2.png') }}" class="card-img"></div>
                 <div class="flip-card-back">
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <div class="flip-card" onclick="flipCard(this)">
+        <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front"><img src="{{ asset('images/kartu 3.png') }}" class="card-img"></div>
                 <div class="flip-card-back">
@@ -46,7 +46,7 @@
             </div>
         </div>
         
-        <div class="flip-card" onclick="flipCard(this)">
+        <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front"><img src="{{ asset('images/kartu 4.png') }}" class="card-img"></div>
                 <div class="flip-card-back">

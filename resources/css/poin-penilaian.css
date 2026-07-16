@@ -62,6 +62,31 @@ html, body {
     padding-left: 32px;
 }
 
+<<<<<<< HEAD
+    .poin-page {
+        width: 100%;
+        padding: 44px 20px;
+        color: #f7f4e9;
+    }
+
+    .category-list {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        transform: translate(12px, -50%);
+        width: 240px;
+        display: none;
+        flex-direction: column;
+        gap: 14px;
+        padding: 16px;
+        border-radius: 22px;
+        background: rgba(8, 18, 12, 0.98);
+        border: 1px solid rgba(255, 215, 115, 0.14);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+        backdrop-filter: blur(16px);
+        z-index: 10;
+    }
+=======
 .content {
     width: 100%;
     position: relative;
@@ -438,6 +463,7 @@ html, body {
     .poin-page {
         display: block;
         padding: 24px 16px;    }
+>>>>>>> ef482eca1d7b2b71a76d9b7ff6a6183d6fb123df
 
     .category-list.show {
         display: flex;
@@ -469,8 +495,17 @@ html, body {
         transform: translateX(3px);
     }
 
+<<<<<<< HEAD
+        .option-button.active {
+            padding-left: 32px;
+        }
+
+    .content {
+        width: 100%;
+=======
     .option-button.active {
         padding-left: 32px;
+>>>>>>> ef482eca1d7b2b71a76d9b7ff6a6183d6fb123df
     }
 
     .points-panel {
@@ -507,5 +542,9 @@ html, body {
         width: 34px;
         height: 34px;
     }
+<<<<<<< HEAD
+    
+=======
 
 }
+>>>>>>> ef482eca1d7b2b71a76d9b7ff6a6183d6fb123df
