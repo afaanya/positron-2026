@@ -1,31 +1,31 @@
-        function updateClock() {
-            const now = new Date();
-            const seconds = now.getSeconds();
-            const minutes = now.getMinutes();
-            const hours = now.getHours() % 12;
+function updateClock() {
+    const now = new Date();
+    const seconds = now.getSeconds();
+    const minutes = now.getMinutes();
+    const hours = now.getHours() % 12;
 
-            const secondsDegrees = (seconds / 60) * 360;
-            const minutesDegrees = (minutes / 60) * 360 + (seconds / 60) * 6;
-            const hoursDegrees = (hours / 12) * 360 + (minutes / 60) * 30;
+    const secondsDegrees = (seconds / 60) * 360;
+    const minutesDegrees = (minutes / 60) * 360 + (seconds / 60) * 6;
+    const hoursDegrees = (hours / 12) * 360 + (minutes / 60) * 30;
 
-            const setHand = (id, degrees) => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.style.transform = `rotate(${degrees}deg)`;
-                }
-            };
-
-            setHand('js-second', secondsDegrees);
-            setHand('js-minute', minutesDegrees);
-            setHand('js-hour', hoursDegrees);
+    const setHand = (id, degrees) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.style.transform = `rotate(${degrees}deg)`;
         }
+    };
 
-        setInterval(updateClock, 1000);
-        updateClock();
+    setHand('js-second', secondsDegrees);
+    setHand('js-minute', minutesDegrees);
+    setHand('js-hour', hoursDegrees);
+}
 
-        let currentCalendarDate = new Date();
+setInterval(updateClock, 1000);
+updateClock();
 
-        function updateCalendar() {
+let currentCalendarDate = new Date();
+
+function updateCalendar() {
     const now = new Date();
     const year = currentCalendarDate.getFullYear();
     const month = currentCalendarDate.getMonth();

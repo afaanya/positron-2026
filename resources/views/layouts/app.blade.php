@@ -22,5 +22,5 @@
 
     @include('layouts.partials.footer')
 
-</body>
+</body>z
 </html>

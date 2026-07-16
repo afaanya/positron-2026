@@ -1,87 +1,232 @@
-        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Praise&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Praise&display=swap');
 
-        :root {
-            --font-primary: 'Praise', cursive;
-            --font-secondary: 'Libre Baskerville', serif;
-            --color-accent: #F8D794;
-        }
+:root {
+    --font-primary: 'Praise', cursive;
+    --font-secondary: 'Libre Baskerville', serif;
+    --color-accent: #F8D794;
+}
 
-        .font-primary { font-family: var(--font-primary); }
-        .font-secondary { font-family: var(--font-secondary); }
+.font-primary  { font-family: var(--font-primary); }
+.font-secondary { font-family: var(--font-secondary); }
 
-        .filosofi-atas-item,
-        .filosofi-bawah-item {
-            cursor: pointer;
-            display: inline-block;
-        }
+/* ══ Shared: lightning image base ══ */
+.petir-glow {
+    display: block;
+    height: auto;
+    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.3));
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
 
-        .overlay-text {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 14px;
-            background: transparent;
-            border: 1px solid rgba(255, 215, 0, 0.6);
-            border-radius: 8px;
-            color: #f8d794;
-            font-family: var(--font-secondary);
-            font-size: 0.9rem;
-            text-align: center;
-            max-width: 300px;
-            width: auto;
-            white-space: normal;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-        }
+.filosofi-atas-item,
+.filosofi-bawah-item {
+    cursor: pointer;
+}
 
-        .overlay-bawah {
-            top: calc(100% - 17px);
-        }
+.filosofi-atas-item:hover   .petir-glow,
+.filosofi-bawah-item:hover  .petir-glow,
+.filosofi-atas-item.active  .petir-glow,
+.filosofi-bawah-item.active .petir-glow {
+    filter: drop-shadow(0 0 22px rgba(255, 215, 0, 0.95));
+    transform: scale(1.05);
+}
 
-        .overlay-atas {
-            bottom: calc(100% + 10px);
-            left: auto;
-            right: 100px;
-            transform: none;
-        }
+/* ══ Shared: overlay card (hidden by default) ══ */
+.overlay-text {
+    position: absolute;
+    background: rgba(6, 20, 12, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(248, 215, 148, 0.45);
+    border-radius: 10px;
+    color: #f0e2c6;
+    font-family: var(--font-secondary);
+    line-height: 1.55;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    z-index: 50;
+    white-space: normal;
+}
 
-        .overlay-text.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
+.overlay-text strong {
+    display: block;
+    color: #f8d794;
+    margin-bottom: 4px;
+}
 
-        .filosofi-atas-item .petir-glow,
-        .filosofi-bawah-item .petir-glow {
-            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
-            transition: filter 0.3s ease, transform 0.3s ease;
-        }
+/* ════════════════════════════════════════════════
+   DESKTOP  (≥ 1024px)
+   Board dengan bg card.png, posisi via cqw.
+════════════════════════════════════════════════ */
+@media (min-width: 1024px) {
 
-        .filosofi-atas-item:hover .petir-glow,
-        .filosofi-bawah-item:hover .petir-glow {
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
-            transform: scale(1.05);
-        }
+    .filosofi-board {
+        position: relative;
+        width: 100%;
+        container-type: inline-size;
+    }
 
-        .filosofi-atas-item.active .petir-glow,
-        .filosofi-bawah-item.active .petir-glow {
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9)) !important;
-            transform: scale(1.05) !important;
-        }
+    .filosofi-atas-item,
+    .filosofi-bawah-item {
+        position: absolute;
+        display: block;
+    }
 
-        /* ══ Mobile layout helpers ══ */
-        /* Teks pada mobile stack layout */
-        .filosofi-mobile-text {
-            color: #f8d794;
-            font-family: var(--font-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            text-align: center;
-            padding: 0 1rem;
-        }
+    .filosofi-title-img {
+        position: absolute;
+        top: 6.5cqw;
+        left: 6.5cqw;
+        width: 34.15cqw;
+        height: auto;
+    }
 
-        /* Glow pada gambar di mobile */
-        .petir-glow {
-            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
-            transition: filter 0.3s ease, transform 0.3s ease;
-        }
+    .filosofi-atas-item {
+        top: 18.7cqw;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+    }
+    .filosofi-atas-item img.petir-glow { width: 21.14cqw; }
+
+    .filosofi-bawah-item {
+        top: 21.54cqw;
+        left: 33.74cqw;
+        width: 56.9cqw;
+        z-index: 5;
+    }
+    .filosofi-bawah-item img.petir-glow { width: 21.14cqw; }
+
+    /* Overlay sizes */
+    .overlay-text {
+        padding: 0.8cqw 1.2cqw;
+        font-size: clamp(11px, 1.15cqw, 14.5px);
+        width: 24.4cqw;
+    }
+
+    /* Overlay atas item → muncul ke bawah */
+    .overlay-bawah {
+        top: calc(100% - 1.4cqw);
+        left: -28.46cqw;
+        right: auto;
+        transform: translateY(10px);
+    }
+    .overlay-bawah.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0) !important;
+    }
+
+    /* Overlay bawah item → muncul ke atas */
+    .overlay-atas {
+        bottom: calc(100% + 0.8cqw);
+        left: auto;
+        right: 8.13cqw;
+        transform: translateY(-10px);
+    }
+    .overlay-atas.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0) !important;
+    }
+}
+
+/* ════════════════════════════════════════════════
+   MOBILE / TABLET  (< 1024px)
+   Tanpa bg card. Petir atas-bawah dalam
+   container relatif, saling menumpuk seperti logo.
+   Overlay muncul di ATAS petir atas dan
+   di BAWAH petir bawah saat di-click.
+════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+
+    /* Wrapper relatif untuk dua petir */
+    .filosofi-mobile-wrap {
+        position: relative;
+        width: 220px;
+        height: 180px;
+    }
+
+    .filosofi-mobile-atas,
+    .filosofi-mobile-bawah {
+        position: absolute;
+        display: block;
+    }
+
+    /* Petir atas — tengah horizontal, mulai dari atas */
+    .filosofi-mobile-atas {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+    }
+
+    /* Petir bawah — sedikit di bawah + geser kiri agar menumpuk seperti logo */
+    .filosofi-mobile-bawah {
+        top: 20px;
+        left: 0;
+        z-index: 5;
+        width: 100%;
+    }
+
+    .filosofi-mobile-img {
+        width: 100px;
+        height: auto;
+        display: block;
+    }
+
+    /* Overlay size di mobile */
+    .overlay-text {
+        font-size: 12px;
+        width: 82vw;
+        max-width: 340px;
+        padding: 12px 14px;
+        line-height: 1.5;
+    }
+
+    /* Overlay petir ATAS → muncul di ATAS */
+    .overlay-mobile-atas {
+        bottom: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+    }
+    .overlay-mobile-atas.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0) !important;
+    }
+
+    /* Overlay petir BAWAH → muncul di BAWAH */
+    .overlay-mobile-bawah {
+        top: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+    }
+    .overlay-mobile-bawah.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0) !important;
+    }
+}
+
+/* Tablet: lebih besar dari mobile */
+@media (min-width: 600px) and (max-width: 1023px) {
+    .filosofi-mobile-wrap {
+        width: 300px;
+        height: 240px;
+    }
+
+    .filosofi-mobile-bawah {
+        top: 28px;
+    }
+
+    .filosofi-mobile-img {
+        width: 135px;
+    }
+
+    .overlay-text {
+        font-size: 13px;
+        max-width: 380px;
+    }
+}

@@ -26,3 +26,8 @@
 
 .font-primary { font-family: var(--font-primary); }
 .font-secondary { font-family: var(--font-secondary); }
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
