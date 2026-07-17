@@ -44,8 +44,8 @@ html, body {
     display: block;
 }
 
-/* Default: amplop mobile disembunyikan di desktop */
-.layer-amplop-mobile {
+/* Default: Sembunyikan link amplop mobile saat di layar desktop/laptop */
+.amplop-link-mobile {
     display: none;
 }
 
@@ -175,12 +175,19 @@ html, body {
         margin: 0 auto 32px;
     }
 
-    /* Amplop mobile: elemen biasa, ikut alur di antara invited & garis */
-    .layer-amplop-mobile {
+    /* Memunculkan link amplop mobile dan mengaturnya ke tengah */
+    .amplop-link-mobile {
         display: block;
         width: 40%;
         max-width: 220px;
         margin: 0 auto 32px;
+    }
+
+    /* Gambarnya otomatis mengikuti ukuran link pembungkus */
+    .layer-amplop-mobile {
+        display: block;
+        width: 100%;
+        height: auto;
     }
 
     .layer-garis {
@@ -193,9 +200,9 @@ html, body {
         margin: 0 auto 40px;
     }
 
+    /* PENTING: Menghilangkan total tombol open invitation di mobile */
     .open-invitation {
-        width: 55%;
-        margin: 0 auto;
+        display: none !important;
     }
 }
 
@@ -214,7 +221,8 @@ html, body {
         margin: 0 auto 24px;
     }
 
-    .layer-amplop-mobile {
+    /* Atur ukuran kotak klik amplop di HP */
+    .amplop-link-mobile {
         width: 38%;
         max-width: 180px;
         margin: 0 auto 24px;
@@ -229,10 +237,6 @@ html, body {
         width: 68%;
         margin: 0 auto 32px;
     }
-
-    .open-invitation {
-        width: 62%;
-    }
 }
 
 /* Mobile kecil (misal iPhone SE) */
@@ -242,7 +246,8 @@ html, body {
         margin-bottom: 20px;
     }
 
-    .layer-amplop-mobile {
+    /* Atur ukuran kotak klik amplop di HP layar kecil */
+    .amplop-link-mobile {
         width: 42%;
         max-width: 160px;
         margin-bottom: 20px;
@@ -256,9 +261,5 @@ html, body {
     .layer-special {
         width: 72%;
         margin-bottom: 28px;
-    }
-
-    .open-invitation {
-        width: 68%;
     }
 }
