@@ -60,16 +60,17 @@
 
                 {{-- Frame + Video --}}
                 <div class="smb-frame-wrap">
+                    {{-- Frame dekoratif sebagai background --}}
                     <img src="{{ asset('images/sambutan/frame.png') }}" alt="" class="smb-frame-img">
+                    {{-- Video overlay di atas frame --}}
                     <div class="smb-video-box">
                         <iframe
                             id="videoSambutanMobile"
-                            src="https://www.youtube.com/embed/5AQN-rkHLhk?autoplay=1&mute=1&loop=1&playlist=5AQN-rkHLhk&controls=0&rel=0&enablejsapi=1"
+                            src="https://www.youtube.com/embed/5AQN-rkHLhk?autoplay=1&mute=1&loop=1&playlist=5AQN-rkHLhk&controls=1&rel=0&enablejsapi=1"
                             title="Sambutan"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            style="pointer-events:none;">
+                            allowfullscreen>
                         </iframe>
                         <button id="btnMuteSambutanMobile" class="smb-mute-btn">🔇</button>
                     </div>
@@ -216,28 +217,29 @@
         position: relative;
         width: 90%;
         margin: 10px 0 8px;
-        /* Tinggi frame dihitung dari gambar frame.png (landscape ~16:9.5) */
     }
+    /* Frame gambar sebagai background (block normal, menentukan tinggi wrapper) */
     .smb-frame-img {
         width: 100%;
         height: auto;
         display: block;
         position: relative;
-        z-index: 2;
+        z-index: 1;
         pointer-events: none;
     }
-    /* Video box: pakai aspect-ratio supaya tinggi otomatis dari lebar */
-    .smb-video-box {
+    /* Video overlay di ATAS frame */
+    .smb-video-box { 
         position: absolute;
-        top: 50%;
-        left: 50%;
+        top: 47%;
+        left: 49%;
         transform: translate(-50%, -50%);
-        width: 82%;
+        width: 84%;
         aspect-ratio: 16 / 9;
-        z-index: 1;
+        z-index: 5;
         overflow: hidden;
-        border-radius: 3px;
+        border-radius: 4px;
         background: #000;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.6);
     }
     .smb-video-box iframe {
         position: absolute;
