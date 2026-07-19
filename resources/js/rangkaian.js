@@ -45,55 +45,80 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnPrev = document.getElementById('cubePrev');
     const btnNext = document.getElementById('cubeNext');
 
-    let currentIndex = 0; // 0 = cube-face--1, dst
+    // rotationStep TIDAK di-modulo — terus bertambah/berkurang supaya
+    // arah putaran selalu konsisten (dari sisi 4 -> next tetap lanjut ke 1,
+    // tidak pernah "muter balik" ke arah sebaliknya).
+    let rotationStep = 0;
 
-    function closeAllInfo() {
+    function getCurrentIndex() {
+        return ((rotationStep % faces.length) + faces.length) % faces.length;
+    }
+
+    function resetFlips() {
         faces.forEach(function (face) {
-            face.classList.remove('show-info');
+            face.classList.remove('flipped');
         });
     }
 
     function updateCube() {
-        const angle = currentIndex * -90;
+        const angle = rotationStep * -90;
         cube.style.transform = 'rotateY(' + angle + 'deg)';
 
+        const currentIndex = getCurrentIndex();
         dots.forEach(function (dot, i) {
             dot.classList.toggle('active', i === currentIndex);
         });
     }
 
-    function goTo(index) {
-        currentIndex = (index + faces.length) % faces.length;
-        closeAllInfo();
+    function next() {
+        rotationStep += 1;
+        resetFlips();
+        updateCube();
+    }
+
+    function prev() {
+        rotationStep -= 1;
+        resetFlips();
+        updateCube();
+    }
+
+    // Dipakai saat klik dot: lompat ke index tertentu lewat rute TERPENDEK
+    // (tetap tidak pernah "reset" balik ke 0 secara tiba-tiba).
+    function goToIndex(targetIndex) {
+        const currentIndex = getCurrentIndex();
+        let diff = targetIndex - currentIndex;
+
+        if (diff > faces.length / 2) diff -= faces.length;
+        if (diff < -faces.length / 2) diff += faces.length;
+
+        rotationStep += diff;
+        resetFlips();
         updateCube();
     }
 
     if (btnNext) {
-        btnNext.addEventListener('click', function () {
-            goTo(currentIndex + 1);
-        });
+        btnNext.addEventListener('click', next);
     }
 
     if (btnPrev) {
-        btnPrev.addEventListener('click', function () {
-            goTo(currentIndex - 1);
-        });
+        btnPrev.addEventListener('click', prev);
     }
 
     dots.forEach(function (dot, i) {
         dot.addEventListener('click', function () {
-            goTo(i);
+            goToIndex(i);
         });
     });
 
-    // Tap pada wajah yang sedang menghadap depan -> tampilkan detail
+    // Tap pada wajah yang sedang menghadap depan -> muter (flip 3D) buat lihat detail.
+    // Semua sisi kubus bisa di-tap untuk lihat detail (flip 3D)
     faces.forEach(function (face, i) {
         face.addEventListener('click', function () {
-            if (i !== currentIndex) return; // hanya wajah aktif yang bisa di-tap
-            face.classList.toggle('show-info');
+            if (i !== getCurrentIndex()) return; // hanya wajah aktif yang bisa di-tap
+            face.classList.toggle('flipped');
         });
     });
-
+    
     // Swipe kiri/kanan untuk memutar kubus
     let touchStartX = 0;
     const cubeScene = cube.closest('.cube-scene');
@@ -110,9 +135,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (Math.abs(diff) < threshold) return;
 
         if (diff < 0) {
-            goTo(currentIndex + 1); // swipe kiri -> next
+            next(); // swipe kiri -> next
         } else {
-            goTo(currentIndex - 1); // swipe kanan -> prev
+            prev(); // swipe kanan -> prev
         }
     }, { passive: true });
 

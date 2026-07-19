@@ -165,38 +165,53 @@
     overflow: hidden;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    cursor: default;
+}
+
+/* Hanya sisi yang boleh dibalik (Rangkaian 1 & 3) yang punya cursor pointer */
+.cube-face--flip {
     cursor: pointer;
 }
 
-.cube-face--1 { transform: rotateY(0deg)   translateZ(82.5px); -webkit-transform: rotateY(0deg)   translateZ(82.5px); }
-.cube-face--2 { transform: rotateY(90deg)  translateZ(82.5px); -webkit-transform: rotateY(90deg)  translateZ(82.5px); }
-.cube-face--3 { transform: rotateY(180deg) translateZ(82.5px); -webkit-transform: rotateY(180deg) translateZ(82.5px); }
-.cube-face--4 { transform: rotateY(270deg) translateZ(82.5px); -webkit-transform: rotateY(270deg) translateZ(82.5px); }
+/* translateZ dibuat lebih besar dari setengah lebar kartu,
+   supaya ada JARAK terlihat antar sisi saat kubus diputar
+   (bukan kubus rapat yang sisinya nempel) */
+.cube-face--1 { transform: rotateY(0deg)   translateZ(130px); -webkit-transform: rotateY(0deg)   translateZ(130px); }
+.cube-face--2 { transform: rotateY(90deg)  translateZ(130px); -webkit-transform: rotateY(90deg)  translateZ(130px); }
+.cube-face--3 { transform: rotateY(180deg) translateZ(130px); -webkit-transform: rotateY(180deg) translateZ(130px); }
+.cube-face--4 { transform: rotateY(270deg) translateZ(130px); -webkit-transform: rotateY(270deg) translateZ(130px); }
 
-/* Sisi depan kubus (gambar kartu) */
-.cube-face-front {
+/* Wrapper dalam tiap sisi — ini yang benar-benar berputar (flip)
+   saat di-tap, independen dari rotasi kubus di luar */
+.cube-face-inner {
     position: absolute;
     inset: 0;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform .6s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
-/* Sisi belakang / info — muncul dengan fade saat di-tap, bukan rotasi 3D
-   (biar tidak konflik dengan preserve-3d milik kubus) */
+.cube-face.flipped .cube-face-inner {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+}
+
+.cube-face-front,
 .cube-face-back {
     position: absolute;
     inset: 0;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .35s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
-.cube-face.show-info .cube-face-back {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.cube-face.show-info .cube-face-front {
-    opacity: 0;
-    transition: opacity .35s ease;
+.cube-face-back {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cube-nav {
@@ -204,7 +219,12 @@
     align-items: center;
     justify-content: center;
     gap: 24px;
-    margin-top: 18px;
+    margin-top: 40px;
+}
+
+/* Jarak antara scene kubus dan baris tombol navigasi */
+.cube-scene {
+    margin-bottom: 8px;
 }
 
 .cube-nav button {
@@ -312,10 +332,10 @@
         height: 262.5px;
     }
 
-    .cube-face--1 { transform: rotateY(0deg)   translateZ(75px); -webkit-transform: rotateY(0deg)   translateZ(75px); }
-    .cube-face--2 { transform: rotateY(90deg)  translateZ(75px); -webkit-transform: rotateY(90deg)  translateZ(75px); }
-    .cube-face--3 { transform: rotateY(180deg) translateZ(75px); -webkit-transform: rotateY(180deg) translateZ(75px); }
-    .cube-face--4 { transform: rotateY(270deg) translateZ(75px); -webkit-transform: rotateY(270deg) translateZ(75px); }
+    .cube-face--1 { transform: rotateY(0deg)   translateZ(118px); -webkit-transform: rotateY(0deg)   translateZ(118px); }
+    .cube-face--2 { transform: rotateY(90deg)  translateZ(118px); -webkit-transform: rotateY(90deg)  translateZ(118px); }
+    .cube-face--3 { transform: rotateY(180deg) translateZ(118px); -webkit-transform: rotateY(180deg) translateZ(118px); }
+    .cube-face--4 { transform: rotateY(270deg) translateZ(118px); -webkit-transform: rotateY(270deg) translateZ(118px); }
 }
 
 /* HP kecil (<= 420px) */
@@ -330,8 +350,8 @@
         height: 236.25px;
     }
 
-    .cube-face--1 { transform: rotateY(0deg)   translateZ(67.5px); -webkit-transform: rotateY(0deg)   translateZ(67.5px); }
-    .cube-face--2 { transform: rotateY(90deg)  translateZ(67.5px); -webkit-transform: rotateY(90deg)  translateZ(67.5px); }
-    .cube-face--3 { transform: rotateY(180deg) translateZ(67.5px); -webkit-transform: rotateY(180deg) translateZ(67.5px); }
-    .cube-face--4 { transform: rotateY(270deg) translateZ(67.5px); -webkit-transform: rotateY(270deg) translateZ(67.5px); }
+    .cube-face--1 { transform: rotateY(0deg)   translateZ(106px); -webkit-transform: rotateY(0deg)   translateZ(106px); }
+    .cube-face--2 { transform: rotateY(90deg)  translateZ(106px); -webkit-transform: rotateY(90deg)  translateZ(106px); }
+    .cube-face--3 { transform: rotateY(180deg) translateZ(106px); -webkit-transform: rotateY(180deg) translateZ(106px); }
+    .cube-face--4 { transform: rotateY(270deg) translateZ(106px); -webkit-transform: rotateY(270deg) translateZ(106px); }
 }
