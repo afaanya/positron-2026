@@ -9,13 +9,12 @@
 @endsection
 
 @section('content')
-<div class="min-h-screen antialiased text-white" style="background:#0a1a10 url('{{ asset('images/page-bg.jpg') }}') center top / cover fixed no-repeat;">
+<div class="min-h-screen antialiased text-white" style="background:#0a1a10 url('{{ asset('images/bg card.png') }}') center top / cover fixed no-repeat;">
 
     <div class="relative w-full max-w-[1230px] mx-auto px-4 py-10 lg:py-0">
 
         <!-- Desktop Wrapper -->
         <div class="hidden lg:block relative w-full filosofi-board">
-            <img src="{{ asset('images/bg card.png') }}" alt="Background" class="w-full h-auto block">
 
             <img src="{{ asset('images/filosofi.text.png') }}" 
                  alt="Filosofi Text"
