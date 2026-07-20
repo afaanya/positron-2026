@@ -263,8 +263,8 @@ body {
     /* Sembunyikan gambar amplop dekoratif besar */
     .envelope-layer { display: none; }
 
-    /* Perkecil border agar tidak menimpa form */
-    .border-layer { opacity: .25; }
+    /* Kurangi opacity border-layer desktop agar tidak menimpa form */
+    .border-layer { opacity: 0; }
 
     /* Logo: relative di dalam form, tengah, di atas ornament */
     .logo-layer {
@@ -296,7 +296,7 @@ body {
         background: rgba(10, 15, 9, 0.88);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(180, 140, 40, 0.25);
+        border: 1px solid rgba(180, 140, 40, 0.45);
         border-radius: 12px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
         animation: none;
@@ -329,4 +329,23 @@ body {
     }
     .field input { font-size: 14px; }
     .ornament-line { margin-bottom: 1.2rem; }
+}
+
+/* ── Border HP: pakai border-hp.png saat portrait (berdiri) ── */
+@media (max-width: 768px) and (orientation: portrait) {
+    .border-layer {
+        background-image: url('/images/border-hp.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 1;
+        animation: fadeIn 1.0s ease 0.5s both;
+    }
+}
+
+/* ── Border HP: sembunyikan saat landscape ── */
+@media (max-width: 768px) and (orientation: landscape) {
+    .border-layer {
+        opacity: 0;
+    }
 }

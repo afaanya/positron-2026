@@ -263,3 +263,25 @@ html, body {
         margin-bottom: 28px;
     }
 }
+
+/* ── Border HP: pakai border-hp.png saat portrait (berdiri) ── */
+@media (max-width: 900px) and (orientation: portrait) {
+    .layer-frame {
+        display: block;
+        content: url('/images/border-hp.png');
+        position: fixed;
+        inset: 8px;
+        width: calc(100% - 16px);
+        height: calc(100% - 16px);
+        object-fit: fill;
+        z-index: 10;
+        pointer-events: none;
+    }
+}
+
+/* ── Border HP: sembunyikan saat landscape ── */
+@media (max-width: 900px) and (orientation: landscape) {
+    .layer-frame {
+        display: none;
+    }
+}
