@@ -52,3 +52,4 @@ export function toggleSidebar(){
     ?`<svg viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="0" y1="1" x2="18" y2="1"/><line x1="0" y1="7" x2="18" y2="7"/><line x1="0" y1="13" x2="18" y2="13"/></svg> Sidebar`
     :`<svg viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="0" y1="1" x2="18" y2="1"/><line x1="0" y1="7" x2="12" y2="7"/><line x1="0" y1="13" x2="18" y2="13"/></svg> Sidebar`;
 }
+

@@ -94,30 +94,41 @@
   }
 
   /* ── Mobile full-screen nav overlay ── */
+  /* ── Mobile dropdown nav (bukan fullscreen) ── */
   .gnav-mobile-overlay{
     display:none;
     position:fixed;
-    inset:0;
-    z-index:9000;
-    background:rgba(4,10,6,.97);
+    top:58px;              /* nempel persis di bawah navbar */
+    left:0;
+    right:0;
+    z-index:900;            /* di bawah navbar (1000), bukan nutup semua (9000) */
+    background:rgba(6,15,9,.97);
+    backdrop-filter:blur(8px);
     flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    align-items:stretch;
     gap:0;
+    max-height:0;
+    overflow:hidden;
+    border-bottom:1px solid rgba(160,120,20,.22);
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+    transition:max-height .3s ease;
   }
-  .gnav-mobile-overlay.open{display:flex;}
+  .gnav-mobile-overlay.open{
+    display:flex;
+    max-height:400px;       /* sesuaikan kalau item menu bertambah */
+  }
   .gnav-mobile-overlay a{
     display:block;
     font-family:'Libre Baskerville',serif;
-    font-size:1.25rem;
+    font-size:.95rem;
     font-weight:700;
     color:#c8a030;
     text-decoration:none;
     text-transform:uppercase;
-    letter-spacing:.15em;
-    padding:18px 32px;
+    letter-spacing:.13em;
+    padding:14px 28px;
     width:100%;
-    text-align:center;
+    text-align:left;
     border-bottom:1px solid rgba(180,135,25,.15);
     transition:color .2s,background .2s;
   }
@@ -125,19 +136,6 @@
     color:#e0c050;
     background:rgba(180,135,25,.08);
   }
-  .gnav-mobile-close{
-    position:absolute;
-    top:18px;
-    right:20px;
-    background:transparent;
-    border:none;
-    color:#c8a030;
-    font-size:2rem;
-    cursor:pointer;
-    line-height:1;
-    padding:4px 10px;
-  }
-  .gnav-mobile-close:hover{color:#fff;}
 </style>
 
 @php
@@ -213,21 +211,41 @@
 
 <script>
   function gToggleProfile(e){
-    if(e) e.stopPropagation();
-    var dd=document.getElementById('gProfileDrop');
-    var btn=document.getElementById('gUserBtn');
-    var open=dd.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  }
-  document.addEventListener('click',function(e){
-    if(!e.target.closest('#gProfileDrop') && !e.target.closest('#gUserBtn')){
-      var dd=document.getElementById('gProfileDrop');
-      if(dd) dd.classList.remove('open');
-    }
-  });
+  if(e) e.stopPropagation();
+  var dd=document.getElementById('gProfileDrop');
+  var btn=document.getElementById('gUserBtn');
 
-  function gToggleMobileMenu(){
-    var overlay = document.getElementById('gMobileOverlay');
-    if(overlay) overlay.classList.toggle('open');
+  // tutup menu mobile dulu kalau lagi kebuka
+  var overlay=document.getElementById('gMobileOverlay');
+  if(overlay) overlay.classList.remove('open');
+
+  var open=dd.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+
+document.addEventListener('click',function(e){
+  if(!e.target.closest('#gProfileDrop') && !e.target.closest('#gUserBtn')){
+    var dd=document.getElementById('gProfileDrop');
+    if(dd) dd.classList.remove('open');
   }
+});
+
+function gToggleMobileMenu(){
+  var overlay = document.getElementById('gMobileOverlay');
+
+  // tutup dropdown profil dulu kalau lagi kebuka
+  var dd=document.getElementById('gProfileDrop');
+  var btn=document.getElementById('gUserBtn');
+  if(dd) dd.classList.remove('open');
+  if(btn) btn.setAttribute('aria-expanded','false');
+
+  if(overlay) overlay.classList.toggle('open');
+}
+
+document.addEventListener('click', function(e){
+  if(!e.target.closest('#gMobileOverlay') && !e.target.closest('#gHamburgerBtn')){
+    var overlay = document.getElementById('gMobileOverlay');
+    if(overlay) overlay.classList.remove('open');
+  }
+});
 </script>
