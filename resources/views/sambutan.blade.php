@@ -27,7 +27,7 @@
 <section class="smb-section">
     {{-- Background --}}
     <div class="smb-bg">
-        <img src="{{ asset('images/sambutan/bg-sambutan.png') }}" alt="">
+        <img src="{{ asset('images/login-bg.png') }}" alt="">
     </div>
 
     <div class="smb-outer">
@@ -114,7 +114,7 @@
         width: 100%;
         min-height: 100svh;
         overflow: hidden;
-        background: #0c2214;
+        background: #0a0f1e;
     }
 
     /* Background batik */
