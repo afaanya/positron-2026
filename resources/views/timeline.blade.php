@@ -82,9 +82,9 @@
             {{-- Peta perjalanan: blok besar full-width di bawah jam & kotak acara --}}
             <div class="map-box">
                     <div class="map-title">Peta Perjalanan Positron</div>
-                    <svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 1500 320" xmlns="http://www.w3.org/2000/svg">
                         <!-- Kompas hias -->
-                        <g class="map-compass" transform="translate(70,44)">
+                        <g class="map-compass" transform="translate(80,60)">
                             <circle r="30" fill="none" stroke="#c8a96e" stroke-width="1.5"/>
                             <line x1="0" y1="-24" x2="0" y2="24" stroke="#c8a96e" stroke-width="1.5"/>
                             <line x1="-24" y1="0" x2="24" y2="0" stroke="#c8a96e" stroke-width="1.5"/>
@@ -93,27 +93,27 @@
 
                         <!-- Jalur perjalanan (zig-zag) -->
                         <path class="map-route"
-                              d="M110,180 C190,130 250,70 330,70 C410,70 490,180 570,180 C650,180 710,70 790,70"/>
+                              d="M120,220 C280,165 420,100 560,90 C700,70 840,175 980,205 C1120,235 1280,100 1400,90"/>
 
                         <!-- Titik 1: Forum Maba (bawah) -->
-                        <circle class="map-pin-circle" cx="110" cy="180" r="32"/>
-                        <text class="map-pin-number" x="110" y="190">1</text>
-                        <text class="map-pin-label" x="110" y="244">FORUM MABA</text>
+                        <circle class="map-pin-circle" cx="120" cy="220" r="32"/>
+                        <text class="map-pin-number" x="120" y="230">1</text>
+                        <text class="map-pin-label" x="120" y="286">FORUM MABA</text>
 
                         <!-- Titik 2: LDK (atas) -->
-                        <circle class="map-pin-circle" cx="330" cy="70" r="32"/>
-                        <text class="map-pin-number" x="330" y="80">2</text>
-                        <text class="map-pin-label" x="330" y="26">LDK</text>
+                        <circle class="map-pin-circle" cx="560" cy="90" r="32"/>
+                        <text class="map-pin-number" x="560" y="100">2</text>
+                        <text class="map-pin-label" x="560" y="48">LDK</text>
 
                         <!-- Titik 3: IoH (bawah) -->
-                        <circle class="map-pin-circle" cx="570" cy="180" r="32"/>
-                        <text class="map-pin-number" x="570" y="190">3</text>
-                        <text class="map-pin-label" x="570" y="244">IOH</text>
+                        <circle class="map-pin-circle" cx="980" cy="205" r="32"/>
+                        <text class="map-pin-number" x="980" y="215">3</text>
+                        <text class="map-pin-label" x="980" y="286">IOH</text>
 
                         <!-- Titik 4: NAKO (atas) -->
-                        <circle class="map-pin-circle" cx="790" cy="70" r="32"/>
-                        <text class="map-pin-number" x="790" y="80">4</text>
-                        <text class="map-pin-label" x="790" y="26">NAKO</text>
+                        <circle class="map-pin-circle" cx="1400" cy="90" r="32"/>
+                        <text class="map-pin-number" x="1400" y="100">4</text>
+                        <text class="map-pin-label" x="1400" y="48">NAKO</text>
                     </svg>
                 </div>
             </div>
