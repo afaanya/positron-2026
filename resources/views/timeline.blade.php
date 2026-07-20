@@ -4,7 +4,6 @@
 
 @section('styles')
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://cdn.tailwindcss.com"></script>
 
 @vite(['resources/css/timeline.css'])
 @endsection
@@ -18,7 +17,8 @@
     <main class="w-full max-w-6xl mx-auto flex flex-col justify-center items-center z-10 px-4 py-6 my-auto">
         
         <div class="text-center mb-6">
-            <h1 class="font-primary text-5xl md:text-7xl text-[#F8D794] tracking-wide drop-shadow-md">
+            <h1 class="font-secondary text-5xl md:text-7xl text-[#F8D794] tracking-wide drop-shadow-md">
+                TIMELINE KEGIATAN
             </h1>
         </div>
 
