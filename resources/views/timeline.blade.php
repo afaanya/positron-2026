@@ -6,269 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Praise&display=swap');
-
-    :root {
-        --font-primary: 'Praise', cursive;
-        --font-secondary: 'Libre Baskerville', serif;
-        --color-accent: #F8D794;
-    }
-
-    .font-primary { font-family: var(--font-primary); }
-    .font-secondary { font-family: var(--font-secondary); }
-
-    /* Menggunakan file background dari Anda */
-    .royal-bg {
-        background-image: url("{{ asset('images/login-bg.png') }}");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-
-    /* --- LOGIK JARUM JAM INTERAKTIF --- */
-    .clock-wrapper {
-        position: relative;
-        display: inline-block;
-    }
-
-    /* Titik poros tengah untuk menutupi jarum asli bawaan gambar */
-    .clock-center-pin {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 14px;
-        height: 14px;
-        background: #c5a880;
-        border: 2px solid #54432b;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 30;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-
-    /* Base style untuk jarum jam baru */
-    .clock-hand {
-        position: absolute;
-        bottom: 50%;
-        left: 50%;
-        transform-origin: bottom center;
-        z-index: 20;
-        border-radius: 3px 4px 0 0;
-        background: linear-gradient(to top, #7d613b, #f5dfbb);
-        box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        transition: transform 0.2s linear;
-        pointer-events: none;
-    }
-
-    /* Jarum Jam (Pendek & Lebih Tebal) */
-    .hand-hour {
-        width: 4px;
-        height: 12%;
-        margin-left: -2px;
-    }
-
-    /* Jarum Menit (Panjang & Sedang) */
-    .hand-minute {
-        width: 3px;
-        height: 18%;
-        margin-left: -1.5px;
-    }
-
-    /* Jarum Detik (Tipis & Warna Emas/Kuning) */
-    .hand-second {
-        width: 1.5px;
-        height: 20%;
-        margin-left: -0.75px;
-        background: #f1c40f;
-        z-index: 25;
-    }
-
-    .header-container {
-        position: relative;
-        width: 100%;
-        z-index: 10;
-    }
-
-    .header {
-        width: 100%;
-        display: block;
-    }
-
-    .menu {
-        position: absolute;
-        display: block;
-        cursor: pointer;
-        z-index: 9999;
-    }
-
-    .home{ 
-        top:22%;
-        left:60%;
-        width:8%;
-        height:35%;
-    }
-
-    .about{
-        top:22%;
-        left:68%;
-        width:8%;
-        height:35%;
-    }
-
-    .filosofi{
-        top:22%;
-        left:76%;
-        width:9%;
-        height:35%;
-    }
-
-    .timeline{
-        top:22%;
-        left:84%;
-        width:9%;
-        height:35%;
-    }
-
-    .profil{
-        top:12%;
-        right:2.5%;
-        width:4%;
-        height:60%;
-        border-radius:50%;
-        z-index:99999;
-        cursor:pointer;
-        display:block;
-    }
-
-    .profile-panel{
-        position:fixed;
-        top:0;
-        right:-340px;
-        width:340px;
-        height:100vh;
-        background:#0f1f17;
-        color:white;
-        z-index:999999;
-        transition:0.3s ease;
-        padding:20px;
-        box-shadow:-10px 0 30px rgba(0,0,0,0.4);
-        display:flex;
-        flex-direction:column;
-    }
-
-    .profile-panel.active{
-        right:0;
-    }
-
-    .profile-menu{
-        flex:1;
-        overflow-y:auto;
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-    }
-
-    .profile-menu-bottom{
-        margin-top:auto;
-    }
-
-    .profile-header{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        margin-bottom:20px;
-    }
-
-    .profile-header span{
-        cursor:pointer;
-        font-size:20px;
-    }
-
-    .profile-menu button{
-        width:100%;
-        margin-bottom:10px;
-        padding:10px;
-        background:#1c2f25;
-        border:none;
-        color:white;
-        cursor:pointer;
-        border-radius:6px;
-    }
-
-    .profile-menu button:hover{
-        background:#2a4a38;
-    }
-
-    .profile-content{
-        margin-top:20px;
-        font-size:14px;
-    }
-
-    .countdown-box{
-        width: 320px;
-        min-height:170px;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        background:rgba(0,0,0,.25);
-        border:2px solid rgba(248,215,148,.35);
-        border-radius:18px;
-        padding:20px;
-        text-align:center;
-        color:#F8D794;
-        font-family:'Libre Baskerville', serif;
-        backdrop-filter:blur(5px);
-        flex-shrink: 0;
-    }
-
-    /* ═══ Responsive timeline layout ═══ */
-    .timeline-main-wrap {
-        display: flex;
-        align-items: center;
-        gap: 40px;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .timeline-clock-wrap {
-        width: 100%;
-        max-width: 700px;
-    }
-
-    @media (max-width: 900px) {
-        .timeline-main-wrap {
-            flex-direction: column;
-            gap: 24px;
-        }
-        .timeline-clock-wrap {
-            max-width: 100%;
-            width: 100%;
-        }
-        .countdown-box {
-            width: 100%;
-            max-width: 420px;
-        }
-    }
-
-    @media (max-width: 560px) {
-        .countdown-box {
-            width: 100%;
-        }
-    }
-
-    #countdownDisplay{
-        width:100%;
-        line-height:1.8;
-    }
-
-    @keyframes pulse{
-        0%{ transform:scale(1); }
-        50%{ transform:scale(1.25); }
-        100%{ transform:scale(1); }
-    }
-</style>
+@vite(['resources/css/timeline.css'])
 @endsection
 
 @section('content')
@@ -277,7 +15,7 @@
          alt="Background" 
          class="fixed inset-0 w-full h-full object-cover -z-10">
 
-    <main class="w-full max-w-4xl mx-auto flex flex-col justify-center items-center z-10 px-4 py-6 my-auto">
+    <main class="w-full max-w-6xl mx-auto flex flex-col justify-center items-center z-10 px-4 py-6 my-auto">
         
         <div class="text-center mb-6">
             <h1 class="font-primary text-5xl md:text-7xl text-[#F8D794] tracking-wide drop-shadow-md">
@@ -286,6 +24,7 @@
 
         {{-- Responsive container: kolom di mobile, baris di desktop --}}
         <div class="timeline-main-wrap">
+        <div class="timeline-row">
             <div class="clock-wrapper relative timeline-clock-wrap">
                 
                 <img src="{{ asset('images/timeline-1.webp') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
@@ -333,11 +72,51 @@
 
             </div>
 
- <div class="countdown-box">
-    <div id="countdownDisplay">
-        <strong>Menghitung...</strong>
-    </div>
-</div>
+            <div class="countdown-box">
+                <div id="countdownDisplay">
+                    <strong>Menghitung...</strong>
+                </div>
+            </div>
+        </div>
+
+            {{-- Peta perjalanan: blok besar full-width di bawah jam & kotak acara --}}
+            <div class="map-box">
+                    <div class="map-title">Peta Perjalanan Positron</div>
+                    <svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Kompas hias -->
+                        <g class="map-compass" transform="translate(70,44)">
+                            <circle r="30" fill="none" stroke="#c8a96e" stroke-width="1.5"/>
+                            <line x1="0" y1="-24" x2="0" y2="24" stroke="#c8a96e" stroke-width="1.5"/>
+                            <line x1="-24" y1="0" x2="24" y2="0" stroke="#c8a96e" stroke-width="1.5"/>
+                            <text x="0" y="-32" text-anchor="middle" fill="#c8a96e" font-size="15" font-family="'Libre Baskerville', serif">U</text>
+                        </g>
+
+                        <!-- Jalur perjalanan (zig-zag) -->
+                        <path class="map-route"
+                              d="M110,180 C190,130 250,70 330,70 C410,70 490,180 570,180 C650,180 710,70 790,70"/>
+
+                        <!-- Titik 1: Forum Maba (bawah) -->
+                        <circle class="map-pin-circle" cx="110" cy="180" r="32"/>
+                        <text class="map-pin-number" x="110" y="190">1</text>
+                        <text class="map-pin-label" x="110" y="244">FORUM MABA</text>
+
+                        <!-- Titik 2: LDK (atas) -->
+                        <circle class="map-pin-circle" cx="330" cy="70" r="32"/>
+                        <text class="map-pin-number" x="330" y="80">2</text>
+                        <text class="map-pin-label" x="330" y="26">LDK</text>
+
+                        <!-- Titik 3: IoH (bawah) -->
+                        <circle class="map-pin-circle" cx="570" cy="180" r="32"/>
+                        <text class="map-pin-number" x="570" y="190">3</text>
+                        <text class="map-pin-label" x="570" y="244">IOH</text>
+
+                        <!-- Titik 4: NAKO (atas) -->
+                        <circle class="map-pin-circle" cx="790" cy="70" r="32"/>
+                        <text class="map-pin-number" x="790" y="80">4</text>
+                        <text class="map-pin-label" x="790" y="26">NAKO</text>
+                    </svg>
+                </div>
+            </div>
         </div>
 
         <div class="text-center mt-6 font-secondary text-[11px] md:text-xs text-[#F8D794]/80 tracking-widest bg-black/40 px-4 py-1.5 rounded-full backdrop-blur-sm">
