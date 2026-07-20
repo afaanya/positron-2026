@@ -17,7 +17,7 @@
     <main class="w-full max-w-6xl mx-auto flex flex-col justify-center items-center z-10 px-4 py-6 my-auto">
         
         <div class="text-center mb-6">
-            <h1 class="font-secondary text-5xl md:text-7xl text-[#F8D794] tracking-wide drop-shadow-md">
+            <h1 class="font-secondary text-3xl md:text-5xl text-[#F8D794] tracking-wide drop-shadow-md">
                 TIMELINE KEGIATAN
             </h1>
         </div>
@@ -27,7 +27,7 @@
         <div class="timeline-row">
             <div class="clock-wrapper relative timeline-clock-wrap">
                 
-                <img src="{{ asset('images/timeline-1.webp') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
+                <img src="{{ asset('images/Timeline-1.webp') }}" alt="Timeline Clock" class="w-full h-auto block opacity-95">
 
             {{-- Overlay Kalender --}}
     <div id="calendar-overlay" style="
