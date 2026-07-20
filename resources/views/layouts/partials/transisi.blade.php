@@ -42,7 +42,7 @@
 
         <!-- 2. Kontainer Teks 'ositron' -->
         <div id="transition-text" style="
-            font-family: 'Praise', cursive;
+            font-family: 'Libre Baskerville', cursive;
             font-size: 4.2rem;
             color: #F1C776;
             display: flex;
@@ -89,7 +89,7 @@
         const logoP = document.getElementById('transition-logo-p');
         const textContainer = document.getElementById('transition-text');
         const mainContent = document.querySelector('main');
-        const remainingLetters = "ositron";
+        const remainingLetters = "OSITRON";
         
         if (mainContent) {
             mainContent.style.transition = 'transform 0.7s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.7s cubic-bezier(0.85, 0, 0.15, 1), filter 0.7s ease';
