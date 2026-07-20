@@ -83,13 +83,10 @@
             <div class="map-box">
                     <div class="map-title">Peta Perjalanan Positron</div>
                     <svg viewBox="0 0 1500 320" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Kompas hias -->
-                        <g class="map-compass" transform="translate(80,60)">
-                            <circle r="30" fill="none" stroke="#c8a96e" stroke-width="1.5"/>
-                            <line x1="0" y1="-24" x2="0" y2="24" stroke="#c8a96e" stroke-width="1.5"/>
-                            <line x1="-24" y1="0" x2="24" y2="0" stroke="#c8a96e" stroke-width="1.5"/>
-                            <text x="0" y="-32" text-anchor="middle" fill="#c8a96e" font-size="15" font-family="'Libre Baskerville', serif">U</text>
-                        </g>
+                        <!-- Kompas hias: mata angin -->
+                        <image href="{{ asset('images/mata angin.png') }}"
+                               x="1340" y="200" width="130" height="130"
+                               opacity="0.85" />
 
                         <!-- Jalur perjalanan (zig-zag) -->
                         <path class="map-route"
