@@ -111,33 +111,41 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Tap pada wajah yang sedang menghadap depan -> muter (flip 3D) buat lihat detail.
-    // Semua sisi kubus bisa di-tap untuk lihat detail (flip 3D)
-    faces.forEach(function (face, i) {
-        face.addEventListener('click', function () {
-            if (i !== getCurrentIndex()) return; // hanya wajah aktif yang bisa di-tap
-            face.classList.toggle('flipped');
-        });
-    });
+    // PENTING: listener dipasang di cubeScene (bukan di cube-face langsung) karena
+    // face-2 & face-4 dirotasi 90°/270° dalam 3D space sehingga browser mobile
+    // tidak bisa mendeteksi tap pada elemen yang sudah berubah orientasi.
     
-    // Swipe kiri/kanan untuk memutar kubus
+    // Swipe kiri/kanan untuk memutar kubus, tap untuk flip face aktif
     let touchStartX = 0;
+    let touchStartY = 0;
     const cubeScene = cube.closest('.cube-scene');
 
     cubeScene.addEventListener('touchstart', function (e) {
         touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
     }, { passive: true });
 
     cubeScene.addEventListener('touchend', function (e) {
         const touchEndX = e.changedTouches[0].screenX;
-        const diff = touchEndX - touchStartX;
+        const touchEndY = e.changedTouches[0].screenY;
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
         const threshold = 40;
 
-        if (Math.abs(diff) < threshold) return;
+        // Jika gerakannya kecil (tap, bukan swipe) -> flip face aktif
+        if (Math.abs(diffX) < threshold && Math.abs(diffY) < threshold) {
+            const activeFace = faces[getCurrentIndex()];
+            if (activeFace) activeFace.classList.toggle('flipped');
+            return;
+        }
 
-        if (diff < 0) {
-            next(); // swipe kiri -> next
-        } else {
-            prev(); // swipe kanan -> prev
+        // Swipe horizontal -> putar kubus
+        if (Math.abs(diffX) >= threshold && Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX < 0) {
+                next(); // swipe kiri -> next
+            } else {
+                prev(); // swipe kanan -> prev
+            }
         }
     }, { passive: true });
 
