@@ -7,3 +7,14 @@ html, body {
 }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 18px; }
 main { position: relative; z-index: 1; margin-top: 58px; }
+
+main {
+    width: 100%;
+}
+
+main.full-width{
+    width:100%;
+    max-width:none;
+    margin: 0;
+    padding:0;
+}

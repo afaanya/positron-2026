@@ -21,7 +21,7 @@
       num: 'III',
       html: `
           <p class="quote-style">
-            "Mewujudkan Departemen Teknik Elektro dan Informatika sebagai departemen yang unggul dan menjadi rujukan nasional dalam pengembangan bidang pendidikan dan sains khususnya dalam bidang pendidikan teknik elektro dan informatika yang relevan dengan kebutuhan pembangunan, masyarakat dan kemanusiaan."
+            "HMD TEI FT UM merupakan organisasi kemahasiswaan di Departemen Teknik Elektro dan Informatika Fakultas Teknik Universitas Negeri Malang yang menjadi wadah pengembangan potensi, kepemimpinan, serta aspirasi mahasiswa melalui berbagai kegiatan akademik, pengabdian, dan pengembangan diri."
           </p>
         `
     },

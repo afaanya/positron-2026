@@ -142,6 +142,14 @@
 @media (max-width: 1023px) {
 
     /* Wrapper relatif untuk dua petir */
+    .filosofi-mobile-card {
+        padding-top: 28px;
+    }
+    .filosofi-mobile-card h3 {
+        margin-top: 4px;
+        margin-bottom: 12px;
+    }
+
     .filosofi-mobile-wrap {
         position: relative;
         width: 220px;
@@ -181,8 +189,13 @@
         font-size: 12px;
         width: 82vw;
         max-width: 340px;
-        padding: 12px 14px;
+        padding: 18px 14px 14px;
         line-height: 1.5;
+    }
+
+    .overlay-text strong {
+        margin-top: 2px;
+        margin-bottom: 8px;      /* kasih jarak lebih ke paragraf juga */
     }
 
     /* Overlay petir ATAS → muncul di ATAS */

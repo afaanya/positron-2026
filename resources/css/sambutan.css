@@ -5,22 +5,24 @@
 .sambutan-section {
     position: relative;
     width: 100%;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    background-color: #D4AF37;
 }
 
 .sambutan-container {
     position: relative;
     width: 100%;
-    height: 100%;
+    max-width: 1920px;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
 }
 
 .sambutan-bg {
     width: 100%;
     height: 100%;
+    display: block;
     object-fit: cover;
 }
 
@@ -43,46 +45,62 @@
     height: calc(100% + 120px);
     pointer-events: none;
     border-radius: 8px;
-    box-shadow: 0 20px 30px rgba(0, 0, 0, .4);
+    box-shadow: 0 20px 30px rgba(0,0,0,.4);
 }
 
-.mute-btn {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    z-index: 10;
-    width: 42px;
-    height: 42px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, .7);
-    color: white;
-    cursor: pointer;
-    font-size: 18px;
+.mute-btn{
+    position:absolute;
+    bottom:10px;
+    right:10px;
+    z-index:10;
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:rgba(0,0,0,.7);
+    color:#fff;
+    cursor:pointer;
+    font-size:18px;
 }
 
-.mute-btn:hover {
-    background: rgba(0, 0, 0, .9);
+.mute-btn:hover{
+    background:rgba(0,0,0,.9);
 }
 
+.desktop-bg{
+    display:block;
+}
 
-/* =========================
-   Laptop Kecil
-========================= */
+.mobile-bg{
+    display:none;
+}
 
-@media (max-width: 1366px) {
+@media (max-width:768px){
 
-    .video-wrapper {
-        width: 37%;
-        top: 56%;
-        left: 59%;
+    .desktop-bg{
+        display:none;
     }
 
-    .video-frame {
-        top: -50px;
-        left: -18px;
-        width: calc(100% + 36px);
-        height: calc(100% + 100px);
+    .mobile-bg{
+        display:block;
+    }
+
+}
+/* =========================
+   Laptop
+========================= */
+
+@media (max-width:1366px){
+
+    .video-wrapper{
+        width:38%;
+    }
+
+    .video-frame{
+        top:-50px;
+        left:-18px;
+        width:calc(100% + 36px);
+        height:calc(100% + 100px);
     }
 
 }
@@ -92,25 +110,17 @@
    Tablet
 ========================= */
 
-@media (max-width: 1024px) {
+@media (max-width:1024px){
 
-    .video-wrapper {
-        width: 46%;
-        top: 56%;
-        left: 59%;
+    .video-wrapper{
+        width:46%;
     }
 
-    .video-frame {
-        top: -42px;
-        left: -15px;
-        width: calc(100% + 30px);
-        height: calc(100% + 84px);
-    }
-
-    .mute-btn {
-        width: 38px;
-        height: 38px;
-        font-size: 16px;
+    .video-frame{
+        top:-42px;
+        left:-15px;
+        width:calc(100% + 30px);
+        height:calc(100% + 84px);
     }
 
 }
@@ -120,25 +130,35 @@
    HP Landscape
 ========================= */
 
-@media (max-width: 768px) {
+@media (max-width:768px) and (orientation:landscape){
 
-    .video-wrapper {
-        width: 62%;
-        top: 56%;
-        left: 59%;
+    .sambutan-section{
+        min-height:100svh;
     }
 
-    .video-frame {
-        top: -30px;
-        left: -12px;
-        width: calc(100% + 24px);
-        height: calc(100% + 60px);
+    .sambutan-bg{
+        width:100%;
+        height:100%;
+        object-fit:cover;
     }
 
-    .mute-btn {
-        width: 34px;
-        height: 34px;
-        font-size: 15px;
+    .video-wrapper{
+        width:56%;
+        left:58.7%;
+        top:55.8%;
+    }
+
+    .video-frame{
+        top:-24px;
+        left:-10px;
+        width:calc(100% + 20px);
+        height:calc(100% + 48px);
+    }
+
+    .mute-btn{
+        width:34px;
+        height:34px;
+        font-size:15px;
     }
 
 }
@@ -148,31 +168,37 @@
    HP Portrait
 ========================= */
 
-@media (max-width: 480px) {
+@media (max-width:768px) and (orientation:portrait){
 
-    .sambutan-section {
-        height: auto;
+    .sambutan-section{
+        min-height:100svh;
     }
 
-    .video-wrapper {
-        width: 72%;
-        top: 56%;
-        left: 59%;
+    .sambutan-bg{
+        object-fit:cover;
+        object-position: center;
     }
 
-    .video-frame {
-        top: -18px;
-        left: -8px;
-        width: calc(100% + 16px);
-        height: calc(100% + 36px);
+    .video-wrapper{
+        width:85vw !important;
+        max: width 400px !important;
+        left:50% !important;
+        top:50% !important;
+        transform:translate(-50%,-50%) !important;
     }
 
-    .mute-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-        bottom: 6px;
-        right: 6px;
+    .video-frame{
+        top: -10px;
+        left:-5px;
+        width:calc(100% + 10px);
+        height:calc(100% + 20px);
     }
 
+    .mute-btn{
+        width:30px;
+        height:30px;
+        font-size:14px;
+        bottom:6px;
+        right:6px;
+    }
 }

@@ -67,9 +67,13 @@ Route::middleware('mahasiswa.auth')->group(function () {
             ->where('id', session('mahasiswa_id'))
             ->first();
 
-        return view('biodata-mahasiswa', compact('biodata'));
-    })->name('biodata');
+        $mentors = DB::table('mentor')
+            ->where('user', $biodata->offering)
+            ->get();
 
+        return view('biodata-mahasiswa', compact('biodata', 'mentors'));
+    })->name('biodata');
+    
     Route::get('/biodata/edit', [MahasiswaController::class, 'edit'])
         ->name('biodata.edit');
 

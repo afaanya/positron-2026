@@ -1,17 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Praise&display=swap');
 
 :root {
-    --font-primary: 'Praise', cursive;
+    --font-primary: 'Libre Baskerville', serif;
     --font-secondary: 'Libre Baskerville', serif;
     --color-accent: #F8D794;
 }
 
-.font-primary { font-family: var(--font-primary); }
-.font-secondary { font-family: var(--font-secondary); }
+.font-primary {
+    font-family: var(--font-primary);
+}
+
+.font-secondary {
+    font-family: var(--font-secondary);
+}
 
 /* Menggunakan file background dari Anda */
 .royal-bg {
-    background-image: url("/images/page-bg.jpg");
+    background-image: url("/images/login-bg.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -35,7 +40,7 @@
     border-radius: 50%;
     transform: translate(-50%, -50%);
     z-index: 30;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Base style untuk jarum jam baru */
@@ -47,7 +52,7 @@
     z-index: 20;
     border-radius: 3px 4px 0 0;
     background: linear-gradient(to top, #7d613b, #f5dfbb);
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s linear;
     pointer-events: none;
 }
@@ -93,105 +98,266 @@
     z-index: 9999;
 }
 
-.home{ 
-top:22%;
-left:60%;
-width:8%;
-height:35%;
+.home {
+    top: 22%;
+    left: 60%;
+    width: 8%;
+    height: 35%;
 }
 
-.about{
-    top:22%;
-    left:68%;
-    width:8%;
-    height:35%;
+.about {
+    top: 22%;
+    left: 68%;
+    width: 8%;
+    height: 35%;
 }
 
-.filosofi{
-    top:22%;
-    left:76%;
-    width:9%;
-    height:35%;
+.filosofi {
+    top: 22%;
+    left: 76%;
+    width: 9%;
+    height: 35%;
 }
 
-.timeline{
-    top:22%;
-    left:84%;
-    width:9%;
-    height:35%;
+.timeline {
+    top: 22%;
+    left: 84%;
+    width: 9%;
+    height: 35%;
 }
 
-.profil{
-    top:12%;
-    right:2.5%;
-    width:4%;
-    height:60%;
-    border-radius:50%;
-    z-index:99999;
-    cursor:pointer;
-    display:block;
+.profil {
+    top: 12%;
+    right: 2.5%;
+    width: 4%;
+    height: 60%;
+    border-radius: 50%;
+    z-index: 99999;
+    cursor: pointer;
+    display: block;
 }
 
-.profile-panel{
-position:fixed;
-top:0;
-right:-340px;
-width:340px;
-height:100vh;
-background:#0f1f17;
-color:white;
-z-index:999999;
-transition:0.3s ease;
-padding:20px;
-box-shadow:-10px 0 30px rgba(0,0,0,0.4);
-display:flex;
-flex-direction:column;
+.profile-panel {
+    position: fixed;
+    top: 0;
+    right: -340px;
+    width: 340px;
+    height: 100vh;
+    background: #0f1f17;
+    color: white;
+    z-index: 999999;
+    transition: 0.3s ease;
+    padding: 20px;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
 }
 
-.profile-panel.active{
-    right:0;
+.profile-panel.active {
+    right: 0;
 }
 
-.profile-menu{
-    flex:1;
-    overflow-y:auto;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
+.profile-menu {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.profile-menu-bottom{
-    margin-top:auto;
+.profile-menu-bottom {
+    margin-top: auto;
 }
 
-.profile-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.profile-header span{
-    cursor:pointer;
-    font-size:20px;
+.profile-header span {
+    cursor: pointer;
+    font-size: 20px;
 }
 
-.profile-menu button{
-    width:100%;
-    margin-bottom:10px;
-    padding:10px;
-    background:#1c2f25;
-    border:none;
-    color:white;
-    cursor:pointer;
-    border-radius:6px;
+.profile-menu button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #1c2f25;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
 }
 
-.profile-menu button:hover{
-    background:#2a4a38;
+.profile-menu button:hover {
+    background: #2a4a38;
 }
 
-.profile-content{
-    margin-top:20px;
-    font-size:14px;
+.profile-content {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.countdown-box {
+    width: 320px;
+    min-height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, .25);
+    border: 2px solid rgba(248, 215, 148, .35);
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    color: #F8D794;
+    font-family: 'Libre Baskerville', serif;
+    backdrop-filter: blur(5px);
+    flex-shrink: 0;
+}
+
+/* ═══ Peta perjalanan (ilustrasi fantasi) ═══ */
+.map-box {
+    width: 100%;
+    max-width: 1000px;
+    box-sizing: border-box;
+    margin: 18px auto 0;
+}
+
+.map-title {
+    font-family: 'Libre Baskerville', serif;
+    color: #F8D794;
+    font-size: 22px;
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    opacity: .95;
+    font-weight: bold;
+}
+
+.map-box svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.map-route {
+    fill: none;
+    stroke: #c8a96e;
+    stroke-width: 5;
+    stroke-dasharray: 14 14;
+    stroke-linecap: round;
+    opacity: .85;
+}
+
+.map-pin-circle {
+    fill: #14261b;
+    stroke: #F8D794;
+    stroke-width: 4;
+    filter: drop-shadow(0 0 7px rgba(248, 215, 148, .55));
+}
+
+.map-pin-number {
+    fill: #F8D794;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 26px;
+    font-weight: bold;
+    text-anchor: middle;
+}
+
+.map-pin-label {
+    fill: #c8a96e;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-anchor: middle;
+    letter-spacing: 1px;
+}
+
+.map-compass {
+    opacity: .5;
+}
+
+/* ═══ Responsive timeline layout ═══ */
+.timeline-main-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.timeline-row {
+    display: grid;
+    grid-template-columns: minmax(0, 480px) minmax(0, 320px);
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+}
+
+.timeline-clock-wrap {
+    width: 100%;
+    max-width: 480px;
+    justify-self: center;
+}
+
+.countdown-box {
+    justify-self: center;
+}
+
+@media (max-width: 100px) {
+    .timeline-row {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .timeline-clock-wrap {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .countdown-box {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .map-box {
+        width: 100%;
+        max-width: 460px;
+    }
+}
+
+@media (max-width: 560px) {
+    .countdown-box {
+        width: 100%;
+    }
+
+    .map-box {
+        width: 100%;
+    }
+}
+
+#countdownDisplay {
+    width: 100%;
+    line-height: 1.8;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
