@@ -532,12 +532,10 @@ body {
 
     .content {
         width: 100%;
-        <<<<<<< HEAD=======
     }
 
     .option-button.active {
         padding-left: 32px;
-        >>>>>>>7a670c78307f71da9c3767af2afbcb8603c4e25a
     }
 
     .points-panel {
@@ -574,8 +572,4 @@ body {
         width: 34px;
         height: 34px;
     }
-
-    <<<<<<< HEAD=======
 }
-
->>>>>>>7a670c78307f71da9c3767af2afbcb8603c4e25a
