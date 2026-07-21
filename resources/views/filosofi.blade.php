@@ -43,12 +43,12 @@
 
         <!-- Mobile Stacked Layout -->
         <div class="lg:hidden flex flex-col items-center gap-12 w-full">
-            <img src="{{ asset('images/filosofi.text.png') }}" alt="Filosofi Text" class="w-full max-w-[280px]">
+            <img src="{{ asset('images/filosofi.text.png') }}" alt="Filosofi Text" class="w-full max-w-[280px] mt-8">
             
             <div class="flex flex-col items-center text-center gap-4 w-full max-w-md px-2">
                 <img src="{{ asset('images/filosofi.atas.kuning.png') }}" class="w-44 petir-glow filter drop-shadow-[0_0_12px_rgba(248,215,148,0.5)]">
-                <div class="p-5 rounded-xl border border-[rgba(248,215,148,0.25)] bg-[rgba(6,20,12,0.8)] backdrop-blur-md">
-                    <h3 class="text-[#f8d794] font-secondary font-bold text-base mb-2">The Symphony of the Ton</h3>
+                <div class="p-5 pt-6 rounded-xl border border-[rgba(248,215,148,0.25)] bg-[rgba(6,20,12,0.8)] backdrop-blur-md">
+                    <h3 class="text-[#f8d794] font-secondary font-bold text-base mb-3 mt-1">The Symphony of the Ton</h3>
                     <p class="text-sm font-secondary text-[#f0e2c6] leading-relaxed">Menggambarkan bahwa dunia kampus diisi oleh berbagai macam karakter, latar belakang, dan keahlian. Jika dipadukan dengan baik, perbedaan ini akan menciptakan harmoni yang indah (simfoni).</p>
                 </div>
             </div>
