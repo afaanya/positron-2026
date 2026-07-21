@@ -202,15 +202,15 @@
 }
 
 .countdown-box {
-    width: 320px;
-    min-height: 170px;
+    width: 380px;
+    min-height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, .25);
     border: 2px solid rgba(248, 215, 148, .35);
     border-radius: 18px;
-    padding: 20px;
+    padding: 24px;
     text-align: center;
     color: #F8D794;
     font-family: 'Libre Baskerville', serif;
@@ -223,7 +223,8 @@
     width: 100%;
     max-width: 1000px;
     box-sizing: border-box;
-    margin: 18px auto 0;
+    margin: 18px auto 30px;
+    transform: translateX(40px);
 }
 
 .map-title {
@@ -282,6 +283,31 @@
     opacity: .5;
 }
 
+/* ═══ Thin gold border frame ═══ */
+.timeline-gold-frame {
+    position: fixed;
+    inset: 10px;
+    border: 2px solid;
+    border-color: #c9a227;
+    border-image: linear-gradient(
+        135deg,
+        #f8d794,
+        #c9a227 30%,
+        #a07820 50%,
+        #c9a227 70%,
+        #f8d794
+    ) 1;
+    z-index: 60;
+    pointer-events: none;
+    box-shadow:
+        inset 0 0 8px rgba(249, 215, 148, 0.15),
+        0 0 8px rgba(249, 215, 148, 0.1);
+}
+
+.timeline-title-wrap {
+    margin-left: 150px;
+}
+
 /* ═══ Responsive timeline layout ═══ */
 .timeline-main-wrap {
     display: flex;
@@ -290,56 +316,84 @@
     gap: 36px;
     width: 100%;
     max-width: 100%;
+    margin-top: 60px;
+    transform: translateX(30px);
 }
 
 .timeline-row {
     display: grid;
-    grid-template-columns: minmax(0, 480px) minmax(0, 320px);
+    grid-template-columns: minmax(0, 420px) minmax(0, 420px);
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 120px;
     width: 100%;
 }
 
 .timeline-clock-wrap {
     width: 100%;
-    max-width: 480px;
+    max-width: 420px;
     justify-self: center;
+    margin-left: 60px;
 }
 
 .countdown-box {
     justify-self: center;
 }
 
-@media (max-width: 100px) {
+@media (max-width: 1024px) {
+    .timeline-title-wrap {
+        margin-left: 0;
+    }
+
+    .timeline-main-wrap {
+        margin-top: 30px;
+        gap: 24px;
+        transform: none;
+    }
+
     .timeline-row {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 32px;
     }
 
     .timeline-clock-wrap {
-        max-width: 100%;
-        width: 100%;
+        margin-left: 0;
+        margin: 0 auto;
+        max-width: 400px;
     }
 
     .countdown-box {
-        width: 100%;
-        max-width: 420px;
+        width: 90%;
+        max-width: 380px;
+        margin: 0 auto;
     }
 
     .map-box {
-        width: 100%;
-        max-width: 460px;
+        transform: none;
+        padding: 0 16px;
+        margin-top: 32px;
     }
 }
 
 @media (max-width: 560px) {
-    .countdown-box {
-        width: 100%;
+    .timeline-clock-wrap {
+        max-width: 80%;
+        margin: 0 auto;
     }
 
-    .map-box {
-        width: 100%;
+    .countdown-box {
+        width: 85%;
+        min-height: 150px;
+        padding: 16px;
+        margin: 0 auto;
+    }
+
+    .map-pin-label {
+        font-size: 16px;
+    }
+
+    .map-pin-number {
+        font-size: 20px;
     }
 }
 
