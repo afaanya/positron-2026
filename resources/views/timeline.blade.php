@@ -14,13 +14,17 @@
          alt="Background" 
          class="fixed inset-0 w-full h-full object-cover -z-10">
 
+    <!-- Bingkai emas tipis -->
+    <div class="timeline-gold-frame" aria-hidden="true"></div>
+
     <main class="w-full max-w-6xl mx-auto flex flex-col justify-center items-center z-10 px-4 py-6 my-auto">
         
-        <div class="text-center mb-6">
-            <h1 class="font-secondary text-3xl md:text-5xl text-[#F8D794] tracking-wide drop-shadow-md">
+        <div class="text-center mb-32 timeline-title-wrap">
+            <h1 class="font-secondary text-4xl md:text-6xl text-[#F8D794] tracking-wide drop-shadow-md">
                 TIMELINE KEGIATAN
             </h1>
         </div>
+
 
         {{-- Responsive container: kolom di mobile, baris di desktop --}}
         <div class="timeline-main-wrap">
@@ -257,7 +261,7 @@
 
         if (monthEvents.length === 0) {
             document.getElementById('countdownDisplay').innerHTML = 
-            '<strong style="font-size:18px; line-height:1.6; display:block; text-align:center;">TIDAK ADA<br>ACARA<br>PADA BULAN INI</strong>';
+            '<strong class="text-xl md:text-2xl" style="line-height:1.8; display:block; text-align:center;">TIDAK ADA<br>ACARA<br>PADA BULAN INI</strong>';
             return;
         }
 
