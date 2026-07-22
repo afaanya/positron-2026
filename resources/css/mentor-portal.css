@@ -11,6 +11,9 @@
   --p-bg:rgba(210,120,0,.2);  --p-br:#c88020; --p-tx:#8a5000;
   --r-bg:rgba(140,110,50,.22);--r-br:#8a7030; --r-tx:#4a3010;
   --b-bg:rgba(210,40,30,.2);  --b-br:#c03020; --b-tx:#900010;
+    --l-bg:rgba(22,140,70,.18); --l-br:#1a9050; --l-tx:#0e6030;   /* lulus — reuse hijau "selesai" */
+    --g-bg:rgba(210,40,30,.2);  --g-br:#c03020; --g-tx:#900010;   /* gagal — reuse merah "belum" */
+    --n-bg:rgba(140,140,140,.15);--n-br:#8a8a8a; --n-tx:#555;     /* none/- — netral abu */
   --nav-h:58px; --sb-w:220px;
   --r-sm:6px; --r-md:10px; --r-lg:14px; --r-xl:18px;
   --sh:0 6px 28px rgba(0,0,0,.6),0 1px 4px rgba(0,0,0,.35);
@@ -208,7 +211,10 @@ table.dtbl td{padding:10px 13px;color:var(--txt-dark);font-size:.78rem;vertical-
 .b-p{background:var(--p-bg);border-color:var(--p-br);color:var(--p-tx)}
 .b-r{background:var(--r-bg);border-color:var(--r-br);color:var(--r-tx)}
 .b-b{background:var(--b-bg);border-color:var(--b-br);color:var(--b-tx)}
-/* edit dropdown */
+.b-lulus{background:var(--l-bg);border-color:var(--l-br);color:var(--l-tx)}
+.b-gagal{background:var(--g-bg);border-color:var(--g-br);color:var(--g-tx)}
+.b-none {background:var(--n-bg);border-color:var(--n-br);color:var(--n-tx)}
+/* edit dropdown */-
 .edit-dd-wrap{position:relative;display:inline-block}
 .edit-dd-menu{position:absolute;top:calc(100% + 3px);right:0;z-index:500;background:linear-gradient(160deg,#d8bc6a,#b09030);border:1.5px solid rgba(180,135,25,.5);border-radius:var(--r-md);box-shadow:0 6px 22px rgba(0,0,0,.5);min-width:130px;display:none;overflow:hidden}
 .edit-dd-menu.open{display:block}

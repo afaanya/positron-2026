@@ -2,8 +2,7 @@
    DASHBOARD — table render, filtering, pagination, status edit, CSV export
    ══════════════════════════════════════════════════════ */
 import { S } from './state.js';
-import { BADGE_MAP, PAGE_SIZE } from './config.js';
-import { esc, showToast } from './utils.js';
+import { BADGE_MAP, PAGE_SIZE, BATAS_LULUS, MAX_NILAI, KELULUSAN_BADGE } from './config.js';import { esc, showToast } from './utils.js';
 import { closeAllDropdowns } from './nav.js';
 
 export function getFiltered(){
@@ -17,6 +16,12 @@ export function getFiltered(){
   });
 }
 
+function getKelulusan(total, status){
+  if(status !== 'selesai') return KELULUSAN_BADGE.none;
+  if(total === null) return KELULUSAN_BADGE.none;
+  return total >= BATAS_LULUS ? KELULUSAN_BADGE.lulus : KELULUSAN_BADGE.gagal;
+}
+
 export function render(){
   const rows=getFiltered();
   const total=rows.length;
@@ -25,38 +30,40 @@ export function render(){
   const start=(S.curPage-1)*PAGE_SIZE;
   const pageRows=rows.slice(start,start+PAGE_SIZE);
 
-  const tbody=document.getElementById('tblBody');
-  if(!pageRows.length){
-    tbody.innerHTML=`<tr><td colspan="6" style="text-align:center;padding:28px;font-style:italic;color:var(--txt-mid);opacity:.7">Tidak ada data yang sesuai.</td></tr>`;
-  }else{
-    tbody.innerHTML=pageRows.map((s,i)=>{
-      const [bc,bl]=BADGE_MAP[s.status]||BADGE_MAP.belum;
-      const a=S.assessments[s.id];
-      const scoreTip=a?Object.values(a).reduce((tot,sec)=>tot+Object.values(sec).reduce((x,y)=>x+y,0),0):null;
-      return `<tr>
-        <td class="td-no">${start+i+1}</td>
-        <td class="td-nm">${esc(s.nama)}</td>
-        <td class="td-nim">${esc(s.nim)}</td>
-        <td>${esc(s.jurusan)}</td>
-        <td><span class="badge ${bc}" title="${scoreTip!==null?'Total: '+scoreTip+' poin':'Belum dinilai'}">${bl}</span></td>
-        <td>
-          <div class="act-g">
-            <button class="btn-sm" onclick="lihat(${s.id})">Lihat</button>
-            <button class="btn-sm" onclick="beriNilai(${s.id})">Beri Nilai</button>
-            <div class="edit-dd-wrap">
-              <button class="btn-sm" onclick="toggleEditDd(event,${s.id})" aria-haspopup="true">Edit ▾</button>
-              <div class="edit-dd-menu" id="edd-${s.id}" role="menu">
-                <div class="edit-dd-item" onclick="setStatus(${s.id},'selesai')"><span class="ds" style="background:#1a9050"></span>Selesai</div>
-                <div class="edit-dd-item" onclick="setStatus(${s.id},'proses')"><span class="ds" style="background:#c88020"></span>Proses</div>
-                <div class="edit-dd-item" onclick="setStatus(${s.id},'revisi')"><span class="ds" style="background:#8a7030"></span>Revisi</div>
-                <div class="edit-dd-item" onclick="setStatus(${s.id},'belum')"><span class="ds" style="background:#c03020"></span>Belum</div>
-              </div>
+const tbody=document.getElementById('tblBody');
+if(!pageRows.length){
+  tbody.innerHTML=`<tr><td colspan="7" style="text-align:center;padding:28px;font-style:italic;color:var(--txt-mid);opacity:.7">Tidak ada data yang sesuai.</td></tr>`;
+}else{
+  tbody.innerHTML=pageRows.map((s,i)=>{
+    const [bc,bl]=BADGE_MAP[s.status]||BADGE_MAP.belum;
+    const a=S.assessments[s.id];
+    const scoreTip=a?Object.values(a).reduce((tot,sec)=>tot+Object.values(sec).reduce((x,y)=>x+y,0),0):null;
+    const [kc,kl]=getKelulusan(scoreTip, s.status);
+    return `<tr>
+      <td class="td-no">${start+i+1}</td>
+      <td class="td-nm">${esc(s.nama)}</td>
+      <td class="td-nim">${esc(s.nim)}</td>
+      <td>${esc(s.jurusan)}</td>
+      <td><span class="badge ${bc}" title="${scoreTip!==null?'Total: '+scoreTip+' poin':'Belum dinilai'}">${bl}</span></td>
+      <td>
+        <div class="act-g">
+          <button class="btn-sm" onclick="lihat(${s.id})">Lihat</button>
+          <button class="btn-sm" onclick="beriNilai(${s.id})">Beri Nilai</button>
+          <div class="edit-dd-wrap">
+            <button class="btn-sm" onclick="toggleEditDd(event,${s.id})" aria-haspopup="true">Edit ▾</button>
+            <div class="edit-dd-menu" id="edd-${s.id}" role="menu">
+              <div class="edit-dd-item" onclick="setStatus(${s.id},'selesai')"><span class="ds" style="background:#1a9050"></span>Selesai</div>
+              <div class="edit-dd-item" onclick="setStatus(${s.id},'proses')"><span class="ds" style="background:#c88020"></span>Proses</div>
+              <div class="edit-dd-item" onclick="setStatus(${s.id},'revisi')"><span class="ds" style="background:#8a7030"></span>Revisi</div>
+              <div class="edit-dd-item" onclick="setStatus(${s.id},'belum')"><span class="ds" style="background:#c03020"></span>Belum</div>
             </div>
           </div>
-        </td>
-      </tr>`;
-    }).join('');
-  }
+        </div>
+      </td>
+      <td><span class="badge ${kc}" title="${s.status==='selesai'?'Batas lulus: '+BATAS_LULUS+' / '+MAX_NILAI+' poin':'Menunggu status Selesai'}">${kl}</span></td>
+    </tr>`;
+  }).join('');
+}
 
   // Pagination numbers
   const pgNums=document.getElementById('pgNums');
@@ -153,11 +160,12 @@ export function setStatus(id,status){
 }
 
 export function exportCSV(){
-  const hdr=['No','Nama','NIM','Prodi/Offering','Status','Total Poin'];
+  const hdr=['No','Nama','NIM','Prodi/Offering','Status','Total Poin','Status Kelulusan'];
   const rows=S.students.map((s,i)=>{
     const a=S.assessments[s.id];
-    const t=a?Object.values(a).reduce((tot,sec)=>tot+Object.values(sec).reduce((x,y)=>x+y,0),0):'–';
-    return [i+1,s.nama,s.nim,s.jurusan,BADGE_MAP[s.status]?.[1]||s.status,t].join(',');
+    const t=a?Object.values(a).reduce((tot,sec)=>tot+Object.values(sec).reduce((x,y)=>x+y,0),0):null;
+    const [,kl]=getKelulusan(t, s.status);
+    return [i+1,s.nama,s.nim,s.jurusan,BADGE_MAP[s.status]?.[1]||s.status,t??'–',kl].join(',');
   });
   const csv=[hdr.join(','),...rows].join('\n');
   const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});

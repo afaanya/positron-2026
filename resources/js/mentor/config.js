@@ -79,3 +79,12 @@ export const BADGE_MAP = {
   selesai:['b-s','Selesai'],proses:['b-p','Proses'],revisi:['b-r','Revisi'],belum:['b-b','Belum'],
 };
 export const PAGE_SIZE = 8;
+
+export const BATAS_LULUS = 575;
+export const MAX_NILAI = Object.values(SECTIONS).reduce((t, sec) => t + sec.noteMax, 0); // = 815
+
+export const KELULUSAN_BADGE = {
+  lulus: ['b-lulus', 'Lulus'],
+  gagal: ['b-gagal', 'Tidak Lulus'],
+  none:  ['b-none', '-'],
+};

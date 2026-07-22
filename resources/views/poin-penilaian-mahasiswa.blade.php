@@ -18,7 +18,7 @@
             <div class="board-header">
                 <div class="board-title">Poin Tugas Mahasiswa Baru</div>
                 <div class="board-status">
-                    Berikut adalah seluruh poin yang telah diperoleh mahasiswa selama kegiatan POSITRON.
+                    Minimal poin kelulusan adalah 70% dari jumlah keseluruan poin, atau sama dengan 575 poin
                 </div>
             </div>
 

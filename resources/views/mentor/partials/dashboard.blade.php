@@ -36,6 +36,7 @@
           <th scope="col">No.</th><th scope="col">Nama Lengkap</th>
           <th scope="col">NIM</th><th scope="col">Prodi/Offering</th>
           <th scope="col">Status Penilaian</th><th scope="col">Aksi (Detail &amp; Evaluasi)</th>
+          <th scope="col">Status Kelulusan</th>
         </tr></thead>
         <tbody id="tblBody"></tbody>
       </table>
