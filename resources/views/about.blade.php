@@ -20,7 +20,7 @@
       <div class="particle-ring particle-ring-left">
         <span></span><span></span><span></span><span></span><span></span>
       </div>
-      <img src="/images/ratu-1.png" alt="Ratu">
+      <img src="/images/ratu-1.webp" alt="Ratu">
     </div>
 
     <div class="book-wrapper">
@@ -57,7 +57,7 @@
       <div class="particle-ring particle-ring-right">
         <span></span><span></span><span></span><span></span><span></span>
       </div>
-      <img src="/images/raja-1.png" alt="Raja">
+      <img src="/images/raja-1.webp" alt="Raja">
     </div>
   </div>
  

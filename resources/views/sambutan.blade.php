@@ -2,7 +2,7 @@
 <section class="sambutan-desktop relative w-screen h-screen flex items-center justify-center overflow-hidden">
     <div class="relative w-full h-full">
         {{-- Background Image (Sambutan) --}}
-        <img src="{{ asset('images/sambutan.png') }}" class="w-full h-full object-cover">
+        <img src="{{ asset('images/sambutan.webp') }}" class="w-full h-full object-cover">
 
         {{-- Video YouTube Overlay di Papan Tulis --}}
         <div class="absolute" style="top: 56%; left: 59%; width: 35%; aspect-ratio: 16/9; transform: translate(-50%, -50%); overflow: hidden; border-radius: 0.375rem;">
@@ -27,23 +27,23 @@
 <section class="smb-section">
     {{-- Background --}}
     <div class="smb-bg">
-        <img src="{{ asset('images/login-bg.png') }}" alt="">
+        <img src="{{ asset('images/login-bg.webp') }}" alt="">
     </div>
 
     <div class="smb-outer">
         {{-- Judul di atas kertas --}}
         <div class="smb-title-wrap">
-            <img src="{{ asset('images/sambutan/textsambutan.png') }}" alt="Sambutan" class="smb-title-img">
+            <img src="{{ asset('images/sambutan/textsambutan.webp') }}" alt="Sambutan" class="smb-title-img">
         </div>
 
         {{-- KERTAS BESAR - semua konten di dalam --}}
         <div class="smb-kertas-wrap">
-            <img src="{{ asset('images/sambutan/kertas-sambutan.png') }}" alt="" class="smb-kertas-bg">
+            <img src="{{ asset('images/sambutan/kertas-sambutan.webp') }}" alt="" class="smb-kertas-bg">
 
             <div class="smb-kertas-inner">
                 {{-- Ornamen atas --}}
-                <img src="{{ asset('images/sambutan/elemen1.png') }}" alt="" class="smb-orn smb-orn-top">
-                <img src="{{ asset('images/sambutan/elemen2.png') }}" alt="" class="smb-divider">
+                <img src="{{ asset('images/sambutan/elemen1.webp') }}" alt="" class="smb-orn smb-orn-top">
+                <img src="{{ asset('images/sambutan/elemen2.webp') }}" alt="" class="smb-divider">
 
                 {{-- Heading --}}
                 <h2 class="smb-heading">SELAMAT DATANG<br>MAHASISWA BARU</h2>
@@ -61,7 +61,7 @@
                 {{-- Frame + Video --}}
                 <div class="smb-frame-wrap">
                     {{-- Frame dekoratif sebagai background --}}
-                    <img src="{{ asset('images/sambutan/frame.png') }}" alt="" class="smb-frame-img">
+                    <img src="{{ asset('images/sambutan/frame.webp') }}" alt="" class="smb-frame-img">
                     {{-- Video overlay di atas frame --}}
                     <div class="smb-video-box">
                         <iframe
@@ -84,7 +84,7 @@
 
                 {{-- Tanda tangan --}}
                 <div class="smb-signature">
-                    <img src="{{ asset('images/sambutan/elemen3.png') }}" alt="" class="smb-feather">
+                    <img src="{{ asset('images/sambutan/elemen3.webp') }}" alt="" class="smb-feather">
                     <div class="smb-sig-text">
                         <span>KOORDINATOR</span>
                         <span>POSITRON 2026</span>
@@ -92,8 +92,8 @@
                 </div>
 
                 {{-- Ornamen bawah --}}
-                <img src="{{ asset('images/sambutan/elemen2.png') }}" alt="" class="smb-divider" style="margin-top:10px;">
-                <img src="{{ asset('images/sambutan/elemen1.png') }}" alt="" class="smb-orn smb-orn-bot">
+                <img src="{{ asset('images/sambutan/elemen2.webp') }}" alt="" class="smb-divider" style="margin-top:10px;">
+                <img src="{{ asset('images/sambutan/elemen1.webp') }}" alt="" class="smb-orn smb-orn-bot">
             </div>
         </div>
     </div>

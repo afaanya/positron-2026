@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="min-h-screen flex flex-col justify-between antialiased text-white">
-    <img src="{{ asset('images/login-bg.png') }}" 
+    <img src="{{ asset('images/login-bg.webp') }}" 
          alt="Background" 
          class="fixed inset-0 w-full h-full object-cover -z-10">
 
@@ -88,7 +88,7 @@
                     <div class="map-title">Peta Perjalanan Positron</div>
                     <svg viewBox="0 0 1500 320" xmlns="http://www.w3.org/2000/svg">
                         <!-- Kompas hias: mata angin -->
-                        <image href="{{ asset('images/mata angin.png') }}"
+                        <image href="{{ asset('images/mata angin.webp') }}"
                                x="1340" y="200" width="130" height="130"
                                opacity="0.85" />
 

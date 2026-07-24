@@ -16,7 +16,7 @@
 
 /* Menggunakan file background dari Anda */
 .royal-bg {
-    background-image: url("/images/login-bg.png");
+    background-image: url("/images/login-bg.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

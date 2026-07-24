@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'POSITRON 2026 – Portal Mentor')</title>
 
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.webp') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>POSITRON 2026 — Login</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.webp') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/login.css'])
 </head>
 <body>
@@ -26,7 +26,7 @@
 
         {{-- Logo POSITRON 2026 (mobile: di dalam form, desktop: fixed kanan atas) --}}
         <div class="logo-layer">
-            <img src="/images/logo-positron.png" alt="POSITRON 2026">
+            <img src="/images/logo-positron.webp" alt="POSITRON 2026">
         </div>
 
         <div class="ornament-line"></div>

@@ -355,7 +355,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('/images/logo buku.png') center center / 24% auto no-repeat;
+      background: url('/images/logo buku.webp') center center / 24% auto no-repeat;
       opacity: 0.16;
       pointer-events: none;
       z-index: 0;

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'POSITRON 2026')</title>
 
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.webp') }}">
 
     {{-- CSS Global --}}
     @vite([

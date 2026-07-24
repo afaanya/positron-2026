@@ -2,22 +2,22 @@
 <div class="pen-outer">
   <aside class="sidebar" id="penSidebar" aria-label="Navigasi sub-portal">
     <div class="sidebar-inner">
-      <div class="sb-card active" id="sb-forum" onclick="switchSection('forum')" role="button" tabindex="0" aria-label="Forum Maba" style="background-image:url('{{ asset('images/portal-forum.png') }}')">
+      <div class="sb-card active" id="sb-forum" onclick="switchSection('forum')" role="button" tabindex="0" aria-label="Forum Maba" style="background-image:url('{{ asset('images/portal-forum.webp') }}')">
         <span class="sb-main">FORUM<br>MABA</span>
       </div>
-      <div class="sb-card" id="sb-ldk"   onclick="switchSection('ldk')"   role="button" tabindex="0" aria-label="LDK"   style="background-image:url('{{ asset('images/portal-ldk.png') }}')">
+      <div class="sb-card" id="sb-ldk"   onclick="switchSection('ldk')"   role="button" tabindex="0" aria-label="LDK"   style="background-image:url('{{ asset('images/portal-ldk.webp') }}')">
         <span class="sb-main">LDK</span><span class="sb-sub">Latihan Dasar<br>Kepemimpinan</span>
       </div>
-      <div class="sb-card" id="sb-ioh"   onclick="switchSection('ioh')"   role="button" tabindex="0" aria-label="IoH"   style="background-image:url('{{ asset('images/portal-ioh.png') }}')">
+      <div class="sb-card" id="sb-ioh"   onclick="switchSection('ioh')"   role="button" tabindex="0" aria-label="IoH"   style="background-image:url('{{ asset('images/portal-ioh.webp') }}')">
         <span class="sb-main">IoH</span><span class="sb-sub">Introduction of<br>Himpunan</span>
       </div>
-      <div class="sb-card" id="sb-nako"  onclick="switchSection('nako')"  role="button" tabindex="0" aria-label="NAKO 10.0" style="background-image:url('{{ asset('images/portal-nako.png') }}')">
+      <div class="sb-card" id="sb-nako"  onclick="switchSection('nako')"  role="button" tabindex="0" aria-label="NAKO 10.0" style="background-image:url('{{ asset('images/portal-nako.webp') }}')">
         <span class="sb-main">NAKO 10.0</span>
       </div>
-      <div class="sb-card" id="sb-buku"   onclick="switchSection('buku')"   role="button" tabindex="0" aria-label="BUKU ANGKATAN"   style="background-image:url('{{ asset('images/portal-ioh.png') }}')">
+      <div class="sb-card" id="sb-buku"   onclick="switchSection('buku')"   role="button" tabindex="0" aria-label="BUKU ANGKATAN"   style="background-image:url('{{ asset('images/portal-ioh.webp') }}')">
         <span class="sb-main">BUKU<br>ANGKATAN</span>
       </div>
-      <div class="sb-card" id="sb-partisipasi"   onclick="switchSection('partisipasi')"   role="button" tabindex="0" aria-label="PARTISIPASI"   style="background-image:url('{{ asset('images/portal-ioh.png') }}')">
+      <div class="sb-card" id="sb-partisipasi"   onclick="switchSection('partisipasi')"   role="button" tabindex="0" aria-label="PARTISIPASI"   style="background-image:url('{{ asset('images/portal-ioh.webp') }}')">
         <span class="sb-main">PARTISIPASI</span>
       </div>
     </div>

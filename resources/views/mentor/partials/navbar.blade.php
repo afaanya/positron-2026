@@ -1,6 +1,6 @@
 <nav class="navbar" aria-label="Navigasi utama">
   <a class="nav-logo" href="#" onclick="goTo('page-dashboard');return false;" aria-label="POSITRON 2026">
-    <img src="{{ asset('images/portal-logo.png') }}" alt="POSITRON 2026" style="mix-blend-mode:screen;filter:brightness(1.15)">
+    <img src="{{ asset('images/portal-logo.webp') }}" alt="POSITRON 2026" style="mix-blend-mode:screen;filter:brightness(1.15)">
   </a>
   <ul class="nav-links" role="list">
     <li><a href="{{ route('home') }}"><span class="dot tl"></span><span class="dot tr"></span>HOME<span class="dot bl"></span><span class="dot br"></span></a></li>

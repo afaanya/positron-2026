@@ -264,11 +264,11 @@ html, body {
     }
 }
 
-/* ── Border HP: pakai border-hp.png saat portrait (berdiri) ── */
+/* ── Border HP: pakai border-hp.webp saat portrait (berdiri) ── */
 @media (max-width: 900px) and (orientation: portrait) {
     .layer-frame {
         display: block;
-        content: url('/images/border-hp.png');
+        content: url('/images/border-hp.webp');
         position: fixed;
         inset: 8px;
         width: calc(100% - 16px);

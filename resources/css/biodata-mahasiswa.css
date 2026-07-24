@@ -9,7 +9,7 @@
 
 body {
     min-height: 100vh;
-    background: url('/images/login-bg.png') center/cover no-repeat !important;
+    background: url('/images/login-bg.webp') center/cover no-repeat !important;
     font-family: 'Libre Baskerville';
 }
 

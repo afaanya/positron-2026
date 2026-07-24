@@ -29,7 +29,7 @@
     ">
         <!-- 1. Logo P (Image) -->
         <img id="transition-logo-p" 
-             src="{{ asset('images/P.png') }}" 
+             src="{{ asset('images/P.webp') }}" 
              alt="P" 
              style="
                  height: 110px;

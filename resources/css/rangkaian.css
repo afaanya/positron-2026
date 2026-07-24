@@ -6,7 +6,7 @@
 .rangkaian-section {
     width: 100%;
     min-height: 100vh;
-    background: url('/public/images/login-bg.png') center center/cover no-repeat;
+    background: url('/public/images/login-bg.webp') center center/cover no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
