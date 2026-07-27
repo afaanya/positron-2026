@@ -14,6 +14,9 @@
       <div class="sb-card" id="sb-nako"  onclick="switchSection('nako')"  role="button" tabindex="0" aria-label="NAKO 10.0" style="background-image:url('{{ asset('images/portal-nako.webp') }}')">
         <span class="sb-main">NAKO 10.0</span>
       </div>
+      <div class="sb-card" id="sb-arus"  onclick="switchSection('arus')"  role="button" tabindex="0" aria-label="ARUS" style="background-image:url('{{ asset('images/portal-nako.webp') }}')">
+        <span class="sb-main">ARUS</span>
+      </div>
       <div class="sb-card" id="sb-buku"   onclick="switchSection('buku')"   role="button" tabindex="0" aria-label="BUKU ANGKATAN"   style="background-image:url('{{ asset('images/portal-ioh.webp') }}')">
         <span class="sb-main">BUKU<br>ANGKATAN</span>
       </div>

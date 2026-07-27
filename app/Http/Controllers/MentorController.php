@@ -20,6 +20,12 @@ class MentorController extends Controller
         $mentorUser = session('mentor_user');            // e.g. "TI-A"
         $isAdmin    = session()->has('admin_login') && ! $mentorUser;
 
+        // Catat riwayat login sekali per sesi (bukan tiap kali halaman di-reload).
+        if ($mentorUser && ! session('mentor_login_logged')) {
+            $this->logMentorLogin($request, $mentorUser);
+            session(['mentor_login_logged' => true]);
+        }
+
         // Filter at DB level for performance (no in-memory filtering).
         // Admins see all; mentors see only their offering.
         $query = DB::table('mahasiswa')->orderBy('nama');
@@ -75,6 +81,50 @@ class MentorController extends Controller
             'students'      => $students,
             'assessments'   => $assessments,
             'mentorProfile' => $mentorProfile,
+        ]);
+    }
+
+    /**
+     * Riwayat login mentor — buat dilihat admin. Bisa difilter per mentor_user.
+     * Rute contoh: GET /admin/riwayat-login
+     */
+    public function riwayatLogin(Request $request)
+    {
+        if (! Schema::hasTable('mentor_login_log')) {
+            return response()->json([
+                'ok'    => false,
+                'error' => 'Tabel mentor_login_log belum dibuat. Jalankan: php artisan migrate',
+            ], 503);
+        }
+
+        $query = DB::table('mentor_login_log')->orderByDesc('logged_in_at');
+
+        if ($request->filled('mentor_user')) {
+            $query->where('mentor_user', $request->query('mentor_user'));
+        }
+
+        $logs = $query->limit(500)->get();
+
+        return view('admin.riwayat-login', [
+            'logs' => $logs,
+        ]);
+    }
+
+    /** Insert satu baris riwayat login mentor. */
+    private function logMentorLogin(Request $request, string $mentorUser): void
+    {
+        if (! Schema::hasTable('mentor_login_log')) {
+            return; // degrade gracefully kalau migration belum dijalankan
+        }
+
+        DB::table('mentor_login_log')->insert([
+            'mentor_user'  => $mentorUser,
+            'prodi'        => $this->prodiFromCode($mentorUser),
+            'ip_address'   => $request->ip(),
+            'user_agent'   => substr((string) $request->userAgent(), 0, 255),
+            'logged_in_at' => now(),
+            'created_at'   => now(),
+            'updated_at'   => now(),
         ]);
     }
 

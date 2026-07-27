@@ -214,7 +214,7 @@ table.dtbl td{padding:10px 13px;color:var(--txt-dark);font-size:.78rem;vertical-
 .b-lulus{background:var(--l-bg);border-color:var(--l-br);color:var(--l-tx)}
 .b-gagal{background:var(--g-bg);border-color:var(--g-br);color:var(--g-tx)}
 .b-none {background:var(--n-bg);border-color:var(--n-br);color:var(--n-tx)}
-/* edit dropdown */-
+/* edit dropdown */
 .edit-dd-wrap{position:relative;display:inline-block}
 .edit-dd-menu{position:absolute;top:calc(100% + 3px);right:0;z-index:500;background:linear-gradient(160deg,#d8bc6a,#b09030);border:1.5px solid rgba(180,135,25,.5);border-radius:var(--r-md);box-shadow:0 6px 22px rgba(0,0,0,.5);min-width:130px;display:none;overflow:hidden}
 .edit-dd-menu.open{display:block}

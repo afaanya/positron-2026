@@ -6,6 +6,8 @@ use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/admin/riwayat-login', [MentorController::class, 'riwayatLogin']);
+
 // ================= LANDING =================
 
 Route::get('/', function () {

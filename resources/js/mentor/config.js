@@ -44,6 +44,15 @@ export const SECTIONS = {
     ],
     noteMax: 100,
   },
+  arus: {
+    label: 'ARUS',
+    aspects: [
+      { name:'Arus 1', max:50, guide:'Maksimum 50 poin (panduan).' },
+      { name:'Arus 2', max:50, guide:'Maksimum 50 poin (panduan).' },
+      { name:'Arus 3', max:50, guide:'Maksimum 50 poin (panduan).' },
+    ],
+    noteMax: 100,
+  },
   buku: {
       label: 'BUKU ANGKATAN',
       aspects: [
@@ -68,7 +77,6 @@ export const SECTIONS = {
         { name:'Staff Muda', max:25, guide:'Maksimum 25 poin.' },
         { name:'Arak-Arakan', max:10, guide:'Maksimum 10 poin.' },
         { name:'Elektro Cup', max:10, guide:'Maksimum 10 poin.' },
-        { name:'Arus', max:25, guide:'Maksimum 25 poin.' },
         { name:'Admin IG Angkatan', max:25, guide:'Maksimum 25 poin.' },
       ],
       noteMax:215,
