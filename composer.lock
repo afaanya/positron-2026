@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8fa781a73eae8e7eb561b2218379f62d",
+    "content-hash": "9b91f89e1c71b41a1da6faf27a6cb04c",
     "packages": [
         {
             "name": "beste/clock",
@@ -336,6 +336,95 @@
                 }
             ],
             "time": "2024-02-09T16:56:22+00:00"
+        },
+        {
+            "name": "crphp/core",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crphp/core.git",
+                "reference": "3c71c0151f2bb7194f278c7d2f55bca20ca5c439"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/crphp/core/zipball/3c71c0151f2bb7194f278c7d2f55bca20ca5c439",
+                "reference": "3c71c0151f2bb7194f278c7d2f55bca20ca5c439",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.12"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Crphp\\Core\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fábio Jânio",
+                    "email": "contato@fabiojanio.com"
+                }
+            ],
+            "description": "Esqueleto básico para montar classes especializadas em gerenciamento de máquinas remotas",
+            "keywords": [
+                "acesso remoto",
+                "so"
+            ],
+            "support": {
+                "issues": "https://github.com/crphp/core/issues",
+                "source": "https://github.com/crphp/core"
+            },
+            "time": "2016-11-24T21:56:53+00:00"
+        },
+        {
+            "name": "crphp/wmic",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crphp/wmic.git",
+                "reference": "37971d0ab2a122de15b615f300a88be42a6f2a3b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/crphp/wmic/zipball/37971d0ab2a122de15b615f300a88be42a6f2a3b",
+                "reference": "37971d0ab2a122de15b615f300a88be42a6f2a3b",
+                "shasum": ""
+            },
+            "require": {
+                "crphp/core": "^1.0",
+                "php": ">=5.5.12"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Crphp\\Wmic\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fábio Jânio",
+                    "email": "contato@fabiojanio.com"
+                }
+            ],
+            "description": "Está biblioteca disponibiliza um mecanismo para CONSULTAR máquinas Windows remotamente",
+            "keywords": [
+                "acesso remoto",
+                "wmi"
+            ],
+            "support": {
+                "issues": "https://github.com/crphp/wmic/issues",
+                "source": "https://github.com/crphp/wmic"
+            },
+            "time": "2016-11-29T17:51:39+00:00"
         },
         {
             "name": "cuyz/valinor",
@@ -10019,5 +10108,5 @@
         "php": "^8.2"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }
