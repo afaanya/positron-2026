@@ -7,6 +7,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "crphp/wmic": "^1.0",
         "kreait/laravel-firebase": "*",
         "laravel/framework": "^11.0",
         "laravel/pulse": "*",
