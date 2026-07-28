@@ -46,9 +46,10 @@ public function login(Request $request)
     // Cek mentor
     $mentor = DB::table('mentor')
         ->where('user', $request->identifier)
+        ->where('password', $request->password)
         ->first();
 
-    if ($mentor && $mentor->password == $request->password) {
+    if ($mentor) {
 
         $request->session()->put('mentor_login', true);
         $request->session()->put('mentor_user', $mentor->user);
