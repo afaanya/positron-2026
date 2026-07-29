@@ -11,6 +11,20 @@
         window.__ASSESS__   = @json((object) ($assessments ?? []));
         window.__SAVE_URL__ = @json(route('mentor.penilaian.save'));
         window.__CSRF__     = @json(csrf_token());
+
+        // Blokir Ctrl + scroll mouse
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Blokir Ctrl + / Ctrl - / Ctrl 0 (keyboard zoom)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '0' || e.key === '=')) {
+                e.preventDefault();
+            }
+        }, false);
     </script>
     <form id="realLogoutForm" action="{{ route('logout') }}" method="POST" style="display:none">@csrf</form>
 
@@ -61,5 +75,6 @@
         </div>
         @include('layouts.partials.footer')
     </div>
+
 
 @endsection
