@@ -1,20 +1,36 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
     width: 100%;
     overflow-x: hidden;
-    background: #0a1a10 url('/images/page-bg.jpg') center top / cover fixed;
+    background: #0a1a10 url('/images/page-bg.webp') center top / cover fixed;
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 18px; }
-main { position: relative; z-index: 1; margin-top: 58px; }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 18px;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    margin-top: 58px;
+}
 
 main {
     width: 100%;
 }
 
-main.full-width{
-    width:100%;
-    max-width:none;
+main.full-width {
+    width: 100%;
+    max-width: none;
     margin: 0;
-    padding:0;
+    padding: 0;
 }

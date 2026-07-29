@@ -10,7 +10,7 @@
         body{
             margin:0;
             min-height:100vh;
-            background-image: url('{{ asset('images/page-bg.jpg') }}');
+            background-image: url('{{ asset('images/page-bg.webp') }}');
             background-size: cover;
             background-position: center;
             font-family:'Times New Roman', serif;
@@ -76,7 +76,7 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col m-0"
-style="background: #0a1a10 url('{{ asset('images/page-bg.jpg') }}') center / cover fixed no-repeat;
+style="background: #0a1a10 url('{{ asset('images/page-bg.webp') }}') center / cover fixed no-repeat;
 font-family:'Times New Roman', serif;">
 
     @include('layouts.partials.header')

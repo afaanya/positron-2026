@@ -1,31 +1,33 @@
-/* ── Reset & base ── */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+        /* ── Reset & base ── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-html {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
 
-body {
-    min-height: 100dvh;
-    width: 100vw;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    font-family: 'Georgia', serif;
-    background: #000000 ;
-}
+        body {
+            min-height: 100dvh;
+            width: 100vw;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background: #000000;
+        }
 
         /* ── Background layer ── */
         .bg-layer {
             position: fixed;
             inset: 0;
-            background-image: url('/public/images/login-bg.webp');
+            background-image: url('/images/login-bg.png');
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
@@ -42,7 +44,7 @@ body {
             inset: 0;
             width: 100vw;
             height: 100dvh;
-            background-image: url('/public/images/border-layer.webp');
+            background-image: url('/images/border-layer.png');
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center;
@@ -57,10 +59,10 @@ body {
             position: fixed;
             right: -10%;
             bottom: 0;
-            width: 100%;
+            width: 70%;
             height: 80vh;
-            max-width: 9000px;
-            background-image: url('/public/images/envelope.webp');
+            max-width: 900px;
+            background-image: url('/images/envelope.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: right bottom;
@@ -70,282 +72,459 @@ body {
             z-index: 1;
         }
 
-/* ── Logo POSITRON 2026 (kanan atas di desktop) ── */
-.logo-layer {
-    position: fixed;
-    top: 52px;
-    right: -900px;
-    opacity: 0;
-    animation: fadeIn 1s ease 0.8s forwards;
-    z-index: 20;
-}
-.logo-layer img {
-    height: 34px;
-    width: auto;
-}
+        /* ── Logo POSITRON 2026 (kanan atas di desktop) ── */
+        .logo-layer {
+            position: fixed;
+            top: 52px;
+            right: 55px;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.8s forwards;
+            z-index: 20;
+        }
 
-/* ── Panel form (kiri) ── */
-.form-panel {
-    position: fixed;
-    left: 45px;
-    top: 0;
-    bottom: 90px;
-    width: 42%;
-    max-width: 520px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 3rem 4rem;
-    opacity: 0;
-    animation: fadeInSlideRight 1.2s ease 0.6s forwards;
-}
+        .logo-layer img {
+            height: 34px;
+            width: auto;
+        }
 
-/* ── Ornamen garis ── */
-.ornament-line {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 5.5rem;
-}
-.ornament-line::before,
-.ornament-line::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(180,140,40,0.6), transparent);
-}
+        /* ── Panel form (kiri) ── */
+        .form-panel {
+            position: fixed;
+            left: 45px;
+            top: 0;
+            bottom: 90px;
+            width: 42%;
+            max-width: 520px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem 4rem;
+            opacity: 0;
+            animation: fadeInSlideRight 1.2s ease 0.6s forwards;
+        }
 
-/* ── Input fields ── */
-.field {
-    margin-bottom: 16px;
-}
-.field input {
-    width: 100%;
-    background: rgba(227, 190, 115, 0.4);
-    color: #FAEDD5;
-    padding: 15px 40px 15px 15px;
-    font-size: 24px;
-    font-family: 'libre-baskerville', serif;
-    letter-spacing: 0.1em;
-    transition: border-color 0.2s, background 0.2s;
-    -webkit-text-fill-color: #f0d98a;
-}
-.field input:-webkit-autofill,
-.field input:-webkit-autofill:hover,
-.field input:-webkit-autofill:focus,
-.field input:-webkit-autofill:active {
-    -webkit-text-fill-color: #f0d98a !important;
-    -webkit-box-shadow: 0 0 0px 1000px rgba(101, 76, 30, 0.8) inset !important;
-    transition: background-color 5000s ease-in-out 0s;
-    caret-color: #f0d98a;
-}
-.field input::placeholder {
-    color: #FAEDD5;
-}
-.field input:focus {
-    outline: none;
-    border-color: #c9a84c;
-    background: rgba(101, 76, 30, 0.6);
-}
-.field input::selection {
-    background: rgba(180, 140, 40, 0.4); /* warna highlight */
-    color: #f0d98a;
-}
-.field.has-error input {
-    border-color: rgba(220, 80, 80, 0.7);
-}
+        /* ── Ornamen garis ── */
+        .ornament-line {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 5.5rem;
+        }
 
-/* ── Password wrapper ── */
-.pw-wrap { position: relative; }
-.pw-toggle {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: rgba(180, 140, 40, 0.7);
-    padding: 0;
-    display: flex;
-}
-.pw-toggle:hover { color: #c9a84c; }
-.pw-toggle svg { width: 16px; height: 16px; }
+        .ornament-line::before,
+        .ornament-line::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(180, 140, 40, 0.6), transparent);
+        }
 
-/* ── Error message ── */
-.error-msg {
-    font-size: 12px;
-    color: #f87171;
-    margin-top: 6px;
-    display: none;
-}
-.field.has-error .error-msg { display: block; }
+        /* ── Input fields ── */
+        .field {
+            margin-bottom: 16px;
+        }
 
-/* ── Remember + Forgot ── */
-.row-extra {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 28px;
-}
-.remember {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 12px;
-    color: rgba(180, 140, 40, 0.75);
-    cursor: pointer;
-    letter-spacing: 0.04em;
-}
-.remember input { accent-color: #c9a84c; }
-.forgot {
-    font-size: 12px;
-    color: rgba(180, 140, 40, 0.6);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-}
-.forgot:hover { color: #c9a84c; }
+        .field input {
+            width: 100%;
+            background: rgba(227, 190, 115, 0.4);
+            color: #FAEDD5;
+            padding: 15px 40px 15px 15px;
+            font-size: 24px;
+            font-family: 'libre-baskerville', serif;
+            letter-spacing: 0.1em;
+            transition: border-color 0.2s, background 0.2s;
+            -webkit-text-fill-color: #f0d98a;
+        }
 
-/* ── Tombol login ── */
-.btn-login {
-    width: 100%;
-    padding: 14px 20px;
-    background: linear-gradient(180deg, #E1BB70, #99623B);
-    border: none;
-    color: #FAEDD5;
-    font-family: 'libre-baskerville', serif;
-    font-size: 20px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: filter 0.2s, transform 0.15s;
-}
-.btn-login:hover { filter: brightness(1.1); }
-.btn-login:active { transform: scale(0.98); }
-.btn-login .chevron { font-size: 18px; }
+        .field input:-webkit-autofill,
+        .field input:-webkit-autofill:hover,
+        .field input:-webkit-autofill:focus,
+        .field input:-webkit-autofill:active {
+            -webkit-text-fill-color: #f0d98a !important;
+            -webkit-box-shadow: 0 0 0px 1000px rgba(101, 76, 30, 0.8) inset !important;
+            transition: background-color 5000s ease-in-out 0s;
+            caret-color: #f0d98a;
+        }
 
-/* ── Animations ── */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-@keyframes fadeInSlideLeft {
-    from { opacity: 0; transform: translateX(40px); }
-    to   { opacity: 1; transform: translateX(0); }
-}
-@keyframes fadeInSlideRight {
-    from { opacity: 0; transform: translateX(-30px); }
-    to   { opacity: 1; transform: translateX(0); }
-}
+        .field input::placeholder {
+            color: #FAEDD5;
+        }
 
-/* ══════════════════════════════
-    RESPONSIF — MOBILE  (≤ 768px)
-    ══════════════════════════════ */
-@media (max-width: 768px) {
-    /* Body jadi flex column agar form bisa tengah secara vertikal */
-    html {
-        height: 100% !important;
-        overflow: hidden !important;
-    }
-    body {
-        overflow: auto !important;
-        min-height: 100dvh !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
+        .field input:focus {
+            outline: none;
+            border-color: #c9a84c;
+            background: rgba(101, 76, 30, 0.6);
+        }
 
-    /* Sembunyikan gambar amplop dekoratif besar */
-    .envelope-layer { display: none; }
+        .field input::selection {
+            background: rgba(180, 140, 40, 0.4);
+            /* warna highlight */
+            color: #f0d98a;
+        }
 
-    /* Kurangi opacity border-layer desktop agar tidak menimpa form */
-    .border-layer { opacity: 0; }
+        .field.has-error input {
+            border-color: rgba(220, 80, 80, 0.7);
+        }
 
-    /* Logo: relative di dalam form, tengah, di atas ornament */
-    .logo-layer {
-        position: relative;
-        top: auto;
-        right: auto;
-        left: auto;
-        transform: none;
-        text-align: center;
-        margin-bottom: 1rem;
-        animation: none;
-        opacity: 1;
-        z-index: auto;
-    }
-    .logo-layer img {
-        height: 28px;
-    }
+        /* ── Password wrapper ── */
+        .pw-wrap {
+            position: relative;
+        }
 
-    /* Panel form: mengalir di tengah layar */
-    .form-panel {
-        position: relative;
-        left: auto;
-        top: auto;
-        bottom: auto;
-        width: 88%;
-        max-width: 360px;
-        margin: 0 auto;
-        padding: 1.6rem 1.5rem;
-        background: rgba(10, 15, 9, 0.88);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(180, 140, 40, 0.45);
-        border-radius: 12px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
-        animation: none;
-        opacity: 1;
-    }
+        .pw-toggle {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: rgba(180, 140, 40, 0.7);
+            padding: 0;
+            display: flex;
+        }
 
-    /* Input lebih pas untuk jari */
-    .field input {
-        font-size: 16px;
-        padding: 12px 40px 12px 12px;
-    }
+        .pw-toggle:hover {
+            color: #c9a84c;
+        }
 
-    /* Ornamen di atas form lebih kecil */
-    .ornament-line {
-        margin-bottom: 1.5rem;
-    }
+        .pw-toggle svg {
+            width: 16px;
+            height: 16px;
+        }
 
-    /* Tombol login tetap nyaman ditekan */
-    .btn-login {
-        font-size: 15px;
-        padding: 12px 16px;
-    }
-}
+        /* ── Error message ── */
+        .error-msg {
+            font-size: 12px;
+            color: #f87171;
+            margin-top: 6px;
+            display: none;
+        }
 
-/* Layar sangat sempit (≤ 390px) */
-@media (max-width: 390px) {
-    .form-panel {
-        width: 92%;
-        padding: 1.4rem 1.2rem;
-    }
-    .field input { font-size: 14px; }
-    .ornament-line { margin-bottom: 1.2rem; }
-}
+        .field.has-error .error-msg {
+            display: block;
+        }
 
-/* ── Border HP: pakai border-hp.webp saat portrait (berdiri) ── */
-@media (max-width: 768px) and (orientation: portrait) {
-    .border-layer {
-        background-image: url('/images/border-hp.webp');
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-        opacity: 1;
-        animation: fadeIn 1.0s ease 0.5s both;
-    }
-}
+        /* ── Remember + Forgot ── */
+        .row-extra {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+        }
 
-/* ── Border HP: sembunyikan saat landscape ── */
-@media (max-width: 768px) and (orientation: landscape) {
-    .border-layer {
-        opacity: 0;
-    }
-}
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12px;
+            color: rgba(180, 140, 40, 0.75);
+            cursor: pointer;
+            letter-spacing: 0.04em;
+        }
+
+        .remember input {
+            accent-color: #c9a84c;
+        }
+
+        .forgot {
+            font-size: 12px;
+            color: rgba(180, 140, 40, 0.6);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+        }
+
+        .forgot:hover {
+            color: #c9a84c;
+        }
+
+        /* ── Tombol login ── */
+        .btn-login {
+            width: 100%;
+            padding: 14px 20px;
+            background: linear-gradient(180deg, #E1BB70, #99623B);
+            border: none;
+            color: #FAEDD5;
+            font-family: 'libre-baskerville', serif;
+            font-size: 20px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: filter 0.2s, transform 0.15s;
+        }
+
+        .btn-login:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn-login:active {
+            transform: scale(0.98);
+        }
+
+        .btn-login .chevron {
+            font-size: 18px;
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInSlideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInSlideRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ══════════════════════════════
+           RESPONSIF — MOBILE  (≤ 768px)
+           ══════════════════════════════ */
+        @media (max-width: 768px) {
+
+            /* Body jadi flex column agar form bisa tengah secara vertikal */
+            html {
+                height: 100% !important;
+                overflow: hidden !important;
+            }
+
+            body {
+                overflow: auto !important;
+                min-height: 100dvh !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            /* Sembunyikan gambar amplop dekoratif besar */
+            .envelope-layer {
+                display: none;
+            }
+
+            /* Perkecil border agar tidak menimpa form */
+            .border-layer {
+                opacity: .25;
+            }
+
+            /* Logo: relative di dalam form, tengah, di atas ornament */
+            .logo-layer {
+                position: relative;
+                top: auto;
+                right: auto;
+                left: auto;
+                transform: none;
+                text-align: center;
+                margin-bottom: 1rem;
+                animation: none;
+                opacity: 1;
+                z-index: auto;
+            }
+
+            .logo-layer img {
+                height: 28px;
+            }
+
+            /* Panel form: mengalir di tengah layar */
+            .form-panel {
+                position: relative;
+                left: auto;
+                top: auto;
+                bottom: auto;
+                width: 88%;
+                max-width: 360px;
+                margin: 0 auto;
+                padding: 1.6rem 1.5rem;
+                background: rgba(10, 15, 9, 0.88);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(180, 140, 40, 0.25);
+                border-radius: 12px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+                animation: none;
+                opacity: 1;
+            }
+
+            /* Input lebih pas untuk jari */
+            .field input {
+                font-size: 16px;
+                padding: 12px 40px 12px 12px;
+            }
+
+            /* Ornamen di atas form lebih kecil */
+            .ornament-line {
+                margin-bottom: 1.5rem;
+            }
+
+            /* Tombol login tetap nyaman ditekan */
+            .btn-login {
+                font-size: 15px;
+                padding: 12px 16px;
+            }
+        }
+
+        /* Layar sangat sempit (≤ 390px) */
+        @media (max-width: 390px) {
+            .form-panel {
+                width: 92%;
+                padding: 1.4rem 1.2rem;
+            }
+
+            .field input {
+                font-size: 14px;
+            }
+
+            .ornament-line {
+                margin-bottom: 1.2rem;
+            }
+        }
+
+        /*═══════════════════════════════════════════════
+    DESKTOP BESAR (≥1440px)
+═══════════════════════════════════════════════*/
+        @media (min-width: 1440px) {
+
+            .form-panel {
+                width: 40%;
+                max-width: 560px;
+                left: 70px;
+                padding: 3rem 4rem;
+            }
+
+            .logo-layer {
+                top: 55px;
+                right: 65px;
+            }
+
+            .logo-layer img {
+                height: 40px;
+            }
+
+            .field input {
+                font-size: 26px;
+                padding: 16px 45px 16px 18px;
+            }
+
+            .btn-login {
+                font-size: 22px;
+            }
+
+            .envelope-layer {
+                width: 68%;
+                max-width: 980px;
+                right: -8%;
+            }
+
+        }
+
+        /*═══════════════════════════════════════════════
+    LAPTOP (1024px - 1439px)
+═══════════════════════════════════════════════*/
+        @media (min-width:1024px) and (max-width:1439px) {
+
+            .form-panel {
+                width: 45%;
+                max-width: 480px;
+                left: 35px;
+                padding: 2.5rem;
+            }
+
+            .logo-layer {
+                top: 40px;
+                right: 40px;
+            }
+
+            .logo-layer img {
+                height: 30px;
+            }
+
+            .field input {
+                font-size: 20px;
+            }
+
+            .btn-login {
+                font-size: 18px;
+            }
+
+            .envelope-layer {
+                width: 65%;
+                right: -10%;
+                height: 75vh;
+            }
+
+        }
+
+        /*═══════════════════════════════════════════════
+    TABLET (769px - 1023px)
+═══════════════════════════════════════════════*/
+        @media (min-width:769px) and (max-width:1023px) {
+
+            .logo-layer {
+                top: 25px;
+                right: 25px;
+            }
+
+            .logo-layer img {
+                height: 26px;
+            }
+
+            .form-panel {
+
+                width: 55%;
+                max-width: 430px;
+
+                left: 25px;
+
+                padding: 2rem;
+
+            }
+
+            .field input {
+
+                font-size: 18px;
+                padding: 13px 38px 13px 13px;
+
+            }
+
+            .btn-login {
+
+                font-size: 17px;
+
+            }
+
+            .envelope-layer {
+
+                width: 62%;
+                right: -18%;
+                height: 65vh;
+
+            }
+
+        }

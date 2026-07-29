@@ -26,6 +26,8 @@ export default defineConfig({
                 'resources/js/timeline.js',
 
                 'resources/css/homepage.css',
+                'resources/css/landing.css',
+                'resources/js/landing.js',
 
                 // Tambahkan ini
                 'resources/css/sambutan.css',
