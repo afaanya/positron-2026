@@ -22,7 +22,7 @@ class MentorController extends Controller
 
         // Catat riwayat login sekali per sesi (bukan tiap kali halaman di-reload).
         if ($mentorUser && ! session('mentor_login_logged')) {
-            $this->logMentorLogin($request, $mentorUser);
+            $this->logMentorLogin($request, $mentorUser, session('mentor_nama', 'Unknown'));
             session(['mentor_login_logged' => true]);
         }
 
@@ -110,15 +110,16 @@ class MentorController extends Controller
         ]);
     }
 
-    /** Insert satu baris riwayat login mentor. */
-    private function logMentorLogin(Request $request, string $mentorUser): void
+    /** Insert satu baris riwayat login mentor. Menyimpan id-nya ke session buat di-update pas logout. */
+    private function logMentorLogin(Request $request, string $mentorUser, string $namaMentor): void
     {
         if (! Schema::hasTable('mentor_login_log')) {
             return; // degrade gracefully kalau migration belum dijalankan
         }
 
-        DB::table('mentor_login_log')->insert([
+        $logId = DB::table('mentor_login_log')->insertGetId([
             'mentor_user'  => $mentorUser,
+            'nama_mentor'  => $namaMentor,
             'prodi'        => $this->prodiFromCode($mentorUser),
             'ip_address'   => $request->ip(),
             'user_agent'   => substr((string) $request->userAgent(), 0, 255),
@@ -126,6 +127,8 @@ class MentorController extends Controller
             'created_at'   => now(),
             'updated_at'   => now(),
         ]);
+
+        $request->session()->put('mentor_login_log_id', $logId);
     }
 
     /** Human-readable program studi from a mentor/offering code like "PTI-C". */
