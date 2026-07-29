@@ -10,8 +10,9 @@
     .snap-section {
         scroll-snap-align: start;
         scroll-snap-stop: always;
-        min-height: 100vh;
+        height: 100vh; /* Strictly 1 layar */
         width: 100%;
+        overflow: hidden; /* Mencegah elemen berlebih yang bikin bisa di scroll terus */
     }
 
     /* Optional: Ensure footer snaps nicely at the bottom */

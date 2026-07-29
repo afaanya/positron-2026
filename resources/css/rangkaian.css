@@ -128,32 +128,32 @@
 
 .card-text-overlay {
     position: absolute;
-    top: 22%;
+    top: 20%; /* Move up slightly from 22% */
     left: 0;
     right: 0;
     bottom: 14%;
-    padding: 0 clamp(10px, 3vw, 20px);
+    padding: 0 clamp(16px, 4.5vw, 23px);
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    text-align: justify;
+    flex-direction: column;
+    justify-content: flex-start; /* Aligns text to the top */
+    text-align: center;
     color: #000;
-    line-height: 1.3;
+    line-height: 1.35;
     overflow-y: auto;
     z-index: 2;
 }
 
 
 .text-normal {
-    font-size: clamp(7px, 0.9vw, 9px);
+    font-size: clamp(9px, 1.2vw, 11px);
 }
 
 .text-long {
-    font-size: clamp(5px, 0.7vw, 7px);
+    font-size: clamp(7.5px, 1vw, 9px);
 }
 
 .text-medium {
-    font-size: clamp(6px, 0.8vw, 8px);
+    font-size: clamp(8.5px, 1.1vw, 10px);
 }
 
 
