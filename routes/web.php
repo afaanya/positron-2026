@@ -71,6 +71,7 @@ Route::middleware('mahasiswa.auth')->group(function () {
 
         $mentors = DB::table('mentor')
             ->where('user', $biodata->offering)
+            ->whereNotNull('no_wa')
             ->get();
 
         return view('biodata-mahasiswa', compact('biodata', 'mentors'));
