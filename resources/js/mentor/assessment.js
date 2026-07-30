@@ -42,9 +42,14 @@ export function renderSection(key){
   // Build assessment table rows
   const stu=S.activeStu;
   const storedScores=(stu&&S.assessments[stu.id]&&S.assessments[stu.id][key])||{};
+  const isMultiKey = cfg.aspects.every(a => a.key);
   const tbody=document.getElementById('assessBody');
   tbody.innerHTML=cfg.aspects.map((a,i)=>{
-    const val=storedScores[i]!==undefined?storedScores[i]:'';
+    let val = storedScores[i];
+    if(val===undefined && isMultiKey && a.key!==undefined){
+      val = storedScores[a.key];
+    }
+    val = val!==undefined ? val : '';
     return `<tr>
       <td class="num">${i+1}</td>
       <td class="asp">${esc(a.name)}</td>
@@ -128,6 +133,7 @@ export function simpan(){
 
   // Current section scores + total
   const key=S.activeSection;
+  const cfg=SECTIONS[key];
   const secScores=(S.assessments[stu.id]||{})[key]||{};
   if(!Object.keys(secScores).length){
     showToast('Belum ada nilai untuk bagian ini.','err');
@@ -142,19 +148,32 @@ export function simpan(){
     S.students[idx].status=done>=4?'selesai':done>=1?'proses':'belum';
   }
 
-  // Persist to Supabase via the mentor controller
-  fetch(window.__SAVE_URL__,{
-    method:'POST',
-    headers:{'Content-Type':'application/json','X-CSRF-TOKEN':window.__CSRF__,'Accept':'application/json'},
-    credentials:'same-origin',
-    body:JSON.stringify({mahasiswa_id:stu.id,kegiatan:key,poin:Math.round(secTotal)})
-  }).then(r=>r.json().catch(()=>({}))).then(res=>{
-    if(res&&res.ok){
-      const lbl=SECTIONS[key]?SECTIONS[key].label:key;
+  // Section dengan aspek yang punya key unik -> simpan tiap aspek terpisah.
+  // Section lain -> tetap simpan sebagai 1 total gabungan (behavior lama).
+  const isMultiKey = cfg.aspects.every(a => a.key);
+
+  const savePayloads = isMultiKey
+    ? cfg.aspects
+        .map((a,i) => ({ aspectKey: a.key, val: secScores[i] }))
+        .filter(x => x.val !== undefined)
+        .map(x => ({ mahasiswa_id: stu.id, kegiatan: x.aspectKey, poin: Math.round(x.val) }))
+    : [{ mahasiswa_id: stu.id, kegiatan: key, poin: Math.round(secTotal) }];
+
+  Promise.all(savePayloads.map(payload =>
+    fetch(window.__SAVE_URL__,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-CSRF-TOKEN':window.__CSRF__,'Accept':'application/json'},
+      credentials:'same-origin',
+      body:JSON.stringify(payload)
+    }).then(r=>r.json().catch(()=>({})))
+  )).then(results=>{
+    const allOk = results.length>0 && results.every(res => res && res.ok);
+    if(allOk){
+      const lbl=cfg?cfg.label:key;
       showToast(`✓ Penilaian ${stu.nama} — ${lbl} tersimpan (${Math.round(secTotal)} poin).`,'ok',4000);
       setTimeout(()=>{render();goTo('page-dashboard');},1000);
     }else{
-      showToast((res&&res.error)?res.error:'Gagal menyimpan ke server.','err',6000);
+      showToast('Gagal menyimpan sebagian atau seluruh data ke server.','err',6000);
       render();
     }
   }).catch(()=>{showToast('Gagal terhubung ke server.','err',6000);render();});

@@ -183,27 +183,24 @@ const nilai = window.nilaiMahasiswa || {};
     }
 
     function updateProgress() {
-        let totalTask = 0;
-        let completedTask = 0;
+        let total = 0;
+        let maxTotal = 0;
 
         Object.values(assignmentData).forEach(category => {
             category.tasks.forEach(task => {
-                totalTask++;
-
-                if (parsePoints(task.points) > 0) {
-                    completedTask++;
-                }
+                total += parsePoints(task.points);
+                maxTotal += task.maxPoints;
             });
         });
 
-        const percent = totalTask === 0
+        const percent = maxTotal === 0
             ? 0
-            : Math.round((completedTask / totalTask) * 100);
+            : Math.round((total / maxTotal) * 100);
 
         progressPercentEl.textContent = `${percent}%`;
         progressFill.style.width = `${percent}%`;
 
-        updateOverallPoints();
+        totalPointsEl.textContent = total;
     }
 
     function updateOverallPoints() {
@@ -304,6 +301,5 @@ const nilai = window.nilaiMahasiswa || {};
         }
     };
 
-    updateOverallPoints();
     updateProgress();
     renderAllCategories();
