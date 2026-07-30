@@ -1,0 +1,25 @@
+# Keep the build context small and never ship local secrets / deps
+.git
+.github
+node_modules
+vendor
+public/build
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+.env
+.env.*
+!.env.example
+tests
+phpunit.xml
+README.md
+
+# Repo cruft that shouldn't be in the image
+composer.phar
+composer-setup.php
+debug_composer_ssl.php
+debug_ssl_details.php
+test_https.php
+test.txt
+tmp_about_script.js
