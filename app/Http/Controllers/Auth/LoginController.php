@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Support\PasswordHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class LoginController extends Controller
@@ -35,7 +37,11 @@ class LoginController extends Controller
             ->where('username', $request->identifier)
             ->first();
 
-        if ($admin && $admin->password == $request->password) {
+        if ($admin && PasswordHelper::matches($request->password, $admin->password)) {
+            if (PasswordHelper::needsRehash($admin->password)) {
+                DB::table('admin')->where('username', $admin->username)
+                    ->update(['password' => Hash::make($request->password)]);
+            }
 
             $request->session()->put('admin_login', true);
             $request->session()->put('admin_user', $admin->username);
@@ -47,10 +53,13 @@ class LoginController extends Controller
         // Cek mentor
         $mentor = DB::table('mentor')
             ->where('user', $request->identifier)
-            ->where('password', $request->password)
             ->first();
 
-        if ($mentor) {
+        if ($mentor && PasswordHelper::matches($request->password, $mentor->password)) {
+            if (PasswordHelper::needsRehash($mentor->password)) {
+                DB::table('mentor')->where('user', $mentor->user)
+                    ->update(['password' => Hash::make($request->password)]);
+            }
 
             $request->session()->put('mentor_login', true);
             $request->session()->put('mentor_user', $mentor->user);
@@ -68,7 +77,11 @@ class LoginController extends Controller
                 ->first();
         }
 
-        if ($mahasiswa && $mahasiswa->password == $request->password) {
+        if ($mahasiswa && PasswordHelper::matches($request->password, $mahasiswa->password)) {
+            if (PasswordHelper::needsRehash($mahasiswa->password)) {
+                DB::table('mahasiswa')->where('id', $mahasiswa->id)
+                    ->update(['password' => Hash::make($request->password)]);
+            }
 
             $request->session()->put('mahasiswa_login', true);
             $request->session()->put('mahasiswa_id', $mahasiswa->id);

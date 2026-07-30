@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\PasswordHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class MahasiswaController extends Controller
 {
@@ -37,12 +39,12 @@ class MahasiswaController extends Controller
             $mahasiswa = DB::table('mahasiswa')
                 ->where('id', session('mahasiswa_id'))
                 ->first();
-            if ($mahasiswa->password != $request->password_lama) {
+            if (! PasswordHelper::matches($request->password_lama, $mahasiswa->password)) {
                 return back()->withErrors([
                     'password_lama' => 'Password lama tidak sesuai.'
                 ]);
             }
-            $data['password'] = $request->password_baru;
+            $data['password'] = Hash::make($request->password_baru);
         }
 
         DB::table('mahasiswa')
