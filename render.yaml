@@ -1,0 +1,45 @@
+# Render Blueprint — free Docker web service for Positron 2026.
+# Secrets (sync: false) are entered once in the Render dashboard, never committed.
+services:
+  - type: web
+    name: positron-2026
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    envVars:
+      - key: APP_NAME
+        value: "Positron 2026"
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY          # php artisan key:generate --show  → paste here
+        sync: false
+      - key: APP_URL          # your onrender.com URL (or custom domain)
+        sync: false
+      - key: LOG_CHANNEL
+        value: stderr
+
+      # --- Supabase Postgres via the SESSION pooler (IPv4 + supports migrations) ---
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST          # aws-0-<region>.pooler.supabase.com
+        sync: false
+      - key: DB_PORT
+        value: "5432"         # session pooler port (NOT 6543 transaction, NOT direct db.<ref>)
+      - key: DB_DATABASE
+        value: postgres
+      - key: DB_USERNAME      # postgres.<project-ref>
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+
+      # Free tier has no background workers/cron → run jobs inline, state in Postgres.
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: sync
