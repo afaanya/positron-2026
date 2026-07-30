@@ -3,7 +3,7 @@
       padding: 0;
       box-sizing: border-box;
     }
- 
+
     html {
       height: 100vh;
       overflow: visible;
@@ -13,7 +13,7 @@
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      background: #0a0e0a url('/images/page-bg.jpg') center top / cover fixed no-repeat;
+      background: #0a0e0a url('/images/page-bg.webp') center top / cover fixed no-repeat;
       font-family: 'Libre Baskerville', serif;
       overflow-x: hidden;
       overflow-y: auto;
@@ -28,6 +28,7 @@
       flex-direction: column;
       min-height: 0;
     }
+
     .desk {
       width: 100%;
       flex: 1;
@@ -193,26 +194,90 @@
       animation: particleLift 3.2s ease-in-out infinite;
     }
 
-    .particle-ring-left span:nth-child(1) { top: 8%; left: 42%; animation-delay: 0s; }
-    .particle-ring-left span:nth-child(2) { top: 22%; left: 20%; animation-delay: 0.4s; }
-    .particle-ring-left span:nth-child(3) { top: 36%; left: 8%; animation-delay: 0.8s; }
-    .particle-ring-left span:nth-child(4) { top: 54%; left: 24%; animation-delay: 1.2s; }
-    .particle-ring-left span:nth-child(5) { top: 68%; left: 36%; animation-delay: 1.6s; }
+    .particle-ring-left span:nth-child(1) {
+      top: 8%;
+      left: 42%;
+      animation-delay: 0s;
+    }
 
-    .particle-ring-right span:nth-child(1) { top: 8%; right: 42%; animation-delay: 0.2s; }
-    .particle-ring-right span:nth-child(2) { top: 22%; right: 20%; animation-delay: 0.6s; }
-    .particle-ring-right span:nth-child(3) { top: 36%; right: 8%; animation-delay: 1s; }
-    .particle-ring-right span:nth-child(4) { top: 54%; right: 24%; animation-delay: 1.4s; }
-    .particle-ring-right span:nth-child(5) { top: 68%; right: 36%; animation-delay: 1.8s; }
+    .particle-ring-left span:nth-child(2) {
+      top: 22%;
+      left: 20%;
+      animation-delay: 0.4s;
+    }
+
+    .particle-ring-left span:nth-child(3) {
+      top: 36%;
+      left: 8%;
+      animation-delay: 0.8s;
+    }
+
+    .particle-ring-left span:nth-child(4) {
+      top: 54%;
+      left: 24%;
+      animation-delay: 1.2s;
+    }
+
+    .particle-ring-left span:nth-child(5) {
+      top: 68%;
+      left: 36%;
+      animation-delay: 1.6s;
+    }
+
+    .particle-ring-right span:nth-child(1) {
+      top: 8%;
+      right: 42%;
+      animation-delay: 0.2s;
+    }
+
+    .particle-ring-right span:nth-child(2) {
+      top: 22%;
+      right: 20%;
+      animation-delay: 0.6s;
+    }
+
+    .particle-ring-right span:nth-child(3) {
+      top: 36%;
+      right: 8%;
+      animation-delay: 1s;
+    }
+
+    .particle-ring-right span:nth-child(4) {
+      top: 54%;
+      right: 24%;
+      animation-delay: 1.4s;
+    }
+
+    .particle-ring-right span:nth-child(5) {
+      top: 68%;
+      right: 36%;
+      animation-delay: 1.8s;
+    }
 
     @keyframes auraRise {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.03);
+      }
     }
 
     @keyframes particleLift {
-      0%, 100% { transform: translate3d(0, 0, 0) scale(0.7); opacity: 0.5; }
-      50% { transform: translate3d(0, -20px, 0) scale(1.2); opacity: 1; }
+
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0) scale(0.7);
+        opacity: 0.5;
+      }
+
+      50% {
+        transform: translate3d(0, -20px, 0) scale(1.2);
+        opacity: 1;
+      }
     }
 
     .book-wrapper {
@@ -836,6 +901,7 @@
     .page-fade {
       transition: opacity 0.18s ease;
     }
+
     .page-fade.fade-out {
       opacity: 0;
     }
@@ -847,7 +913,8 @@
         border: 8px solid #0c130e;
       }
 
-      .decor, .pen {
+      .decor,
+      .pen {
         display: none !important;
       }
 

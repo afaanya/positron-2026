@@ -17,7 +17,7 @@
         body {
             min-height: 100vh;
             font-family: 'Libre Baskerville', serif;
-            background: url('{{ asset('images/page-bg.jpg') }}') center/cover no-repeat;
+            background: url('{{ asset('images/page-bg.webp') }}') center/cover no-repeat;
             color: #f8eed0;
         }
 

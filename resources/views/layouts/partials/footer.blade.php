@@ -27,7 +27,7 @@
 <style>
   .gfooter{
     position:relative;z-index:10;padding:13px 24px 11px;
-    background:#06120b url('{{ asset('images/footer-bg.jpg') }}') center/cover no-repeat;
+    background:#06120b url('{{ asset('images/footer-bg.webp') }}') center/cover no-repeat;
     border-top:1px solid rgba(140,100,15,.25);
     font-family:'Libre Baskerville',serif;overflow:hidden;
   }
