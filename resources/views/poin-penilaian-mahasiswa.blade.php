@@ -18,7 +18,7 @@
             <div class="board-header">
                 <div class="board-title">Poin Tugas Mahasiswa Baru</div>
                 <div class="board-status">
-                    Minimal poin kelulusan adalah 70% dari jumlah keseluruan poin, atau sama dengan 575 poin
+                    Minimal poin kelulusan adalah 70% dari jumlah keseluruan poin, atau sama dengan 700 poin
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
                 <div class="stat-card" id="boardStatus">
                     <div class="stat-title">Total Poin</div>
                     <div class="stat-value">
-                        <span id="totalPoints">0</span>/<span id="maxPoints">815</span>
+                        <span id="totalPoints">0</span>/<span id="maxPoints">1000</span>
                     </div>
                 </div>
 

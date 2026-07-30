@@ -137,13 +137,7 @@ const nilai = window.nilaiMahasiswa || {};
                     maxPoints: 15
                 },
                 {
-                    title: 'Techno Extro Time Partisipasi',
-                    details: '',
-                    points: nilai.tetp || 0,
-                    maxPoints: 25
-                },
-                {
-                    title: 'Techno Extro Time Menang',
+                    title: 'Techno Extro Time',
                     details: '',
                     points: nilai.tetp || 0,
                     maxPoints: 35
