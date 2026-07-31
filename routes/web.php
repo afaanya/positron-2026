@@ -18,8 +18,9 @@ Route::get('/', function () {
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-    // throttle: maks 6 percobaan/menit per IP -> nahan brute-force password lewat web
-    Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:6,1');
+    // throttle 'login' (lihat AppServiceProvider): per-akun 10/mnt + per-IP 120/mnt,
+    // supaya banyak mahasiswa dari WiFi yang sama tidak saling memblokir.
+    Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:login');
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
