@@ -310,6 +310,13 @@
     text-align: center;
 }
 
+/* Paksa <main> timeline jadi full-width supaya konten (row/title/map yang
+   sudah pakai max-width + margin auto) center relatif VIEWPORT — kebal dari
+   pergeseran akibat overflow/parent. Hanya berlaku di halaman timeline. */
+main.max-w-6xl {
+    max-width: 100% !important;
+}
+
 /* ═══ Responsive timeline layout ═══ */
 .timeline-main-wrap {
     display: flex;
