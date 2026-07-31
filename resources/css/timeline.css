@@ -318,7 +318,6 @@
     width: 100%;
     max-width: 100%;
     margin-top: 60px;
-    transform: translateX(30px);
 }
 
 .timeline-row {
@@ -334,7 +333,6 @@
     width: 100%;
     max-width: 420px;
     justify-self: center;
-    margin-left: 60px;
 }
 
 .countdown-box {
