@@ -20,10 +20,12 @@
     opacity: 1;
     transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.7s cubic-bezier(0.85, 0, 0.15, 1);
 ">
-    <!-- Video animasi pembuka (fullscreen). src di-set via JS (data-src) supaya
-         hanya diunduh saat intro benar-benar diputar (sekali per sesi). -->
+    <!-- Video animasi pembuka (fullscreen). src dipilih via JS sesuai orientasi:
+         HP/portrait pakai video portrait, laptop/landscape pakai video landscape.
+         Hanya video yang terpakai yang diunduh (sekali per sesi). -->
     <video id="transition-video"
-           data-src="{{ asset('videos/AnimasiPositron.mp4') }}?v=6"
+           data-src-landscape="{{ asset('videos/AnimasiPositron.mp4') }}?v=6"
+           data-src-portrait="{{ asset('videos/AnimasiPositronPortrait.mp4') }}?v=1"
            muted playsinline
            style="
                position: absolute;
@@ -65,12 +67,8 @@
         filter: blur(8px) !important;
     }
 
-    /* HP / layar portrait: video landscape ditampilkan UTUH (contain) supaya
-       logo tidak ter-crop. Latar hijau video menyatu dengan overlay hijau,
-       jadi tidak terlihat seperti ada bar. Landscape/desktop tetap fullscreen. */
-    @media (orientation: portrait) {
-        #transition-video { object-fit: contain !important; }
-    }
+    /* object-fit:cover fullscreen untuk kedua orientasi — video sudah dipilih
+       sesuai orientasi (portrait/landscape) via JS, jadi tidak ada crop aneh. */
 </style>
 
 <script>
@@ -103,9 +101,10 @@
         try { introPlayed = sessionStorage.getItem('positronIntroPlayed') === '1'; } catch (_) {}
 
         if (video && !introPlayed) {
-            // Sesi baru: putar video INTRO sekali. src baru di-set di sini agar
-            // pada navigasi berikutnya (intro sudah tampil) video tidak diunduh lagi.
-            video.src = video.getAttribute('data-src');
+            // Sesi baru: putar video INTRO sekali. Pilih versi portrait (HP) atau
+            // landscape (laptop) sesuai orientasi; hanya yang dipakai yang diunduh.
+            const isPortrait = window.matchMedia('(orientation: portrait)').matches;
+            video.src = video.getAttribute(isPortrait ? 'data-src-portrait' : 'data-src-landscape');
             video.addEventListener('ended', reveal);
             video.addEventListener('error', () => setTimeout(reveal, 300));
             const p = video.play();
