@@ -286,6 +286,17 @@
                         </div>`;
             }
 
+            // Gerbang H-7: sebelum 7 hari menuju acara, sembunyikan countdown &
+            // link — cukup tampilkan "COMING SOON". Countdown baru dibuka saat
+            // sisa waktu <= 7 hari.
+            const H7 = 7 * 24 * 60 * 60 * 1000;
+            if (diff > H7) {
+                return `<div style="margin-bottom:10px;">
+                            <strong style="font-size:18px;">${event.name}</strong><br>
+                            <span style="display:inline-block; margin-top:8px; font-size:13px; letter-spacing:3px; color:#F8D794; opacity:.8;">✦ COMING SOON ✦</span>
+                        </div>`;
+            }
+
             const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
