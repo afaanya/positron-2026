@@ -16,8 +16,10 @@
     font-family:'Libre Baskerville',serif;
   }
   .gnavbar .nav-logo{cursor:pointer;text-decoration:none;display:flex;align-items:center}
-  .gnavbar .nav-logo img{height:30px;width:auto;display:block;mix-blend-mode:screen;filter:brightness(1.1)}
-  .gnavbar .nav-links{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
+  .gnavbar .nav-logo img{height:30px;width:auto;display:block}
+  /* nav-links di-center absolut supaya benar-benar di tengah navbar,
+     tidak bergeser gara-gara lebar logo vs ikon user yang beda. */
+  .gnavbar .nav-links{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
   .gnavbar .nav-links a{
     font-family:'Libre Baskerville',serif;font-size:.67rem;font-weight:700;
     color:#c8a030;text-decoration:none;text-transform:uppercase;letter-spacing:.13em;
