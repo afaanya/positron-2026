@@ -64,6 +64,13 @@
         opacity: 0 !important;
         filter: blur(8px) !important;
     }
+
+    /* HP / layar portrait: video landscape ditampilkan UTUH (contain) supaya
+       logo tidak ter-crop. Latar hijau video menyatu dengan overlay hijau,
+       jadi tidak terlihat seperti ada bar. Landscape/desktop tetap fullscreen. */
+    @media (orientation: portrait) {
+        #transition-video { object-fit: contain !important; }
+    }
 </style>
 
 <script>
