@@ -20,10 +20,11 @@
     opacity: 1;
     transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.7s cubic-bezier(0.85, 0, 0.15, 1);
 ">
-    <!-- Video animasi pembuka (fullscreen: isi penuh layar, responsive di semua ukuran) -->
+    <!-- Video animasi pembuka (fullscreen). src di-set via JS (data-src) supaya
+         hanya diunduh saat intro benar-benar diputar (sekali per sesi). -->
     <video id="transition-video"
-           src="{{ asset('videos/AnimasiPositron.mp4') }}?v=3"
-           muted autoplay playsinline preload="auto"
+           data-src="{{ asset('videos/AnimasiPositron.mp4') }}?v=4"
+           muted playsinline
            style="
                position: absolute;
                top: 0;
@@ -84,24 +85,32 @@
         function reveal() {
             if (revealed) return;
             revealed = true;
+            // Tandai intro sudah tampil untuk sesi ini (per tab, hilang saat tab ditutup)
+            try { sessionStorage.setItem('positronIntroPlayed', '1'); } catch (_) {}
             overlay.style.transform = 'scale(1.2)';
             overlay.style.opacity = '0';
             overlay.style.pointerEvents = 'none';
         }
 
-        if (video) {
+        let introPlayed = false;
+        try { introPlayed = sessionStorage.getItem('positronIntroPlayed') === '1'; } catch (_) {}
+
+        if (video && !introPlayed) {
+            // Sesi baru: putar video INTRO sekali. src baru di-set di sini agar
+            // pada navigasi berikutnya (intro sudah tampil) video tidak diunduh lagi.
+            video.src = video.getAttribute('data-src');
             video.addEventListener('ended', reveal);
-            // Kalau video error, jangan sampai halaman ketutup selamanya
             video.addEventListener('error', () => setTimeout(reveal, 300));
-            // Coba play; kalau autoplay diblokir browser, langsung buka saja
             const p = video.play();
             if (p && typeof p.catch === 'function') {
                 p.catch(() => setTimeout(reveal, 500));
             }
-            // Jaring pengaman: apa pun yang terjadi, buka maksimal 7 detik
-            setTimeout(reveal, 7000);
+            // Jaring pengaman (file besar, beri waktu buffering)
+            setTimeout(reveal, 15000);
         } else {
-            setTimeout(reveal, 800);
+            // Sudah tampil di sesi ini -> lewati video, buka tirai hijau cepat.
+            if (video) video.style.display = 'none';
+            setTimeout(reveal, 150);
         }
 
         // =========================================================
