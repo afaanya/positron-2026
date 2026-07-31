@@ -23,7 +23,7 @@
     <!-- Video animasi pembuka (fullscreen). src di-set via JS (data-src) supaya
          hanya diunduh saat intro benar-benar diputar (sekali per sesi). -->
     <video id="transition-video"
-           data-src="{{ asset('videos/AnimasiPositron.mp4') }}?v=4"
+           data-src="{{ asset('videos/AnimasiPositron.mp4') }}?v=5"
            muted playsinline
            style="
                position: absolute;
