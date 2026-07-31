@@ -305,7 +305,9 @@
 }
 
 .timeline-title-wrap {
-    margin-left: 150px;
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
 }
 
 /* ═══ Responsive timeline layout ═══ */
