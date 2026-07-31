@@ -152,7 +152,7 @@
 
 <nav class="gnavbar" aria-label="Navigasi utama">
   <a class="nav-logo" href="{{ route('home') }}" aria-label="POSITRON 2026">
-    <img src="{{ asset('images/portal-logo.webp') }}" alt="POSITRON 2026">
+    <img src="{{ asset('images/portal-logo.webp') }}?v=2" alt="POSITRON 2026">
   </a>
   <ul class="nav-links" role="list">
     <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>HOME<span class="dot bl"></span><span class="dot br"></span></a></li>
