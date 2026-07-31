@@ -20,16 +20,17 @@
     opacity: 1;
     transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.7s cubic-bezier(0.85, 0, 0.15, 1);
 ">
-    <!-- Video animasi pembuka (responsive: selalu muat penuh di layar apa pun) -->
+    <!-- Video animasi pembuka (fullscreen: isi penuh layar, responsive di semua ukuran) -->
     <video id="transition-video"
-           src="{{ asset('videos/AnimasiPositron.mp4') }}?v=1"
+           src="{{ asset('videos/AnimasiPositron.mp4') }}?v=2"
            muted autoplay playsinline preload="auto"
            style="
-               max-width: 100%;
-               max-height: 100vh;
-               width: auto;
-               height: auto;
-               object-fit: contain;
+               position: absolute;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               object-fit: cover;
                display: block;
            ">
     </video>
