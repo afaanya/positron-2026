@@ -18,7 +18,8 @@ Route::get('/', function () {
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [LoginController::class, 'login']);
+    // throttle: maks 6 percobaan/menit per IP -> nahan brute-force password lewat web
+    Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:6,1');
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
