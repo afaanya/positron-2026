@@ -22,7 +22,7 @@
 ">
     <!-- Video animasi pembuka (fullscreen: isi penuh layar, responsive di semua ukuran) -->
     <video id="transition-video"
-           src="{{ asset('videos/AnimasiPositron.mp4') }}?v=2"
+           src="{{ asset('videos/AnimasiPositron.mp4') }}?v=3"
            muted autoplay playsinline preload="auto"
            style="
                position: absolute;
