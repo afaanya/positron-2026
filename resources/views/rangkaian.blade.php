@@ -82,7 +82,7 @@
                         <div class="cube-face-front"><img src="{{ asset('images/kartu 2.webp') }}" class="card-img"></div>
                         <div class="cube-face-back">
                             <img src="{{ asset('images/ldk.webp') }}" class="card-img">
-                            <div class="card-text-overlay text-normal">
+                            <div class="card-text-overlay text-long">
                                 Latihan Dasar Kepemimpinan (LDK) adalah kegiatan pelatihan interaktif bagi mahasiswa baru yang mengintegrasikan teori dan praktik untuk mengasah keterampilan kepemimpinan. <br><br>
                                 Kegiatan ini bertujuan untuk membangun kepercayaan diri, kerja sama, dan kemampuan manajemen konflik untuk menciptakan pemimpin yang kompeten.
                             </div>
@@ -95,7 +95,7 @@
                         <div class="cube-face-front"><img src="{{ asset('images/kartu 3.webp') }}" class="card-img"></div>
                         <div class="cube-face-back">
                             <img src="{{ asset('images/ioh.webp') }}" class="card-img">
-                            <div class="card-text-overlay text-medium">
+                            <div class="card-text-overlay text-long">
                                 Introduction of Himpunan (IoH) merupakan kegiatan yang bertujuan untuk memperkenalkan mahasiswa baru pada berbagai organisasi yang ada di lingkungan Departemen Teknik Elektro dan Informatika. <br><br>
                                 Melalui kegiatan ini, mahasiswa baru tidak hanya dikenalkan dengan struktur dan peran organisasi, tetapi juga diberikan pemahaman mengenai program kerja serta tanggung jawab yang dijalankan selama periode kepengurusan.
                             </div>
@@ -108,7 +108,7 @@
                         <div class="cube-face-front"><img src="{{ asset('images/kartu 4.webp') }}" class="card-img"></div>
                         <div class="cube-face-back">
                             <img src="{{ asset('images/nako.webp') }}" class="card-img">
-                            <div class="card-text-overlay text-normal">
+                            <div class="card-text-overlay text-long">
                                 NAKO merupakan acara peresmian mahasiswa baru Departemen Teknik Elektro dan Informatika yang menjadi penutup dari serangkaian ospek departemen. <br><br>
                                 Kegiatan ini bertujuan untuk mengembangkan bakat dan juga tempat untuk mempererat hubungan dan kekompakan angkatan, yang kemudian dikenal dengan sebutan UNITY.
                             </div>
