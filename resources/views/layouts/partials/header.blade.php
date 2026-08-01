@@ -16,8 +16,10 @@
     font-family:'Libre Baskerville',serif;
   }
   .gnavbar .nav-logo{cursor:pointer;text-decoration:none;display:flex;align-items:center}
-  .gnavbar .nav-logo img{height:30px;width:auto;display:block;mix-blend-mode:screen;filter:brightness(1.1)}
-  .gnavbar .nav-links{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
+  .gnavbar .nav-logo img{height:30px;width:auto;display:block}
+  /* nav-links di-center absolut supaya benar-benar di tengah navbar,
+     tidak bergeser gara-gara lebar logo vs ikon user yang beda. */
+  .gnavbar .nav-links{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
   .gnavbar .nav-links a{
     font-family:'Libre Baskerville',serif;font-size:.67rem;font-weight:700;
     color:#c8a030;text-decoration:none;text-transform:uppercase;letter-spacing:.13em;
@@ -150,7 +152,7 @@
 
 <nav class="gnavbar" aria-label="Navigasi utama">
   <a class="nav-logo" href="{{ route('home') }}" aria-label="POSITRON 2026">
-    <img src="{{ asset('images/portal-logo.webp') }}" alt="POSITRON 2026">
+    <img src="{{ asset('images/portal-logo.webp') }}?v=2" alt="POSITRON 2026">
   </a>
   <ul class="nav-links" role="list">
     <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>HOME<span class="dot bl"></span><span class="dot br"></span></a></li>

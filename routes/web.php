@@ -10,15 +10,18 @@ Route::get('/admin/riwayat-login', [MentorController::class, 'riwayatLogin']);
 
 // ================= LANDING =================
 
+// Landing: kalau sudah login, langsung ke home (skip undangan). Kalau belum, tampilkan landing.
 Route::get('/', function () {
     return view('landing');
-})->name('landing');
+})->middleware('guest.any')->name('landing');
 
 // ================= AUTH =================
 
-Route::middleware('guest')->group(function () {
+Route::middleware('guest.any')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [LoginController::class, 'login']);
+    // throttle 'login' (lihat AppServiceProvider): per-akun 10/mnt + per-IP 120/mnt,
+    // supaya banyak mahasiswa dari WiFi yang sama tidak saling memblokir.
+    Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:login');
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

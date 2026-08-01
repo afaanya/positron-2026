@@ -224,7 +224,6 @@
     max-width: 1000px;
     box-sizing: border-box;
     margin: 18px auto 30px;
-    transform: translateX(40px);
 }
 
 .map-title {
@@ -306,7 +305,16 @@
 }
 
 .timeline-title-wrap {
-    margin-left: 150px;
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Paksa <main> timeline jadi full-width supaya konten (row/title/map yang
+   sudah pakai max-width + margin auto) center relatif VIEWPORT — kebal dari
+   pergeseran akibat overflow/parent. Hanya berlaku di halaman timeline. */
+main.max-w-6xl {
+    max-width: 100% !important;
 }
 
 /* ═══ Responsive timeline layout ═══ */
@@ -318,23 +326,24 @@
     width: 100%;
     max-width: 100%;
     margin-top: 60px;
-    transform: translateX(30px);
 }
 
 .timeline-row {
-    display: grid;
-    grid-template-columns: minmax(0, 420px) minmax(0, 420px);
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 120px;
     width: 100%;
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .timeline-clock-wrap {
     width: 100%;
     max-width: 420px;
     justify-self: center;
-    margin-left: 60px;
 }
 
 .countdown-box {
@@ -353,7 +362,7 @@
     }
 
     .timeline-row {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         gap: 32px;
     }
 
