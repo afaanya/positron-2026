@@ -84,13 +84,37 @@
         }
 
         // =========================================================
+        // FUNGSI RESET — dipanggil setiap kali halaman "muncul",
+        // baik fresh load maupun restore dari bfcache (back/forward)
+        // =========================================================
+        function forceReset() {
+            overlay.style.transition = 'none';
+            overlay.style.transform = 'scale(1.2)';
+            overlay.style.opacity = '0';
+            overlay.style.pointerEvents = 'none';
+            if (video) video.style.opacity = '1';
+
+            if (mainContent) {
+                mainContent.classList.remove('page-exit-zoom');
+                mainContent.style.transform = 'scale(1)';
+                mainContent.style.opacity = '1';
+                mainContent.style.filter = 'none';
+            }
+
+            // aktifkan lagi transisinya setelah reset diterapkan,
+            // supaya animasi tutup berikutnya tetap mulus
+            requestAnimationFrame(() => {
+                overlay.style.transition = 'transform 0.7s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.7s cubic-bezier(0.85, 0, 0.15, 1)';
+            });
+        }
+
+        // =========================================================
         // 1. ANIMASI MASUK — putar video, lalu buka tirai
         // =========================================================
         let revealed = false;
         function reveal() {
             if (revealed) return;
             revealed = true;
-            // Tandai intro sudah tampil untuk sesi ini (per tab, hilang saat tab ditutup)
             try { sessionStorage.setItem('positronIntroPlayed', '1'); } catch (_) {}
             overlay.style.transform = 'scale(1.2)';
             overlay.style.opacity = '0';
@@ -101,8 +125,6 @@
         try { introPlayed = sessionStorage.getItem('positronIntroPlayed') === '1'; } catch (_) {}
 
         if (video && !introPlayed) {
-            // Sesi baru: putar video INTRO sekali. Pilih versi portrait (HP) atau
-            // landscape (laptop) sesuai orientasi; hanya yang dipakai yang diunduh.
             const isPortrait = window.matchMedia('(orientation: portrait)').matches;
             video.src = video.getAttribute(isPortrait ? 'data-src-portrait' : 'data-src-landscape');
             video.addEventListener('ended', reveal);
@@ -111,10 +133,8 @@
             if (p && typeof p.catch === 'function') {
                 p.catch(() => setTimeout(reveal, 500));
             }
-            // Jaring pengaman (file besar, beri waktu buffering)
             setTimeout(reveal, 15000);
         } else {
-            // Sudah tampil di sesi ini -> lewati video, buka tirai hijau cepat.
             if (video) video.style.display = 'none';
             setTimeout(reveal, 150);
         }
@@ -132,16 +152,13 @@
                     e.preventDefault();
                     const targetUrl = link.href;
 
-                    // Sembunyikan video supaya penutupan tampil hijau polos
                     if (video) { video.style.opacity = '0'; try { video.pause(); } catch (_) {} }
 
-                    // Siapkan overlay polos di belakang layar
                     overlay.style.transition = 'none';
                     overlay.style.transform = 'scale(0.8)';
                     overlay.style.opacity = '0';
                     overlay.style.pointerEvents = 'all';
 
-                    // Mulai animasi penutupan hijau polos
                     setTimeout(() => {
                         overlay.style.transition = 'transform 0.7s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.7s cubic-bezier(0.85, 0, 0.15, 1)';
                         if (mainContent) {
@@ -151,12 +168,34 @@
                         overlay.style.opacity = '1';
                     }, 50);
 
-                    // Pindah rute setelah layar tertutup (700ms)
                     setTimeout(() => {
                         window.location.href = targetUrl;
                     }, 700);
                 });
             }
         });
+    });
+
+    // =========================================================
+    // 3. SAFETY NET — kalau browser restore halaman dari bfcache
+    //    (misal lewat history.back()), paksa reset overlay
+    // =========================================================
+    window.addEventListener('pageshow', (event) => {
+        const overlay = document.getElementById('transition-overlay');
+        const mainContent = document.querySelector('main');
+        if (event.persisted) {
+            if (overlay) {
+                overlay.style.transition = 'none';
+                overlay.style.transform = 'scale(1.2)';
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+            if (mainContent) {
+                mainContent.classList.remove('page-exit-zoom');
+                mainContent.style.transform = 'scale(1)';
+                mainContent.style.opacity = '1';
+                mainContent.style.filter = 'none';
+            }
+        }
     });
 </script>

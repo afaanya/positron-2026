@@ -3,9 +3,9 @@
 @section('content')
 @vite('resources/css/biodata-mahasiswa.css')
 
-<button class="close-btn" onclick="history.back()">
+<a href="{{ route('biodata') }}" class="close-btn">
     &times;
-</button>
+</a>
 
 <div class="overlay">
     <div class="card">
