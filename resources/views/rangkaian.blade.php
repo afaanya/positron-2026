@@ -95,7 +95,7 @@
                         <div class="cube-face-front"><img src="{{ asset('images/kartu 3.webp') }}" class="card-img"></div>
                         <div class="cube-face-back">
                             <img src="{{ asset('images/ioh.webp') }}" class="card-img">
-                            <div class="card-text-overlay text-long">
+                            <div class="card-text-overlay text-xlong">
                                 Introduction of Himpunan (IoH) merupakan kegiatan yang bertujuan untuk memperkenalkan mahasiswa baru pada berbagai organisasi yang ada di lingkungan Departemen Teknik Elektro dan Informatika. <br><br>
                                 Melalui kegiatan ini, mahasiswa baru tidak hanya dikenalkan dengan struktur dan peran organisasi, tetapi juga diberikan pemahaman mengenai program kerja serta tanggung jawab yang dijalankan selama periode kepengurusan.
                             </div>

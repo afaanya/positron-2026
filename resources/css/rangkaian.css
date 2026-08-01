@@ -156,6 +156,10 @@
     font-size: clamp(8.5px, 1.1vw, 10px);
 }
 
+.text-xlong {
+    font-size: clamp(7px, 0.95vw, 8.3px);
+    line-height: 1.25;
+}
 
 /*=========================================================
     KUBUS MOBILE (RUBIK) — hanya tampil di <= 768px
