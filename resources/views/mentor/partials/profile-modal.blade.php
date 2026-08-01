@@ -2,8 +2,8 @@
   <div class="panel modal-box">
     <button class="modal-close" onclick="closeModal('profileModal')" aria-label="Tutup">✕</button>
     <h2 class="modal-title">Profil Mentor</h2>
-    <div class="prof-row"><span class="prof-lbl">Nama</span><span class="prof-val">Kakak Mentor {{ $mentorProfile['offering'] ?? '' }}</span></div>
-    <div class="prof-row"><span class="prof-lbl">Role</span><span class="prof-val">Kakak Mentor</span></div>
+    <div class="prof-row"><span class="prof-lbl">Nama</span><span class="prof-val">{{ $mentorProfile['nama_panggilan'] ?? '—' }}</span></div>
+    <div class="prof-row"><span class="prof-lbl">Role</span><span class="prof-val">Mentor</span></div>
     <div class="prof-row"><span class="prof-lbl">Username</span><span class="prof-val" id="profUser">{{ $mentorProfile['user'] ?? session('mentor_user', 'mentor') }}</span></div>
     <div class="prof-row"><span class="prof-lbl">Status</span><span class="prof-val"><span class="badge b-s">Online</span></span></div>
     <div class="modal-div"></div>

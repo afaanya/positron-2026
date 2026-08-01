@@ -73,6 +73,7 @@ class MentorController extends Controller
 
         $mentorProfile = [
             'user'     => $mentorUser ?: 'Mentor',
+            'nama_panggilan' => session('mentor_nama', '—'),
             'offering' => $mentorUser ?: '—',
             'prodi'    => $mentorUser ? $this->prodiFromCode($mentorUser) : '—',
         ];

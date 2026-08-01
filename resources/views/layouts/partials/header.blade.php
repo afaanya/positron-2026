@@ -174,8 +174,6 @@
           <a class="pd-item" href="{{ route('biodata') }}">Biodata</a>
           <a class="pd-item" href="{{ route('poin') }}">Poin Penilaian</a>
           <a class="pd-item" href="{{ route('sertifikat') }}">Sertifikat</a>
-          <a class="pd-item" href="https://forms.gle/Zn5ZR7WWp7P87vGw9" target="_blank" rel="noopener">Formulir Gabung Grup</a>
-          <a class="pd-item" href="https://drive.google.com/file/d/1d3oINTTi9p7iBCNd8aY9TVa5og9wnBnf/view" target="_blank" rel="noopener">Berkas Persyaratan</a>
         @endif
         @if ($isMentor || $isAdmin)
           <a class="pd-item" href="{{ route('mentor.home') }}">Halaman Mentor</a>
