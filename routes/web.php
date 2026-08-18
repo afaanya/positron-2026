@@ -61,6 +61,10 @@ Route::middleware('auth.any')->group(function () {
     Route::get('/timeline', function () {
         return view('timeline');
     })->name('timeline');
+
+    Route::get('/penugasan', function () {
+        return view('penugasan');
+    })->name('penugasan');
 });
 
 // ================= HALAMAN MAHASISWA =================

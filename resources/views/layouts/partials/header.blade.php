@@ -159,6 +159,7 @@
     <li><a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>ABOUT<span class="dot bl"></span><span class="dot br"></span></a></li>
     <li><a href="{{ route('filosofi') }}" class="{{ request()->routeIs('filosofi') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>FILOSOFI<span class="dot bl"></span><span class="dot br"></span></a></li>
     <li><a href="{{ route('timeline') }}" class="{{ request()->routeIs('timeline') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>TIMELINE<span class="dot bl"></span><span class="dot br"></span></a></li>
+    <li><a href="{{ route('penugasan') }}" class="{{ request()->routeIs('penugasan') ? 'active' : '' }}"><span class="dot tl"></span><span class="dot tr"></span>PENUGASAN<span class="dot bl"></span><span class="dot br"></span></a></li>
   </ul>
   <div class="nav-right">
     {{-- Hamburger — hanya muncul di mobile --}}
@@ -206,6 +207,7 @@
   <a href="{{ route('about') }}"  onclick="gToggleMobileMenu()">ABOUT</a>
   <a href="{{ route('filosofi') }}" onclick="gToggleMobileMenu()">FILOSOFI</a>
   <a href="{{ route('timeline') }}" onclick="gToggleMobileMenu()">TIMELINE</a>
+  <a href="{{ route('penugasan') }}" onclick="gToggleMobileMenu()">PENUGASAN</a>
   @if ($isMahasiswa || $isMentor || $isAdmin)
     <a href="{{ route('rangkaian') }}" onclick="gToggleMobileMenu()">RANGKAIAN</a>
   @endif
