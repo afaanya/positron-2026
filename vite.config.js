@@ -42,6 +42,9 @@ export default defineConfig({
 
                 'resources/css/filosofi.css',
                 'resources/js/filosofi.js',
+
+                'resources/css/penugasan.css',
+                'resources/js/penugasan.js',
             ],
             refresh: true,
             fonts: [
