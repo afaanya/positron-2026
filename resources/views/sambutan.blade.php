@@ -66,7 +66,7 @@
                     <div class="smb-video-box">
                         <iframe
                             id="videoSambutanMobile"
-                            src="https://www.youtube.com/embed/5AQN-rkHLhk?autoplay=1&mute=1&loop=1&playlist=5AQN-rkHLhk&controls=1&rel=0&enablejsapi=1&playsinline=1"
+                            src="https://www.youtube.com/embed/Aidp0F_1a4s?si=NT_tlJ4WrwgsrUUE&autoplay=1&mute=1&loop=1&playlist=Aidp0F_1a4s&controls=0&rel=0&enablejsapi=1&playsinline=1"
                             title="Sambutan"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
