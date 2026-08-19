@@ -259,6 +259,7 @@
     stroke: #F8D794;
     stroke-width: 4;
     filter: drop-shadow(0 0 7px rgba(248, 215, 148, .55));
+    transition: fill 0.6s ease, stroke 0.6s ease, filter 0.6s ease, opacity 0.6s ease;
 }
 
 .map-pin-number {
@@ -267,6 +268,7 @@
     font-size: 26px;
     font-weight: bold;
     text-anchor: middle;
+    transition: fill 0.6s ease, opacity 0.6s ease;
 }
 
 .map-pin-label {
@@ -276,10 +278,75 @@
     font-weight: bold;
     text-anchor: middle;
     letter-spacing: 1px;
+    transition: fill 0.6s ease, opacity 0.6s ease;
 }
 
 .map-compass {
     opacity: .5;
+}
+
+/* ═══ Status titik peta perjalanan ═══ */
+
+/* Belum mendekati acara (masih lebih dari H-7) — gelap/redup */
+.map-pin-circle.pin-dark {
+    fill: rgba(20, 38, 27, 0.6);
+    stroke: rgba(200, 169, 110, 0.35);
+    filter: none;
+}
+.map-pin-number.pin-dark,
+.map-pin-label.pin-dark {
+    opacity: 0.35;
+}
+
+/* H-7 sampai sebelum hari H — mulai menyala, berkedip pelan */
+.map-pin-circle.pin-approaching {
+    fill: rgba(248, 215, 148, 0.22);
+    stroke: #F8D794;
+    filter: drop-shadow(0 0 8px rgba(248, 215, 148, .5));
+    animation: pin-pulse-soft 1.8s ease-in-out infinite;
+}
+.map-pin-number.pin-approaching,
+.map-pin-label.pin-approaching {
+    opacity: 0.9;
+}
+
+/* Hari H — menyala penuh & berdenyut kuat */
+.map-pin-circle.pin-active {
+    fill: #F8D794;
+    stroke: #fff;
+    animation: pin-pulse-strong 1s ease-in-out infinite;
+}
+.map-pin-number.pin-active {
+    fill: #1c2f14;
+    opacity: 1;
+}
+.map-pin-label.pin-active {
+    fill: #F8D794;
+    opacity: 1;
+}
+
+/* Sudah lewat — tetap terang, tidak berkedip lagi */
+.map-pin-circle.pin-completed {
+    fill: #F8D794;
+    stroke: #d9b876;
+    filter: drop-shadow(0 0 5px rgba(248, 215, 148, .6));
+}
+.map-pin-number.pin-completed {
+    fill: #1c2f14;
+    opacity: 1;
+}
+.map-pin-label.pin-completed {
+    opacity: 1;
+}
+
+@keyframes pin-pulse-soft {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+}
+
+@keyframes pin-pulse-strong {
+    0%, 100% { filter: drop-shadow(0 0 6px #F8D794); }
+    50% { filter: drop-shadow(0 0 18px #F8D794); }
 }
 
 /* ═══ Thin gold border frame ═══ */
