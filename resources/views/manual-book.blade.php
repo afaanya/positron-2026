@@ -10,7 +10,7 @@
   </div>
 
   <div class="manualbook-book-wrap">
-    <a href="https://drive.google.com/" target="_blank" class="manualbook-book" id="manualbook-buku">
+    <a href="https://drive.google.com/file/d/1sYtknCg0eoQnbcBHEmmU-oqG3ExEpxmS/view" target="_blank" class="manualbook-book" id="manualbook-buku">
       <div class="manualbook-book-img">
         <img src="{{ asset('images/bukumanualbook.webp') }}" alt="Manual Book POSITRON 2026">
       </div>
