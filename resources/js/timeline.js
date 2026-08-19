@@ -25,6 +25,42 @@ updateClock();
 
 let currentCalendarDate = new Date();
 
+// Data acara: startDate & endDate agar mendukung acara multi-hari
+// (mis. Forum Maba 28-29 Agustus 2026). Urutan array ini SAMA dengan
+// urutan titik 1-4 di peta perjalanan (index 0 = titik 1, dst).
+const timelineEventsData = [
+    { name: 'FORUM MABA 2026', startDate: new Date(2026, 7, 28), endDate: new Date(2026, 7, 29, 23, 59, 59) },
+    { name: 'LDK 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59) },
+    { name: 'IOH 2026', startDate: new Date(2026, 9, 24), endDate: new Date(2026, 9, 24, 23, 59, 59) },
+    { name: 'NAKO 2026', startDate: new Date(2026, 10, 20), endDate: new Date(2026, 10, 20, 23, 59, 59) }
+];
+
+const H7_MS = 7 * 24 * 60 * 60 * 1000;
+
+// Tanggal-tanggal yang harus diberi lingkaran di kalender.
+// Hanya aktif mulai H-7 sebelum acara sampai acara tersebut berakhir.
+function getEventDatesForCalendar() {
+    const now = new Date();
+    const dates = [];
+
+    timelineEventsData.forEach(event => {
+        const diffToStart = event.startDate - now;
+        const isWithinWindow = diffToStart <= H7_MS && now <= event.endDate;
+
+        if (!isWithinWindow) return;
+
+        let d = new Date(event.startDate.getFullYear(), event.startDate.getMonth(), event.startDate.getDate());
+        const endDay = new Date(event.endDate.getFullYear(), event.endDate.getMonth(), event.endDate.getDate());
+
+        while (d <= endDay) {
+            dates.push({ day: d.getDate(), month: d.getMonth(), year: d.getFullYear() });
+            d.setDate(d.getDate() + 1);
+        }
+    });
+
+    return dates;
+}
+
 function updateCalendar() {
     const now = new Date();
     const year = currentCalendarDate.getFullYear();
@@ -50,13 +86,7 @@ function updateCalendar() {
     let day = 1;
     for (let i = 0; i < startDay; i++) html += '<td style="padding:0 4px; height:12px; width:13px"></td>';
 
-    const eventDates = [
-        { day: 19, month: 7, year: 2026 },
-        { day: 20, month: 7, year: 2026 },
-        { day: 11, month: 9, year: 2026 },
-        { day: 24, month: 9, year: 2026 },
-        { day: 20, month: 10, year: 2026 }
-    ];
+    const eventDates = getEventDatesForCalendar();
 
     for (let i = startDay; i < 42; i++) {
         if (day > daysInMonth) break;
@@ -80,33 +110,34 @@ function updateCountdown() {
     const currentYear = currentCalendarDate.getFullYear();
     const currentMonth = currentCalendarDate.getMonth();
 
-    const events = [
-        { name: 'FORUM MABA 2026', day: 19, month: 7, year: 2026 },
-        { name: 'LDK 2026', day: 11, month: 9, year: 2026 },
-        { name: 'IOH 2026', day: 24, month: 9, year: 2026 },
-        { name: 'NAKO 2026', day: 20, month: 10, year: 2026 }
-    ];
-
-    const monthEvents = events.filter(event => event.year === currentYear && event.month === currentMonth);
+    const monthEvents = timelineEventsData.filter(event =>
+        (event.startDate.getFullYear() === currentYear && event.startDate.getMonth() === currentMonth) ||
+        (event.endDate.getFullYear() === currentYear && event.endDate.getMonth() === currentMonth)
+    );
 
     if (monthEvents.length === 0) {
-    document.getElementById('countdownDisplay').innerHTML = 
-    '<strong style="font-size:18px; line-height:1.6; display:block; text-align:center;">TIDAK ADA<br>ACARA<br>PADA BULAN INI</strong>';
-    return;
-}
+        document.getElementById('countdownDisplay').innerHTML =
+        '<strong style="font-size:18px; line-height:1.6; display:block; text-align:center;">TIDAK ADA<br>ACARA<br>PADA BULAN INI</strong>';
+        return;
+    }
 
     const buildCountdown = (event) => {
-        const targetDate = new Date(currentYear, event.month, event.day);
-        const diff = targetDate - now;
-        const isToday = now.getDate() === event.day && now.getMonth() === event.month && now.getFullYear() === event.year;
+        const diffToStart = event.startDate - now;
+        const diffToEnd = event.endDate - now;
 
-        if (diff < 0 || isToday) {
+        // Acara sudah berakhir
+        if (diffToEnd < 0) {
+            return `<div style="margin-bottom:10px;"><strong style="font-size:18px;">${event.name} telah selesai</strong></div>`;
+        }
+
+        // Sedang berlangsung: dari tanggal mulai sampai tanggal selesai
+        if (diffToStart <= 0 && diffToEnd >= 0) {
             return `<div style="margin-bottom:10px;"><strong style="font-size:18px;">${event.name} sedang berlangsung 🎉</strong></div>`;
         }
 
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const days = Math.floor(diffToStart / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diffToStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diffToStart % (1000 * 60 * 60)) / (1000 * 60));
 
         return `
             <div style="margin-bottom:10px;">
@@ -118,10 +149,47 @@ function updateCountdown() {
     document.getElementById('countdownDisplay').innerHTML = monthEvents.map(buildCountdown).join('');
 }
 
+// === Titik-titik di Peta Perjalanan ===
+// Status tiap titik (1-4 -> index 0-3):
+//   'dark'        -> belum mendekati acara, masih gelap/redup
+//   'approaching' -> sudah masuk H-7, mulai menyala (glow berkedip)
+//   'active'      -> hari H, menyala penuh & berdenyut
+//   'completed'   -> sudah lewat, tetap terang (tidak berkedip)
+function getPinState(event, now) {
+    const diffToStart = event.startDate - now;
+    const diffToEnd = event.endDate - now;
+
+    if (diffToEnd < 0) return 'completed';
+    if (diffToStart <= 0 && diffToEnd >= 0) return 'active';
+    if (diffToStart <= H7_MS) return 'approaching';
+    return 'dark';
+}
+
+function updateMapPins() {
+    const now = new Date();
+
+    timelineEventsData.forEach((event, index) => {
+        const state = getPinState(event, now);
+        const circle = document.getElementById('map-pin-' + index);
+        const number = document.getElementById('map-pin-number-' + index);
+        const label = document.getElementById('map-pin-label-' + index);
+        const stateClasses = ['pin-dark', 'pin-approaching', 'pin-active', 'pin-completed'];
+
+        [circle, number, label].forEach(el => {
+            if (!el) return;
+            el.classList.remove(...stateClasses);
+            el.classList.add('pin-' + state);
+        });
+    });
+}
+
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
 updateCalendar();
+
+updateMapPins();
+setInterval(updateMapPins, 60000);
 
 document.getElementById('prevMonthBtn').addEventListener('click', function() {
     currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
