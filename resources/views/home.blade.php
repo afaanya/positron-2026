@@ -30,6 +30,9 @@
         @include('sambutan')
     </div>
     <div class="snap-section">
+        @include('manual-book')
+    </div>
+    <div class="snap-section">
         @include('rangkaian')
     </div>
 @endsection

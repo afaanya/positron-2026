@@ -1,0 +1,156 @@
+.penugasan-page {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh; /* mengikuti tinggi layar sebenarnya di mobile (address bar dsb) */
+  position: relative;
+  font-family: 'Libre Baskerville', serif;
+  overflow: hidden;
+  background-color: #0a1a10;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================
+   JUDUL OVERLAY
+============================*/
+.penugasan-title-wrap {
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  width: 80%;
+}
+.penugasan-title {
+  font-size: clamp(1.6rem, 4.5vw, 3.4rem);
+  font-weight: 700;
+  color: #f8d794;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 30px rgba(248,215,148,0.5), 0 2px 8px rgba(0,0,0,0.8);
+}
+.penugasan-subtitle {
+  font-size: clamp(0.85rem, 1.8vw, 1.3rem);
+  color: #d4b96a;
+  margin-top: 0.4em;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.9);
+}
+
+/* ============================
+   BUKU CONTAINER — di atas meja
+============================*/
+.books-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2%;
+  padding: 0 6%;
+  margin-top: auto;
+  margin-bottom: 8%;
+  z-index: 10;
+}
+
+/* ============================
+   BUKU ITEM
+============================*/
+.book-item {
+  position: relative;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  flex: 1;
+  max-width: 18%;
+}
+.book-img-wrap {
+  position: relative;
+  width: 100%;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+.book-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.7));
+}
+.book-item:hover .book-img-wrap {
+  filter: drop-shadow(0 0 18px rgba(248,215,148,0.75)) drop-shadow(0 8px 20px rgba(0,0,0,0.7));
+  transform: translateY(-6%) scale(1.04);
+}
+
+/* Staggered Vertikal (Selang-seling Atas Bawah) */
+#buku-penugasan-1 { transform: translateY(10px); }
+#buku-penugasan-2 { transform: translateY(-35px); }
+#buku-penugasan-3 { transform: translateY(5px); }
+#buku-penugasan-4 { transform: translateY(-40px); }
+#buku-penugasan-5 { transform: translateY(-15px); }
+
+/* label penugasan di bawah buku */
+.book-label {
+  text-align: center;
+  color: #f8d794;
+  font-size: clamp(0.75rem, 1.25vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 6px;
+  text-shadow: 0 0 16px rgba(248,215,148,0.9), 0 2px 6px rgba(0,0,0,0.95);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.book-item:hover .book-label {
+  opacity: 1;
+}
+
+/* ============================
+   RESPONSIF
+============================*/
+@media (max-width: 768px) {
+  .books-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+    padding: 0 8%;
+    width: 100%;
+  }
+  .book-item {
+    max-width: 100%;
+    flex-basis: auto;
+  }
+  /* di grid, semua buku sejajar rapi — hapus efek naik-turun stagger */
+  #buku-penugasan-1,
+  #buku-penugasan-2,
+  #buku-penugasan-3,
+  #buku-penugasan-4,
+  #buku-penugasan-5 {
+    transform: none;
+  }
+  /* buku ke-5 (item ganjil terakhir) di-center melintasi 2 kolom */
+  #buku-penugasan-5 {
+    grid-column: 1 / -1;
+    max-width: 48%;
+    margin: 0 auto;
+  }
+  .book-label {
+    opacity: 1;
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 480px) {
+  .books-container {
+    gap: 20px 12px;
+    padding: 0 6%;
+  }
+  .penugasan-title {
+    letter-spacing: 0.05em;
+  }
+  #buku-penugasan-5 {
+    max-width: 52%;
+  }
+}
