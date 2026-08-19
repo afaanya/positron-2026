@@ -10,11 +10,8 @@
                 id="videoSambutan"
                 style="position: absolute; top: -60px; left: -20px; width: calc(100% + 40px); height: calc(100% + 120px); pointer-events: none;"
                 class="rounded shadow-2xl"
-<<<<<<< HEAD
                 src="https://www.youtube.com/embed/Aidp0F_1a4s?si=NT_tlJ4WrwgsrUUE&autoplay=1&mute=1&loop=1&playlist=Aidp0F_1a4s&controls=0&rel=0&enablejsapi=1&playsinline=1"
-=======
                 src="https://www.youtube.com/embed/Aidp0F_1a4s?autoplay=1&mute=1&loop=1&playlist=Aidp0F_1a4s&controls=0&rel=0&enablejsapi=1"
->>>>>>> abe9baab4772d528bcad95e425da62a4a4077e86
                 title="Sambutan"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
