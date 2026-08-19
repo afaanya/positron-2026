@@ -9,17 +9,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      background: #0a1a10 !important;
-    }
+    
+
     .penugasan-page {
-      width: 100%;
+      width: 100vw;
+      height: 100vh;
       position: relative;
       font-family: 'Libre Baskerville', serif;
-    }
-    .penugasan-bg {
-      width: 100%;
-      display: block;
+      overflow: hidden;
+      /* Background baru dipasang via CSS agar tidak pecah/geser */
+      background: #0a1a10 url('{{ asset("images/bg.penugasan.2.webp") }}') center center / cover no-repeat;
     }
 
     /* ============================
@@ -55,7 +54,7 @@
     ============================*/
     .books-container {
       position: absolute;
-      bottom: 0%;
+      bottom: 25%;
       left: 0;
       width: 100%;
       display: flex;
@@ -73,36 +72,46 @@
     .book-item {
       position: relative;
       cursor: pointer;
-      transition: transform 0.35s ease, filter 0.35s ease;
       display: block;
       text-decoration: none;
       flex: 1;
-      max-width: 14%;
+      max-width: 18%;
     }
-    .book-item img {
+    .book-img-wrap {
+      position: relative;
+      width: 100%;
+      transition: transform 0.35s ease, filter 0.35s ease;
+    }
+    .book-img-wrap img {
       width: 100%;
       height: auto;
       display: block;
       filter: drop-shadow(0 8px 20px rgba(0,0,0,0.7));
-      transition: filter 0.35s ease, transform 0.35s ease;
     }
-    .book-item:hover img {
+    .book-item:hover .book-img-wrap {
       filter: drop-shadow(0 0 18px rgba(248,215,148,0.75)) drop-shadow(0 8px 20px rgba(0,0,0,0.7));
       transform: translateY(-6%) scale(1.04);
     }
+
+    /* Staggered Vertikal (Selang-seling Atas Bawah) */
+    #buku-penugasan-1 { transform: translateY(10px); }
+    #buku-penugasan-2 { transform: translateY(-35px); }
+    #buku-penugasan-3 { transform: translateY(5px); }
+    #buku-penugasan-4 { transform: translateY(-40px); }
+    #buku-penugasan-5 { transform: translateY(-15px); }
 
     /* label penugasan di bawah buku */
     .book-label {
       text-align: center;
       color: #f8d794;
-      font-size: clamp(0.45rem, 1vw, 0.75rem);
+      font-size: clamp(0.75rem, 1.25vw, 1.15rem);
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-top: 4%;
-      text-shadow: 0 0 10px rgba(248,215,148,0.6), 0 1px 4px rgba(0,0,0,0.9);
+      margin-top: 6px;
+      text-shadow: 0 0 16px rgba(248,215,148,0.9), 0 2px 6px rgba(0,0,0,0.95);
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
     .book-item:hover .book-label {
       opacity: 1;
@@ -120,6 +129,11 @@
       .book-item {
         max-width: 16%;
       }
+      #buku-penugasan-1 { transform: translateY(5px); }
+      #buku-penugasan-2 { transform: translateY(-20px); }
+      #buku-penugasan-3 { transform: translateY(3px); }
+      #buku-penugasan-4 { transform: translateY(-25px); }
+      #buku-penugasan-5 { transform: translateY(-10px); }
     }
     @media (max-width: 480px) {
       .books-container {
@@ -127,11 +141,16 @@
         padding: 0 2%;
       }
       .book-item {
-        max-width: 18%;
+        max-width: 20%;
       }
       .penugasan-title {
         letter-spacing: 0.05em;
       }
+      #buku-penugasan-1 { transform: translateY(3px); }
+      #buku-penugasan-2 { transform: translateY(-12px); }
+      #buku-penugasan-3 { transform: translateY(2px); }
+      #buku-penugasan-4 { transform: translateY(-16px); }
+      #buku-penugasan-5 { transform: translateY(-6px); }
     }
   </style>
 @endsection
@@ -139,13 +158,10 @@
 @section('content')
 <div class="penugasan-page">
 
-  {{-- Background utama --}}
-  <img src="{{ asset('images/bg-penugasan.webp') }}" class="penugasan-bg" alt="Background Penugasan">
-
   {{-- Judul Halaman --}}
   <div class="penugasan-title-wrap">
     <h1 class="penugasan-title">Penugasan POSITRON 2026</h1>
-    <p class="penugasan-subtitle">Klik buku untuk melihat tugas dan mengumpulkan penugasan</p>
+    <p class="penugasan-subtitle">Klik buku untuk melihat penugasan</p>
   </div>
 
   {{-- 5 Buku di atas meja --}}
@@ -153,32 +169,42 @@
 
     {{-- Buku 1 --}}
     <a href="https://drive.google.com/" target="_blank" class="book-item" id="buku-penugasan-1">
-      <img src="{{ asset('images/penugasan-1.webp') }}" alt="Penugasan 1">
-      <p class="book-label">Penugasan 1</p>
+      <div class="book-img-wrap">
+        <img src="{{ asset('images/penugasan-1.webp') }}" alt="Penugasan 1">
+      </div>
+      <p class="book-label">Logo Positron</p>
     </a>
 
     {{-- Buku 2 --}}
     <a href="https://drive.google.com/" target="_blank" class="book-item" id="buku-penugasan-2">
-      <img src="{{ asset('images/penugasan-2.webp') }}" alt="Penugasan 2">
-      <p class="book-label">Penugasan 2</p>
+      <div class="book-img-wrap">
+        <img src="{{ asset('images/penugasan-2.webp') }}" alt="Penugasan 2">
+      </div>
+      <p class="book-label">Denah Gedung</p>
     </a>
 
     {{-- Buku 3 --}}
     <a href="https://drive.google.com/" target="_blank" class="book-item" id="buku-penugasan-3">
-      <img src="{{ asset('images/penugasan-3.webp') }}" alt="Penugasan 3">
-      <p class="book-label">Penugasan 3</p>
+      <div class="book-img-wrap">
+        <img src="{{ asset('images/penugasan-3.webp') }}" alt="Penugasan 3">
+      </div>
+      <p class="book-label">Kartu Disiplin</p>
     </a>
 
     {{-- Buku 4 --}}
     <a href="https://drive.google.com/" target="_blank" class="book-item" id="buku-penugasan-4">
-      <img src="{{ asset('images/penugasan-4.webp') }}" alt="Penugasan 4">
-      <p class="book-label">Penugasan 4</p>
+      <div class="book-img-wrap">
+        <img src="{{ asset('images/penugasan-4.webp') }}" alt="Penugasan 4">
+      </div>
+      <p class="book-label">Twibbon</p>
     </a>
 
     {{-- Buku 5 --}}
     <a href="https://drive.google.com/" target="_blank" class="book-item" id="buku-penugasan-5">
-      <img src="{{ asset('images/penugasan-5.webp') }}" alt="Penugasan 5">
-      <p class="book-label">Penugasan 5</p>
+      <div class="book-img-wrap">
+        <img src="{{ asset('images/penugasan-5.webp') }}" alt="Penugasan 5">
+      </div>
+      <p class="book-label">Template Id Card</p>
     </a>
 
   </div>
