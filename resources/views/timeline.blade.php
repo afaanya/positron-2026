@@ -183,6 +183,49 @@
 
     let currentCalendarDate = new Date();
 
+    // Data acara: pakai startDate & endDate agar mendukung acara multi-hari
+    // (mis. Forum Maba 28-29 Agustus 2026).
+    const timelineEventsData = [
+        { name: 'FORUM MABA 2026', startDate: new Date(2026, 7, 28), endDate: new Date(2026, 7, 29, 23, 59, 59),
+          link: 'https://link-manual-book-forum-maba.com',
+          docLink: 'https://link-dokumentasi-forum-maba.com' },
+        { name: 'LDK 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59),
+          link: 'https://link-manual-book-ldk.com',
+          docLink: 'https://link-dokumentasi-ldk.com' },
+        { name: 'IOH 2026', startDate: new Date(2026, 9, 24), endDate: new Date(2026, 9, 24, 23, 59, 59),
+          link: 'https://link-manual-book-ioh.com',
+          docLink: 'https://link-dokumentasi-ioh.com' },
+        { name: 'NAKO 2026', startDate: new Date(2026, 10, 20), endDate: new Date(2026, 10, 20, 23, 59, 59),
+          link: 'https://link-manual-book-nako.com',
+          docLink: 'https://link-dokumentasi-nako.com' }
+    ];
+
+    const H7_MS = 7 * 24 * 60 * 60 * 1000;
+
+    // Tanggal-tanggal yang harus diberi lingkaran di kalender.
+    // Hanya aktif mulai H-7 sebelum acara sampai acara tersebut berakhir.
+    function getEventDatesForCalendar() {
+        const now = new Date();
+        const dates = [];
+
+        timelineEventsData.forEach(event => {
+            const diffToStart = event.startDate - now;
+            const isWithinWindow = diffToStart <= H7_MS && now <= event.endDate;
+
+            if (!isWithinWindow) return;
+
+            let d = new Date(event.startDate.getFullYear(), event.startDate.getMonth(), event.startDate.getDate());
+            const endDay = new Date(event.endDate.getFullYear(), event.endDate.getMonth(), event.endDate.getDate());
+
+            while (d <= endDay) {
+                dates.push({ day: d.getDate(), month: d.getMonth(), year: d.getFullYear() });
+                d.setDate(d.getDate() + 1);
+            }
+        });
+
+        return dates;
+    }
+
     function updateCalendar() {
         const now = new Date();
         const year = currentCalendarDate.getFullYear();
@@ -208,13 +251,7 @@
         let day = 1;
         for (let i = 0; i < startDay; i++) html += '<td style="padding:0 4px; height:12px; width:13px"></td>';
 
-        const eventDates = [
-            { day: 28, month: 7, year: 2026 },
-            { day: 29, month: 7, year: 2026 },
-            { day: 11, month: 9, year: 2026 },
-            { day: 24, month: 9, year: 2026 },
-            { day: 20, month: 10, year: 2026 }
-        ];
+        const eventDates = getEventDatesForCalendar();
 
         for (let i = startDay; i < 42; i++) {
             if (day > daysInMonth) break;
@@ -242,22 +279,10 @@
         const currentYear = currentCalendarDate.getFullYear();
         const currentMonth = currentCalendarDate.getMonth();
 
-        const events = [
-            { name: 'FORUM MABA 2026', day: 19, month: 7, year: 2026,
-              link: 'https://link-manual-book-forum-maba.com',
-              docLink: 'https://link-dokumentasi-forum-maba.com' },
-            { name: 'LDK 2026', day: 11, month: 9, year: 2026,
-              link: 'https://link-manual-book-ldk.com',
-              docLink: 'https://link-dokumentasi-ldk.com' },
-            { name: 'IOH 2026', day: 24, month: 9, year: 2026,
-              link: 'https://link-manual-book-ioh.com',
-              docLink: 'https://link-dokumentasi-ioh.com' },
-            { name: 'NAKO 2026', day: 20, month: 10, year: 2026,
-              link: 'https://link-manual-book-nako.com',
-              docLink: 'https://link-dokumentasi-nako.com' }
-        ];
-
-        const monthEvents = events.filter(event => event.year === currentYear && event.month === currentMonth);
+        const monthEvents = timelineEventsData.filter(event =>
+            (event.startDate.getFullYear() === currentYear && event.startDate.getMonth() === currentMonth) ||
+            (event.endDate.getFullYear() === currentYear && event.endDate.getMonth() === currentMonth)
+        );
 
         if (monthEvents.length === 0) {
             document.getElementById('countdownDisplay').innerHTML = 
@@ -266,9 +291,8 @@
         }
 
         const buildCountdown = (event) => {
-            const targetDate = new Date(currentYear, event.month, event.day);
-            const diff = targetDate - now;
-            const isToday = now.getDate() === event.day && now.getMonth() === event.month && now.getFullYear() === event.year;
+            const diffToStart = event.startDate - now;
+            const diffToEnd = event.endDate - now;
 
             const linkCaption = event.link
                 ? `<div onclick="window.open('${event.link}', '_blank')" style="margin-top:4px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat manual book</div>`
@@ -278,7 +302,17 @@
                 ? `<div onclick="window.open('${event.docLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat dokumentasi</div>`
                 : '';
 
-            if (diff < 0 || isToday) {
+            // Acara sudah berakhir
+            if (diffToEnd < 0) {
+                return `<div style="margin-bottom:10px;">
+                            <strong style="font-size:18px;">${event.name} telah selesai</strong>
+                            ${linkCaption}
+                            ${docCaption}
+                        </div>`;
+            }
+
+            // Sedang berlangsung: dari tanggal mulai sampai tanggal selesai
+            if (diffToStart <= 0 && diffToEnd >= 0) {
                 return `<div style="margin-bottom:10px;">
                             <strong style="font-size:18px;">${event.name} sedang berlangsung</strong>
                             ${linkCaption}
@@ -289,17 +323,16 @@
             // Gerbang H-7: sebelum 7 hari menuju acara, sembunyikan countdown &
             // link — cukup tampilkan "COMING SOON". Countdown baru dibuka saat
             // sisa waktu <= 7 hari.
-            const H7 = 7 * 24 * 60 * 60 * 1000;
-            if (diff > H7) {
+            if (diffToStart > H7_MS) {
                 return `<div style="margin-bottom:10px;">
                             <strong style="font-size:18px;">${event.name}</strong><br>
                             <span style="display:inline-block; margin-top:8px; font-size:13px; letter-spacing:3px; color:#F8D794; opacity:.8;">✦ COMING SOON ✦</span>
                         </div>`;
             }
 
-            const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const days    = Math.floor(diffToStart / (1000 * 60 * 60 * 24));
+            const hours   = Math.floor((diffToStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diffToStart % (1000 * 60 * 60)) / (1000 * 60));
 
             return `
                 <div style="margin-bottom:10px;">
@@ -330,13 +363,6 @@
         updateCountdown();
     });
 
-    const timelineEvents = [
-        new Date(2026,7,19),   // Forum Maba
-        new Date(2026,9,11),   // LDK
-        new Date(2026,9,24),   // IOH
-        new Date(2026,10,20)   // NAKO
-    ];
-
     function updateTimeline(){
         const now = new Date();
 
@@ -348,17 +374,18 @@
             line.style.background='#7c6741';
         });
 
-        for(let i = 0; i < timelineEvents.length; i++){
-            if(now >= timelineEvents[i]){
+        // Selesai = sudah melewati tanggal akhir (endDate) acara tersebut
+        for(let i = 0; i < timelineEventsData.length; i++){
+            if(now >= timelineEventsData[i].endDate){
                 document.getElementById('step-'+i).classList.add('completed');
-                if(i < timelineEvents.length-1){
+                if(i < timelineEventsData.length-1){
                     document.getElementById('line-'+i).style.background='#F8D794';
                 }
             }
         }
 
-        for(let i = 0; i < timelineEvents.length; i++){
-            if(now < timelineEvents[i]){
+        for(let i = 0; i < timelineEventsData.length; i++){
+            if(now < timelineEventsData[i].endDate){
                 document.getElementById('step-'+i).classList.remove('completed');
                 document.getElementById('step-'+i).classList.add('active');
                 break;
