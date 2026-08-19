@@ -108,24 +108,24 @@
                               d="M120,220 C280,165 420,100 560,90 C700,70 840,175 980,205 C1120,235 1280,100 1400,90"/>
 
                         <!-- Titik 1: Forum Maba (bawah) -->
-                        <circle class="map-pin-circle" cx="120" cy="220" r="32"/>
-                        <text class="map-pin-number" x="120" y="230">1</text>
-                        <text class="map-pin-label" x="120" y="286">FORUM MABA</text>
+                        <circle id="map-pin-0" class="map-pin-circle" cx="120" cy="220" r="32"/>
+                        <text id="map-pin-number-0" class="map-pin-number" x="120" y="230">1</text>
+                        <text id="map-pin-label-0" class="map-pin-label" x="120" y="286">FORUM MABA</text>
 
                         <!-- Titik 2: LDK (atas) -->
-                        <circle class="map-pin-circle" cx="560" cy="90" r="32"/>
-                        <text class="map-pin-number" x="560" y="100">2</text>
-                        <text class="map-pin-label" x="560" y="48">LDK</text>
+                        <circle id="map-pin-1" class="map-pin-circle" cx="560" cy="90" r="32"/>
+                        <text id="map-pin-number-1" class="map-pin-number" x="560" y="100">2</text>
+                        <text id="map-pin-label-1" class="map-pin-label" x="560" y="48">LDK</text>
 
                         <!-- Titik 3: IoH (bawah) -->
-                        <circle class="map-pin-circle" cx="980" cy="205" r="32"/>
-                        <text class="map-pin-number" x="980" y="215">3</text>
-                        <text class="map-pin-label" x="980" y="286">IOH</text>
+                        <circle id="map-pin-2" class="map-pin-circle" cx="980" cy="205" r="32"/>
+                        <text id="map-pin-number-2" class="map-pin-number" x="980" y="215">3</text>
+                        <text id="map-pin-label-2" class="map-pin-label" x="980" y="286">IOH</text>
 
                         <!-- Titik 4: NAKO (atas) -->
-                        <circle class="map-pin-circle" cx="1400" cy="90" r="32"/>
-                        <text class="map-pin-number" x="1400" y="100">4</text>
-                        <text class="map-pin-label" x="1400" y="48">NAKO</text>
+                        <circle id="map-pin-3" class="map-pin-circle" cx="1400" cy="90" r="32"/>
+                        <text id="map-pin-number-3" class="map-pin-number" x="1400" y="100">4</text>
+                        <text id="map-pin-label-3" class="map-pin-label" x="1400" y="48">NAKO</text>
                     </svg>
                 </div>
             </div>
@@ -195,7 +195,8 @@
     let currentCalendarDate = new Date();
 
     // Data acara: pakai startDate & endDate agar mendukung acara multi-hari
-    // (mis. Forum Maba 28-29 Agustus 2026).
+    // (mis. Forum Maba 28-29 Agustus 2026). Urutan array ini SAMA dengan
+    // urutan titik 1-4 di peta perjalanan (index 0 = titik 1, dst).
     const timelineEventsData = [
         { name: 'FORUM MABA 2026', startDate: new Date(2026, 7, 28), endDate: new Date(2026, 7, 29, 23, 59, 59),
           link: 'https://link-manual-book-forum-maba.com',
@@ -357,10 +358,47 @@
         document.getElementById('countdownDisplay').innerHTML = monthEvents.map(buildCountdown).join('');
     }
 
+    // === Titik-titik di Peta Perjalanan ===
+    // Status tiap titik (1-4 -> index 0-3):
+    //   'dark'        -> belum mendekati acara, masih gelap/redup
+    //   'approaching' -> sudah masuk H-7, mulai menyala (glow berkedip)
+    //   'active'      -> hari H, menyala penuh & berdenyut
+    //   'completed'   -> sudah lewat, tetap terang (tidak berkedip)
+    function getPinState(event, now) {
+        const diffToStart = event.startDate - now;
+        const diffToEnd = event.endDate - now;
+
+        if (diffToEnd < 0) return 'completed';
+        if (diffToStart <= 0 && diffToEnd >= 0) return 'active';
+        if (diffToStart <= H7_MS) return 'approaching';
+        return 'dark';
+    }
+
+    function updateMapPins() {
+        const now = new Date();
+        const stateClasses = ['pin-dark', 'pin-approaching', 'pin-active', 'pin-completed'];
+
+        timelineEventsData.forEach((event, index) => {
+            const state = getPinState(event, now);
+            const circle = document.getElementById('map-pin-' + index);
+            const number = document.getElementById('map-pin-number-' + index);
+            const label = document.getElementById('map-pin-label-' + index);
+
+            [circle, number, label].forEach(el => {
+                if (!el) return;
+                el.classList.remove(...stateClasses);
+                el.classList.add('pin-' + state);
+            });
+        });
+    }
+
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
     updateCalendar();
+
+    updateMapPins();
+    setInterval(updateMapPins, 60000);
 
     document.getElementById('prevMonthBtn').addEventListener('click', function() {
         currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
@@ -373,38 +411,5 @@
         updateCalendar();
         updateCountdown();
     });
-
-    function updateTimeline(){
-        const now = new Date();
-
-        document.querySelectorAll('.step').forEach(step => {
-            step.classList.remove('completed','active');
-        });
-
-        document.querySelectorAll('.line').forEach(line => {
-            line.style.background='#7c6741';
-        });
-
-        // Selesai = sudah melewati tanggal akhir (endDate) acara tersebut
-        for(let i = 0; i < timelineEventsData.length; i++){
-            if(now >= timelineEventsData[i].endDate){
-                document.getElementById('step-'+i).classList.add('completed');
-                if(i < timelineEventsData.length-1){
-                    document.getElementById('line-'+i).style.background='#F8D794';
-                }
-            }
-        }
-
-        for(let i = 0; i < timelineEventsData.length; i++){
-            if(now < timelineEventsData[i].endDate){
-                document.getElementById('step-'+i).classList.remove('completed');
-                document.getElementById('step-'+i).classList.add('active');
-                break;
-            }
-        }
-    }
-
-    updateTimeline();
-    setInterval(updateTimeline, 60000);
 </script>
 @endsection
