@@ -209,8 +209,8 @@
         for (let i = 0; i < startDay; i++) html += '<td style="padding:0 4px; height:12px; width:13px"></td>';
 
         const eventDates = [
-            { day: 19, month: 7, year: 2026 },
-            { day: 20, month: 7, year: 2026 },
+            { day: 28, month: 7, year: 2026 },
+            { day: 29, month: 7, year: 2026 },
             { day: 11, month: 9, year: 2026 },
             { day: 24, month: 9, year: 2026 },
             { day: 20, month: 10, year: 2026 }
@@ -280,7 +280,7 @@
 
             if (diff < 0 || isToday) {
                 return `<div style="margin-bottom:10px;">
-                            <strong style="font-size:18px;">${event.name} sedang berlangsung 🎉</strong>
+                            <strong style="font-size:18px;">${event.name} sedang berlangsung</strong>
                             ${linkCaption}
                             ${docCaption}
                         </div>`;
