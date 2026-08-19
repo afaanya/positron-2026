@@ -344,6 +344,48 @@ main.max-w-6xl {
     width: 100%;
     max-width: 420px;
     justify-self: center;
+    transform: rotate(0deg);
+}
+
+#calendar-overlay {
+    transform: translate(-50%, -50%) rotate(0deg);
+    transform-origin: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+#calendar-overlay > div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cal-table,
+#cal-header {
+    transform: none;
+}
+
+#cal-table {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    table-layout: fixed;
+}
+
+#cal-table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 0 2px;
+    height: 12px;
+}
+
+#cal-header {
+    min-width: 110px;
+    text-align: center;
 }
 
 .countdown-box {
@@ -387,8 +429,36 @@ main.max-w-6xl {
 
 @media (max-width: 560px) {
     .timeline-clock-wrap {
-        max-width: 80%;
+        max-width: 88vw;
         margin: 0 auto;
+    }
+
+    #calendar-overlay {
+        width: min(210px, 62vw);
+        top: 61%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        gap: 4px;
+    }
+
+    #calendar-overlay > div {
+        gap: 4px;
+    }
+
+    #cal-header {
+        min-width: 90px;
+        font-size: 8px;
+    }
+
+    #cal-table {
+        max-width: 170px;
+        font-size: 6.5px;
+        border-spacing: 3px 1px;
+    }
+
+    #cal-table td {
+        height: 10px;
+        padding: 0 1px;
     }
 
     .countdown-box {

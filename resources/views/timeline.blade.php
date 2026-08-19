@@ -38,7 +38,8 @@
         position: absolute;
         top: 62%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) rotate(0deg);
+        transform-origin: center center;
         width: min(240px, 36%);
         max-width: 260px;
         margin: 0 auto;
@@ -47,25 +48,35 @@
         font-family: 'Libre Baskerville', serif;
         pointer-events: auto;
         line-height: 1.4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
     ">
-    <div style="display:flex; justify-content:center; align-items:center; gap:6px; margin-bottom:6px;">
+    <div style="display:flex; justify-content:center; align-items:center; gap:6px; width:100%; transform: none;">
         <button type="button" id="prevMonthBtn" style="border:none; background:rgba(248,215,148,0.15); color:#f8d794; border-radius:50%; width:18px; height:18px; cursor:pointer; font-size:11px; line-height:1;">‹</button>
         <div id="cal-header" style="
+            min-width: 110px;
             font-size: 9px;
             font-weight: bold;
             letter-spacing: 1.2px;
+            text-align: center;
+            transform: none;
         "></div>
         <button type="button" id="nextMonthBtn" style="border:none; background:rgba(248,215,148,0.15); color:#f8d794; border-radius:50%; width:18px; height:18px; cursor:pointer; font-size:11px; line-height:1;">›</button>
     </div>
 
     <table id="cal-table" style="
-        width: auto;
+        width: 100%;
+        max-width: 200px;
         margin: 0 auto;
         border-collapse: separate;
         border-spacing: 4px 1px;
         font-size: 7px;
         line-height: 1.4;
         letter-spacing: 0.5px;
+        transform: none;
     "></table>
     </div>
 

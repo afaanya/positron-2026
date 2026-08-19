@@ -10,10 +10,10 @@
                 id="videoSambutan"
                 style="position: absolute; top: -60px; left: -20px; width: calc(100% + 40px); height: calc(100% + 120px); pointer-events: none;"
                 class="rounded shadow-2xl"
-                src="https://www.youtube.com/embed/Aidp0F_1a4s?si=NT_tlJ4WrwgsrUUE?autoplay=1&mute=1&loop=1&playlist=Aidp0F_1a4s&controls=0&rel=0&enablejsapi=1"
+                src="https://www.youtube.com/embed/Aidp0F_1a4s?si=NT_tlJ4WrwgsrUUE&autoplay=1&mute=1&loop=1&playlist=Aidp0F_1a4s&controls=0&rel=0&enablejsapi=1&playsinline=1"
                 title="Sambutan"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen>
             </iframe>
             <button id="btnMuteSambutan" style="position: absolute; bottom: 10px; right: 10px; z-index: 999; background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 18px;">
@@ -66,10 +66,10 @@
                     <div class="smb-video-box">
                         <iframe
                             id="videoSambutanMobile"
-                            src="https://www.youtube.com/embed/5AQN-rkHLhk?autoplay=1&mute=1&loop=1&playlist=5AQN-rkHLhk&controls=1&rel=0&enablejsapi=1"
+                            src="https://www.youtube.com/embed/5AQN-rkHLhk?autoplay=1&mute=1&loop=1&playlist=5AQN-rkHLhk&controls=1&rel=0&enablejsapi=1&playsinline=1"
                             title="Sambutan"
                             frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen>
                         </iframe>
                         <button id="btnMuteSambutanMobile" class="smb-mute-btn">🔇</button>
