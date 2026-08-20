@@ -5,17 +5,41 @@
     html {
         scroll-snap-type: y mandatory;
         scroll-behavior: smooth;
+        background: #081A12;
+    }
+
+    body {
+        background: #081A12;
+    }
+
+    main {
+        margin-top: 0 !important;
     }
 
     .snap-section {
         scroll-snap-align: start;
         scroll-snap-stop: always;
-        height: 100vh; /* Strictly 1 layar */
-        width: 100%;
-        overflow: hidden; /* Mencegah elemen berlebih yang bikin bisa di scroll terus */
+        height: 100dvh;
+        min-height: 100dvh;
+        width: 100vw;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        background: #081A12;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    /* Optional: Ensure footer snaps nicely at the bottom */
+    .hero {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .gfooter {
         scroll-snap-align: end;
     }
