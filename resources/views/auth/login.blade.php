@@ -96,6 +96,16 @@
                 <span>LOG IN</span>
                 <span class="chevron">›</span>
             </button>
+
+            <a
+                class="contact-link"
+                href="https://wa.me/6282189368169?text=Halo%20CP%20POSITRON%202026"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span class="contact-icon" aria-hidden="true">⌕</span>
+                <span>Hubungi CP via WhatsApp</span>
+            </a>
         </form>
     </div>
 
