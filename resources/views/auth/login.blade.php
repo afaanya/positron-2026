@@ -99,7 +99,7 @@
 
             <a
                 class="contact-link"
-                href="https://wa.me/6282189368169?text=Halo%20CP%20POSITRON%202026"
+                href="https://wa.me/6282189368169"
                 target="_blank"
                 rel="noopener noreferrer"
             >
