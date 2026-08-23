@@ -251,10 +251,12 @@ body {
     justify-content: center;
     width: 20px;
     height: 20px;
-    border: 1px solid currentColor;
     border-radius: 50%;
-    font-size: 15px;
-    line-height: 1;
+}
+.contact-icon svg {
+    display: block;
+    width: 20px;
+    height: 20px;
 }
 
 /* ── Animations ── */

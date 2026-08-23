@@ -146,7 +146,7 @@
     $isMahasiswa = session()->has('mahasiswa_login');
     if ($isAdmin)        { $gName = session('admin_user', 'Admin');  $gRole = 'Administrator'; }
     elseif ($isMentor)   { $gName = session('mentor_user', 'Mentor'); $gRole = 'Kakak Mentor'; }
-    elseif ($isMahasiswa){ $gName = 'Mahasiswa';                      $gRole = 'Peserta MABA'; }
+    elseif ($isMahasiswa){ $gName = 'Mahasiswa';                      $gRole = 'POSITRON 2026'; }
     else                 { $gName = 'Tamu';                           $gRole = 'Belum masuk'; }
 @endphp
 
