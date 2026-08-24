@@ -51,13 +51,27 @@ class LoginController extends Controller
         }
 
         // Cek mentor
-        $mentor = DB::table('mentor')
+        // PENTING: kolom 'user' di tabel mentor menyimpan kode offering
+        // (mis. "TI-A"), dan BISA dipakai oleh lebih dari satu mentor
+        // sekaligus (beberapa mentor per offering). Kalau cuma ambil
+        // ->first(), password dicek ke baris yang salah untuk mentor
+        // selain yang pertama tersimpan. Jadi di sini kita cek password
+        // ke SEMUA baris yang identifier-nya cocok, cari yang match.
+        $mentorCandidates = DB::table('mentor')
             ->where('user', $request->identifier)
-            ->first();
+            ->get();
 
-        if ($mentor && PasswordHelper::matches($request->password, $mentor->password)) {
+        $mentor = $mentorCandidates->first(
+            fn ($m) => PasswordHelper::matches($request->password, $m->password)
+        );
+
+        if ($mentor) {
             if (PasswordHelper::needsRehash($mentor->password)) {
-                DB::table('mentor')->where('user', $mentor->user)
+                // Update SPESIFIK baris ini (pakai id), bukan where('user', ...)
+                // — soalnya 'user' bisa dipakai banyak mentor sekaligus, kalau
+                // pakai where('user', ...) password mentor lain di offering
+                // yang sama ikut ketiban ke-overwrite.
+                DB::table('mentor')->where('id', $mentor->id)
                     ->update(['password' => Hash::make($request->password)]);
             }
 
