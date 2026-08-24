@@ -61,7 +61,7 @@ body {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   background-color: var(--bg);
   min-height: 100vh;
   overflow-x: hidden;
@@ -141,7 +141,7 @@ body::after {
 }
 
 .nav-links a {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .67rem;
   font-weight: 700;
   color: #c8a030;
@@ -310,7 +310,7 @@ body.show-sb-toggle .sb-toggle {
 }
 
 .pd-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .85rem;
   font-weight: 800;
   color: var(--txt-dark)
@@ -328,7 +328,7 @@ body.show-sb-toggle .sb-toggle {
   align-items: center;
   gap: 9px;
   padding: 10px 16px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .75rem;
   font-weight: 600;
   color: var(--txt-dark);
@@ -369,7 +369,7 @@ body.show-sb-toggle .sb-toggle {
 }
 
 .footer p {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .66rem;
   color: #a08020;
   letter-spacing: .06em;
@@ -430,7 +430,7 @@ body.show-sb-toggle .sb-toggle {
 }
 
 .btn-brn {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .7rem;
   font-weight: 600;
   color: #f0d888;
@@ -457,7 +457,7 @@ body.show-sb-toggle .sb-toggle {
 }
 
 .btn-sm {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .63rem;
   font-weight: 600;
   color: #f0d888;
@@ -509,7 +509,7 @@ body.show-sb-toggle .sb-toggle {
 .login-tagline {
   text-align: center;
   font-size: .68rem;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   color: var(--txt-mid);
   letter-spacing: .15em;
   opacity: .6;
@@ -581,7 +581,7 @@ body.show-sb-toggle .sb-toggle {
   background: rgba(205, 165, 55, .28);
   border: 1.5px solid var(--brn-border);
   border-radius: var(--r-sm);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .82rem;
   color: var(--txt-dark);
   outline: none;
@@ -604,7 +604,7 @@ body.show-sb-toggle .sb-toggle {
   background: linear-gradient(145deg, #6b3f12, #4a2a08);
   border: 1px solid #3a2006;
   border-radius: var(--r-sm);
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .85rem;
   font-weight: 700;
   color: #f0d888;
@@ -674,7 +674,7 @@ body.show-sb-toggle .sb-toggle {
 }
 
 .mc-label {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .6rem;
   font-weight: 700;
   color: var(--txt-mid);
@@ -710,7 +710,7 @@ body.show-sb-toggle .sb-toggle {
 }
 
 .mc-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: 1.38rem;
   font-weight: 800;
   color: var(--txt-dark);
@@ -735,7 +735,7 @@ body.show-sb-toggle .sb-toggle {
 }
 
 .stat-pill {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .7rem;
   font-weight: 600;
   color: rgba(220, 195, 80, .9);
@@ -770,7 +770,7 @@ body.show-sb-toggle .sb-toggle {
   border: 1px solid var(--brn-border);
   border-radius: var(--r-sm);
   padding: 6px 12px;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .7rem;
   color: var(--txt-dark);
   outline: none;
@@ -817,7 +817,7 @@ body.show-sb-toggle .sb-toggle {
 }
 
 .t-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: 1rem;
   font-weight: 800;
   color: var(--txt-dark)
@@ -863,7 +863,7 @@ table.dtbl thead tr {
 }
 
 table.dtbl th {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .67rem;
   font-weight: 600;
   color: var(--txt-hdr);
@@ -904,7 +904,7 @@ table.dtbl td {
 }
 
 .td-nim {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   letter-spacing: .05em
 }
 
@@ -918,7 +918,7 @@ table.dtbl td {
   display: inline-block;
   font-size: .65rem;
   font-weight: 700;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   padding: 3px 11px;
   border-radius: 999px;
   border: 1.5px solid;
@@ -994,7 +994,7 @@ table.dtbl td {
 
 .edit-dd-item {
   padding: 8px 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .72rem;
   font-weight: 600;
   color: var(--txt-dark);
@@ -1037,7 +1037,7 @@ table.dtbl td {
   height: 28px;
   font-size: .7rem;
   font-weight: 700;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   color: #f0d888;
   background: linear-gradient(145deg, #7a4d1a, #4a2c08);
   border: 1px solid #362005;
@@ -1058,7 +1058,7 @@ table.dtbl td {
 .pg-info {
   font-size: .68rem;
   color: var(--txt-mid);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   text-align: center;
   margin-top: 8px;
   opacity: .7
@@ -1142,7 +1142,7 @@ table.dtbl td {
 }
 
 .sb-main {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: 1rem;
   font-weight: 800;
   color: var(--txt-dark);
@@ -1153,7 +1153,7 @@ table.dtbl td {
 }
 
 .sb-sub {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .6rem;
   color: var(--txt-mid);
   margin-top: 3px;
@@ -1178,7 +1178,7 @@ table.dtbl td {
 }
 
 .stu-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: 1.15rem;
   font-weight: 800;
   color: var(--txt-dark);
@@ -1188,7 +1188,7 @@ table.dtbl td {
 }
 
 .stu-nim {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .8rem;
   color: var(--txt-mid);
   margin-top: 5px;
@@ -1211,7 +1211,7 @@ table.atbl thead tr {
 }
 
 table.atbl th {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .7rem;
   font-weight: 700;
   color: var(--txt-hdr);
@@ -1264,7 +1264,7 @@ table.atbl td.max-hint {
   width: 72px;
   padding: 5px 7px;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .73rem;
   font-weight: 700;
   color: #f0d080;
@@ -1323,14 +1323,14 @@ table.atbl td.max-hint {
 }
 
 .total-lbl {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .98rem;
   font-weight: 700;
   color: var(--txt-dark)
 }
 
 .total-val {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: 1.05rem;
   font-weight: 800;
   color: var(--txt-dark);
@@ -1342,7 +1342,7 @@ table.atbl td.max-hint {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .7rem;
   font-weight: 700;
   color: #f0d888;
@@ -1365,7 +1365,7 @@ table.atbl td.max-hint {
 }
 
 .guide-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .9rem;
   font-weight: 800;
   color: var(--txt-dark);
@@ -1373,7 +1373,7 @@ table.atbl td.max-hint {
 }
 
 .guide-body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .73rem;
   color: var(--txt-mid);
   line-height: 1.8
@@ -1398,7 +1398,7 @@ table.atbl td.max-hint {
 
 /* Section tab indicator */
 .section-label {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .7rem;
   font-weight: 700;
   color: var(--txt-gold);
@@ -1428,7 +1428,7 @@ table.atbl td.max-hint {
   border: 1.5px solid #a08020;
   border-radius: var(--r-md);
   padding: 9px 16px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: .73rem;
   font-weight: 600;
   color: #d0a838;
@@ -1488,7 +1488,7 @@ table.atbl td.max-hint {
 }
 
 .modal-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Libre Baskerville', serif;
   font-size: 1rem;
   font-weight: 800;
   color: var(--txt-dark);
