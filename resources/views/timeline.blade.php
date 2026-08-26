@@ -199,7 +199,7 @@
     // urutan titik 1-4 di peta perjalanan (index 0 = titik 1, dst).
     const timelineEventsData = [
         { name: 'FORUM MABA 2026', startDate: new Date(2026, 7, 29), endDate: new Date(2026, 7, 29, 23, 59, 59),
-          link: 'https://link-manual-book-forum-maba.com',
+          link: 'https://drive.google.com/file/d/1KWfd5JsHnJjvwCeEh8tCeJckvE5cWElZ/view?usp=drive_link',
           docLink: 'https://link-dokumentasi-forum-maba.com' },
         { name: 'LDK 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59),
           link: 'https://link-manual-book-ldk.com',

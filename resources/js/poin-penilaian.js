@@ -128,7 +128,7 @@ const nilai = window.nilaiMahasiswa || {};
                     title: 'Seven Segment',
                     details: '',
                     points: nilai.seven || 0,
-                    maxPoints: 50
+                    maxPoints: 60
                 },
                 {
                     title: 'Coffe Offering',
@@ -158,7 +158,7 @@ const nilai = window.nilaiMahasiswa || {};
                     title: 'Admin IG Angkatan',
                     details: '',
                     points: nilai.adminig || 0,
-                    maxPoints: 50
+                    maxPoints: 40
                 },
                 {
                     title: 'Admin IG Offering',
@@ -258,11 +258,11 @@ const nilai = window.nilaiMahasiswa || {};
         renderTasks('ldk', pokokList);
         renderTasks('ioh', pokokList);
         renderTasks('nako', pokokList);
-        renderTasks('arus', pokokList);
         renderTasks('buku', bukuList);
 
         nomorTask = 1;
         partisipasiList.innerHTML = '';
+        renderTasks('arus', partisipasiList);
         renderTasks('partisipasi', partisipasiList);
     }
 

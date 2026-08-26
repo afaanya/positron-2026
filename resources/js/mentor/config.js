@@ -74,7 +74,7 @@ export const SECTIONS = {
         { key:'dewan', name:'Dewan Komunal', max:35, guide:'Maksimum 35 poin.' },
         { key:'seven', name:'Seven Segment', max:50, guide:'Maksimum 50 poin.' },
         { key:'coffe', name:'Coffe Offering', max:15, guide:'Maksimum 15 poin.' },
-        { key:'tetp', name:'Techno Extro Time', max:35, guide:'Maksimum 35 poin.' },
+        { key:'tetp', name:'Techno Extro Time', max:35, guide:'25 poin jika hanya berpartisipasi, 35 poin jika menang.' },
         { key:'staffmuda', name:'Staff Muda', max:25, guide:'Maksimum 25 poin.' },
         { key:'arak', name:'Arak-Arakan', max:20, guide:'Maksimum 20 poin.' },
         { key:'ecup', name:'Elektro Cup', max:15, guide:'Maksimum 15 poin.' },
