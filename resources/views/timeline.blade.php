@@ -200,7 +200,8 @@
     const timelineEventsData = [
         { name: 'FORUM MABA 2026', startDate: new Date(2026, 7, 28), endDate: new Date(2026, 7, 29, 23, 59, 59),
           link: 'https://link-manual-book-forum-maba.com',
-          docLink: 'https://link-dokumentasi-forum-maba.com' },
+          docLink: 'https://link-dokumentasi-forum-maba.com',
+          structureLink: 'https://drive.google.com/file/d/1csReM4ADq4Dv59pl8PJ6QAo2L8CqALyG/view?usp=sharing' },
         { name: 'LDK 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59),
           link: 'https://link-manual-book-ldk.com',
           docLink: 'https://link-dokumentasi-ldk.com' },
@@ -314,12 +315,17 @@
                 ? `<div onclick="window.open('${event.docLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat dokumentasi</div>`
                 : '';
 
+            const structureCaption = event.structureLink
+                ? `<div onclick="window.open('${event.structureLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat struktur dosen</div>`
+                : '';
+
             // Acara sudah berakhir
             if (diffToEnd < 0) {
                 return `<div style="margin-bottom:10px;">
                             <strong style="font-size:18px;">${event.name} telah selesai</strong>
                             ${linkCaption}
                             ${docCaption}
+                            ${structureCaption}
                         </div>`;
             }
 
@@ -329,6 +335,7 @@
                             <strong style="font-size:18px;">${event.name} sedang berlangsung</strong>
                             ${linkCaption}
                             ${docCaption}
+                            ${structureCaption}
                         </div>`;
             }
 
@@ -352,6 +359,7 @@
                     <strong style="font-size:18px;">${event.name}</strong>
                     ${linkCaption}
                     ${docCaption}
+                    ${structureCaption}
                 </div>`;
         };
 
