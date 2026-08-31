@@ -200,7 +200,7 @@
     const timelineEventsData = [
         { name: 'FORUM MABA 2026', startDate: new Date(2026, 7, 28), endDate: new Date(2026, 7, 29, 23, 59, 59),
           link: 'https://drive.google.com/file/d/1sYtknCg0eoQnbcBHEmmU-oqG3ExEpxmS/view',
-          docLink: 'https://drive.google.com/file/d/1csReM4ADq4Dv59pl8PJ6QAo2L8CqALyG/view?usp=sharing',
+          docLink: 'https://drive.google.com/drive/folders/1Cek-zy_533IfN2vN2wvsrK_TsdP0gRGl',
           structureLink: 'https://drive.google.com/file/d/1csReM4ADq4Dv59pl8PJ6QAo2L8CqALyG/view?usp=sharing' },
         { name: 'LDK 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59),
           link: 'https://link-manual-book-ldk.com',
@@ -315,7 +315,8 @@
                 ? `<div onclick="window.open('${event.docLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat dokumentasi</div>`
                 : '';
 
-            const structureCaption = event.structureLink
+            const isForumMaba = event.name && event.name.toUpperCase().includes('FORUM MABA');
+            const structureCaption = isForumMaba && event.structureLink
                 ? `<div onclick="window.open('${event.structureLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat struktur dosen</div>`
                 : '';
 
