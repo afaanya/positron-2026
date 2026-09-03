@@ -5,11 +5,10 @@ export const SECTIONS = {
   forum: {
     label: 'FORUM MABA',
     aspects: [
-      { name:'Presensi Day 1', max:60, guide:'Maksimum 60 poin (panduan).' },
-      { name:'Presensi Day 2',max:60, guide:'Maksimum 60 poin (panduan).' },
-      { name:'Instagram Add Yours', max:20, guide:'Maksimum 40 poin (panduan).' },
-      { name:'Penugasan video Recap Day 1', max:20, guide:'Maksimum 30 poin (panduan).' },
-      { name:'Penugasan Video Recap Day 2', max:20, guide:'Maksimum 30 poin (panduan).' },
+      { name:'Presensi Kuliah Umum', max:60, guide:'Maksimum 60 poin (panduan).' },
+      { name:'Presensi Forum Maba',max:60, guide:'Maksimum 60 poin (panduan).' },
+      { name:'Feeds Instagram Carousel', max:40, guide:'Maksimum 40 poin (panduan).' },
+      { name:'Penugasan video Recap Forum Maba', max:40, guide:'Maksimum 40 poin (panduan).' },
     ],
     noteMax: 200,
   },

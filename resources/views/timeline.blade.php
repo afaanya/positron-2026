@@ -200,7 +200,8 @@
     const timelineEventsData = [
         { name: 'FORUM MABA 2026', startDate: new Date(2026, 7, 29), endDate: new Date(2026, 7, 29, 23, 59, 59),
           link: 'https://drive.google.com/file/d/1KWfd5JsHnJjvwCeEh8tCeJckvE5cWElZ/view?usp=drive_link',
-          docLink: 'https://link-dokumentasi-forum-maba.com' },
+          docLink: 'https://drive.google.com/drive/folders/1Cek-zy_533IfN2vN2wvsrK_TsdP0gRGl',
+          orgLink: 'https://drive.google.com/drive/folders/1ZtasDmCvZY-PFPT0L-4znJ-bYsQJPE-8?usp=drive_link' },
         { name: 'LDK 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59),
           link: 'https://link-manual-book-ldk.com',
           docLink: 'https://link-dokumentasi-ldk.com' },
@@ -314,12 +315,17 @@
                 ? `<div onclick="window.open('${event.docLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat dokumentasi</div>`
                 : '';
 
+            const orgCaption = event.orgLink
+                ? `<div onclick="window.open('${event.orgLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat struktur organisasi</div>`
+                : '';
+
             // Acara sudah berakhir
             if (diffToEnd < 0) {
                 return `<div style="margin-bottom:10px;">
                             <strong style="font-size:18px;">${event.name} telah selesai</strong>
                             ${linkCaption}
                             ${docCaption}
+                            ${orgCaption}
                         </div>`;
             }
 
