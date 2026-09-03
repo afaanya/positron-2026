@@ -198,10 +198,17 @@
     // (mis. Forum Maba 28-29 Agustus 2026). Urutan array ini SAMA dengan
     // urutan titik 1-4 di peta perjalanan (index 0 = titik 1, dst).
     const timelineEventsData = [
+<<<<<<< HEAD
         { name: 'FORUM MABA 2026', startDate: new Date(2026, 7, 29), endDate: new Date(2026, 7, 29, 23, 59, 59),
           link: 'https://drive.google.com/file/d/1KWfd5JsHnJjvwCeEh8tCeJckvE5cWElZ/view?usp=drive_link',
           docLink: 'https://drive.google.com/drive/folders/1Cek-zy_533IfN2vN2wvsrK_TsdP0gRGl',
           orgLink: 'https://drive.google.com/drive/folders/1ZtasDmCvZY-PFPT0L-4znJ-bYsQJPE-8?usp=drive_link' },
+=======
+        { name: 'FORUM MABA 2026', startDate: new Date(2026, 7, 28), endDate: new Date(2026, 7, 29, 23, 59, 59),
+          link: 'https://drive.google.com/file/d/1KWfd5JsHnJjvwCeEh8tCeJckvE5cWElZ/view',
+          docLink: 'https://drive.google.com/drive/folders/1Cek-zy_533IfN2vN2wvsrK_TsdP0gRGl',
+          structureLink: 'https://drive.google.com/file/d/1-QWK-ueRd2l5dCGRL8q1nz0omHr1D1zk/view?usp=sharing' },
+>>>>>>> b378b6bf97ba8eceb875030e6f2dfa7860605495
         { name: 'LDK 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59),
           link: 'https://link-manual-book-ldk.com',
           docLink: 'https://link-dokumentasi-ldk.com' },
@@ -315,8 +322,14 @@
                 ? `<div onclick="window.open('${event.docLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat dokumentasi</div>`
                 : '';
 
+<<<<<<< HEAD
             const orgCaption = event.orgLink
                 ? `<div onclick="window.open('${event.orgLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat struktur organisasi</div>`
+=======
+            const isForumMaba = event.name && event.name.toUpperCase().includes('FORUM MABA');
+            const structureCaption = isForumMaba && event.structureLink
+                ? `<div onclick="window.open('${event.structureLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat struktur dosen</div>`
+>>>>>>> b378b6bf97ba8eceb875030e6f2dfa7860605495
                 : '';
 
             // Acara sudah berakhir
@@ -325,7 +338,11 @@
                             <strong style="font-size:18px;">${event.name} telah selesai</strong>
                             ${linkCaption}
                             ${docCaption}
+<<<<<<< HEAD
                             ${orgCaption}
+=======
+                            ${structureCaption}
+>>>>>>> b378b6bf97ba8eceb875030e6f2dfa7860605495
                         </div>`;
             }
 
@@ -335,6 +352,7 @@
                             <strong style="font-size:18px;">${event.name} sedang berlangsung</strong>
                             ${linkCaption}
                             ${docCaption}
+                            ${structureCaption}
                         </div>`;
             }
 
@@ -358,6 +376,7 @@
                     <strong style="font-size:18px;">${event.name}</strong>
                     ${linkCaption}
                     ${docCaption}
+                    ${structureCaption}
                 </div>`;
         };
 
