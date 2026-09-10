@@ -86,11 +86,12 @@ export function renderSection(key) {
   const tbody = document.getElementById('assessBody');
 
   tbody.innerHTML = cfg.aspects.map((a, i) => {
-    let val = draftScores[i];
+    const savedValue =
+      savedFlat[a.key] ??
+      savedFlat[key]?.[a.key] ??
+      savedFlat[key]?.[i];
 
-    if (val === undefined && isMultiKey && a.key) {
-      val = savedFlat[a.key];
-    }
+    const val = draftScores[i] ?? savedValue ?? '';
 
     return `<tr>
       <td class="num">${i + 1}</td>
@@ -98,8 +99,10 @@ export function renderSection(key) {
       <td class="max-hint">${a.max}</td>
       <td class="inp">
         <input class="score-inp" type="number"
-          data-idx="${i}" data-max="${a.max}"
-          value="${val ?? ''}" placeholder="0-${a.max}"
+          data-idx="${i}" data-key="${a.key || ''}"
+          data-max="${a.max}"
+          value="${val}"
+          placeholder="0-${a.max}"
           min="0" max="${a.max}"
           oninput="validateScore(this)"
           onchange="calcTotal()">
