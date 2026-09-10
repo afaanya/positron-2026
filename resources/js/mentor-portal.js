@@ -36,6 +36,13 @@ import {
     riwayat,
 } from './mentor/assessment.js';
 
+window.beriNilai = beriNilai;
+window.switchSection = switchSection;
+window.validateScore = validateScore;
+window.calcTotal = calcTotal;
+window.simpan = simpan;
+window.riwayat = riwayat;
+
 import { showToast } from './mentor/utils.js';
 
 

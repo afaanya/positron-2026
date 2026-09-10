@@ -23,40 +23,29 @@ function sectionTotals(a){
   return totals;
 }
 
-export function beriNilai(id){
-    const s = S.students.find(x => String(x.id) === String(id));
+export function beriNilai(id) {
+  const s = S.students.find(x => String(x.id) === String(id));
 
-    if(!s){
-        console.error('Mahasiswa tidak ditemukan:', id);
-        console.log('Daftar mahasiswa:', S.students);
-        showToast('Data mahasiswa tidak ditemukan.', 'err');
-        return;
-    }
+  if (!s) {
+    showToast('Data mahasiswa tidak ditemukan.', 'err');
+    return;
+  }
 
-    S.activeStu = s;
-    S.activeSection = 'forum';
+  S.activeStu = s;
+  S.activeSection = Object.keys(SECTIONS)[0];
 
-    document.getElementById('penName').textContent =
-        'PENILAIAN MAHASISWA: ' + s.nama.toUpperCase();
+  document.getElementById('penName').textContent =
+    'PENILAIAN MAHASISWA: ' + s.nama.toUpperCase();
+  document.getElementById('penNIM').textContent = 'NIM ' + s.nim;
 
-    document.getElementById('penNIM').textContent =
-        'NIM ' + s.nim;
+  goTo('page-penilaian');
 
-    renderSection('forum');
-    setSbActive('forum');
+  requestAnimationFrame(() => {
+    renderSection(S.activeSection);
+    setSbActive(S.activeSection);
+  });
 
-    if(!S.sidebarOpen){
-        S.sidebarOpen = true;
-
-        const sidebar = document.getElementById('penSidebar');
-        if(sidebar){
-            sidebar.classList.remove('collapsed');
-        }
-    }
-
-    goTo('page-penilaian');
-
-    showToast('Membuka penilaian: ' + s.nama, '');
+  showToast('Membuka penilaian: ' + s.nama, '');
 }
 
 export function switchSection(key){
@@ -72,45 +61,61 @@ export function setSbActive(key){
   document.getElementById('sb-'+key)?.classList.add('active');
 }
 
-export function renderSection(key){
-  const cfg=SECTIONS[key];
-  if(!cfg)return;
-  document.getElementById('sectionLabel').textContent=cfg.label;
+export function renderSection(key) {
+  const cfg = SECTIONS[key];
 
-  // Build assessment table rows
-  const stu=S.activeStu;
-  const draftScores=(stu&&S.draft[stu.id]&&S.draft[stu.id][key])||{};
-  const savedFlat=(stu&&S.assessments[stu.id])||{};
+  if (!cfg) {
+    console.error('Section tidak ditemukan:', key);
+    return;
+  }
+
+  S.draft ??= {};
+  S.assessments ??= {};
+
+  document.getElementById('sectionLabel').textContent = cfg.label;
+
+  const stu = S.activeStu;
+  const draftScores = stu?.id
+    ? (S.draft[stu.id]?.[key] || {})
+    : {};
+  const savedFlat = stu?.id
+    ? (S.assessments[stu.id] || {})
+    : {};
+
   const isMultiKey = cfg.aspects.every(a => a.key);
-  const tbody=document.getElementById('assessBody');
-  tbody.innerHTML=cfg.aspects.map((a,i)=>{
+  const tbody = document.getElementById('assessBody');
+
+  tbody.innerHTML = cfg.aspects.map((a, i) => {
     let val = draftScores[i];
-    if(val===undefined && isMultiKey && a.key!==undefined){
+
+    if (val === undefined && isMultiKey && a.key) {
       val = savedFlat[a.key];
     }
-    val = val!==undefined ? val : '';
+
     return `<tr>
-      <td class="num">${i+1}</td>
+      <td class="num">${i + 1}</td>
       <td class="asp">${esc(a.name)}</td>
       <td class="max-hint">${a.max}</td>
       <td class="inp">
         <input class="score-inp" type="number"
           data-idx="${i}" data-max="${a.max}"
-          value="${val}" placeholder="0-${a.max}"
+          value="${val ?? ''}" placeholder="0-${a.max}"
           min="0" max="${a.max}"
-          oninput="validateScore(this)" onchange="calcTotal()"
-          aria-label="Poin ${esc(a.name)} (0-${a.max})"/>
+          oninput="validateScore(this)"
+          onchange="calcTotal()">
       </td>
     </tr>`;
   }).join('');
 
-  // Build guide
-  const guideBody=document.getElementById('guideBody');
-  guideBody.innerHTML=cfg.aspects.map(a=>`<p><strong>${esc(a.name)}:</strong> ${esc(a.guide)}</p>`).join('')
-    +`<p style="margin-top:9px"><em>Catatan: Total poin maksimum adalah ${cfg.noteMax} poin.</em></p>`;
+  const guideBody = document.getElementById('guideBody');
+  guideBody.innerHTML = cfg.aspects
+    .map(a => `<p><strong>${esc(a.name)}:</strong> ${esc(a.guide)}</p>`)
+    .join('')
+    + `<p style="margin-top:9px">
+        <em>Catatan: Total poin maksimum adalah ${cfg.noteMax} poin.</em>
+      </p>`;
 
-  // Update max display
-  document.getElementById('totalMax').textContent='/ '+cfg.noteMax;
+  document.getElementById('totalMax').textContent = '/ ' + cfg.noteMax;
   calcTotal();
 }
 
@@ -142,16 +147,32 @@ export function calcTotal(){
   document.getElementById('totalVal').textContent=Math.round(total);
 }
 
-export function saveCurrentScores(){
-  const stu=S.activeStu;
-  if(!stu)return;
-  const key=S.activeSection;
-  const inputs=document.querySelectorAll('#assessBody .score-inp');
-  if(!inputs.length)return;
-  if(!S.draft[stu.id]) S.draft[stu.id]={};   // ← diganti
-  const secScores={};
-  inputs.forEach(inp=>{const idx=parseInt(inp.dataset.idx);const v=parseFloat(inp.value);if(!isNaN(v))secScores[idx]=Math.round(v);});
-  S.draft[stu.id][key]=secScores;             // ← diganti
+export function saveCurrentScores() {
+  const stu = S.activeStu;
+  if (!stu) return;
+
+  S.draft ??= {};
+
+  const key = S.activeSection;
+  const inputs = document.querySelectorAll('#assessBody .score-inp');
+  if (!inputs.length) return;
+
+  if (!S.draft[stu.id]) {
+    S.draft[stu.id] = {};
+  }
+
+  const secScores = {};
+
+  inputs.forEach(input => {
+    const idx = Number(input.dataset.idx);
+    const value = Number(input.value);
+
+    if (input.value !== '' && !Number.isNaN(value)) {
+      secScores[idx] = Math.round(value);
+    }
+  });
+
+  S.draft[stu.id][key] = secScores;
 }
 
 export function simpan(){
