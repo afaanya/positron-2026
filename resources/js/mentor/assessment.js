@@ -1,3 +1,4 @@
+'use strict';
 /* ══════════════════════════════════════════════════════
    ASSESSMENT — beri nilai, section switching, scoring, save, riwayat
    ══════════════════════════════════════════════════════ */
@@ -7,18 +8,55 @@ import { esc, showToast } from './utils.js';
 import { goTo } from './nav.js';
 import { render } from './dashboard.js';
 
+const ASPECT_TO_SECTION = {};
+Object.entries(SECTIONS).forEach(([secKey, cfg]) => {
+  cfg.aspects.forEach(a => { if (a.key) ASPECT_TO_SECTION[a.key] = secKey; });
+});
+
+function sectionTotals(a){
+  const totals = {};
+  Object.entries(a || {}).forEach(([kegiatan, poin]) => {
+    const secKey = SECTIONS[kegiatan] ? kegiatan : ASPECT_TO_SECTION[kegiatan];
+    if (!secKey) return;
+    totals[secKey] = (totals[secKey] || 0) + (Number(poin) || 0);
+  });
+  return totals;
+}
+
 export function beriNilai(id){
-  const s=S.students.find(x=>x.id===id);
-  if(!s)return;
-  S.activeStu=s;
-  S.activeSection='forum';
-  document.getElementById('penName').textContent='PENILAIAN MAHASISWA: '+s.nama.toUpperCase();
-  document.getElementById('penNIM').textContent='NIM '+s.nim;
-  renderSection('forum');
-  setSbActive('forum');
-  if(!S.sidebarOpen){S.sidebarOpen=true;document.getElementById('penSidebar').classList.remove('collapsed');}
-  goTo('page-penilaian');
-  showToast('Membuka penilaian: '+s.nama,'');
+    const s = S.students.find(x => String(x.id) === String(id));
+
+    if(!s){
+        console.error('Mahasiswa tidak ditemukan:', id);
+        console.log('Daftar mahasiswa:', S.students);
+        showToast('Data mahasiswa tidak ditemukan.', 'err');
+        return;
+    }
+
+    S.activeStu = s;
+    S.activeSection = 'forum';
+
+    document.getElementById('penName').textContent =
+        'PENILAIAN MAHASISWA: ' + s.nama.toUpperCase();
+
+    document.getElementById('penNIM').textContent =
+        'NIM ' + s.nim;
+
+    renderSection('forum');
+    setSbActive('forum');
+
+    if(!S.sidebarOpen){
+        S.sidebarOpen = true;
+
+        const sidebar = document.getElementById('penSidebar');
+        if(sidebar){
+            sidebar.classList.remove('collapsed');
+        }
+    }
+
+    goTo('page-penilaian');
+
+    showToast('Membuka penilaian: ' + s.nama, '');
 }
 
 export function switchSection(key){
@@ -41,13 +79,14 @@ export function renderSection(key){
 
   // Build assessment table rows
   const stu=S.activeStu;
-  const storedScores=(stu&&S.assessments[stu.id]&&S.assessments[stu.id][key])||{};
+  const draftScores=(stu&&S.draft[stu.id]&&S.draft[stu.id][key])||{};
+  const savedFlat=(stu&&S.assessments[stu.id])||{};
   const isMultiKey = cfg.aspects.every(a => a.key);
   const tbody=document.getElementById('assessBody');
   tbody.innerHTML=cfg.aspects.map((a,i)=>{
-    let val = storedScores[i];
+    let val = draftScores[i];
     if(val===undefined && isMultiKey && a.key!==undefined){
-      val = storedScores[a.key];
+      val = savedFlat[a.key];
     }
     val = val!==undefined ? val : '';
     return `<tr>
@@ -109,17 +148,16 @@ export function saveCurrentScores(){
   const key=S.activeSection;
   const inputs=document.querySelectorAll('#assessBody .score-inp');
   if(!inputs.length)return;
-  if(!S.assessments[stu.id]) S.assessments[stu.id]={};
+  if(!S.draft[stu.id]) S.draft[stu.id]={};   // ← diganti
   const secScores={};
   inputs.forEach(inp=>{const idx=parseInt(inp.dataset.idx);const v=parseFloat(inp.value);if(!isNaN(v))secScores[idx]=Math.round(v);});
-  S.assessments[stu.id][key]=secScores;
+  S.draft[stu.id][key]=secScores;             // ← diganti
 }
 
 export function simpan(){
   const stu=S.activeStu;
   if(!stu){showToast('Tidak ada mahasiswa dipilih.','err');return;}
 
-  // Validate current section inputs first
   let hasInvalid=false;
   document.querySelectorAll('#assessBody .score-inp').forEach(inp=>{
     const max=parseInt(inp.dataset.max)||100;
@@ -128,28 +166,16 @@ export function simpan(){
   });
   if(hasInvalid){showToast('Ada nilai yang tidak valid. Perbaiki sebelum menyimpan.','err');return;}
 
-  // Save current section
   saveCurrentScores();
 
-  // Current section scores + total
   const key=S.activeSection;
   const cfg=SECTIONS[key];
-  const secScores=(S.assessments[stu.id]||{})[key]||{};
+  const secScores=(S.draft[stu.id]||{})[key]||{};   // ✅ ambil dari draft, bukan assessments
   if(!Object.keys(secScores).length){
     showToast('Belum ada nilai untuk bagian ini.','err');
     return;
   }
   const secTotal=Object.values(secScores).reduce((x,y)=>x+(parseFloat(y)||0),0);
-
-  // Status from number of completed sections
-  const done=Object.keys(S.assessments[stu.id]||{}).filter(k=>Object.keys((S.assessments[stu.id]||{})[k]||{}).length).length;
-  const idx=S.students.findIndex(s=>s.id===stu.id);
-  if(idx!==-1){
-    S.students[idx].status=done>=4?'selesai':done>=1?'proses':'belum';
-  }
-
-  // Section dengan aspek yang punya key unik -> simpan tiap aspek terpisah.
-  // Section lain -> tetap simpan sebagai 1 total gabungan (behavior lama).
   const isMultiKey = cfg.aspects.every(a => a.key);
 
   const savePayloads = isMultiKey
@@ -169,6 +195,23 @@ export function simpan(){
   )).then(results=>{
     const allOk = results.length>0 && results.every(res => res && res.ok);
     if(allOk){
+      // ✅ update memori halaman supaya nilai tidak "hilang" waktu dibuka lagi
+      if(!S.assessments[stu.id]) S.assessments[stu.id]={};
+      if(isMultiKey){
+        cfg.aspects.forEach((a,i)=>{
+          if(secScores[i]!==undefined) S.assessments[stu.id][a.key]=Math.round(secScores[i]);
+        });
+      } else {
+        S.assessments[stu.id][key]=Math.round(secTotal);
+      }
+
+      const totals=sectionTotals(S.assessments[stu.id]);
+      const done=Object.keys(totals).length;
+      const idx=S.students.findIndex(s=>s.id===stu.id);
+      if(idx!==-1){
+        S.students[idx].status=done>=Object.keys(SECTIONS).length?'selesai':done>=1?'proses':'belum';
+      }
+
       const lbl=cfg?cfg.label:key;
       showToast(`✓ Penilaian ${stu.nama} — ${lbl} tersimpan (${Math.round(secTotal)} poin).`,'ok',4000);
       setTimeout(()=>{render();goTo('page-dashboard');},1000);
@@ -184,13 +227,13 @@ export function riwayat(){
   if(!stu){showToast('Pilih mahasiswa terlebih dahulu.','err');return;}
   const a=S.assessments[stu.id];
   if(!a||!Object.keys(a).length){showToast('Belum ada riwayat penilaian untuk '+stu.nama+'.','');return;}
-  let lines=[];
-  Object.entries(a).forEach(([secKey,scores])=>{
-    const cfg=SECTIONS[secKey];
-    if(!cfg)return;
-    const tot=Object.values(scores).reduce((x,y)=>x+y,0);
-    lines.push(`${cfg.label}: ${tot}/${cfg.noteMax}`);
-  });
-  const grand=lines.length?Object.values(a).reduce((tot,sec)=>tot+Object.values(sec).reduce((x,y)=>x+y,0),0):0;
+
+  const totals = sectionTotals(a);
+  const lines = Object.entries(totals).map(([secKey, tot]) => {
+    const cfg = SECTIONS[secKey];
+    return cfg ? `${cfg.label}: ${tot}/${cfg.noteMax}` : null;
+  }).filter(Boolean);
+
+  const grand = Object.values(totals).reduce((x,y)=>x+y,0);
   showToast(`Riwayat ${stu.nama} → ${lines.join(' | ')} | Total: ${grand}`,'ok',6000);
 }

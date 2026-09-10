@@ -22,6 +22,11 @@ function getKelulusan(total, status){
   return total >= BATAS_LULUS ? KELULUSAN_BADGE.lulus : KELULUSAN_BADGE.gagal;
 }
 
+function calcGrandTotal(assessObj){
+  if(!assessObj) return null;
+  return Object.values(assessObj).reduce((tot,v)=>tot+(Number(v)||0),0);
+}
+
 export function render(){
   const rows=getFiltered();
   const total=rows.length;
@@ -37,7 +42,7 @@ if(!pageRows.length){
   tbody.innerHTML=pageRows.map((s,i)=>{
     const [bc,bl]=BADGE_MAP[s.status]||BADGE_MAP.belum;
     const a=S.assessments[s.id];
-    const scoreTip=a?Object.values(a).reduce((tot,sec)=>tot+Object.values(sec).reduce((x,y)=>x+y,0),0):null;
+    const scoreTip=calcGrandTotal(a);
     const [kc,kl]=getKelulusan(scoreTip, s.status);
     return `<tr>
       <td class="td-no">${start+i+1}</td>
@@ -163,7 +168,7 @@ export function exportCSV(){
   const hdr=['No','Nama','NIM','Prodi/Offering','Status','Total Poin','Status Kelulusan'];
   const rows=S.students.map((s,i)=>{
     const a=S.assessments[s.id];
-    const t=a?Object.values(a).reduce((tot,sec)=>tot+Object.values(sec).reduce((x,y)=>x+y,0),0):null;
+    const t=calcGrandTotal(a);
     const [,kl]=getKelulusan(t, s.status);
     return [i+1,s.nama,s.nim,s.jurusan,BADGE_MAP[s.status]?.[1]||s.status,t??'–',kl].join(',');
   });
