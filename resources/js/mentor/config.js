@@ -26,11 +26,10 @@ export const SECTIONS = {
   ldk: {
     label: 'LDK — Latihan Dasar Kepemimpinan',
     aspects: [
-      { name:'Kehadiran LDK',   max:15,  guide:'Maksimum 15 poin (absensi penuh seluruh sesi LDK).' },
-      { name:'Kepemimpinan',    max:30,  guide:'Maksimum 30 poin (inisiatif dan kemampuan memimpin tim).' },
-      { name:'Tugas Kelompok',  max:25,  guide:'Maksimum 25 poin (kualitas dan presentasi tugas kelompok).' },
-      { name:'Komunikasi',      max:20,  guide:'Maksimum 20 poin (kemampuan komunikasi efektif).' },
-      { name:'Kedisiplinan',    max:10,  guide:'Maksimum 10 poin (ketepatan waktu dan aturan).' },
+      { name:'Kehadiran LDK',   max:20,  guide:'Maksimum 20 poin (absensi penuh seluruh sesi LDK).' },
+      { name:'Penugasan Individu',    max:25,  guide:'Maksimum 25 poin (tugas individu).' },
+      { name:'Keaktifan FGD',  max:35,  guide:'Maksimum 35 poin (keterlibatan aktif dalam kegiatan).' },
+      { name:'Kedisiplinan',    max:20,  guide:'Maksimum 20 poin (ketepatan waktu dan aturan).' },
     ],
     noteMax: 100,
   },
