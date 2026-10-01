@@ -1,6 +1,7 @@
 /* ══════════════════════════════════════════════════════
    DASHBOARD — table render, filtering, pagination, status edit, CSV export
    ══════════════════════════════════════════════════════ */
+'use strict';
 import { S } from './state.js';
 import { BADGE_MAP, PAGE_SIZE, BATAS_LULUS, MAX_NILAI, KELULUSAN_BADGE } from './config.js';import { esc, showToast } from './utils.js';
 import { closeAllDropdowns } from './nav.js';
