@@ -204,12 +204,8 @@
           orgLink: 'https://drive.google.com/drive/folders/1ZtasDmCvZY-PFPT0L-4znJ-bYsQJPE-8?usp=drive_link',
           structureLink: 'https://drive.google.com/file/d/1-QWK-ueRd2l5dCGRL8q1nz0omHr1D1zk/view?usp=sharing' },
         { name: 'LATIHAN DASAR KEPEMIMPINAN 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59) },
-        { name: 'IOH 2026', startDate: new Date(2026, 9, 24), endDate: new Date(2026, 9, 24, 23, 59, 59),
-          link: 'https://link-manual-book-ioh.com',
-          docLink: 'https://link-dokumentasi-ioh.com' },
-        { name: 'NAKO 2026', startDate: new Date(2026, 10, 20), endDate: new Date(2026, 10, 20, 23, 59, 59),
-          link: 'https://link-manual-book-nako.com',
-          docLink: 'https://link-dokumentasi-nako.com' }
+        { name: 'IOH 2026', startDate: new Date(2026, 9, 24), endDate: new Date(2026, 9, 24, 23, 59, 59) },
+        { name: 'NAKO 2026', startDate: new Date(2026, 10, 20), endDate: new Date(2026, 10, 20, 23, 59, 59) }
     ];
 
     const H7_MS = 7 * 24 * 60 * 60 * 1000;

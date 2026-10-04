@@ -79,4 +79,35 @@ class MahasiswaController extends Controller
             'lulus' => $total >= 575,
         ]);
     }
+
+    public function kartuKendali()
+    {
+        $mahasiswa = DB::table('mahasiswa')
+            ->leftJoin('kelompok', 'kelompok.id', '=', 'mahasiswa.kelompok_id')
+            ->where('mahasiswa.id', session('mahasiswa_id'))
+            ->select('mahasiswa.*', 'kelompok.nama as kelompok_nama')
+            ->first();
+
+        if (! $mahasiswa) {
+            return redirect()->route('home');
+        }
+
+        $poin = DB::table('penilaian')
+            ->where('mahasiswa_id', $mahasiswa->id)
+            ->pluck('poin', 'kegiatan');
+
+        // Urutan = urutan stempel di kartu; stempel muncul kalau kegiatan sudah dinilai (> 0).
+        $activities = collect([
+            'Forum Maba' => 'forum', 'LDK' => 'ldk', 'IOH' => 'ioh', 'NAKO' => 'nako',
+            'Coffee Offering' => 'coffe', 'Peserta Tet' => 'tetp', 'Arak-Arakan' => 'arak',
+            'Admin IG Angkatan' => 'adminigangkatan', 'Admin IG Offering' => 'adminigoffering',
+            'Dewan Komunal' => 'dewan', 'Staff Muda' => 'staffmuda',
+        ])->map(fn ($key, $label) => ['label' => $label, 'done' => ($poin[$key] ?? 0) > 0])->values()->all();
+
+        return view('kartu-kendali', [
+            'mahasiswa'  => $mahasiswa,
+            'activities' => $activities,
+            'total'      => $poin->sum(),
+        ]);
+    }
 }

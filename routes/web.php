@@ -94,9 +94,8 @@ Route::middleware('mahasiswa.auth')->group(function () {
     Route::get('/poin', [MahasiswaController::class, 'poin'])
         ->name('poin');
 
-    Route::get('/kartu-kendali', function () {
-        return view('kartu-kendali');
-    })->name('kartu-kendali');
+    Route::get('/kartu-kendali', [MahasiswaController::class, 'kartuKendali'])
+        ->name('kartu-kendali');
 
     Route::get('/sertifikat', function () {
         return view('sertifikat-mahasiswa');

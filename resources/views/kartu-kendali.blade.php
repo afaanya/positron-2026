@@ -7,39 +7,17 @@
 @endsection
 
 @section('content')
-    @php
-        $profile = [
-            ['label' => 'Nama', 'value' => 'Rizky Ananda'],
-            ['label' => 'NIM', 'value' => '2026101010'],
-            ['label' => 'Prodi', 'value' => 'Teknik Elektro Informatika'],
-            ['label' => 'Offering', 'value' => 'TI A'],
-            ['label' => 'Kelompok', 'value' => 'Kelompok 1'],
-        ];
 
-        $activities = [
-            ['label' => 'Forum Maba', 'done' => true],
-            ['label' => 'LDK', 'done' => true],
-            ['label' => 'IOH', 'done' => true],
-            ['label' => 'NAKO', 'done' => false],
-            ['label' => 'Coffee Offering', 'done' => false],
-            ['label' => 'Peserta Tet', 'done' => false],
-            ['label' => 'Arak-Arakan', 'done' => false],
-            ['label' => 'Admin IG Angkatan', 'done' => false],
-            ['label' => 'Admin IG Offering', 'done' => false],
-            ['label' => 'Dewan Komunal', 'done' => false],
-            ['label' => 'Staff Muda', 'done' => false],
-        ];
-    @endphp
 
     <main class="kartu-kendali-page" aria-label="Kartu Kendali Positron 2026">
         <div class="kartu-card">
             <img src="{{ asset('images/kartu kendali.webp') }}" alt="Kartu Kendali" class="kartu-bg">
             <div class="kartu-content">
-                <div class="field-value field-name">Rizky Ananda</div>
-                <div class="field-value field-nim">2026101010</div>
-                <div class="field-value field-prodi">Teknik Elektro Informatika</div>
-                <div class="field-value field-offering">TI A</div>
-                <div class="field-value field-kelompok">Kelompok 1</div>
+                <div class="field-value field-name">{{ $mahasiswa->nama }}</div>
+                <div class="field-value field-nim">{{ $mahasiswa->nim }}</div>
+                <div class="field-value field-prodi">{{ $mahasiswa->program_studi }}</div>
+                <div class="field-value field-offering">{{ $mahasiswa->offering }}</div>
+                <div class="field-value field-kelompok">{{ $mahasiswa->kelompok_nama ?? '-' }}</div>
 
                 @if ($activities[0]['done'])
                     <img src="{{ asset('images/logo.webp') }}" alt="stempel Forum Maba" class="stamp stamp-forum">
@@ -75,7 +53,7 @@
                     <img src="{{ asset('images/logo.webp') }}" alt="stempel Staff Muda" class="stamp stamp-staff">
                 @endif
 
-                <div class="points-value">POIN: 124</div>
+                <div class="points-value">POIN: {{ $total }}</div>
             </div>
         </div>
     </main>
