@@ -15,6 +15,10 @@ class MahasiswaController extends Controller
             ->where('id', session('mahasiswa_id'))
             ->first();
 
+        if (! $biodata) {
+            return redirect()->route('home');
+        }
+
         return view('biodata-edit', compact('biodata'));
     }
     public function update(Request $request)

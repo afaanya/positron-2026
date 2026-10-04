@@ -6,8 +6,6 @@ use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin/riwayat-login', [MentorController::class, 'riwayatLogin']);
-
 // ================= LANDING =================
 
 // Landing: kalau sudah login, langsung ke home (skip undangan). Kalau belum, tampilkan landing.
@@ -37,10 +35,6 @@ Route::middleware('auth.any')->group(function () {
     Route::get('/homepage', function () {
         return view('page', ['inner' => 'homepage', 'title' => 'POSITRON 2026']);
     })->name('homepage');
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 
     Route::get('/sambutan', function () {
         return view('page', ['inner' => 'sambutan', 'title' => 'Sambutan - POSITRON 2026']);
@@ -78,6 +72,11 @@ Route::middleware('mahasiswa.auth')->group(function () {
             ->select('mahasiswa.*', 'kelompok.nama as kelompok_nama', 'kelompok.mentor as kelompok_mentor')
             ->first();
 
+        // Admin juga lolos mahasiswa.auth tapi tidak punya mahasiswa_id.
+        if (! $biodata) {
+            return redirect()->route('home');
+        }
+
         $mentors = DB::table('mentor')
             ->where('user', $biodata->offering)
             ->whereNotNull('no_wa')
@@ -91,10 +90,6 @@ Route::middleware('mahasiswa.auth')->group(function () {
 
     Route::post('/biodata/update', [MahasiswaController::class, 'update'])
         ->name('biodata.update');
-
-    Route::get('/profil-mahasiswa', function () {
-        return view('profil-mahasiswa');
-    })->name('profil');
 
     Route::get('/poin', [MahasiswaController::class, 'poin'])
         ->name('poin');
@@ -138,15 +133,5 @@ Route::middleware('admin.auth')->prefix('admin')->name('admin.')->group(function
         return view('admin.home');
     })->name('home');
 
-    Route::get('/mahasiswa', function () {
-        return view('admin.mahasiswa');
-    })->name('mahasiswa');
-
-    Route::get('/mentor', function () {
-        return view('admin.mentor');
-    })->name('mentor');
-
-    Route::get('/offering', function () {
-        return view('admin.offering');
-    })->name('offering');
+    Route::get('/riwayat-login', [MentorController::class, 'riwayatLogin'])->name('riwayat-login');
 });

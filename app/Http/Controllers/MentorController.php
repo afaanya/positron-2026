@@ -8,8 +8,19 @@ use Illuminate\Support\Facades\Schema;
 
 class MentorController extends Controller
 {
-    /** Section keys used by the portal sidebar. */
-    private array $sections = ['forum', 'ioh', 'ldk', 'nako'];
+    /** kegiatan key (section atau aspek) => [section, maks poin], dari config/penilaian.php. */
+    private function kegiatanMap(): array
+    {
+        $map = [];
+        foreach (config('penilaian.sections') as $section => $cfg) {
+            $map[$section] = [$section, $cfg['max']];
+            foreach ($cfg['aspects'] ?? [] as $aspect => $max) {
+                $map[$aspect] = [$section, $max];
+            }
+        }
+
+        return $map;
+    }
 
     /**
      * Mentor portal home: real mahasiswa for the logged-in mentor's offering,
@@ -46,14 +57,20 @@ class MentorController extends Controller
             }
         }
 
+        $kegiatanMap   = $this->kegiatanMap();
+        $totalSections = count(config('penilaian.sections'));
+
         $students    = [];
         $assessments = [];
         foreach ($rows as $m) {
             $saved = $savedByMahasiswa[$m->id] ?? [];
-            $done  = count($saved);
+            // Hitung per SECTION (bukan per baris) — buku/partisipasi tersimpan per aspek.
+            $done = collect(array_keys($saved))
+                ->map(fn ($k) => $kegiatanMap[$k][0] ?? null)
+                ->filter()->unique()->count();
             $status = $done === 0
                 ? 'belum'
-                : ($done >= count($this->sections) ? 'selesai' : 'proses');
+                : ($done >= $totalSections ? 'selesai' : 'proses');
 
             $code   = $m->offering_code ?? $this->offeringCode($m);
             $letter = str_contains($code, '-') ? substr(strrchr($code, '-'), 1) : $code;
@@ -151,17 +168,31 @@ class MentorController extends Controller
      */
     public function savePenilaian(Request $request)
     {
+        $kegiatanMap = $this->kegiatanMap();
+
         $data = $request->validate([
             'mahasiswa_id'  => 'required|integer',
-            'kegiatan'      => 'required|string',
+            'kegiatan'      => ['required', 'string', \Illuminate\Validation\Rule::in(array_keys($kegiatanMap))],
             'poin'          => 'required|integer|min:0',
         ]);
+
+        $max = $kegiatanMap[$data['kegiatan']][1];
+        if ($data['poin'] > $max) {
+            return response()->json(['ok' => false, 'error' => "Poin maksimal untuk {$data['kegiatan']} adalah {$max}."], 422);
+        }
 
         if (! Schema::hasTable('penilaian')) {
             return response()->json([
                 'ok'    => false,
                 'error' => 'Tabel penilaian belum dibuat. Jalankan: php artisan migrate',
             ], 503);
+        }
+
+        // Mentor hanya boleh menilai mahasiswa di offering-nya sendiri (admin bebas).
+        $mentorUser = session('mentor_user');
+        $mahasiswa  = DB::table('mahasiswa')->where('id', $data['mahasiswa_id'])->first(['id', 'offering_code']);
+        if (! $mahasiswa || ($mentorUser && $mahasiswa->offering_code !== $mentorUser)) {
+            return response()->json(['ok' => false, 'error' => 'Mahasiswa tidak ditemukan di offering Anda.'], 403);
         }
 
         DB::table('penilaian')->updateOrInsert(
