@@ -73,7 +73,9 @@ Route::middleware('mahasiswa.auth')->group(function () {
 
     Route::get('/biodata', function () {
         $biodata = DB::table('mahasiswa')
-            ->where('id', session('mahasiswa_id'))
+            ->leftJoin('kelompok', 'kelompok.id', '=', 'mahasiswa.kelompok_id')
+            ->where('mahasiswa.id', session('mahasiswa_id'))
+            ->select('mahasiswa.*', 'kelompok.nama as kelompok_nama', 'kelompok.mentor as kelompok_mentor')
             ->first();
 
         $mentors = DB::table('mentor')

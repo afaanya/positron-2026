@@ -41,6 +41,8 @@
 
         <div class="row"><div class="label">Program Studi</div>{{ $biodata->program_studi }}</div>
         <div class="row"><div class="label">Offering</div>{{ $biodata->offering }}</div>
+        <div class="row"><div class="label">Kelompok</div>{{ $biodata->kelompok_nama ?? '-' }}</div>
+        <div class="row"><div class="label">Mentor Kelompok</div>{{ $biodata->kelompok_mentor ?? '-' }}</div>
         <div class="row">
         <div class="label">Kakak Mentor</div>
             <div>
