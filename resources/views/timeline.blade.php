@@ -87,10 +87,21 @@
 
             </div>
 
-            <div class="countdown-box">
-                <div id="countdownDisplay">
-                    <strong>Menghitung...</strong>
+            <div class="countdown-group">
+                <div class="countdown-box">
+                    <div id="countdownDisplay">
+                        <strong>Menghitung...</strong>
+                    </div>
                 </div>
+
+                {{-- Buku manual book acara terdekat (diisi JS dari timelineEventsData) --}}
+                <a id="eventManualBook" class="event-manualbook" target="_blank" rel="noopener" hidden>
+                    <span class="event-manualbook-img">
+                        <img src="{{ asset('images/bukumanualbook.webp') }}" alt="Manual Book" loading="lazy">
+                    </span>
+                    <span class="event-manualbook-label">Manual Book</span>
+                    <span id="eventManualBookName" class="event-manualbook-name"></span>
+                </a>
             </div>
         </div>
 
@@ -198,18 +209,39 @@
     // (mis. acara 2 hari). Urutan array ini SAMA dengan
     // urutan titik 1-4 di peta perjalanan (index 0 = titik 1, dst).
     const timelineEventsData = [
-        { name: 'FORUM MABA 2026', startDate: new Date(2026, 7, 29), endDate: new Date(2026, 7, 29, 23, 59, 59),
+        { name: 'FORUM MABA 2026', short: 'Forum Maba 2026', startDate: new Date(2026, 7, 29), endDate: new Date(2026, 7, 29, 23, 59, 59),
           link: 'https://drive.google.com/file/d/1KWfd5JsHnJjvwCeEh8tCeJckvE5cWElZ/view?usp=drive_link',
           docLink: 'https://drive.google.com/drive/folders/1Cek-zy_533IfN2vN2wvsrK_TsdP0gRGl',
           orgLink: 'https://drive.google.com/drive/folders/1ZtasDmCvZY-PFPT0L-4znJ-bYsQJPE-8?usp=drive_link',
           structureLink: 'https://drive.google.com/file/d/1-QWK-ueRd2l5dCGRL8q1nz0omHr1D1zk/view?usp=sharing' },
-        { name: 'LATIHAN DASAR KEPEMIMPINAN 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59),
+        { name: 'LATIHAN DASAR KEPEMIMPINAN 2026', short: 'LDK 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59),
           link: 'https://drive.google.com/drive/folders/1hZuq_3RAXB0xnWgygphEcz8HDfW-DO1V?usp=sharing' },
-        { name: 'IOH 2026', startDate: new Date(2026, 9, 24), endDate: new Date(2026, 9, 24, 23, 59, 59) },
-        { name: 'NAKO 2026', startDate: new Date(2026, 10, 20), endDate: new Date(2026, 10, 20, 23, 59, 59) }
+        { name: 'IOH 2026', short: 'IOH 2026', startDate: new Date(2026, 9, 24), endDate: new Date(2026, 9, 24, 23, 59, 59) },
+        { name: 'NAKO 2026', short: 'NAKO 2026', startDate: new Date(2026, 10, 20), endDate: new Date(2026, 10, 20, 23, 59, 59) }
     ];
 
     const H7_MS = 7 * 24 * 60 * 60 * 1000;
+
+    // Acara yang manual book-nya ditampilkan sebagai buku di samping kotak
+    // countdown: acara ber-link terdekat yang sudah masuk H-7 / sedang
+    // berlangsung; kalau tidak ada, acara ber-link terakhir yang sudah selesai.
+    function getFeaturedManualBookEvent(now) {
+        const withLink = timelineEventsData.filter(e => e.link);
+        const upcoming = withLink.find(e => e.endDate >= now && e.startDate - now <= H7_MS);
+        if (upcoming) return upcoming;
+        const done = withLink.filter(e => e.endDate < now);
+        return done.length ? done[done.length - 1] : null;
+    }
+
+    function updateManualBook() {
+        const book = document.getElementById('eventManualBook');
+        const event = getFeaturedManualBookEvent(new Date());
+        if (!event) { book.hidden = true; return; }
+        book.href = event.link;
+        book.setAttribute('aria-label', 'Buka Manual Book ' + event.short);
+        document.getElementById('eventManualBookName').textContent = event.short;
+        book.hidden = false;
+    }
 
     // Tanggal-tanggal yang harus diberi lingkaran di kalender.
     // Hanya aktif mulai H-7 sebelum acara sampai acara tersebut berakhir.
@@ -303,7 +335,7 @@
             const diffToStart = event.startDate - now;
             const diffToEnd = event.endDate - now;
 
-            const linkCaption = event.link
+            const linkCaption = event.link && event !== getFeaturedManualBookEvent(now)
                 ? `<div onclick="window.open('${event.link}', '_blank')" style="margin-top:4px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat manual book</div>`
                 : '';
 
@@ -411,6 +443,9 @@
 
     updateMapPins();
     setInterval(updateMapPins, 60000);
+
+    updateManualBook();
+    setInterval(updateManualBook, 60000);
 
     document.getElementById('prevMonthBtn').addEventListener('click', function() {
         currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
