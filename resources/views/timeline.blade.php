@@ -203,7 +203,8 @@
           docLink: 'https://drive.google.com/drive/folders/1Cek-zy_533IfN2vN2wvsrK_TsdP0gRGl',
           orgLink: 'https://drive.google.com/drive/folders/1ZtasDmCvZY-PFPT0L-4znJ-bYsQJPE-8?usp=drive_link',
           structureLink: 'https://drive.google.com/file/d/1-QWK-ueRd2l5dCGRL8q1nz0omHr1D1zk/view?usp=sharing' },
-        { name: 'LATIHAN DASAR KEPEMIMPINAN 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59) },
+        { name: 'LATIHAN DASAR KEPEMIMPINAN 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59),
+          link: 'https://drive.google.com/drive/folders/1hZuq_3RAXB0xnWgygphEcz8HDfW-DO1V?usp=sharing' },
         { name: 'IOH 2026', startDate: new Date(2026, 9, 24), endDate: new Date(2026, 9, 24, 23, 59, 59) },
         { name: 'NAKO 2026', startDate: new Date(2026, 10, 20), endDate: new Date(2026, 10, 20, 23, 59, 59) }
     ];
