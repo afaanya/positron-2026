@@ -36,7 +36,7 @@
             {{-- Overlay Kalender --}}
     <div id="calendar-overlay" style="
         position: absolute;
-        top: 62%;
+        top: 65%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(0deg);
         transform-origin: center center;
@@ -87,10 +87,11 @@
 
             </div>
 
-            <div class="countdown-group">
-                <div class="countdown-box">
+            <div class="event-panel">
+                <div class="event-panel-info">
+                    <div id="eventPanelEyebrow" class="event-panel-eyebrow">Agenda</div>
                     <div id="countdownDisplay">
-                        <strong>Menghitung...</strong>
+                        <div class="cd-empty">Menghitung...</div>
                     </div>
                 </div>
 
@@ -101,6 +102,7 @@
                     </span>
                     <span class="event-manualbook-label">Manual Book</span>
                     <span id="eventManualBookName" class="event-manualbook-name"></span>
+                    <span class="event-manualbook-cta">Buka &#8599;</span>
                 </a>
             </div>
         </div>
@@ -315,99 +317,100 @@
         document.getElementById('cal-table').innerHTML = html;
     }
 
+    const ID_DATE = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+    const ID_MONTH = { month: 'long', year: 'numeric' };
+    const pad2 = n => String(n).padStart(2, '0');
+
+    function formatEventDate(event) {
+        const start = event.startDate.toLocaleDateString('id-ID', ID_DATE);
+        if (event.startDate.toDateString() === event.endDate.toDateString()) return start;
+        return start + ' – ' + event.endDate.toLocaleDateString('id-ID', ID_DATE);
+    }
+
+    function eventLinks(event, featured) {
+        const links = [
+            [event !== featured && event.link, 'Manual Book'],
+            [event.docLink, 'Dokumentasi'],
+            [event.orgLink, 'Struktur Organisasi'],
+            [event.structureLink, 'Struktur Dosen'],
+        ].filter(([href]) => href);
+        if (!links.length) return '';
+        return '<div class="cd-links">' + links
+            .map(([href, label]) => `<a class="cd-link" href="${href}" target="_blank" rel="noopener">${label}</a>`)
+            .join('') + '</div>';
+    }
+
+    let lastCountdownHtml = '';
+
     function updateCountdown() {
         const now = new Date();
         const currentYear = currentCalendarDate.getFullYear();
         const currentMonth = currentCalendarDate.getMonth();
+
+        document.getElementById('eventPanelEyebrow').textContent =
+            'Agenda ' + new Date(currentYear, currentMonth, 1).toLocaleDateString('id-ID', ID_MONTH);
 
         const monthEvents = timelineEventsData.filter(event =>
             (event.startDate.getFullYear() === currentYear && event.startDate.getMonth() === currentMonth) ||
             (event.endDate.getFullYear() === currentYear && event.endDate.getMonth() === currentMonth)
         );
 
-        if (monthEvents.length === 0) {
-            document.getElementById('countdownDisplay').innerHTML = 
-            '<strong class="text-xl md:text-2xl" style="line-height:1.8; display:block; text-align:center;">TIDAK ADA<br>ACARA<br>PADA BULAN INI</strong>';
-            return;
-        }
+        const featured = getFeaturedManualBookEvent(now);
 
-        const buildCountdown = (event) => {
-            const diffToStart = event.startDate - now;
-            const diffToEnd = event.endDate - now;
+        const buildEvent = (event) => {
+            const state = getPinState(event, now);
+            const date = `<div class="cd-date">${formatEventDate(event)}</div>`;
 
-            const linkCaption = event.link && event !== getFeaturedManualBookEvent(now)
-                ? `<div onclick="window.open('${event.link}', '_blank')" style="margin-top:4px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat manual book</div>`
-                : '';
-
-            const docCaption = event.docLink
-                ? `<div onclick="window.open('${event.docLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat dokumentasi</div>`
-                : '';
-
-            const orgCaption = event.orgLink
-                ? `<div onclick="window.open('${event.orgLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat struktur organisasi</div>`
-                : '';
-
-            const isForumMaba = event.name && event.name.toUpperCase().includes('FORUM MABA');
-            const structureCaption = isForumMaba && event.structureLink
-                ? `<div onclick="window.open('${event.structureLink}', '_blank')" style="margin-top:2px; font-size:11px; color:#F8D794; opacity:.7; text-decoration:underline; cursor:pointer; letter-spacing:0.5px;">klik untuk lihat struktur dosen</div>`
-                : '';
-
-            // Acara sudah berakhir
-            if (diffToEnd < 0) {
-                return `<div style="margin-bottom:10px;">
-                            <strong style="font-size:18px;">${event.name} telah selesai</strong>
-                            ${linkCaption}
-                            ${docCaption}
-                            ${orgCaption}
-                            ${structureCaption}
+            // Sebelum H-7: sembunyikan countdown & link, cukup "COMING SOON".
+            if (state === 'dark') {
+                return `<div class="cd-event cd-soon">
+                            <div class="cd-name cd-name-sm">${event.name}</div>
+                            ${date}
+                            <div class="cd-badge">✦ Coming Soon ✦</div>
                         </div>`;
             }
 
-            // Sedang berlangsung: dari tanggal mulai sampai tanggal selesai
-            if (diffToStart <= 0 && diffToEnd >= 0) {
-                return `<div style="margin-bottom:10px;">
-                            <strong style="font-size:18px;">${event.name} sedang berlangsung</strong>
-                            ${linkCaption}
-                            ${docCaption}
-                            ${orgCaption}
-                            ${structureCaption}
+            if (state === 'completed' || state === 'active') {
+                const status = state === 'active'
+                    ? '<div class="cd-status cd-status-live"><span class="cd-dot"></span>Sedang Berlangsung</div>'
+                    : '<div class="cd-status">Telah Selesai</div>';
+                return `<div class="cd-event cd-${state}">
+                            ${status}
+                            <div class="cd-name">${event.name}</div>
+                            ${date}
+                            ${eventLinks(event, featured)}
                         </div>`;
             }
 
-            // Gerbang H-7: sebelum 7 hari menuju acara, sembunyikan countdown &
-            // link — cukup tampilkan "COMING SOON". Countdown baru dibuka saat
-            // sisa waktu <= 7 hari.
-            if (diffToStart > H7_MS) {
-                return `<div style="margin-bottom:10px;">
-                            <strong style="font-size:18px;">${event.name}</strong><br>
-                            <span style="display:inline-block; margin-top:8px; font-size:13px; letter-spacing:3px; color:#F8D794; opacity:.8;">✦ COMING SOON ✦</span>
-                        </div>`;
-            }
-
-            const days    = Math.floor(diffToStart / (1000 * 60 * 60 * 24));
-            const hours   = Math.floor((diffToStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diffToStart % (1000 * 60 * 60)) / (1000 * 60));
-
-            return `
-                <div style="margin-bottom:10px;">
-                    <span style="font-size:16px;">${days} hari | ${hours} jam | ${minutes} menit</span><br>
-                    <strong style="font-size:18px;">${event.name}</strong>
-                    ${linkCaption}
-                    ${docCaption}
-                    ${orgCaption}
-                    ${structureCaption}
-                </div>`;
+            // H-7 sampai acara dimulai: countdown hari/jam/menit/detik
+            const diff = event.startDate - now;
+            const units = [
+                [Math.floor(diff / 86400000), 'Hari'],
+                [Math.floor(diff / 3600000) % 24, 'Jam'],
+                [Math.floor(diff / 60000) % 60, 'Menit'],
+                [Math.floor(diff / 1000) % 60, 'Detik'],
+            ];
+            return `<div class="cd-event cd-approaching">
+                        <div class="cd-tiles">${units.map(([n, u]) =>
+                            `<div class="cd-tile"><span class="cd-num">${pad2(n)}</span><span class="cd-unit">${u}</span></div>`
+                        ).join('')}</div>
+                        <div class="cd-name">${event.name}</div>
+                        ${date}
+                        ${eventLinks(event, featured)}
+                    </div>`;
         };
 
-        document.getElementById('countdownDisplay').innerHTML = monthEvents.map(buildCountdown).join('');
+        const html = monthEvents.length
+            ? monthEvents.map(buildEvent).join('<div class="cd-sep" aria-hidden="true"><span>✦</span></div>')
+            : '<div class="cd-empty">Tidak ada acara<br>pada bulan ini</div>';
+
+        // Hindari re-render DOM tiap detik kalau isinya sama (hover link tetap stabil)
+        if (html !== lastCountdownHtml) {
+            document.getElementById('countdownDisplay').innerHTML = html;
+            lastCountdownHtml = html;
+        }
     }
 
-    // === Titik-titik di Peta Perjalanan ===
-    // Status tiap titik (1-4 -> index 0-3):
-    //   'dark'        -> belum mendekati acara, masih gelap/redup
-    //   'approaching' -> sudah masuk H-7, mulai menyala (glow berkedip)
-    //   'active'      -> hari H, menyala penuh & berdenyut
-    //   'completed'   -> sudah lewat, tetap terang (tidak berkedip)
     function getPinState(event, now) {
         const diffToStart = event.startDate - now;
         const diffToEnd = event.endDate - now;

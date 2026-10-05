@@ -60,21 +60,21 @@
 /* Jarum Jam (Pendek & Lebih Tebal) */
 .hand-hour {
     width: 4px;
-    height: 12%;
+    height: 11%;
     margin-left: -2px;
 }
 
 /* Jarum Menit (Panjang & Sedang) */
 .hand-minute {
     width: 3px;
-    height: 18%;
+    height: 16%;
     margin-left: -1.5px;
 }
 
 /* Jarum Detik (Tipis & Warna Emas/Kuning) */
 .hand-second {
     width: 1.5px;
-    height: 20%;
+    height: 18%;
     margin-left: -0.75px;
     background: #f1c40f;
     z-index: 25;
@@ -199,23 +199,6 @@
 .profile-content {
     margin-top: 20px;
     font-size: 14px;
-}
-
-.countdown-box {
-    width: 380px;
-    min-height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, .25);
-    border: 2px solid rgba(248, 215, 148, .35);
-    border-radius: 18px;
-    padding: 24px;
-    text-align: center;
-    color: #F8D794;
-    font-family: 'Libre Baskerville', serif;
-    backdrop-filter: blur(5px);
-    flex-shrink: 0;
 }
 
 /* ═══ Peta perjalanan (ilustrasi fantasi) ═══ */
@@ -400,21 +383,27 @@ main.max-w-6xl {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 96px;
+    gap: 56px;
     width: 100%;
-    max-width: 1150px;
+    max-width: 1120px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .timeline-clock-wrap {
     width: 100%;
-    max-width: 420px;
+    max-width: 520px;
     justify-self: center;
     transform: rotate(0deg);
 }
 
 #calendar-overlay {
+    z-index: 26; /* di atas jarum jam (20-25), di bawah pin tengah (30) */
+    padding: 6px 8px 7px;
+    border-radius: 14px;
+    background: radial-gradient(ellipse at center, rgba(14, 11, 6, .94) 0%, rgba(14, 11, 6, .82) 100%);
+    border: 1px solid rgba(200, 169, 110, .28);
+    box-shadow: inset 0 0 14px rgba(0, 0, 0, .7), 0 2px 8px rgba(0, 0, 0, .45);
     transform: translate(-50%, -50%) rotate(0deg);
     transform-origin: center center;
     display: flex;
@@ -455,70 +444,6 @@ main.max-w-6xl {
     text-align: center;
 }
 
-.countdown-box {
-    justify-self: center;
-}
-
-/* ============================
-   KOTAK COUNTDOWN + BUKU MANUAL BOOK
-============================*/
-.countdown-group {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
-}
-
-.event-manualbook {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 170px;
-    text-decoration: none;
-    font-family: 'Libre Baskerville', serif;
-    color: #F8D794;
-    text-align: center;
-}
-.event-manualbook[hidden] {
-    display: none;
-}
-
-.event-manualbook-img {
-    display: block;
-    width: 100%;
-    transition: transform 0.4s ease;
-}
-.event-manualbook-img img {
-    display: block;
-    width: 100%;
-    height: auto;
-    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, .75));
-    transition: filter 0.4s ease;
-}
-.event-manualbook:hover .event-manualbook-img,
-.event-manualbook:focus-visible .event-manualbook-img {
-    transform: translateY(-4%) scale(1.05);
-}
-.event-manualbook:hover .event-manualbook-img img,
-.event-manualbook:focus-visible .event-manualbook-img img {
-    filter: drop-shadow(0 16px 30px rgba(0, 0, 0, .8)) drop-shadow(0 0 18px rgba(248, 215, 148, .35));
-}
-
-.event-manualbook-label {
-    margin-top: 12px;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #d4b96a;
-}
-.event-manualbook-name {
-    margin-top: 4px;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-shadow: 0 0 18px rgba(248, 215, 148, .4), 0 2px 6px rgba(0, 0, 0, .8);
-}
-
 @media (max-width: 1024px) {
     .timeline-title-wrap {
         margin-left: 0;
@@ -541,22 +466,6 @@ main.max-w-6xl {
         max-width: 400px;
     }
 
-    .countdown-group {
-        flex-direction: column;
-        gap: 24px;
-        width: 100%;
-    }
-
-    .countdown-box {
-        width: 90%;
-        max-width: 380px;
-        margin: 0 auto;
-    }
-
-    .event-manualbook {
-        width: 150px;
-    }
-
     .map-box {
         transform: none;
         padding: 0 16px;
@@ -570,39 +479,13 @@ main.max-w-6xl {
         margin: 0 auto;
     }
 
+    /* Kalender ikut ukuran desktop (style inline di blade), cukup diperkecil
+       sedikit & diturunkan agar muat di antara pin tengah dan angka VI. */
     #calendar-overlay {
-        width: min(210px, 62vw);
-        top: 61%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        gap: 4px;
-    }
-
-    #calendar-overlay > div {
-        gap: 4px;
-    }
-
-    #cal-header {
-        min-width: 90px;
-        font-size: 8px;
-    }
-
-    #cal-table {
-        max-width: 170px;
-        font-size: 6.5px;
-        border-spacing: 3px 1px;
-    }
-
-    #cal-table td {
-        height: 10px;
-        padding: 0 1px;
-    }
-
-    .countdown-box {
-        width: 85%;
-        min-height: 150px;
-        padding: 16px;
-        margin: 0 auto;
+        top: 66% !important;
+        width: 46% !important;
+        padding: 5px 7px 6px;
+        transform: translate(-50%, -50%) scale(.8) !important;
     }
 
     .map-pin-label {
@@ -614,10 +497,7 @@ main.max-w-6xl {
     }
 }
 
-#countdownDisplay {
-    width: 100%;
-    line-height: 1.8;
-}
+
 
 @keyframes pulse {
     0% {
@@ -631,4 +511,305 @@ main.max-w-6xl {
     100% {
         transform: scale(1);
     }
+}
+
+/* ============================
+   PANEL ACARA: countdown + buku manual book
+============================*/
+.event-panel {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    width: 540px;
+    max-width: 100%;
+    min-height: 300px;
+    flex-shrink: 0;
+    color: #F8D794;
+    font-family: 'Libre Baskerville', serif;
+    text-align: center;
+    background:
+        linear-gradient(160deg, rgba(248, 215, 148, .07) 0%, rgba(0, 0, 0, 0) 40%),
+        rgba(6, 22, 14, .55);
+    border: 1px solid rgba(248, 215, 148, .4);
+    border-radius: 20px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .45), inset 0 0 0 6px rgba(0, 0, 0, .12), inset 0 0 0 7px rgba(248, 215, 148, .12);
+    backdrop-filter: blur(6px);
+    overflow: hidden;
+}
+
+.event-panel-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 28px 26px;
+}
+
+.event-panel-eyebrow {
+    margin-bottom: 18px;
+    font-size: 10.5px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #c8a96e;
+}
+.event-panel-eyebrow::before,
+.event-panel-eyebrow::after {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    margin: 0 10px;
+    vertical-align: middle;
+    background: rgba(200, 169, 110, .6);
+}
+
+#countdownDisplay {
+    width: 100%;
+}
+
+.cd-event {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cd-tiles {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.cd-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 54px;
+    padding: 8px 4px 6px;
+    border: 1px solid rgba(248, 215, 148, .3);
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(248, 215, 148, .1), rgba(0, 0, 0, .25));
+}
+.cd-num {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 14px rgba(248, 215, 148, .35);
+}
+.cd-unit {
+    margin-top: 3px;
+    font-size: 8.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c8a96e;
+}
+
+.cd-name {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: .5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .6);
+}
+.cd-name-sm {
+    font-size: 15px;
+}
+.cd-date {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #d4b96a;
+    opacity: .85;
+}
+
+.cd-status {
+    margin-bottom: 8px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c8a96e;
+}
+.cd-status-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #F8D794;
+}
+.cd-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #F8D794;
+    box-shadow: 0 0 10px #F8D794;
+    animation: cd-blink 1.6s ease-in-out infinite;
+}
+@keyframes cd-blink {
+    50% { opacity: .3; }
+}
+
+.cd-badge {
+    margin-top: 8px;
+    font-size: 10.5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: .75;
+}
+
+.cd-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 14px;
+}
+.cd-link {
+    padding: 5px 12px;
+    font-size: 10.5px;
+    letter-spacing: .5px;
+    color: #F8D794;
+    text-decoration: none;
+    border: 1px solid rgba(248, 215, 148, .4);
+    border-radius: 999px;
+    background: rgba(248, 215, 148, .05);
+    transition: background .25s ease, color .25s ease;
+}
+.cd-link:hover,
+.cd-link:focus-visible {
+    background: #F8D794;
+    color: #0b2416;
+}
+
+.cd-sep {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 18px auto;
+    width: 70%;
+    font-size: 9px;
+    color: rgba(200, 169, 110, .7);
+}
+.cd-sep::before,
+.cd-sep::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200, 169, 110, .5), transparent);
+}
+
+.cd-empty {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Buku manual book (kolom kanan panel) */
+.event-manualbook {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 176px;
+    flex-shrink: 0;
+    padding: 24px 18px;
+    text-decoration: none;
+    color: #F8D794;
+    border-left: 1px solid rgba(248, 215, 148, .2);
+    background: radial-gradient(ellipse at 50% 40%, rgba(248, 215, 148, .12) 0%, rgba(0, 0, 0, 0) 65%);
+}
+.event-manualbook[hidden] {
+    display: none;
+}
+
+.event-manualbook-img {
+    display: block;
+    width: 112px;
+    transition: transform .4s ease;
+}
+.event-manualbook-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, .75));
+    transition: filter .4s ease;
+}
+.event-manualbook:hover .event-manualbook-img,
+.event-manualbook:focus-visible .event-manualbook-img {
+    transform: translateY(-5%) rotate(-2deg) scale(1.05);
+}
+.event-manualbook:hover .event-manualbook-img img,
+.event-manualbook:focus-visible .event-manualbook-img img {
+    filter: drop-shadow(0 16px 28px rgba(0, 0, 0, .8)) drop-shadow(0 0 16px rgba(248, 215, 148, .4));
+}
+
+.event-manualbook-label {
+    margin-top: 14px;
+    font-size: 9.5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c8a96e;
+}
+.event-manualbook-name {
+    margin-top: 3px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+.event-manualbook-cta {
+    margin-top: 12px;
+    padding: 5px 16px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid rgba(248, 215, 148, .5);
+    border-radius: 999px;
+    transition: background .25s ease, color .25s ease;
+}
+.event-manualbook:hover .event-manualbook-cta,
+.event-manualbook:focus-visible .event-manualbook-cta {
+    background: #F8D794;
+    color: #0b2416;
+}
+
+/* Jam + panel tidak muat sejajar -> tumpuk */
+@media (max-width: 1140px) {
+    .timeline-row {
+        flex-direction: column;
+        gap: 40px;
+    }
+}
+
+/* Panel sempit: buku pindah ke bawah, tampil mendatar */
+@media (max-width: 600px) {
+    .event-panel {
+        flex-direction: column;
+        width: 92%;
+        min-height: 0;
+    }
+    .event-panel-info {
+        padding: 22px 16px;
+    }
+    .event-manualbook {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 76px 1fr;
+        grid-template-rows: auto auto auto;
+        column-gap: 16px;
+        justify-items: start;
+        align-items: center;
+        padding: 16px 22px;
+        text-align: left;
+        border-left: none;
+        border-top: 1px solid rgba(248, 215, 148, .2);
+    }
+    .event-manualbook-img {
+        grid-row: 1 / 4;
+        width: 76px;
+    }
+    .event-manualbook-label { margin-top: 0; align-self: end; }
+    .event-manualbook-cta { margin-top: 8px; align-self: start; }
+    .cd-tile { min-width: 48px; }
+    .cd-num { font-size: 20px; }
+    .cd-name { font-size: 16px; }
 }
