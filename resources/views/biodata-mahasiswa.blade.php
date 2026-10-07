@@ -42,7 +42,14 @@
         <div class="row"><div class="label">Program Studi</div>{{ $biodata->program_studi }}</div>
         <div class="row"><div class="label">Offering</div>{{ $biodata->offering }}</div>
         <div class="row"><div class="label">Kelompok</div>{{ $biodata->kelompok_nama ?? '-' }}</div>
-        <div class="row"><div class="label">Mentor Kelompok</div>{{ $biodata->kelompok_mentor ?? '-' }}</div>
+        <div class="row">
+            <div class="label">Mentor Kelompok</div>
+            @if($biodata->kelompok_mentor && $biodata->kelompok_mentor_wa)
+                <a class="wa-link" href="https://wa.me/{{ $biodata->kelompok_mentor_wa }}" target="_blank" rel="noopener">{{ $biodata->kelompok_mentor }}</a>
+            @else
+                {{ $biodata->kelompok_mentor ?? '-' }}
+            @endif
+        </div>
         <div class="row">
         <div class="label">Kakak Mentor</div>
             <div>

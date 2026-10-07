@@ -69,7 +69,7 @@ Route::middleware('mahasiswa.auth')->group(function () {
         $biodata = DB::table('mahasiswa')
             ->leftJoin('kelompok', 'kelompok.id', '=', 'mahasiswa.kelompok_id')
             ->where('mahasiswa.id', session('mahasiswa_id'))
-            ->select('mahasiswa.*', 'kelompok.nama as kelompok_nama', 'kelompok.mentor as kelompok_mentor')
+            ->select('mahasiswa.*', 'kelompok.nama as kelompok_nama', 'kelompok.mentor as kelompok_mentor', 'kelompok.mentor_wa as kelompok_mentor_wa')
             ->first();
 
         // Admin juga lolos mahasiswa.auth tapi tidak punya mahasiswa_id.
