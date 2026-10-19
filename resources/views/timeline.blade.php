@@ -218,7 +218,8 @@
           structureLink: 'https://drive.google.com/file/d/1-QWK-ueRd2l5dCGRL8q1nz0omHr1D1zk/view?usp=sharing' },
         { name: 'LATIHAN DASAR KEPEMIMPINAN 2026', short: 'LDK 2026', startDate: new Date(2026, 9, 11), endDate: new Date(2026, 9, 11, 23, 59, 59),
           link: 'https://drive.google.com/drive/folders/1hZuq_3RAXB0xnWgygphEcz8HDfW-DO1V?usp=sharing' },
-        { name: 'IOH 2026', short: 'IOH 2026', startDate: new Date(2026, 9, 24), endDate: new Date(2026, 9, 24, 23, 59, 59) },
+        { name: 'IOH 2026', short: 'IOH 2026', startDate: new Date(2026, 9, 24), endDate: new Date(2026, 9, 24, 23, 59, 59),
+            link: 'https://drive.google.com/file/d/1IDzVkC71xG6inc_bu_bomN5bXz3AqOVO/view?usp=sharing' },
         { name: 'NAKO 2026', short: 'NAKO 2026', startDate: new Date(2026, 10, 20), endDate: new Date(2026, 10, 20, 23, 59, 59) }
     ];
 
