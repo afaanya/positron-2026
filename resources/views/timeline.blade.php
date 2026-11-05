@@ -220,8 +220,10 @@
           link: 'https://drive.google.com/drive/folders/1hZuq_3RAXB0xnWgygphEcz8HDfW-DO1V?usp=sharing',
           docLink: 'https://drive.google.com/drive/folders/1H8yyKySZRTolkyOtSyTlkDfOpP9PYZcI?usp=drive_link' },
         { name: 'IOH 2026', short: 'IOH 2026', startDate: new Date(2026, 9, 24), endDate: new Date(2026, 9, 24, 23, 59, 59),
-            link: 'https://drive.google.com/file/d/1irlyxQEnIP9kHFXjH0gTMBOyIRYE6fNh/view?usp=sharing' },
-        { name: 'NAKO 2026', short: 'NAKO 2026', startDate: new Date(2026, 10, 20), endDate: new Date(2026, 10, 20, 23, 59, 59) }
+            link: 'https://drive.google.com/file/d/1irlyxQEnIP9kHFXjH0gTMBOyIRYE6fNh/view?usp=sharing',
+            docLink: 'https://drive.google.com/drive/folders/14v4Wv4diD8vHZrpQHYgW_Un90I0qM0PV?usp=drive_link' },
+        { name: 'NAKO 2026', short: 'NAKO 2026', startDate: new Date(2026, 10, 20), endDate: new Date(2026, 10, 20, 23, 59, 59),
+            link: 'https://drive.google.com/file/d/1dme71ulUOnIUOgQpx-sq5CzIqVLGaK_j/view?usp=drivesdk'},
     ];
 
     const H7_MS = 7 * 24 * 60 * 60 * 1000;
