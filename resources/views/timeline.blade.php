@@ -223,7 +223,7 @@
             link: 'https://drive.google.com/file/d/1irlyxQEnIP9kHFXjH0gTMBOyIRYE6fNh/view?usp=sharing',
             docLink: 'https://drive.google.com/drive/folders/14v4Wv4diD8vHZrpQHYgW_Un90I0qM0PV?usp=drive_link' },
         { name: 'NAKO 2026', short: 'NAKO 2026', startDate: new Date(2026, 10, 20), endDate: new Date(2026, 10, 20, 23, 59, 59),
-            link: 'https://drive.google.com/file/d/1UCNBnpT8nGsXm5oOEqexEEL1DO4b8mDi/view?usp=sharing'},
+            link: 'https://drive.google.com/file/d/1OqHUTe_esIml26nk1z3XJmwWGInS58_f/view?usp=sharing'},
     ];
 
     const H7_MS = 7 * 24 * 60 * 60 * 1000;
