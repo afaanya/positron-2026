@@ -226,7 +226,7 @@
             link: 'https://drive.google.com/file/d/1OqHUTe_esIml26nk1z3XJmwWGInS58_f/view?usp=sharing'},
     ];
 
-    const H7_MS = 7 * 24 * 60 * 60 * 1000;
+    const H7_MS = 10 * 24 * 60 * 60 * 1000;
 
     // Acara yang manual book-nya ditampilkan sebagai buku di samping kotak
     // countdown: acara ber-link terdekat yang sudah masuk H-7 / sedang
