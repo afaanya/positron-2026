@@ -223,17 +223,22 @@
             link: 'https://drive.google.com/file/d/1irlyxQEnIP9kHFXjH0gTMBOyIRYE6fNh/view?usp=sharing',
             docLink: 'https://drive.google.com/drive/folders/14v4Wv4diD8vHZrpQHYgW_Un90I0qM0PV?usp=drive_link' },
         { name: 'NAKO 2026', short: 'NAKO 2026', startDate: new Date(2026, 10, 20), endDate: new Date(2026, 10, 20, 23, 59, 59),
+            visibilityDaysBefore: 15,
             link: 'https://drive.google.com/file/d/1OqHUTe_esIml26nk1z3XJmwWGInS58_f/view?usp=sharing'},
     ];
 
-    const H7_MS = 10 * 24 * 60 * 60 * 1000;
+    const DEFAULT_EVENT_WINDOW_DAYS = 10;
+
+    function getEventWindowMs(event) {
+        return (event.visibilityDaysBefore || DEFAULT_EVENT_WINDOW_DAYS) * 24 * 60 * 60 * 1000;
+    }
 
     // Acara yang manual book-nya ditampilkan sebagai buku di samping kotak
-    // countdown: acara ber-link terdekat yang sudah masuk H-7 / sedang
+    // countdown: acara ber-link terdekat yang sudah masuk jendela tampil / sedang
     // berlangsung; kalau tidak ada, acara ber-link terakhir yang sudah selesai.
     function getFeaturedManualBookEvent(now) {
         const withLink = timelineEventsData.filter(e => e.link);
-        const upcoming = withLink.find(e => e.endDate >= now && e.startDate - now <= H7_MS);
+        const upcoming = withLink.find(e => e.endDate >= now && e.startDate - now <= getEventWindowMs(e));
         if (upcoming) return upcoming;
         const done = withLink.filter(e => e.endDate < now);
         return done.length ? done[done.length - 1] : null;
@@ -250,14 +255,14 @@
     }
 
     // Tanggal-tanggal yang harus diberi lingkaran di kalender.
-    // Hanya aktif mulai H-7 sebelum acara sampai acara tersebut berakhir.
+    // Aktif mulai jendela tampil masing-masing acara sampai acara berakhir.
     function getEventDatesForCalendar() {
         const now = new Date();
         const dates = [];
 
         timelineEventsData.forEach(event => {
             const diffToStart = event.startDate - now;
-            const isWithinWindow = diffToStart <= H7_MS && now <= event.endDate;
+            const isWithinWindow = diffToStart <= getEventWindowMs(event) && now <= event.endDate;
 
             if (!isWithinWindow) return;
 
@@ -365,7 +370,7 @@
             const state = getPinState(event, now);
             const date = `<div class="cd-date">${formatEventDate(event)}</div>`;
 
-            // Sebelum H-7: sembunyikan countdown & link, cukup "COMING SOON".
+            // Sebelum jendela tampil: sembunyikan countdown & link, cukup "COMING SOON".
             if (state === 'dark') {
                 return `<div class="cd-event cd-soon">
                             <div class="cd-name cd-name-sm">${event.name}</div>
@@ -386,7 +391,7 @@
                         </div>`;
             }
 
-            // H-7 sampai acara dimulai: countdown hari/jam/menit/detik
+            // Sampai acara dimulai: countdown hari/jam/menit/detik
             const diff = event.startDate - now;
             const units = [
                 [Math.floor(diff / 86400000), 'Hari'],
@@ -421,7 +426,7 @@
 
         if (diffToEnd < 0) return 'completed';
         if (diffToStart <= 0 && diffToEnd >= 0) return 'active';
-        if (diffToStart <= H7_MS) return 'approaching';
+        if (diffToStart <= getEventWindowMs(event)) return 'approaching';
         return 'dark';
     }
 
