@@ -138,7 +138,7 @@
                         <!-- Titik 4: NAKO (atas) -->
                         <circle id="map-pin-3" class="map-pin-circle" cx="1400" cy="90" r="32"/>
                         <text id="map-pin-number-3" class="map-pin-number" x="1400" y="100">4</text>
-                        <text id="map-pin-label-3" class="map-pin-label" x="1400" y="48">NAKO</text>
+                        <text id="map-pin-label-3" class="map-pin-label" x="1400" y="48">NAKO 10.0</text>
                     </svg>
                 </div>
             </div>
