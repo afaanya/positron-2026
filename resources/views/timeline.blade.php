@@ -231,6 +231,7 @@
     // Acara yang manual book-nya ditampilkan sebagai buku di samping kotak
     // countdown: acara ber-link terdekat yang sudah masuk H-7 / sedang
     // berlangsung; kalau tidak ada, acara ber-link terakhir yang sudah selesai.
+    // Kalau tidak ada sama sekali, buku disembunyikan.
     function getFeaturedManualBookEvent(now) {
         const withLink = timelineEventsData.filter(e => e.link);
         const upcoming = withLink.find(e => e.endDate >= now && e.startDate - now <= H7_MS);
