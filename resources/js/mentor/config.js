@@ -15,11 +15,10 @@ export const SECTIONS = {
   ioh: {
     label: 'IoH — Introduction of Himpunan',
     aspects: [
-      { name:'Kehadiran IOH',   max:10,  guide:'Maksimum 10 poin (hadir di sesi pengenalan himpunan).' },
-      { name:'Interaksi',       max:25,  guide:'Maksimum 25 poin (keterlibatan dengan anggota himpunan).' },
-      { name:'Penugasan IoH',   max:25,  guide:'Maksimum 25 poin (tugas pengenalan himpunan).' },
-      { name:'Sikap',           max:20,  guide:'Maksimum 20 poin (sikap dan sopan santun selama IoH).' },
-      { name:'Dresscode',       max:20,  guide:'Maksimum 20 poin (kesesuaian dresscode sesi IoH).' },
+      { name:'Kehadiran IOH',   max:45,  guide:'Maksimum 45 poin (hadir di sesi pengenalan himpunan).' },
+      { name:'Rangkuman Materi',       max:15,  guide:'Maksimum 15 poin (rangkuman mengenai materi yang disampaikan).' },
+      { name:'Penugasan IoH',   max:15,  guide:'Maksimum 15 poin (tugas pengenalan himpunan).' },
+      { name:'Staff Muda',        max:25,  guide:'Maksimum 25 poin (keterlibatan sebagai staff muda).' },
     ],
     noteMax: 100,
   },
@@ -45,9 +44,8 @@ export const SECTIONS = {
   arus: {
     label: 'ARUS',
     aspects: [
-      { name:'Arus 1', max:50, guide:'Maksimum 50 poin (panduan).' },
-      { name:'Arus 2', max:50, guide:'Maksimum 50 poin (panduan).' },
-      { name:'Arus 3', max:50, guide:'Maksimum 50 poin (panduan).' },
+      { name:'Arus 1', max:75, guide:'Maksimum 75 poin (panduan).' },
+      { name:'Arus 2', max:75, guide:'Maksimum 75 poin (panduan).' },
     ],
     noteMax: 150,
   },
@@ -73,13 +71,12 @@ export const SECTIONS = {
         { key:'seven', name:'Seven Segment', max:50, guide:'Maksimum 50 poin.' },
         { key:'coffe', name:'Coffe Offering', max:15, guide:'Maksimum 15 poin.' },
         { key:'tetp', name:'Techno Extro Time', max:35, guide:'25 poin jika hanya berpartisipasi, 35 poin jika menang.' },
-        { key:'staffmuda', name:'Staff Muda', max:25, guide:'Maksimum 25 poin.' },
         { key:'arak', name:'Arak-Arakan', max:20, guide:'Maksimum 20 poin.' },
         { key:'ecup', name:'Elektro Cup', max:15, guide:'Maksimum 15 poin.' },
         { key:'adminigangkatan', name:'Admin IG Angkatan', max:50, guide:'Maksimum 50 poin.' },
         { key:'adminigoffering', name:'Admin IG Offering', max:30, guide:'Maksimum 30 poin.' },
       ],
-      noteMax:275,
+      noteMax:250,
   },
 };
 
