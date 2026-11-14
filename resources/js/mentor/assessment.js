@@ -18,6 +18,13 @@ function sectionTotals(a){
   Object.entries(a || {}).forEach(([kegiatan, poin]) => {
     const secKey = SECTIONS[kegiatan] ? kegiatan : ASPECT_TO_SECTION[kegiatan];
     if (!secKey) return;
+
+    if (poin && typeof poin === 'object') {
+      const sum = Object.values(poin).reduce((sum, v) => sum + (Number(v) || 0), 0);
+      totals[secKey] = (totals[secKey] || 0) + sum;
+      return;
+    }
+
     totals[secKey] = (totals[secKey] || 0) + (Number(poin) || 0);
   });
   return totals;
@@ -81,6 +88,8 @@ export function renderSection(key) {
   const savedFlat = stu?.id
     ? (S.assessments[stu.id] || {})
     : {};
+  const savedSection = savedFlat[key] && typeof savedFlat[key] === 'object' ? savedFlat[key] : {};
+  const legacySectionTotal = typeof savedFlat[key] === 'number' ? savedFlat[key] : null;
 
   const isMultiKey = cfg.aspects.every(a => a.key);
   const tbody = document.getElementById('assessBody');
@@ -88,8 +97,10 @@ export function renderSection(key) {
   tbody.innerHTML = cfg.aspects.map((a, i) => {
     const savedValue =
       savedFlat[a.key] ??
-      savedFlat[key]?.[a.key] ??
-      savedFlat[key]?.[i];
+      savedSection[a.key] ??
+      savedSection[i] ??
+      (legacySectionTotal !== null && !isMultiKey && i === 0 ? legacySectionTotal : '') ??
+      '';
 
     const val = draftScores[i] ?? savedValue ?? '';
 
@@ -194,7 +205,7 @@ export function simpan(){
 
   const key=S.activeSection;
   const cfg=SECTIONS[key];
-  const secScores=(S.draft[stu.id]||{})[key]||{};   // ✅ ambil dari draft, bukan assessments
+  const secScores=(S.draft[stu.id]||{})[key]||{};
   if(!Object.keys(secScores).length){
     showToast('Belum ada nilai untuk bagian ini.','err');
     return;
@@ -219,14 +230,13 @@ export function simpan(){
   )).then(results=>{
     const allOk = results.length>0 && results.every(res => res && res.ok);
     if(allOk){
-      // ✅ update memori halaman supaya nilai tidak "hilang" waktu dibuka lagi
       if(!S.assessments[stu.id]) S.assessments[stu.id]={};
       if(isMultiKey){
         cfg.aspects.forEach((a,i)=>{
           if(secScores[i]!==undefined) S.assessments[stu.id][a.key]=Math.round(secScores[i]);
         });
       } else {
-        S.assessments[stu.id][key]=Math.round(secTotal);
+        S.assessments[stu.id][key] = { ...secScores };
       }
 
       const totals=sectionTotals(S.assessments[stu.id]);
