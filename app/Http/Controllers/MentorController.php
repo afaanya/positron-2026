@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 class MentorController extends Controller
 {
-    /** kegiatan key (section atau aspek) => [section, maks poin], dari config/penilaian.php. */
+    /** kegiatan key (section or aspect) => [section, max points], from config/penilaian.php. */
     private function kegiatanMap(): array
     {
         $map = [];
@@ -28,24 +28,20 @@ class MentorController extends Controller
      */
     public function home(Request $request)
     {
-        $mentorUser = session('mentor_user');            // e.g. "TI-A"
+        $mentorUser = session('mentor_user');
         $isAdmin    = session()->has('admin_login') && ! $mentorUser;
 
-        // Catat riwayat login sekali per sesi (bukan tiap kali halaman di-reload).
         if ($mentorUser && ! session('mentor_login_logged')) {
             $this->logMentorLogin($request, $mentorUser, session('mentor_nama', 'Unknown'));
             session(['mentor_login_logged' => true]);
         }
 
-        // Filter at DB level for performance (no in-memory filtering).
-        // Admins see all; mentors see only their offering.
         $query = DB::table('mahasiswa')->orderBy('nama');
         if (! $isAdmin && $mentorUser) {
             $query->where('offering_code', $mentorUser);
         }
         $rows = $query->get();
 
-        // Saved scores (table may not exist yet — degrade gracefully).
         $savedByMahasiswa = [];
         if (Schema::hasTable('penilaian') && $rows->count()) {
             $saved = DB::table('penilaian')
@@ -59,18 +55,15 @@ class MentorController extends Controller
 
         $kegiatanMap   = $this->kegiatanMap();
         $totalSections = count(config('penilaian.sections'));
-
         $students    = [];
         $assessments = [];
+
         foreach ($rows as $m) {
             $saved = $savedByMahasiswa[$m->id] ?? [];
-            // Hitung per SECTION (bukan per baris) — buku/partisipasi tersimpan per aspek.
             $done = collect(array_keys($saved))
                 ->map(fn ($k) => $kegiatanMap[$k][0] ?? null)
                 ->filter()->unique()->count();
-            $status = $done === 0
-                ? 'belum'
-                : ($done >= $totalSections ? 'selesai' : 'proses');
+            $status = $done === 0 ? 'belum' : ($done >= $totalSections ? 'selesai' : 'proses');
 
             $code   = $m->offering_code ?? $this->offeringCode($m);
             $letter = str_contains($code, '-') ? substr(strrchr($code, '-'), 1) : $code;
@@ -83,9 +76,7 @@ class MentorController extends Controller
                 'status'  => $status,
                 'no_wa'   => $m->no_wa,
             ];
-            if ($saved) {
-                $assessments[$m->id] = $saved;
-            }
+            if ($saved) $assessments[$m->id] = $saved;
         }
 
         $mentorProfile = [
@@ -102,38 +93,24 @@ class MentorController extends Controller
         ]);
     }
 
-    /**
-     * Riwayat login mentor — buat dilihat admin. Bisa difilter per mentor_user.
-     * Rute contoh: GET /admin/riwayat-login
-     */
+    /** Riwayat login mentor — buat dilihat admin. */
     public function riwayatLogin(Request $request)
     {
         if (! Schema::hasTable('mentor_login_log')) {
-            return response()->json([
-                'ok'    => false,
-                'error' => 'Tabel mentor_login_log belum dibuat. Jalankan: php artisan migrate',
-            ], 503);
+            return response()->json(['ok' => false, 'error' => 'Tabel mentor_login_log belum dibuat. Jalankan: php artisan migrate'], 503);
         }
 
         $query = DB::table('mentor_login_log')->orderByDesc('logged_in_at');
-
-        if ($request->filled('mentor_user')) {
-            $query->where('mentor_user', $request->query('mentor_user'));
-        }
-
+        if ($request->filled('mentor_user')) $query->where('mentor_user', $request->query('mentor_user'));
         $logs = $query->limit(500)->get();
 
-        return view('admin.riwayat-login', [
-            'logs' => $logs,
-        ]);
+        return view('admin.riwayat-login', ['logs' => $logs]);
     }
 
-    /** Insert satu baris riwayat login mentor. Menyimpan id-nya ke session buat di-update pas logout. */
+    /** Insert one mentor login history row and retain its id in the session. */
     private function logMentorLogin(Request $request, string $mentorUser, string $namaMentor): void
     {
-        if (! Schema::hasTable('mentor_login_log')) {
-            return; // degrade gracefully kalau migration belum dijalankan
-        }
+        if (! Schema::hasTable('mentor_login_log')) return;
 
         $logId = DB::table('mentor_login_log')->insertGetId([
             'mentor_user'  => $mentorUser,
@@ -145,7 +122,6 @@ class MentorController extends Controller
             'created_at'   => now(),
             'updated_at'   => now(),
         ]);
-
         $request->session()->put('mentor_login_log_id', $logId);
     }
 
@@ -153,7 +129,6 @@ class MentorController extends Controller
     private function prodiFromCode(string $code): string
     {
         $prefix = strtoupper(explode('-', $code)[0] ?? '');
-
         return match ($prefix) {
             'PTI' => 'Pendidikan Teknik Informatika',
             'TI'  => 'Teknik Informatika',
@@ -163,13 +138,10 @@ class MentorController extends Controller
         };
     }
 
-    /**
-     * Persist one section's scores for a student (upsert on nim+section).
-     */
+    /** Persist one aspect score for a student. */
     public function savePenilaian(Request $request)
     {
         $kegiatanMap = $this->kegiatanMap();
-
         $data = $request->validate([
             'mahasiswa_id'  => 'required|integer',
             'kegiatan'      => ['required', 'string', \Illuminate\Validation\Rule::in(array_keys($kegiatanMap))],
@@ -180,57 +152,45 @@ class MentorController extends Controller
         if ($data['poin'] > $max) {
             return response()->json(['ok' => false, 'error' => "Poin maksimal untuk {$data['kegiatan']} adalah {$max}."], 422);
         }
-
         if (! Schema::hasTable('penilaian')) {
-            return response()->json([
-                'ok'    => false,
-                'error' => 'Tabel penilaian belum dibuat. Jalankan: php artisan migrate',
-            ], 503);
+            return response()->json(['ok' => false, 'error' => 'Tabel penilaian belum dibuat. Jalankan: php artisan migrate'], 503);
         }
 
-        // Mentor hanya boleh menilai mahasiswa di offering-nya sendiri (admin bebas).
         $mentorUser = session('mentor_user');
         $mahasiswa  = DB::table('mahasiswa')->where('id', $data['mahasiswa_id'])->first(['id', 'offering_code']);
         if (! $mahasiswa || ($mentorUser && $mahasiswa->offering_code !== $mentorUser)) {
             return response()->json(['ok' => false, 'error' => 'Mahasiswa tidak ditemukan di offering Anda.'], 403);
         }
 
-        DB::table('penilaian')->updateOrInsert(
-            [
-                'mahasiswa_id'  => $data['mahasiswa_id'],
-                'kegiatan'      => $data['kegiatan'],
-            ],
-            [
-                'poin'          => $data['poin'],
-                'created_at'    => now(),
-                'updated_at'    => now(),
-            ]
-        );
+        $section = $kegiatanMap[$data['kegiatan']][0];
+        DB::transaction(function () use ($data, $section, $kegiatanMap) {
+            // Remove an old total-only value once aspect-level scores replace it.
+            if ($data['kegiatan'] !== $section) {
+                DB::table('penilaian')
+                    ->where('mahasiswa_id', $data['mahasiswa_id'])
+                    ->where('kegiatan', $section)
+                    ->delete();
+            }
+
+            DB::table('penilaian')->updateOrInsert(
+                ['mahasiswa_id' => $data['mahasiswa_id'], 'kegiatan' => $data['kegiatan']],
+                ['poin' => $data['poin'], 'created_at' => now(), 'updated_at' => now()]
+            );
+        });
 
         return response()->json(['ok' => true]);
     }
 
-    /**
-     * Normalize a mahasiswa row to an offering code like "TI-A" / "PTI-C"
-     * so it can be matched against a mentor's "user" code.
-     */
+    /** Normalize a mahasiswa row to an offering code like "TI-A" / "PTI-C". */
     private function offeringCode($m): string
     {
         $offering = strtoupper(trim($m->offering ?? ''));
-
-        // Already a full code (e.g. "PTI-C").
-        if (str_contains($offering, '-')) {
-            return $offering;
-        }
+        if (str_contains($offering, '-')) return $offering;
 
         $prodi  = strtolower($m->program_studi ?? '');
         $isPend = str_contains($prodi, 'pendidikan');
-        if (str_contains($prodi, 'elektro')) {
-            $prefix = $isPend ? 'PTE' : 'TE';
-        } else {
-            $prefix = $isPend ? 'PTI' : 'TI';
-        }
-
+        if (str_contains($prodi, 'elektro')) $prefix = $isPend ? 'PTE' : 'TE';
+        else $prefix = $isPend ? 'PTI' : 'TI';
         $letter = $offering !== '' ? substr($offering, -1) : '';
 
         return $prefix . '-' . $letter;
