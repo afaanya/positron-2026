@@ -19,6 +19,10 @@ export const SECTIONS = {
       { name:'Rangkuman Materi',       max:15,  guide:'Maksimum 15 poin (rangkuman mengenai materi yang disampaikan).' },
       { name:'Penugasan IoH',   max:15,  guide:'Maksimum 15 poin (tugas pengenalan himpunan).' },
       { name:'Staff Muda',        max:25,  guide:'Maksimum 25 poin (keterlibatan sebagai staff muda).' },
+      { name:'Kehadiran IOH',    max:45,  guide:'Maksimum 45 poin (Penilaian berdasarkan keikutsertaan peserta dalam kegiatan Ling atau penyelesaian tugas pengganti bagi peserta yang tidak mengikuti Ling).' },
+      { name:'Penugasan IoH',    max:15,  guide:'Maksimum 15 poin (Penilaian berdasarkan pengumpulan tugas melalui link).' },
+      { name:'Rangkuman materi', max:15,  guide:'Maksimum 15 poin (Penilaian diberikan berdasarkan pengumpulan rangkuman materi IOH).' },
+      { name:'Poin 4',           max:25,  guide:'Maksimum 25 poin ().' },
     ],
     noteMax: 100,
   },
@@ -44,8 +48,11 @@ export const SECTIONS = {
   arus: {
     label: 'ARUS',
     aspects: [
+
       { name:'Arus 1', max:75, guide:'Maksimum 75 poin (kehadiran).' },
       { name:'Arus 2', max:75, guide:'Maksimum 75 poin (kehadiran).' },
+      { name:'Arus 1', max:75, guide:'Maksimum 75 poin (panduan).' },
+      { name:'Arus 2', max:75, guide:'Maksimum 75 poin (panduan).' },
     ],
     noteMax: 150,
   },
