@@ -44,8 +44,8 @@ export const SECTIONS = {
   arus: {
     label: 'ARUS',
     aspects: [
-      { name:'Arus 1', max:75, guide:'Maksimum 75 poin (panduan).' },
-      { name:'Arus 2', max:75, guide:'Maksimum 75 poin (panduan).' },
+      { name:'Arus 1', max:75, guide:'Maksimum 75 poin (kehadiran).' },
+      { name:'Arus 2', max:75, guide:'Maksimum 75 poin (kehadiran).' },
     ],
     noteMax: 150,
   },
